@@ -123,18 +123,18 @@ git push origin feature/your-feature-name
 \`\`\`typescript
 // ✅ 好的示例
 interface UserData {
-  id: string
-  name: string
-  email: string
+id: string
+name: string
+email: string
 }
 
 function getUserData(userId: string): Promise<UserData> {
-  // 实现
+// 实现
 }
 
 // ❌ 不好的示例
 function getData(id: any): any {
-  // 实现
+// 实现
 }
 \`\`\`
 
@@ -143,22 +143,22 @@ function getData(id: any): any {
 \`\`\`typescript
 // ✅ 好的示例
 interface ButtonProps {
-  label: string
-  onClick: () => void
-  variant?: 'primary' | 'secondary'
+label: string
+onClick: () => void
+variant?: 'primary' | 'secondary'
 }
 
 export function Button({ label, onClick, variant = 'primary' }: ButtonProps) {
-  return (
-    <button onClick={onClick} className={variant}>
-      {label}
-    </button>
-  )
+return (
+<button onClick={onClick} className={variant}>
+{label}
+</button>
+)
 }
 
 // ❌ 不好的示例
 export function Button(props: any) {
-  return <button {...props} />
+return <button {...props} />
 }
 \`\`\`
 
@@ -166,11 +166,13 @@ export function Button(props: any) {
 
 \`\`\`typescript
 // ✅ 使用 Tailwind CSS
+
 <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
   <h2 className="text-xl font-bold">Title</h2>
 </div>
 
 // ❌ 避免内联样式
+
 <div style={{ display: 'flex', padding: '16px' }}>
   <h2 style={{ fontSize: '20px' }}>Title</h2>
 </div>
@@ -185,17 +187,17 @@ import { render, screen } from '@testing-library/react'
 import { Button } from './Button'
 
 describe('Button', () => {
-  it('renders correctly', () => {
-    render(<Button label="Click me" onClick={() => {}} />)
-    expect(screen.getByText('Click me')).toBeInTheDocument()
-  })
+it('renders correctly', () => {
+render(<Button label="Click me" onClick={() => {}} />)
+expect(screen.getByText('Click me')).toBeInTheDocument()
+})
 
-  it('handles click events', () => {
-    const handleClick = jest.fn()
-    render(<Button label="Click me" onClick={handleClick} />)
-    screen.getByText('Click me').click()
-    expect(handleClick).toHaveBeenCalled()
-  })
+it('handles click events', () => {
+const handleClick = jest.fn()
+render(<Button label="Click me" onClick={handleClick} />)
+screen.getByText('Click me').click()
+expect(handleClick).toHaveBeenCalled()
+})
 })
 \`\`\`
 
@@ -203,9 +205,9 @@ describe('Button', () => {
 
 \`\`\`typescript
 describe('User Flow', () => {
-  it('completes user registration', async () => {
-    // 测试完整的用户注册流程
-  })
+it('completes user registration', async () => {
+// 测试完整的用户注册流程
+})
 })
 \`\`\`
 
@@ -215,11 +217,11 @@ describe('User Flow', () => {
 
 \`\`\`
 docs/
-├── 01-getting-started/     # 快速开始
-├── 02-user-guide/          # 用户指南
-├── 03-development/         # 开发文档
-├── 04-design-system/       # 设计系统
-├── 05-api/                 # API 文档
+├── 01-getting-started/ # 快速开始
+├── 02-user-guide/ # 用户指南
+├── 03-development/ # 开发文档
+├── 04-design-system/ # 设计系统
+├── 05-api/ # API 文档
 └── ...
 \`\`\`
 
@@ -246,12 +248,14 @@ docs/
 ### 审查标准
 
 1. **代码质量**
+
    - 代码可读性
    - 代码复用性
    - 错误处理
    - 性能考虑
 
 2. **测试覆盖**
+
    - 单元测试
    - 集成测试
    - 边界情况

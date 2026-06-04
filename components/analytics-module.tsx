@@ -10,13 +10,19 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { BarChart3, TrendingUp, Activity, Database, Eye } from "lucide-react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { BarChart3, TrendingUp, Activity, Database, Eye } from 'lucide-react';
 
 export function AnalyticsModule() {
   return (
@@ -125,7 +131,9 @@ export function AnalyticsModule() {
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
                         <span className="text-sm">本月销售额</span>
-                        <span className="text-lg font-bold text-blue-600">¥2,456,789</span>
+                        <span className="text-lg font-bold text-blue-600">
+                          ¥2,456,789
+                        </span>
                       </div>
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
@@ -186,9 +194,15 @@ export function AnalyticsModule() {
                         </div>
                       </div>
                       <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                        <p className="text-sm font-medium text-blue-800">客户增长趋势</p>
-                        <p className="text-xs text-blue-600">企业客户增长率 +15.2%</p>
-                        <p className="text-xs text-blue-600">个人客户增长率 +8.7%</p>
+                        <p className="text-sm font-medium text-blue-800">
+                          客户增长趋势
+                        </p>
+                        <p className="text-xs text-blue-600">
+                          企业客户增长率 +15.2%
+                        </p>
+                        <p className="text-xs text-blue-600">
+                          个人客户增长率 +8.7%
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -201,18 +215,20 @@ export function AnalyticsModule() {
                   <CardContent>
                     <div className="space-y-3">
                       {[
-                        { name: "产品A", sales: 85, revenue: "¥456,789" },
-                        { name: "产品B", sales: 72, revenue: "¥234,567" },
-                        { name: "产品C", sales: 68, revenue: "¥345,678" },
-                        { name: "产品D", sales: 45, revenue: "¥123,456" },
+                        { name: '产品A', sales: 85, revenue: '¥456,789' },
+                        { name: '产品B', sales: 72, revenue: '¥234,567' },
+                        { name: '产品C', sales: 68, revenue: '¥345,678' },
+                        { name: '产品D', sales: 45, revenue: '¥123,456' },
                       ].map((product, index) => (
                         <div key={index} className="space-y-1">
                           <div className="flex justify-between text-sm">
                             <span>{product.name}</span>
-                            <span className="font-medium">{product.revenue}</span>
+                            <span className="font-medium">
+                              {product.revenue}
+                            </span>
                           </div>
                           <div className="w-full h-2 bg-sky-100 rounded-full overflow-hidden">
-                            <div 
+                            <div
                               className="h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full"
                               style={{ width: `${product.sales}%` }}
                             ></div>
@@ -230,20 +246,45 @@ export function AnalyticsModule() {
                   <CardContent>
                     <div className="space-y-2">
                       {[
-                        { region: "华东地区", performance: 92, growth: "+12.5%" },
-                        { region: "华南地区", performance: 88, growth: "+8.3%" },
-                        { region: "华北地区", performance: 76, growth: "+5.7%" },
-                        { region: "西南地区", performance: 65, growth: "+15.2%" },
-                        { region: "其他地区", performance: 58, growth: "+3.1%" },
+                        {
+                          region: '华东地区',
+                          performance: 92,
+                          growth: '+12.5%',
+                        },
+                        {
+                          region: '华南地区',
+                          performance: 88,
+                          growth: '+8.3%',
+                        },
+                        {
+                          region: '华北地区',
+                          performance: 76,
+                          growth: '+5.7%',
+                        },
+                        {
+                          region: '西南地区',
+                          performance: 65,
+                          growth: '+15.2%',
+                        },
+                        {
+                          region: '其他地区',
+                          performance: 58,
+                          growth: '+3.1%',
+                        },
                       ].map((region, index) => (
-                        <div key={index} className="flex justify-between items-center">
+                        <div
+                          key={index}
+                          className="flex justify-between items-center"
+                        >
                           <div className="flex-1">
                             <div className="flex justify-between text-sm mb-1">
                               <span>{region.region}</span>
-                              <span className="text-green-600">{region.growth}</span>
+                              <span className="text-green-600">
+                                {region.growth}
+                              </span>
                             </div>
                             <div className="w-full h-2 bg-sky-100 rounded-full overflow-hidden">
-                              <div 
+                              <div
                                 className="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full"
                                 style={{ width: `${region.performance}%` }}
                               ></div>
@@ -260,48 +301,61 @@ export function AnalyticsModule() {
             <TabsContent value="reports" className="space-y-4">
               <div className="space-y-3">
                 {[
-                  { 
-                    title: "月度销售报告", 
-                    description: "详细的月度销售数据分析和趋势预测", 
-                    lastUpdate: "2小时前",
-                    status: "已更新",
-                    type: "销售分析"
+                  {
+                    title: '月度销售报告',
+                    description: '详细的月度销售数据分析和趋势预测',
+                    lastUpdate: '2小时前',
+                    status: '已更新',
+                    type: '销售分析',
                   },
-                  { 
-                    title: "客户行为分析", 
-                    description: "客户购买行为和偏好分析报告", 
-                    lastUpdate: "6小时前",
-                    status: "已更新",
-                    type: "客户分析"
+                  {
+                    title: '客户行为分析',
+                    description: '客户购买行为和偏好分析报告',
+                    lastUpdate: '6小时前',
+                    status: '已更新',
+                    type: '客户分析',
                   },
-                  { 
-                    title: "财务绩效报告", 
-                    description: "企业财务状况和盈利能力分析", 
-                    lastUpdate: "1天前",
-                    status: "已更新",
-                    type: "财务分析"
+                  {
+                    title: '财务绩效报告',
+                    description: '企业财务状况和盈利能力分析',
+                    lastUpdate: '1天前',
+                    status: '已更新',
+                    type: '财务分析',
                   },
-                  { 
-                    title: "运营效率分析", 
-                    description: "业务流程和运营效率优化建议", 
-                    lastUpdate: "2天前",
-                    status: "待更新",
-                    type: "运营分析"
+                  {
+                    title: '运营效率分析',
+                    description: '业务流程和运营效率优化建议',
+                    lastUpdate: '2天前',
+                    status: '待更新',
+                    type: '运营分析',
                   },
                 ].map((report, index) => (
-                  <Card key={index} className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+                  <Card
+                    key={index}
+                    className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
+                  >
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
                           <div className="flex items-center space-x-2 mb-2">
                             <h3 className="font-medium">{report.title}</h3>
                             <Badge variant="outline">{report.type}</Badge>
-                            <Badge variant={report.status === "已更新" ? "default" : "secondary"}>
+                            <Badge
+                              variant={
+                                report.status === '已更新'
+                                  ? 'default'
+                                  : 'secondary'
+                              }
+                            >
                               {report.status}
                             </Badge>
                           </div>
-                          <p className="text-sm text-muted-foreground mb-2">{report.description}</p>
-                          <span className="text-sm text-muted-foreground">{report.lastUpdate}</span>
+                          <p className="text-sm text-muted-foreground mb-2">
+                            {report.description}
+                          </p>
+                          <span className="text-sm text-muted-foreground">
+                            {report.lastUpdate}
+                          </span>
                         </div>
                         <Button variant="outline" size="sm">
                           查看详情
@@ -324,15 +378,23 @@ export function AnalyticsModule() {
                     <div className="space-y-3">
                       <div className="p-3 bg-blue-50 rounded-lg">
                         <h3 className="font-medium text-blue-800">销售机会</h3>
-                        <p className="text-sm text-blue-600">产品A在华东地区有15%的增长潜力</p>
+                        <p className="text-sm text-blue-600">
+                          产品A在华东地区有15%的增长潜力
+                        </p>
                       </div>
                       <div className="p-3 bg-green-50 rounded-lg">
                         <h3 className="font-medium text-green-800">客户留存</h3>
-                        <p className="text-sm text-green-600">企业客户留存率高于行业平均水平12%</p>
+                        <p className="text-sm text-green-600">
+                          企业客户留存率高于行业平均水平12%
+                        </p>
                       </div>
                       <div className="p-3 bg-purple-50 rounded-lg">
-                        <h3 className="font-medium text-purple-800">市场趋势</h3>
-                        <p className="text-sm text-purple-600">Q3季度预计销售额增长8.5%</p>
+                        <h3 className="font-medium text-purple-800">
+                          市场趋势
+                        </h3>
+                        <p className="text-sm text-purple-600">
+                          Q3季度预计销售额增长8.5%
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -381,19 +443,33 @@ export function AnalyticsModule() {
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       <div className="p-4 bg-gradient-to-br from-blue-50 to-sky-50 rounded-xl border border-blue-100">
-                        <h3 className="font-medium text-blue-800 mb-2">销售预测</h3>
-                        <div className="text-2xl font-bold text-blue-600">¥2.8M</div>
+                        <h3 className="font-medium text-blue-800 mb-2">
+                          销售预测
+                        </h3>
+                        <div className="text-2xl font-bold text-blue-600">
+                          ¥2.8M
+                        </div>
                         <p className="text-sm text-blue-600">下月预计销售额</p>
                       </div>
                       <div className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-100">
-                        <h3 className="font-medium text-green-800 mb-2">客户增长</h3>
-                        <div className="text-2xl font-bold text-green-600">+12.5%</div>
+                        <h3 className="font-medium text-green-800 mb-2">
+                          客户增长
+                        </h3>
+                        <div className="text-2xl font-bold text-green-600">
+                          +12.5%
+                        </div>
                         <p className="text-sm text-green-600">下月预计增长率</p>
                       </div>
                       <div className="p-4 bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl border border-purple-100">
-                        <h3 className="font-medium text-purple-800 mb-2">收入预测</h3>
-                        <div className="text-2xl font-bold text-purple-600">¥1.2M</div>
-                        <p className="text-sm text-purple-600">下月预计净利润</p>
+                        <h3 className="font-medium text-purple-800 mb-2">
+                          收入预测
+                        </h3>
+                        <div className="text-2xl font-bold text-purple-600">
+                          ¥1.2M
+                        </div>
+                        <p className="text-sm text-purple-600">
+                          下月预计净利润
+                        </p>
                       </div>
                     </div>
                     <div className="p-4 bg-white rounded-xl border border-sky-200">
@@ -430,5 +506,5 @@ export function AnalyticsModule() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

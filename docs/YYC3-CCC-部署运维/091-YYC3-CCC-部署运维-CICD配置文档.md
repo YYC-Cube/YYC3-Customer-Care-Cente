@@ -9,11 +9,11 @@
 @tags: [部署运维],[CI/CD],[自动化部署]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -121,11 +121,13 @@ YYC³ Customer Care Center 项目是一个基于「五高五标五化」理念�
 ##### Vercel 部署配置
 
 - `VERCEL_TOKEN`：Vercel API 令牌
+
   - 获取方式：Vercel 控制台 → Settings → Tokens
   - 权限要求：Full Account
   - 用途：自动化部署
 
 - `VERCEL_ORG_ID`：Vercel 组织 ID
+
   - 获取方式：Vercel 控制台 → Settings → General
   - 格式：team_xxxxxxxxxxxxxx
 
@@ -138,6 +140,7 @@ YYC³ Customer Care Center 项目是一个基于「五高五标五化」理念�
 ##### Sentry 配置
 
 - `SENTRY_AUTH_TOKEN`：Sentry 认证令牌
+
   - 获取方式：Sentry 控制台 → Settings → Auth Tokens
   - 权限要求：project:releases
 
@@ -157,6 +160,7 @@ YYC³ Customer Care Center 项目是一个基于「五高五标五化」理念�
 **文件路径**：`.github/workflows/ci.yml`
 
 **触发条件**：
+
 - Push 到 `main` 或 `develop` 分支
 - Pull Request 到 `main` 或 `develop` 分支
 
@@ -175,7 +179,7 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -201,7 +205,7 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -232,7 +236,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     needs: [lint, test]
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -260,18 +264,21 @@ jobs:
 #### 5.2 工作流说明
 
 **Lint 作业**：
+
 - 检查代码风格一致性
 - 验证 TypeScript 类型安全
 - 运行 Prettier 格式检查
 - 预计耗时：2-3 分钟
 
 **Test 作业**：
+
 - 运行所有单元测试
 - 生成代码覆盖率报告
 - 上传覆盖率到 Codecov
 - 预计耗时：3-5 分钟
 
 **Build 作业**：
+
 - 构建 Next.js 生产版本
 - 上传构建产物
 - 依赖 Lint 和 Test 作业成功
@@ -284,6 +291,7 @@ jobs:
 **文件路径**：`.github/workflows/cd.yml`
 
 **触发条件**：
+
 - Push 到 `main` 分支
 - 手动触发（workflow_dispatch）
 
@@ -302,7 +310,7 @@ jobs:
     name: Deploy to Production
     runs-on: ubuntu-latest
     environment: production
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -344,7 +352,7 @@ jobs:
     name: Deploy to Staging
     runs-on: ubuntu-latest
     environment: staging
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -386,12 +394,14 @@ jobs:
 #### 6.2 部署环境
 
 **Staging 环境**：
+
 - URL：`https://yyc3-ccc-staging.vercel.app`
 - 用途：预发布测试
 - 触发：Push 到 `main` 分支或手动触发
 - 部署方式：预构建部署
 
 **Production 环境**：
+
 - URL：`https://yyc3-ccc.vercel.app`（或自定义域名）
 - 用途：生产环境
 - 触发：Push 到 `main` 分支
@@ -441,12 +451,14 @@ graph LR
 #### 8.2 告警规则
 
 **部署失败告警**：
+
 - CI 工作流失败
 - CD 工作流失败
 - 测试失败
 - 构建失败
 
 **性能告警**：
+
 - 部署时间超过 10 分钟
 - 页面加载时间超过 3 秒
 - 错误率超过 5%
@@ -563,8 +575,9 @@ vercel rollback <deployment-url>
 
 <div align="center">
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」
+
 </div>

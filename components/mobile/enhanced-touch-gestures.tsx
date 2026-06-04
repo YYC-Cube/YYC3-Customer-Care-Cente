@@ -10,45 +10,45 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useEffect, useRef, useState, type ReactNode } from "react"
-import { RefreshCw, ArrowLeft, ArrowRight } from "lucide-react"
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { RefreshCw, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface EnhancedTouchGesturesProps {
-  children: ReactNode
-  onRefresh?: () => Promise<void>
-  onSwipeLeft?: () => void
-  onSwipeRight?: () => void
-  onLongPress?: () => void
-  onDoubleTap?: () => void
-  onPinchZoom?: (scale: number) => void
-  enablePullToRefresh?: boolean
-  enableSwipeNavigation?: boolean
-  enableLongPress?: boolean
-  enableDoubleTap?: boolean
-  enablePinchZoom?: boolean
-  refreshThreshold?: number
-  swipeThreshold?: number
-  longPressDelay?: number
-  doubleTapDelay?: number
-  className?: string
+  children: ReactNode;
+  onRefresh?: () => Promise<void>;
+  onSwipeLeft?: () => void;
+  onSwipeRight?: () => void;
+  onLongPress?: () => void;
+  onDoubleTap?: () => void;
+  onPinchZoom?: (scale: number) => void;
+  enablePullToRefresh?: boolean;
+  enableSwipeNavigation?: boolean;
+  enableLongPress?: boolean;
+  enableDoubleTap?: boolean;
+  enablePinchZoom?: boolean;
+  refreshThreshold?: number;
+  swipeThreshold?: number;
+  longPressDelay?: number;
+  doubleTapDelay?: number;
+  className?: string;
 }
 
 interface TouchState {
-  startX: number
-  startY: number
-  currentX: number
-  currentY: number
-  startTime: number
-  isScrolling: boolean
-  isPulling: boolean
-  isLongPressing: boolean
-  longPressTimer?: NodeJS.Timeout
-  lastTapTime: number
-  tapCount: number
-  initialDistance?: number
-  currentScale: number
+  startX: number;
+  startY: number;
+  currentX: number;
+  currentY: number;
+  startTime: number;
+  isScrolling: boolean;
+  isPulling: boolean;
+  isLongPressing: boolean;
+  longPressTimer?: NodeJS.Timeout;
+  lastTapTime: number;
+  tapCount: number;
+  initialDistance?: number;
+  currentScale: number;
 }
 
 export function EnhancedTouchGestures({
@@ -68,15 +68,17 @@ export function EnhancedTouchGestures({
   swipeThreshold = 100,
   longPressDelay = 500,
   doubleTapDelay = 300,
-  className = "",
+  className = '',
 }: EnhancedTouchGesturesProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isRefreshing, setIsRefreshing] = useState(false)
-  const [pullDistance, setPullDistance] = useState(0)
-  const [showRefreshIndicator, setShowRefreshIndicator] = useState(false)
-  const [swipeDirection, setSwipeDirection] = useState<"left" | "right" | null>(null)
-  const [isLongPressing, setIsLongPressing] = useState(false)
-  const [scale, setScale] = useState(1)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [pullDistance, setPullDistance] = useState(0);
+  const [showRefreshIndicator, setShowRefreshIndicator] = useState(false);
+  const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(
+    null
+  );
+  const [isLongPressing, setIsLongPressing] = useState(false);
+  const [scale, setScale] = useState(1);
 
   // 触摸状态
   const touchState = useRef<TouchState>({
@@ -91,40 +93,40 @@ export function EnhancedTouchGestures({
     lastTapTime: 0,
     tapCount: 0,
     currentScale: 1,
-  })
+  });
 
   // 获取两点间距离（用于缩放手势）
   const getDistance = (touch1: Touch, touch2: Touch) => {
-    const dx = touch1.clientX - touch2.clientX
-    const dy = touch1.clientY - touch2.clientY
-    return Math.sqrt(dx * dx + dy * dy)
-  }
+    const dx = touch1.clientX - touch2.clientX;
+    const dy = touch1.clientY - touch2.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  };
 
   // 添加触觉反馈
-  const hapticFeedback = (type: "light" | "medium" | "heavy" = "light") => {
-    if ("vibrate" in navigator) {
+  const hapticFeedback = (type: 'light' | 'medium' | 'heavy' = 'light') => {
+    if ('vibrate' in navigator) {
       const patterns = {
         light: 10,
         medium: 20,
         heavy: 50,
-      }
-      navigator.vibrate(patterns[type])
+      };
+      navigator.vibrate(patterns[type]);
     }
-  }
+  };
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+    const container = containerRef.current;
+    if (!container) return;
 
-    let animationFrame: number
+    let animationFrame: number = 0;
 
     const handleTouchStart = (e: TouchEvent) => {
-      const touch = e.touches[0]
-      const now = Date.now()
+      const touch = e.touches[0];
+      const now = Date.now();
 
       // 清除之前的长按定时器
       if (touchState.current.longPressTimer) {
-        clearTimeout(touchState.current.longPressTimer)
+        clearTimeout(touchState.current.longPressTimer);
       }
 
       touchState.current = {
@@ -137,197 +139,238 @@ export function EnhancedTouchGestures({
         isScrolling: false,
         isPulling: false,
         isLongPressing: false,
-      }
+      };
 
       // 处理双击
       if (enableDoubleTap) {
-        const timeSinceLastTap = now - touchState.current.lastTapTime
+        const timeSinceLastTap = now - touchState.current.lastTapTime;
         if (timeSinceLastTap < doubleTapDelay) {
-          touchState.current.tapCount++
+          touchState.current.tapCount++;
         } else {
-          touchState.current.tapCount = 1
+          touchState.current.tapCount = 1;
         }
-        touchState.current.lastTapTime = now
+        touchState.current.lastTapTime = now;
       }
 
       // 处理长按
       if (enableLongPress && onLongPress) {
         touchState.current.longPressTimer = setTimeout(() => {
           if (!touchState.current.isScrolling) {
-            touchState.current.isLongPressing = true
-            setIsLongPressing(true)
-            hapticFeedback("medium")
-            onLongPress()
+            touchState.current.isLongPressing = true;
+            setIsLongPressing(true);
+            hapticFeedback('medium');
+            onLongPress();
           }
-        }, longPressDelay)
+        }, longPressDelay);
       }
 
       // 处理缩放手势
       if (enablePinchZoom && e.touches.length === 2) {
-        touchState.current.initialDistance = getDistance(e.touches[0], e.touches[1])
+        touchState.current.initialDistance = getDistance(
+          e.touches[0],
+          e.touches[1]
+        );
       }
-    }
+    };
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (!e.touches[0]) return
+      if (!e.touches[0]) return;
 
-      const touch = e.touches[0]
-      const deltaX = touch.clientX - touchState.current.startX
-      const deltaY = touch.clientY - touchState.current.startY
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - touchState.current.startX;
+      const deltaY = touch.clientY - touchState.current.startY;
 
-      touchState.current.currentX = touch.clientX
-      touchState.current.currentY = touch.clientY
+      touchState.current.currentX = touch.clientX;
+      touchState.current.currentY = touch.clientY;
 
       // 判断滚动方向
-      if (!touchState.current.isScrolling && (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10)) {
-        touchState.current.isScrolling = true
+      if (
+        !touchState.current.isScrolling &&
+        (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10)
+      ) {
+        touchState.current.isScrolling = true;
 
         // 清除长按定时器
         if (touchState.current.longPressTimer) {
-          clearTimeout(touchState.current.longPressTimer)
+          clearTimeout(touchState.current.longPressTimer);
         }
       }
 
       // 处理缩放手势
-      if (enablePinchZoom && e.touches.length === 2 && touchState.current.initialDistance) {
-        e.preventDefault()
-        const currentDistance = getDistance(e.touches[0], e.touches[1])
-        const scaleChange = currentDistance / touchState.current.initialDistance
-        const newScale = Math.max(0.5, Math.min(3, scaleChange))
+      if (
+        enablePinchZoom &&
+        e.touches.length === 2 &&
+        touchState.current.initialDistance
+      ) {
+        e.preventDefault();
+        const currentDistance = getDistance(e.touches[0], e.touches[1]);
+        const scaleChange =
+          currentDistance / touchState.current.initialDistance;
+        const newScale = Math.max(0.5, Math.min(3, scaleChange));
 
-        setScale(newScale)
-        touchState.current.currentScale = newScale
+        setScale(newScale);
+        touchState.current.currentScale = newScale;
 
         if (onPinchZoom) {
-          onPinchZoom(newScale)
+          onPinchZoom(newScale);
         }
-        return
+        return;
       }
 
       // 下拉刷新逻辑
-      if (enablePullToRefresh && deltaY > 0 && container.scrollTop === 0 && !isRefreshing) {
-        e.preventDefault()
-        touchState.current.isPulling = true
+      if (
+        enablePullToRefresh &&
+        deltaY > 0 &&
+        container.scrollTop === 0 &&
+        !isRefreshing
+      ) {
+        e.preventDefault();
+        touchState.current.isPulling = true;
 
-        const distance = Math.min(deltaY * 0.5, refreshThreshold * 1.5)
-        setPullDistance(distance)
-        setShowRefreshIndicator(distance > 20)
+        const distance = Math.min(deltaY * 0.5, refreshThreshold * 1.5);
+        setPullDistance(distance);
+        setShowRefreshIndicator(distance > 20);
 
         // 添加阻尼效果
-        container.style.transform = `translateY(${distance}px)`
-        container.style.transition = "none"
+        container.style.transform = `translateY(${distance}px)`;
+        container.style.transition = 'none';
 
         // 触觉反馈
         if (distance >= refreshThreshold && !showRefreshIndicator) {
-          hapticFeedback("light")
+          hapticFeedback('light');
         }
       }
 
       // 左右滑动提示
-      if (enableSwipeNavigation && Math.abs(deltaX) > 30 && Math.abs(deltaY) < 50) {
-        const direction = deltaX > 0 ? "right" : "left"
-        setSwipeDirection(direction)
+      if (
+        enableSwipeNavigation &&
+        Math.abs(deltaX) > 30 &&
+        Math.abs(deltaY) < 50
+      ) {
+        const direction = deltaX > 0 ? 'right' : 'left';
+        setSwipeDirection(direction);
 
         // 添加视觉反馈
         if (Math.abs(deltaX) > swipeThreshold / 2) {
-          hapticFeedback("light")
+          hapticFeedback('light');
         }
       }
-    }
+    };
 
     const handleTouchEnd = async (e: TouchEvent) => {
-      const deltaX = touchState.current.currentX - touchState.current.startX
-      const deltaY = touchState.current.currentY - touchState.current.startY
-      const deltaTime = Date.now() - touchState.current.startTime
-      const velocity = Math.abs(deltaX) / deltaTime
+      const deltaX = touchState.current.currentX - touchState.current.startX;
+      const deltaY = touchState.current.currentY - touchState.current.startY;
+      const deltaTime = Date.now() - touchState.current.startTime;
+      const velocity = Math.abs(deltaX) / deltaTime;
 
       // 清除长按定时器
       if (touchState.current.longPressTimer) {
-        clearTimeout(touchState.current.longPressTimer)
+        clearTimeout(touchState.current.longPressTimer);
       }
 
       // 重置容器位置
-      container.style.transform = ""
-      container.style.transition = "transform 0.3s ease-out"
+      container.style.transform = '';
+      container.style.transition = 'transform 0.3s ease-out';
 
       // 处理双击
-      if (enableDoubleTap && touchState.current.tapCount === 2 && deltaTime < doubleTapDelay && onDoubleTap) {
-        hapticFeedback("medium")
-        onDoubleTap()
-        touchState.current.tapCount = 0
+      if (
+        enableDoubleTap &&
+        touchState.current.tapCount === 2 &&
+        deltaTime < doubleTapDelay &&
+        onDoubleTap
+      ) {
+        hapticFeedback('medium');
+        onDoubleTap();
+        touchState.current.tapCount = 0;
       }
 
       // 下拉刷新
-      if (enablePullToRefresh && touchState.current.isPulling && pullDistance >= refreshThreshold && onRefresh) {
-        setIsRefreshing(true)
-        hapticFeedback("heavy")
+      if (
+        enablePullToRefresh &&
+        touchState.current.isPulling &&
+        pullDistance >= refreshThreshold &&
+        onRefresh
+      ) {
+        setIsRefreshing(true);
+        hapticFeedback('heavy');
 
         try {
-          await onRefresh()
+          await onRefresh();
         } catch (error) {
-          console.error("刷新失败:", error)
+          console.error('刷新失败:', error);
         } finally {
-          setIsRefreshing(false)
+          setIsRefreshing(false);
         }
       }
 
       // 左右滑动导航
-      if (enableSwipeNavigation && Math.abs(deltaX) > swipeThreshold && Math.abs(deltaY) < 50 && velocity > 0.3) {
-        hapticFeedback("medium")
+      if (
+        enableSwipeNavigation &&
+        Math.abs(deltaX) > swipeThreshold &&
+        Math.abs(deltaY) < 50 &&
+        velocity > 0.3
+      ) {
+        hapticFeedback('medium');
 
         if (deltaX > 0 && onSwipeRight) {
-          onSwipeRight()
+          onSwipeRight();
         } else if (deltaX < 0 && onSwipeLeft) {
-          onSwipeLeft()
+          onSwipeLeft();
         }
       }
 
       // 重置状态
-      setPullDistance(0)
-      setShowRefreshIndicator(false)
-      setSwipeDirection(null)
-      setIsLongPressing(false)
-      touchState.current.isPulling = false
-      touchState.current.isLongPressing = false
-    }
+      setPullDistance(0);
+      setShowRefreshIndicator(false);
+      setSwipeDirection(null);
+      setIsLongPressing(false);
+      touchState.current.isPulling = false;
+      touchState.current.isLongPressing = false;
+    };
 
     const handleTouchCancel = () => {
       // 清理所有状态
       if (touchState.current.longPressTimer) {
-        clearTimeout(touchState.current.longPressTimer)
+        clearTimeout(touchState.current.longPressTimer);
       }
 
-      container.style.transform = ""
-      container.style.transition = "transform 0.3s ease-out"
+      container.style.transform = '';
+      container.style.transition = 'transform 0.3s ease-out';
 
-      setPullDistance(0)
-      setShowRefreshIndicator(false)
-      setSwipeDirection(null)
-      setIsLongPressing(false)
-      touchState.current.isPulling = false
-      touchState.current.isLongPressing = false
-    }
+      setPullDistance(0);
+      setShowRefreshIndicator(false);
+      setSwipeDirection(null);
+      setIsLongPressing(false);
+      touchState.current.isPulling = false;
+      touchState.current.isLongPressing = false;
+    };
 
     // 添加事件监听器
-    container.addEventListener("touchstart", handleTouchStart, { passive: false })
-    container.addEventListener("touchmove", handleTouchMove, { passive: false })
-    container.addEventListener("touchend", handleTouchEnd, { passive: false })
-    container.addEventListener("touchcancel", handleTouchCancel, { passive: false })
+    container.addEventListener('touchstart', handleTouchStart, {
+      passive: false,
+    });
+    container.addEventListener('touchmove', handleTouchMove, {
+      passive: false,
+    });
+    container.addEventListener('touchend', handleTouchEnd, { passive: false });
+    container.addEventListener('touchcancel', handleTouchCancel, {
+      passive: false,
+    });
 
     return () => {
-      container.removeEventListener("touchstart", handleTouchStart)
-      container.removeEventListener("touchmove", handleTouchMove)
-      container.removeEventListener("touchend", handleTouchEnd)
-      container.removeEventListener("touchcancel", handleTouchCancel)
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
+      container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener('touchcancel', handleTouchCancel);
 
       if (touchState.current.longPressTimer) {
-        clearTimeout(touchState.current.longPressTimer)
+        clearTimeout(touchState.current.longPressTimer);
       }
 
       if (animationFrame) {
-        cancelAnimationFrame(animationFrame)
+        cancelAnimationFrame(animationFrame);
       }
-    }
+    };
   }, [
     enablePullToRefresh,
     enableSwipeNavigation,
@@ -347,7 +390,7 @@ export function EnhancedTouchGestures({
     isRefreshing,
     pullDistance,
     showRefreshIndicator,
-  ])
+  ]);
 
   return (
     <div
@@ -355,8 +398,8 @@ export function EnhancedTouchGestures({
       className={`relative h-full overflow-auto ${className}`}
       style={{
         transform: enablePinchZoom ? `scale(${scale})` : undefined,
-        transformOrigin: "center center",
-        transition: "transform 0.1s ease-out",
+        transformOrigin: 'center center',
+        transition: 'transform 0.1s ease-out',
       }}
     >
       {/* 下拉刷新指示器 */}
@@ -370,12 +413,16 @@ export function EnhancedTouchGestures({
         >
           <div className="flex items-center space-x-2 text-sky-600">
             <RefreshCw
-              className={`w-5 h-5 ${isRefreshing ? "animate-spin" : ""} ${
-                pullDistance >= refreshThreshold ? "rotate-180" : ""
+              className={`w-5 h-5 ${isRefreshing ? 'animate-spin' : ''} ${
+                pullDistance >= refreshThreshold ? 'rotate-180' : ''
               } transition-transform duration-200`}
             />
             <span className="text-sm font-medium">
-              {isRefreshing ? "正在刷新..." : pullDistance >= refreshThreshold ? "释放刷新" : "下拉刷新"}
+              {isRefreshing
+                ? '正在刷新...'
+                : pullDistance >= refreshThreshold
+                  ? '释放刷新'
+                  : '下拉刷新'}
             </span>
           </div>
         </div>
@@ -386,19 +433,19 @@ export function EnhancedTouchGestures({
         <>
           <div
             className={`absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-gradient-to-r from-sky-400 to-transparent transition-opacity duration-200 pointer-events-none ${
-              swipeDirection === "right" ? "opacity-60" : "opacity-20"
+              swipeDirection === 'right' ? 'opacity-60' : 'opacity-20'
             }`}
           />
           <div
             className={`absolute right-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-gradient-to-l from-sky-400 to-transparent transition-opacity duration-200 pointer-events-none ${
-              swipeDirection === "left" ? "opacity-60" : "opacity-20"
+              swipeDirection === 'left' ? 'opacity-60' : 'opacity-20'
             }`}
           />
 
           {/* 滑动方向指示器 */}
           {swipeDirection && (
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/20 rounded-full p-3 pointer-events-none">
-              {swipeDirection === "left" ? (
+              {swipeDirection === 'left' ? (
                 <ArrowLeft className="w-6 h-6 text-white" />
               ) : (
                 <ArrowRight className="w-6 h-6 text-white" />
@@ -424,5 +471,5 @@ export function EnhancedTouchGestures({
 
       {children}
     </div>
-  )
+  );
 }

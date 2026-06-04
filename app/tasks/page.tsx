@@ -10,15 +10,15 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { ResponsiveLayout } from "@/components/layout/responsive-layout"
-import { TaskManagement } from "@/components/task-management"
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
+import { TaskManagement } from '@/components/task-management';
 
 export default function TasksPage() {
   return (
     <ResponsiveLayout showSidebar={true} showHeader={true}>
       <TaskManagement />
     </ResponsiveLayout>
-  )
+  );
 }

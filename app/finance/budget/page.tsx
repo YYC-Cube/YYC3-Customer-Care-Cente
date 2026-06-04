@@ -10,15 +10,15 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { ResponsiveLayout } from "@/components/layout/responsive-layout"
-import { BudgetManagement } from "@/components/finance/budget-management"
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
+import { BudgetManagement } from '@/components/finance/budget-management';
 
 export default function BudgetPage() {
   return (
     <ResponsiveLayout showSidebar={true} showHeader={true}>
       <BudgetManagement />
     </ResponsiveLayout>
-  )
+  );
 }

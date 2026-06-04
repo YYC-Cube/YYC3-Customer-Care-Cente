@@ -10,10 +10,10 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Sidebar } from "@/components/sidebar"
-import { CommunicationModule } from "@/components/communication-module"
+import { Sidebar } from '@/components/sidebar';
+import { CommunicationModule } from '@/components/communication-module';
 
 export default function CommunicationPage() {
   return (
@@ -23,5 +23,5 @@ export default function CommunicationPage() {
         <CommunicationModule />
       </main>
     </div>
-  )
+  );
 }

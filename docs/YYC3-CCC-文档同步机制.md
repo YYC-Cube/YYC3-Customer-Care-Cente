@@ -9,11 +9,11 @@
 @tags: [文档管理, 同步机制, 版本控制, 交互式文档]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -164,7 +164,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
   - `/YYC3-CCC-运维阶段`：运维阶段文档
   - `/YYC3-CCC-需求规划`：需求规划文档
   - `/YYC3-CCC-项目规划`：项目规划文档
-  - `/YYC3-CCC-详细设计`：详细设计文档  
+  - `/YYC3-CCC-详细设计`：详细设计文档
 
 #### 5.2 映射规则
 
@@ -377,7 +377,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

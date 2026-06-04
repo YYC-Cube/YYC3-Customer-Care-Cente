@@ -10,10 +10,10 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { MultiFactorAuth } from "@/components/security/multi-factor-auth"
+import { MultiFactorAuth } from '@/components/security/multi-factor-auth';
 
 export default function MFAPage() {
-  return <MultiFactorAuth />
+  return <MultiFactorAuth />;
 }

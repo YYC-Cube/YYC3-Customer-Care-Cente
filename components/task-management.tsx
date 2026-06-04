@@ -10,17 +10,29 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   Dialog,
   DialogContent,
@@ -28,174 +40,190 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { CheckSquare, Plus, Search, Filter, Calendar, Clock, User, Play, Pause, CheckCircle, AlertTriangle } from 'lucide-react'
+} from '@/components/ui/dialog';
+import {
+  CheckSquare,
+  Plus,
+  Search,
+  Filter,
+  Calendar,
+  Clock,
+  User,
+  Play,
+  Pause,
+  CheckCircle,
+  AlertTriangle,
+} from 'lucide-react';
 
 interface Task {
-  id: string
-  title: string
-  description: string
-  status: "todo" | "in-progress" | "completed" | "cancelled"
-  priority: "low" | "medium" | "high" | "urgent"
-  assignee: string
-  assigneeAvatar?: string
-  dueDate: string
-  progress: number
-  tags: string[]
-  createdAt: string
+  id: string;
+  title: string;
+  description: string;
+  status: 'todo' | 'in-progress' | 'completed' | 'cancelled';
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  assignee: string;
+  assigneeAvatar?: string;
+  dueDate: string;
+  progress: number;
+  tags: string[];
+  createdAt: string;
 }
 
 export function TaskManagement() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [statusFilter, setStatusFilter] = useState("all")
-  const [priorityFilter, setPriorityFilter] = useState("all")
-  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [priorityFilter, setPriorityFilter] = useState('all');
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
   // 模拟任务数据
   const tasks: Task[] = [
     {
-      id: "1",
-      title: "客户需求分析报告",
-      description: "完成Q2季度客户需求分析，整理客户反馈并制定改进方案",
-      status: "in-progress",
-      priority: "high",
-      assignee: "张三",
-      dueDate: "2025-06-25",
+      id: '1',
+      title: '客户需求分析报告',
+      description: '完成Q2季度客户需求分析，整理客户反馈并制定改进方案',
+      status: 'in-progress',
+      priority: 'high',
+      assignee: '张三',
+      dueDate: '2025-06-25',
       progress: 75,
-      tags: ["分析", "客户"],
-      createdAt: "2025-06-15",
+      tags: ['分析', '客户'],
+      createdAt: '2025-06-15',
     },
     {
-      id: "2",
-      title: "产品功能优化",
-      description: "根据用户反馈优化产品核心功能，提升用户体验",
-      status: "todo",
-      priority: "medium",
-      assignee: "李四",
-      dueDate: "2025-06-30",
+      id: '2',
+      title: '产品功能优化',
+      description: '根据用户反馈优化产品核心功能，提升用户体验',
+      status: 'todo',
+      priority: 'medium',
+      assignee: '李四',
+      dueDate: '2025-06-30',
       progress: 0,
-      tags: ["开发", "优化"],
-      createdAt: "2025-06-18",
+      tags: ['开发', '优化'],
+      createdAt: '2025-06-18',
     },
     {
-      id: "3",
-      title: "市场推广方案",
-      description: "制定下半年市场推广策略，包括线上线下推广渠道",
-      status: "completed",
-      priority: "high",
-      assignee: "王五",
-      dueDate: "2025-06-20",
+      id: '3',
+      title: '市场推广方案',
+      description: '制定下半年市场推广策略，包括线上线下推广渠道',
+      status: 'completed',
+      priority: 'high',
+      assignee: '王五',
+      dueDate: '2025-06-20',
       progress: 100,
-      tags: ["市场", "推广"],
-      createdAt: "2025-06-10",
+      tags: ['市场', '推广'],
+      createdAt: '2025-06-10',
     },
     {
-      id: "4",
-      title: "系统安全检查",
-      description: "进行系统安全漏洞扫描和修复，确保数据安全",
-      status: "in-progress",
-      priority: "urgent",
-      assignee: "赵六",
-      dueDate: "2025-06-22",
+      id: '4',
+      title: '系统安全检查',
+      description: '进行系统安全漏洞扫描和修复，确保数据安全',
+      status: 'in-progress',
+      priority: 'urgent',
+      assignee: '赵六',
+      dueDate: '2025-06-22',
       progress: 60,
-      tags: ["安全", "系统"],
-      createdAt: "2025-06-16",
+      tags: ['安全', '系统'],
+      createdAt: '2025-06-16',
     },
     {
-      id: "5",
-      title: "员工培训计划",
-      description: "制定新员工入职培训计划和老员工技能提升方案",
-      status: "todo",
-      priority: "low",
-      assignee: "钱七",
-      dueDate: "2025-07-05",
+      id: '5',
+      title: '员工培训计划',
+      description: '制定新员工入职培训计划和老员工技能提升方案',
+      status: 'todo',
+      priority: 'low',
+      assignee: '钱七',
+      dueDate: '2025-07-05',
       progress: 20,
-      tags: ["培训", "人力"],
-      createdAt: "2025-06-19",
+      tags: ['培训', '人力'],
+      createdAt: '2025-06-19',
     },
-  ]
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "todo":
-        return "bg-gray-100 text-gray-800"
-      case "in-progress":
-        return "bg-orange-100 text-orange-800"
-      case "completed":
-        return "bg-green-100 text-green-800"
-      case "cancelled":
-        return "bg-red-100 text-red-800"
+      case 'todo':
+        return 'bg-gray-100 text-gray-800';
+      case 'in-progress':
+        return 'bg-orange-100 text-orange-800';
+      case 'completed':
+        return 'bg-green-100 text-green-800';
+      case 'cancelled':
+        return 'bg-red-100 text-red-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "todo":
-        return "待开始"
-      case "in-progress":
-        return "进行中"
-      case "completed":
-        return "已完成"
-      case "cancelled":
-        return "已取消"
+      case 'todo':
+        return '待开始';
+      case 'in-progress':
+        return '进行中';
+      case 'completed':
+        return '已完成';
+      case 'cancelled':
+        return '已取消';
       default:
-        return "未知"
+        return '未知';
     }
-  }
+  };
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case "low":
-        return "bg-green-100 text-green-800"
-      case "medium":
-        return "bg-yellow-100 text-yellow-800"
-      case "high":
-        return "bg-orange-100 text-orange-800"
-      case "urgent":
-        return "bg-red-100 text-red-800"
+      case 'low':
+        return 'bg-green-100 text-green-800';
+      case 'medium':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'high':
+        return 'bg-orange-100 text-orange-800';
+      case 'urgent':
+        return 'bg-red-100 text-red-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const getPriorityText = (priority: string) => {
     switch (priority) {
-      case "low":
-        return "低优先级"
-      case "medium":
-        return "中优先级"
-      case "high":
-        return "高优先级"
-      case "urgent":
-        return "紧急"
+      case 'low':
+        return '低优先级';
+      case 'medium':
+        return '中优先级';
+      case 'high':
+        return '高优先级';
+      case 'urgent':
+        return '紧急';
       default:
-        return "普通"
+        return '普通';
     }
-  }
+  };
 
   const getProgressColor = (progress: number) => {
-    if (progress >= 80) return "from-orange-400 to-orange-500"
-    if (progress >= 60) return "from-orange-300 to-orange-400"
-    if (progress >= 40) return "from-yellow-400 to-yellow-500"
-    return "from-red-400 to-red-500"
-  }
+    if (progress >= 80) return 'from-orange-400 to-orange-500';
+    if (progress >= 60) return 'from-orange-300 to-orange-400';
+    if (progress >= 40) return 'from-yellow-400 to-yellow-500';
+    return 'from-red-400 to-red-500';
+  };
 
   const filteredTasks = tasks.filter((task) => {
     const matchesSearch =
       task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       task.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      task.assignee.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesStatus = statusFilter === "all" || task.status === statusFilter
-    const matchesPriority = priorityFilter === "all" || task.priority === priorityFilter
-    return matchesSearch && matchesStatus && matchesPriority
-  })
+      task.assignee.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      statusFilter === 'all' || task.status === statusFilter;
+    const matchesPriority =
+      priorityFilter === 'all' || task.priority === priorityFilter;
+    return matchesSearch && matchesStatus && matchesPriority;
+  });
 
-  const totalTasks = tasks.length
-  const completedTasks = tasks.filter((t) => t.status === "completed").length
-  const inProgressTasks = tasks.filter((t) => t.status === "in-progress").length
-  const urgentTasks = tasks.filter((t) => t.priority === "urgent").length
+  const totalTasks = tasks.length;
+  const completedTasks = tasks.filter((t) => t.status === 'completed').length;
+  const inProgressTasks = tasks.filter(
+    (t) => t.status === 'in-progress'
+  ).length;
+  const urgentTasks = tasks.filter((t) => t.priority === 'urgent').length;
 
   return (
     <div className="p-6 space-y-6 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 min-h-screen">
@@ -216,7 +244,10 @@ export function TaskManagement() {
             <Filter className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-all duration-300" />
             筛选
           </Button>
-          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+          <Dialog
+            open={isCreateDialogOpen}
+            onOpenChange={setIsCreateDialogOpen}
+          >
             <DialogTrigger asChild>
               <Button className="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white transition-all duration-300 hover:shadow-xl hover:scale-105 group">
                 <Plus className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-all duration-300" />
@@ -231,7 +262,11 @@ export function TaskManagement() {
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="title">任务标题</Label>
-                  <Input id="title" placeholder="输入任务标题" className="border-l-4 border-l-orange-500" />
+                  <Input
+                    id="title"
+                    placeholder="输入任务标题"
+                    className="border-l-4 border-l-orange-500"
+                  />
                 </div>
                 <div>
                   <Label htmlFor="description">任务描述</Label>
@@ -272,10 +307,17 @@ export function TaskManagement() {
                 </div>
                 <div>
                   <Label htmlFor="dueDate">截止日期</Label>
-                  <Input id="dueDate" type="date" className="border-l-4 border-l-orange-500" />
+                  <Input
+                    id="dueDate"
+                    type="date"
+                    className="border-l-4 border-l-orange-500"
+                  />
                 </div>
                 <div className="flex justify-end space-x-2">
-                  <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsCreateDialogOpen(false)}
+                  >
                     取消
                   </Button>
                   <Button
@@ -299,7 +341,9 @@ export function TaskManagement() {
             <CheckSquare className="h-4 w-4 text-orange-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-700">{totalTasks}</div>
+            <div className="text-2xl font-bold text-orange-700">
+              {totalTasks}
+            </div>
             <p className="text-xs text-gray-600">本月新增 +8</p>
           </CardContent>
         </Card>
@@ -310,8 +354,12 @@ export function TaskManagement() {
             <CheckCircle className="h-4 w-4 text-orange-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-700">{completedTasks}</div>
-            <p className="text-xs text-gray-600">完成率 {Math.round((completedTasks / totalTasks) * 100)}%</p>
+            <div className="text-2xl font-bold text-orange-700">
+              {completedTasks}
+            </div>
+            <p className="text-xs text-gray-600">
+              完成率 {Math.round((completedTasks / totalTasks) * 100)}%
+            </p>
           </CardContent>
         </Card>
 
@@ -321,7 +369,9 @@ export function TaskManagement() {
             <Play className="h-4 w-4 text-orange-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-700">{inProgressTasks}</div>
+            <div className="text-2xl font-bold text-orange-700">
+              {inProgressTasks}
+            </div>
             <p className="text-xs text-gray-600">正在执行的任务</p>
           </CardContent>
         </Card>
@@ -332,7 +382,9 @@ export function TaskManagement() {
             <AlertTriangle className="h-4 w-4 text-orange-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-700">{urgentTasks}</div>
+            <div className="text-2xl font-bold text-orange-700">
+              {urgentTasks}
+            </div>
             <p className="text-xs text-gray-600">需要立即处理</p>
           </CardContent>
         </Card>
@@ -388,7 +440,9 @@ export function TaskManagement() {
             <CheckSquare className="w-5 h-5 mr-2" />
             任务列表
           </CardTitle>
-          <CardDescription>共找到 {filteredTasks.length} 个任务</CardDescription>
+          <CardDescription>
+            共找到 {filteredTasks.length} 个任务
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -399,7 +453,9 @@ export function TaskManagement() {
               >
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
-                    <h3 className="font-bold text-gray-900 text-lg">{task.title}</h3>
+                    <h3 className="font-bold text-gray-900 text-lg">
+                      {task.title}
+                    </h3>
                     <p className="text-gray-600 mt-1">{task.description}</p>
                     <div className="flex items-center space-x-4 mt-3 text-sm text-gray-500">
                       <div className="flex items-center">
@@ -417,8 +473,12 @@ export function TaskManagement() {
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Badge className={getStatusColor(task.status)}>{getStatusText(task.status)}</Badge>
-                    <Badge className={getPriorityColor(task.priority)}>{getPriorityText(task.priority)}</Badge>
+                    <Badge className={getStatusColor(task.status)}>
+                      {getStatusText(task.status)}
+                    </Badge>
+                    <Badge className={getPriorityColor(task.priority)}>
+                      {getPriorityText(task.priority)}
+                    </Badge>
                   </div>
                 </div>
 
@@ -437,7 +497,9 @@ export function TaskManagement() {
                   </div>
                   <div className="flex items-center justify-center">
                     <Avatar className="h-10 w-10">
-                      <AvatarImage src={task.assigneeAvatar || "/placeholder.svg"} />
+                      <AvatarImage
+                        src={task.assigneeAvatar || '/placeholder.svg'}
+                      />
                       <AvatarFallback className="bg-orange-200 text-orange-700">
                         {task.assignee.slice(0, 2)}
                       </AvatarFallback>
@@ -445,7 +507,11 @@ export function TaskManagement() {
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {task.tags.map((tag, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs bg-orange-100 text-orange-700">
+                      <Badge
+                        key={index}
+                        variant="secondary"
+                        className="text-xs bg-orange-100 text-orange-700"
+                      >
                         {tag}
                       </Badge>
                     ))}
@@ -483,5 +549,5 @@ export function TaskManagement() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

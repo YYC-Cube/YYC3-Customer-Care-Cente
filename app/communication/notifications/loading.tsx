@@ -28,7 +28,10 @@ export default function NotificationsLoading() {
       {/* 统计卡片骨架 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="bg-white/80 backdrop-blur-sm border-0 shadow-lg rounded-lg p-6">
+          <div
+            key={i}
+            className="bg-white/80 backdrop-blur-sm border-0 shadow-lg rounded-lg p-6"
+          >
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <div className="w-5 h-5 bg-gray-200 rounded animate-pulse"></div>
@@ -58,7 +61,10 @@ export default function NotificationsLoading() {
           </div>
           <div className="p-6 space-y-4">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="flex items-start space-x-3 p-4 border rounded-lg">
+              <div
+                key={i}
+                className="flex items-start space-x-3 p-4 border rounded-lg"
+              >
                 <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
                 <div className="flex-1 space-y-2">
                   <div className="flex justify-between items-start">
@@ -114,5 +120,5 @@ export default function NotificationsLoading() {
         </div>
       </div>
     </div>
-  )
+  );
 }

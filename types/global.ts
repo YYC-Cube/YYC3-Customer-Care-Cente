@@ -12,7 +12,12 @@ export type Locale = 'zh-CN' | 'en-US' | 'ja-JP' | 'ko-KR';
 export type Theme = 'light' | 'dark' | 'system';
 
 // 通用状态类型
-export type Status = 'pending' | 'in-progress' | 'completed' | 'failed' | 'cancelled';
+export type Status =
+  | 'pending'
+  | 'in-progress'
+  | 'completed'
+  | 'failed'
+  | 'cancelled';
 export type Priority = 'low' | 'medium' | 'high' | 'urgent';
 export type Visibility = 'public' | 'private' | 'internal';
 
@@ -149,7 +154,14 @@ export type Mode = 'light' | 'dark' | 'system';
 export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 // 通用颜色类型
-export type Color = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'gray';
+export type Color =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'info'
+  | 'gray';
 
 // 通用对齐类型
 export type Alignment = 'left' | 'center' | 'right' | 'justify';
@@ -170,7 +182,13 @@ export type Transition = 'none' | 'fade' | 'slide' | 'scale';
 export type LoadingState = 'idle' | 'loading' | 'success' | 'error';
 
 // 通用空状态类型
-export type EmptyState = 'default' | 'no-data' | 'error' | 'loading' | 'forbidden' | 'not-found';
+export type EmptyState =
+  | 'default'
+  | 'no-data'
+  | 'error'
+  | 'loading'
+  | 'forbidden'
+  | 'not-found';
 
 // 通用权限类型
 export type Permission = string;
@@ -188,10 +206,23 @@ export type DeviceType = 'desktop' | 'tablet' | 'mobile';
 export type BrowserType = 'chrome' | 'firefox' | 'safari' | 'edge' | 'other';
 
 // 通用操作系统类型
-export type OsType = 'windows' | 'macos' | 'linux' | 'ios' | 'android' | 'other';
+export type OsType =
+  | 'windows'
+  | 'macos'
+  | 'linux'
+  | 'ios'
+  | 'android'
+  | 'other';
 
 // 通用网络类型
-export type NetworkType = 'online' | 'offline' | 'slow-2g' | '2g' | '3g' | '4g' | '5g';
+export type NetworkType =
+  | 'online'
+  | 'offline'
+  | 'slow-2g'
+  | '2g'
+  | '3g'
+  | '4g'
+  | '5g';
 
 // 通用语言类型
 export type Language = string;

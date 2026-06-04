@@ -10,10 +10,10 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { VideoCallSystem } from "@/components/communication/video-call-system"
+import { VideoCallSystem } from '@/components/communication/video-call-system';
 
 export default function VideoPage() {
-  return <VideoCallSystem />
+  return <VideoCallSystem />;
 }

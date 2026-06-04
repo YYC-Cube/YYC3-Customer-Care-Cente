@@ -10,19 +10,36 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
 
-import { PageContainer } from "@/components/layout/page-container"
-import { SidebarConfig } from "@/components/sidebar-config"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Monitor, Smartphone, Tablet, Zap, Eye, Clock, Settings } from "lucide-react"
+import { PageContainer } from '@/components/layout/page-container';
+import { SidebarConfig } from '@/components/sidebar-config';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import {
+  Monitor,
+  Smartphone,
+  Tablet,
+  Zap,
+  Eye,
+  Clock,
+  Settings,
+} from 'lucide-react';
 
 export default function SidebarSettingsPage() {
   return (
-    <PageContainer title="侧边栏设置" description="配置侧边栏的自动伸缩行为和响应式设置">
+    <PageContainer
+      title="侧边栏设置"
+      description="配置侧边栏的自动伸缩行为和响应式设置"
+    >
       <div className="space-y-6">
         {/* 功能介绍 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -79,7 +96,9 @@ export default function SidebarSettingsPage() {
         <Card>
           <CardHeader>
             <CardTitle>使用说明</CardTitle>
-            <CardDescription>了解侧边栏自动伸缩的各种功能和使用方法</CardDescription>
+            <CardDescription>
+              了解侧边栏自动伸缩的各种功能和使用方法
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -128,7 +147,7 @@ export default function SidebarSettingsPage() {
         {/* 配置组件 */}
         <SidebarConfig
           onConfigChange={(config) => {
-            console.log("Sidebar config changed:", config)
+            console.log('Sidebar config changed:', config);
             // 这里可以将配置发送到后端或更新全局状态
           }}
         />
@@ -166,5 +185,5 @@ export default function SidebarSettingsPage() {
         </Card>
       </div>
     </PageContainer>
-  )
+  );
 }

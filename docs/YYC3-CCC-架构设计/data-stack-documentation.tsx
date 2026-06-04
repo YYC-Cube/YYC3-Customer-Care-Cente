@@ -10,15 +10,21 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   Code,
   Database,
@@ -39,45 +45,45 @@ import {
   Layers,
   Lock,
   Cloud,
-} from "lucide-react"
+} from 'lucide-react';
 
 export function DataStackDocumentation() {
-  const [activeTab, setActiveTab] = useState("overview")
+  const [activeTab, setActiveTab] = useState('overview');
 
   // 技术栈数据
   const techStack = {
     frontend: {
-      framework: "Next.js 14",
-      language: "TypeScript",
-      styling: "Tailwind CSS",
-      components: "shadcn/ui",
-      icons: "Lucide React",
-      state: "React Hooks",
-      routing: "App Router",
+      framework: 'Next.js 14',
+      language: 'TypeScript',
+      styling: 'Tailwind CSS',
+      components: 'shadcn/ui',
+      icons: 'Lucide React',
+      state: 'React Hooks',
+      routing: 'App Router',
     },
     backend: {
-      runtime: "Node.js",
-      api: "Next.js API Routes",
-      validation: "Zod",
-      auth: "NextAuth.js",
-      middleware: "Next.js Middleware",
+      runtime: 'Node.js',
+      api: 'Next.js API Routes',
+      validation: 'Zod',
+      auth: 'NextAuth.js',
+      middleware: 'Next.js Middleware',
     },
     database: {
-      primary: "IndexedDB",
-      orm: "原生 IndexedDB API",
-      cache: "浏览器缓存",
-      storage: "LocalStorage",
-      sync: "Background Sync",
+      primary: 'IndexedDB',
+      orm: '原生 IndexedDB API',
+      cache: '浏览器缓存',
+      storage: 'LocalStorage',
+      sync: 'Background Sync',
     },
     tools: {
-      bundler: "Webpack",
-      compiler: "SWC",
-      linter: "ESLint",
-      formatter: "Prettier",
-      testing: "Jest + Testing Library",
-      deployment: "Vercel",
+      bundler: 'Webpack',
+      compiler: 'SWC',
+      linter: 'ESLint',
+      formatter: 'Prettier',
+      testing: 'Jest + Testing Library',
+      deployment: 'Vercel',
     },
-  }
+  };
 
   // 性能指标
   const performanceMetrics = {
@@ -87,24 +93,44 @@ export function DataStackDocumentation() {
     dbQuery: 0.05,
     bundleSize: 245,
     lighthouse: 95,
-  }
+  };
 
   // 安全特性
   const securityFeatures = [
-    { name: "数据加密", status: "implemented", description: "本地数据AES-256加密" },
-    { name: "权限控制", status: "implemented", description: "基于角色的访问控制" },
-    { name: "审计日志", status: "implemented", description: "完整的操作日志记录" },
-    { name: "输入验证", status: "implemented", description: "前后端双重验证" },
-    { name: "CSRF防护", status: "implemented", description: "跨站请求伪造防护" },
-    { name: "XSS防护", status: "implemented", description: "跨站脚本攻击防护" },
-  ]
+    {
+      name: '数据加密',
+      status: 'implemented',
+      description: '本地数据AES-256加密',
+    },
+    {
+      name: '权限控制',
+      status: 'implemented',
+      description: '基于角色的访问控制',
+    },
+    {
+      name: '审计日志',
+      status: 'implemented',
+      description: '完整的操作日志记录',
+    },
+    { name: '输入验证', status: 'implemented', description: '前后端双重验证' },
+    {
+      name: 'CSRF防护',
+      status: 'implemented',
+      description: '跨站请求伪造防护',
+    },
+    { name: 'XSS防护', status: 'implemented', description: '跨站脚本攻击防护' },
+  ];
 
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       {/* 页面标题 */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">数据路技术栈文档</h1>
-        <p className="text-xl text-gray-600 mb-4">言语云企业管理系统技术架构详解</p>
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          数据路技术栈文档
+        </h1>
+        <p className="text-xl text-gray-600 mb-4">
+          言语云企业管理系统技术架构详解
+        </p>
         <div className="flex items-center justify-center space-x-4">
           <Badge className="bg-blue-100 text-blue-800">Next.js 14</Badge>
           <Badge className="bg-green-100 text-green-800">TypeScript</Badge>
@@ -200,7 +226,9 @@ export function DataStackDocumentation() {
           <Card>
             <CardHeader>
               <CardTitle>技术特色与优势</CardTitle>
-              <CardDescription>本系统采用的核心技术特色和竞争优势</CardDescription>
+              <CardDescription>
+                本系统采用的核心技术特色和竞争优势
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -209,21 +237,27 @@ export function DataStackDocumentation() {
                     <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium">完全本地化</h4>
-                      <p className="text-sm text-gray-600">无需服务器依赖，数据完全存储在本地，保证数据安全和隐私</p>
+                      <p className="text-sm text-gray-600">
+                        无需服务器依赖，数据完全存储在本地，保证数据安全和隐私
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium">高性能响应</h4>
-                      <p className="text-sm text-gray-600">本地数据库查询，响应时间小于100ms，用户体验极佳</p>
+                      <p className="text-sm text-gray-600">
+                        本地数据库查询，响应时间小于100ms，用户体验极佳
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium">离线可用</h4>
-                      <p className="text-sm text-gray-600">PWA技术支持，断网情况下仍可正常使用所有功能</p>
+                      <p className="text-sm text-gray-600">
+                        PWA技术支持，断网情况下仍可正常使用所有功能
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -232,21 +266,27 @@ export function DataStackDocumentation() {
                     <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium">现代化架构</h4>
-                      <p className="text-sm text-gray-600">基于Next.js 14和TypeScript，代码质量高，维护性强</p>
+                      <p className="text-sm text-gray-600">
+                        基于Next.js 14和TypeScript，代码质量高，维护性强
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium">企业级安全</h4>
-                      <p className="text-sm text-gray-600">多层次安全防护，数据加密，权限控制，审计日志</p>
+                      <p className="text-sm text-gray-600">
+                        多层次安全防护，数据加密，权限控制，审计日志
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium">易于部署</h4>
-                      <p className="text-sm text-gray-600">支持多种部署方式，一键部署到Vercel、Netlify等平台</p>
+                      <p className="text-sm text-gray-600">
+                        支持多种部署方式，一键部署到Vercel、Netlify等平台
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -263,7 +303,9 @@ export function DataStackDocumentation() {
                 <Layers className="w-5 h-5" />
                 <span>分层架构设计</span>
               </CardTitle>
-              <CardDescription>系统采用经典的分层架构，确保代码的可维护性和扩展性</CardDescription>
+              <CardDescription>
+                系统采用经典的分层架构，确保代码的可维护性和扩展性
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
@@ -271,20 +313,36 @@ export function DataStackDocumentation() {
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <div className="space-y-4">
                     <div className="bg-blue-100 p-4 rounded-lg border-l-4 border-blue-500">
-                      <h4 className="font-medium text-blue-800">表现层 (Presentation Layer)</h4>
-                      <p className="text-sm text-blue-700 mt-1">React组件、页面路由、用户界面</p>
+                      <h4 className="font-medium text-blue-800">
+                        表现层 (Presentation Layer)
+                      </h4>
+                      <p className="text-sm text-blue-700 mt-1">
+                        React组件、页面路由、用户界面
+                      </p>
                     </div>
                     <div className="bg-green-100 p-4 rounded-lg border-l-4 border-green-500">
-                      <h4 className="font-medium text-green-800">业务逻辑层 (Business Logic Layer)</h4>
-                      <p className="text-sm text-green-700 mt-1">业务规则、数据处理、状态管理</p>
+                      <h4 className="font-medium text-green-800">
+                        业务逻辑层 (Business Logic Layer)
+                      </h4>
+                      <p className="text-sm text-green-700 mt-1">
+                        业务规则、数据处理、状态管理
+                      </p>
                     </div>
                     <div className="bg-purple-100 p-4 rounded-lg border-l-4 border-purple-500">
-                      <h4 className="font-medium text-purple-800">数据访问层 (Data Access Layer)</h4>
-                      <p className="text-sm text-purple-700 mt-1">数据库操作、缓存管理、数据同步</p>
+                      <h4 className="font-medium text-purple-800">
+                        数据访问层 (Data Access Layer)
+                      </h4>
+                      <p className="text-sm text-purple-700 mt-1">
+                        数据库操作、缓存管理、数据同步
+                      </p>
                     </div>
                     <div className="bg-orange-100 p-4 rounded-lg border-l-4 border-orange-500">
-                      <h4 className="font-medium text-orange-800">数据存储层 (Data Storage Layer)</h4>
-                      <p className="text-sm text-orange-700 mt-1">IndexedDB、LocalStorage、SessionStorage</p>
+                      <h4 className="font-medium text-orange-800">
+                        数据存储层 (Data Storage Layer)
+                      </h4>
+                      <p className="text-sm text-orange-700 mt-1">
+                        IndexedDB、LocalStorage、SessionStorage
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -331,7 +389,9 @@ export function DataStackDocumentation() {
           <Card>
             <CardHeader>
               <CardTitle>模块依赖关系</CardTitle>
-              <CardDescription>各功能模块之间的依赖关系和交互方式</CardDescription>
+              <CardDescription>
+                各功能模块之间的依赖关系和交互方式
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -375,7 +435,9 @@ export function DataStackDocumentation() {
                 <GitBranch className="w-5 h-5" />
                 <span>数据流程图</span>
               </CardTitle>
-              <CardDescription>从用户交互到数据持久化的完整流程</CardDescription>
+              <CardDescription>
+                从用户交互到数据持久化的完整流程
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
@@ -386,14 +448,18 @@ export function DataStackDocumentation() {
                       <span className="text-blue-600 font-bold">1</span>
                     </div>
                     <h4 className="font-medium">用户交互</h4>
-                    <p className="text-sm text-gray-600 mt-1">点击、输入、提交</p>
+                    <p className="text-sm text-gray-600 mt-1">
+                      点击、输入、提交
+                    </p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
                       <span className="text-green-600 font-bold">2</span>
                     </div>
                     <h4 className="font-medium">事件处理</h4>
-                    <p className="text-sm text-gray-600 mt-1">React事件处理器</p>
+                    <p className="text-sm text-gray-600 mt-1">
+                      React事件处理器
+                    </p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
@@ -421,7 +487,9 @@ export function DataStackDocumentation() {
                       </div>
                       <div>
                         <h5 className="font-medium">用户界面交互</h5>
-                        <p className="text-sm text-gray-600">用户在React组件中进行操作，触发事件处理器</p>
+                        <p className="text-sm text-gray-600">
+                          用户在React组件中进行操作，触发事件处理器
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
@@ -430,7 +498,9 @@ export function DataStackDocumentation() {
                       </div>
                       <div>
                         <h5 className="font-medium">数据验证与处理</h5>
-                        <p className="text-sm text-gray-600">前端验证用户输入，格式化数据，准备发送到业务层</p>
+                        <p className="text-sm text-gray-600">
+                          前端验证用户输入，格式化数据，准备发送到业务层
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
@@ -439,7 +509,9 @@ export function DataStackDocumentation() {
                       </div>
                       <div>
                         <h5 className="font-medium">业务逻辑执行</h5>
-                        <p className="text-sm text-gray-600">执行业务规则，调用数据服务层进行数据操作</p>
+                        <p className="text-sm text-gray-600">
+                          执行业务规则，调用数据服务层进行数据操作
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
@@ -448,7 +520,9 @@ export function DataStackDocumentation() {
                       </div>
                       <div>
                         <h5 className="font-medium">数据库操作</h5>
-                        <p className="text-sm text-gray-600">通过IndexedDB API进行数据的增删改查操作</p>
+                        <p className="text-sm text-gray-600">
+                          通过IndexedDB API进行数据的增删改查操作
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
@@ -457,7 +531,9 @@ export function DataStackDocumentation() {
                       </div>
                       <div>
                         <h5 className="font-medium">结果反馈</h5>
-                        <p className="text-sm text-gray-600">操作结果返回到界面，更新组件状态，显示给用户</p>
+                        <p className="text-sm text-gray-600">
+                          操作结果返回到界面，更新组件状态，显示给用户
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -481,21 +557,27 @@ export function DataStackDocumentation() {
                       <CheckCircle className="w-4 h-4 text-green-600 mt-0.5" />
                       <div>
                         <p className="text-sm font-medium">实时同步</p>
-                        <p className="text-xs text-gray-600">在线状态下实时同步数据变更</p>
+                        <p className="text-xs text-gray-600">
+                          在线状态下实时同步数据变更
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-600 mt-0.5" />
                       <div>
                         <p className="text-sm font-medium">离线缓存</p>
-                        <p className="text-xs text-gray-600">离线时将操作缓存到本地队列</p>
+                        <p className="text-xs text-gray-600">
+                          离线时将操作缓存到本地队列
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-600 mt-0.5" />
                       <div>
                         <p className="text-sm font-medium">批量同步</p>
-                        <p className="text-xs text-gray-600">重新连接时批量处理缓存操作</p>
+                        <p className="text-xs text-gray-600">
+                          重新连接时批量处理缓存操作
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -507,21 +589,27 @@ export function DataStackDocumentation() {
                       <AlertTriangle className="w-4 h-4 text-yellow-600 mt-0.5" />
                       <div>
                         <p className="text-sm font-medium">时间戳优先</p>
-                        <p className="text-xs text-gray-600">以最新修改时间为准</p>
+                        <p className="text-xs text-gray-600">
+                          以最新修改时间为准
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-2">
                       <AlertTriangle className="w-4 h-4 text-yellow-600 mt-0.5" />
                       <div>
                         <p className="text-sm font-medium">用户选择</p>
-                        <p className="text-xs text-gray-600">提示用户手动选择保留版本</p>
+                        <p className="text-xs text-gray-600">
+                          提示用户手动选择保留版本
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-2">
                       <AlertTriangle className="w-4 h-4 text-yellow-600 mt-0.5" />
                       <div>
                         <p className="text-sm font-medium">合并策略</p>
-                        <p className="text-xs text-gray-600">智能合并非冲突字段</p>
+                        <p className="text-xs text-gray-600">
+                          智能合并非冲突字段
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -548,7 +636,9 @@ export function DataStackDocumentation() {
                   <h4 className="font-medium mb-4">数据表结构</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-blue-50 p-4 rounded-lg">
-                      <h5 className="font-medium text-blue-800 mb-2">customers (客户表)</h5>
+                      <h5 className="font-medium text-blue-800 mb-2">
+                        customers (客户表)
+                      </h5>
                       <div className="text-sm text-blue-700 space-y-1">
                         <div>• id (主键)</div>
                         <div>• name (姓名)</div>
@@ -559,7 +649,9 @@ export function DataStackDocumentation() {
                       </div>
                     </div>
                     <div className="bg-green-50 p-4 rounded-lg">
-                      <h5 className="font-medium text-green-800 mb-2">tasks (任务表)</h5>
+                      <h5 className="font-medium text-green-800 mb-2">
+                        tasks (任务表)
+                      </h5>
                       <div className="text-sm text-green-700 space-y-1">
                         <div>• id (主键)</div>
                         <div>• title (标题)</div>
@@ -570,7 +662,9 @@ export function DataStackDocumentation() {
                       </div>
                     </div>
                     <div className="bg-purple-50 p-4 rounded-lg">
-                      <h5 className="font-medium text-purple-800 mb-2">okrs (目标表)</h5>
+                      <h5 className="font-medium text-purple-800 mb-2">
+                        okrs (目标表)
+                      </h5>
                       <div className="text-sm text-purple-700 space-y-1">
                         <div>• id (主键)</div>
                         <div>• title (标题)</div>
@@ -581,7 +675,9 @@ export function DataStackDocumentation() {
                       </div>
                     </div>
                     <div className="bg-orange-50 p-4 rounded-lg">
-                      <h5 className="font-medium text-orange-800 mb-2">notifications (通知表)</h5>
+                      <h5 className="font-medium text-orange-800 mb-2">
+                        notifications (通知表)
+                      </h5>
                       <div className="text-sm text-orange-700 space-y-1">
                         <div>• id (主键)</div>
                         <div>• type (类型)</div>
@@ -628,19 +724,22 @@ export function DataStackDocumentation() {
                     <Alert>
                       <Info className="h-4 w-4" />
                       <AlertDescription>
-                        <strong>分页查询:</strong> 使用cursor-based分页，避免大量数据加载
+                        <strong>分页查询:</strong>{' '}
+                        使用cursor-based分页，避免大量数据加载
                       </AlertDescription>
                     </Alert>
                     <Alert>
                       <Info className="h-4 w-4" />
                       <AlertDescription>
-                        <strong>索引利用:</strong> 查询条件优先使用已建立的索引字段
+                        <strong>索引利用:</strong>{' '}
+                        查询条件优先使用已建立的索引字段
                       </AlertDescription>
                     </Alert>
                     <Alert>
                       <Info className="h-4 w-4" />
                       <AlertDescription>
-                        <strong>数据缓存:</strong> 热点数据缓存到内存，减少数据库访问
+                        <strong>数据缓存:</strong>{' '}
+                        热点数据缓存到内存，减少数据库访问
                       </AlertDescription>
                     </Alert>
                   </div>
@@ -659,22 +758,34 @@ export function DataStackDocumentation() {
               <div className="bg-gray-50 p-6 rounded-lg">
                 <div className="space-y-4">
                   <div className="flex items-center space-x-4">
-                    <div className="bg-blue-100 px-3 py-1 rounded">customers</div>
+                    <div className="bg-blue-100 px-3 py-1 rounded">
+                      customers
+                    </div>
                     <span className="text-gray-400">1:N</span>
                     <div className="bg-green-100 px-3 py-1 rounded">tasks</div>
-                    <span className="text-sm text-gray-600">(客户可以有多个任务)</span>
+                    <span className="text-sm text-gray-600">
+                      (客户可以有多个任务)
+                    </span>
                   </div>
                   <div className="flex items-center space-x-4">
                     <div className="bg-purple-100 px-3 py-1 rounded">users</div>
                     <span className="text-gray-400">1:N</span>
-                    <div className="bg-orange-100 px-3 py-1 rounded">notifications</div>
-                    <span className="text-sm text-gray-600">(用户可以有多个通知)</span>
+                    <div className="bg-orange-100 px-3 py-1 rounded">
+                      notifications
+                    </div>
+                    <span className="text-sm text-gray-600">
+                      (用户可以有多个通知)
+                    </span>
                   </div>
                   <div className="flex items-center space-x-4">
                     <div className="bg-yellow-100 px-3 py-1 rounded">okrs</div>
                     <span className="text-gray-400">1:N</span>
-                    <div className="bg-red-100 px-3 py-1 rounded">keyResults</div>
-                    <span className="text-sm text-gray-600">(OKR包含多个关键结果)</span>
+                    <div className="bg-red-100 px-3 py-1 rounded">
+                      keyResults
+                    </div>
+                    <span className="text-sm text-gray-600">
+                      (OKR包含多个关键结果)
+                    </span>
                   </div>
                 </div>
               </div>
@@ -696,23 +807,38 @@ export function DataStackDocumentation() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <span className="text-sm">首次加载</span>
-                    <span className="text-sm font-medium">{performanceMetrics.loadTime}s</span>
+                    <span className="text-sm font-medium">
+                      {performanceMetrics.loadTime}s
+                    </span>
                   </div>
-                  <Progress value={(performanceMetrics.loadTime / 3) * 100} className="h-2" />
+                  <Progress
+                    value={(performanceMetrics.loadTime / 3) * 100}
+                    className="h-2"
+                  />
                 </div>
                 <div>
                   <div className="flex justify-between mb-2">
                     <span className="text-sm">首次绘制</span>
-                    <span className="text-sm font-medium">{performanceMetrics.firstPaint}s</span>
+                    <span className="text-sm font-medium">
+                      {performanceMetrics.firstPaint}s
+                    </span>
                   </div>
-                  <Progress value={(performanceMetrics.firstPaint / 2) * 100} className="h-2" />
+                  <Progress
+                    value={(performanceMetrics.firstPaint / 2) * 100}
+                    className="h-2"
+                  />
                 </div>
                 <div>
                   <div className="flex justify-between mb-2">
                     <span className="text-sm">可交互时间</span>
-                    <span className="text-sm font-medium">{performanceMetrics.interactive}s</span>
+                    <span className="text-sm font-medium">
+                      {performanceMetrics.interactive}s
+                    </span>
                   </div>
-                  <Progress value={(performanceMetrics.interactive / 3) * 100} className="h-2" />
+                  <Progress
+                    value={(performanceMetrics.interactive / 3) * 100}
+                    className="h-2"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -728,12 +854,19 @@ export function DataStackDocumentation() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <span className="text-sm">查询响应</span>
-                    <span className="text-sm font-medium">{performanceMetrics.dbQuery * 1000}ms</span>
+                    <span className="text-sm font-medium">
+                      {performanceMetrics.dbQuery * 1000}ms
+                    </span>
                   </div>
-                  <Progress value={(performanceMetrics.dbQuery / 0.1) * 100} className="h-2" />
+                  <Progress
+                    value={(performanceMetrics.dbQuery / 0.1) * 100}
+                    className="h-2"
+                  />
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">&lt; 100ms</div>
+                  <div className="text-2xl font-bold text-green-600">
+                    &lt; 100ms
+                  </div>
                   <div className="text-sm text-gray-600">平均查询时间</div>
                 </div>
               </CardContent>
@@ -750,16 +883,26 @@ export function DataStackDocumentation() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <span className="text-sm">包大小</span>
-                    <span className="text-sm font-medium">{performanceMetrics.bundleSize}KB</span>
+                    <span className="text-sm font-medium">
+                      {performanceMetrics.bundleSize}KB
+                    </span>
                   </div>
-                  <Progress value={(performanceMetrics.bundleSize / 500) * 100} className="h-2" />
+                  <Progress
+                    value={(performanceMetrics.bundleSize / 500) * 100}
+                    className="h-2"
+                  />
                 </div>
                 <div>
                   <div className="flex justify-between mb-2">
                     <span className="text-sm">Lighthouse评分</span>
-                    <span className="text-sm font-medium">{performanceMetrics.lighthouse}/100</span>
+                    <span className="text-sm font-medium">
+                      {performanceMetrics.lighthouse}/100
+                    </span>
                   </div>
-                  <Progress value={performanceMetrics.lighthouse} className="h-2" />
+                  <Progress
+                    value={performanceMetrics.lighthouse}
+                    className="h-2"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -776,7 +919,9 @@ export function DataStackDocumentation() {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-medium mb-3 text-green-700">已实施优化</h4>
+                  <h4 className="font-medium mb-3 text-green-700">
+                    已实施优化
+                  </h4>
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-600" />
@@ -848,11 +993,15 @@ export function DataStackDocumentation() {
                   <div className="text-sm text-green-700">平均响应</div>
                 </div>
                 <div className="text-center p-4 bg-purple-50 rounded-lg">
-                  <div className="text-2xl font-bold text-purple-600">1.2MB</div>
+                  <div className="text-2xl font-bold text-purple-600">
+                    1.2MB
+                  </div>
                   <div className="text-sm text-purple-700">内存使用</div>
                 </div>
                 <div className="text-center p-4 bg-orange-50 rounded-lg">
-                  <div className="text-2xl font-bold text-orange-600">0.01%</div>
+                  <div className="text-2xl font-bold text-orange-600">
+                    0.01%
+                  </div>
                   <div className="text-sm text-orange-700">错误率</div>
                 </div>
               </div>
@@ -868,16 +1017,25 @@ export function DataStackDocumentation() {
                 <Shield className="w-5 h-5" />
                 <span>安全防护体系</span>
               </CardTitle>
-              <CardDescription>多层次安全防护机制，确保数据和系统安全</CardDescription>
+              <CardDescription>
+                多层次安全防护机制，确保数据和系统安全
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {securityFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start space-x-3 p-4 bg-green-50 rounded-lg">
+                  <div
+                    key={index}
+                    className="flex items-start space-x-3 p-4 bg-green-50 rounded-lg"
+                  >
                     <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
                     <div>
-                      <h4 className="font-medium text-green-800">{feature.name}</h4>
-                      <p className="text-sm text-green-700 mt-1">{feature.description}</p>
+                      <h4 className="font-medium text-green-800">
+                        {feature.name}
+                      </h4>
+                      <p className="text-sm text-green-700 mt-1">
+                        {feature.description}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -933,19 +1091,22 @@ export function DataStackDocumentation() {
                 <Alert>
                   <Shield className="h-4 w-4" />
                   <AlertDescription>
-                    <strong>定期安全审计:</strong> 建议每季度进行一次全面的安全评估和漏洞扫描
+                    <strong>定期安全审计:</strong>{' '}
+                    建议每季度进行一次全面的安全评估和漏洞扫描
                   </AlertDescription>
                 </Alert>
                 <Alert>
                   <Lock className="h-4 w-4" />
                   <AlertDescription>
-                    <strong>密码策略:</strong> 强制使用复杂密码，定期更换，启用双因素认证
+                    <strong>密码策略:</strong>{' '}
+                    强制使用复杂密码，定期更换，启用双因素认证
                   </AlertDescription>
                 </Alert>
                 <Alert>
                   <Monitor className="h-4 w-4" />
                   <AlertDescription>
-                    <strong>实时监控:</strong> 部署安全监控系统，及时发现和响应安全威胁
+                    <strong>实时监控:</strong>{' '}
+                    部署安全监控系统，及时发现和响应安全威胁
                   </AlertDescription>
                 </Alert>
               </div>
@@ -961,7 +1122,9 @@ export function DataStackDocumentation() {
                 <Cloud className="w-5 h-5" />
                 <span>部署选项</span>
               </CardTitle>
-              <CardDescription>支持多种部署方式，满足不同场景需求</CardDescription>
+              <CardDescription>
+                支持多种部署方式，满足不同场景需求
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -993,7 +1156,11 @@ export function DataStackDocumentation() {
                     <p>• 分支预览</p>
                     <p>• 边缘函数支持</p>
                   </div>
-                  <Button className="w-full mt-4 bg-transparent" size="sm" variant="outline">
+                  <Button
+                    className="w-full mt-4 bg-transparent"
+                    size="sm"
+                    variant="outline"
+                  >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     部署到Netlify
                   </Button>
@@ -1010,7 +1177,11 @@ export function DataStackDocumentation() {
                     <p>• 易于扩展</p>
                     <p>• 私有云支持</p>
                   </div>
-                  <Button className="w-full mt-4 bg-transparent" size="sm" variant="outline">
+                  <Button
+                    className="w-full mt-4 bg-transparent"
+                    size="sm"
+                    variant="outline"
+                  >
                     <Download className="w-4 h-4 mr-2" />
                     下载Dockerfile
                   </Button>
@@ -1105,7 +1276,9 @@ NEXT_PUBLIC_SENTRY_DSN="your-sentry-dsn"`}</code>
                   <h4 className="font-medium mb-2">系统要求</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-blue-50 p-4 rounded-lg">
-                      <h5 className="font-medium text-blue-800 mb-2">开发环境</h5>
+                      <h5 className="font-medium text-blue-800 mb-2">
+                        开发环境
+                      </h5>
                       <ul className="text-sm text-blue-700 space-y-1">
                         <li>• Node.js 18.0+</li>
                         <li>• npm 8.0+ 或 yarn 1.22+</li>
@@ -1113,7 +1286,9 @@ NEXT_PUBLIC_SENTRY_DSN="your-sentry-dsn"`}</code>
                       </ul>
                     </div>
                     <div className="bg-green-50 p-4 rounded-lg">
-                      <h5 className="font-medium text-green-800 mb-2">浏览器支持</h5>
+                      <h5 className="font-medium text-green-800 mb-2">
+                        浏览器支持
+                      </h5>
                       <ul className="text-sm text-green-700 space-y-1">
                         <li>• Chrome 90+</li>
                         <li>• Firefox 88+</li>
@@ -1129,5 +1304,5 @@ NEXT_PUBLIC_SENTRY_DSN="your-sentry-dsn"`}</code>
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

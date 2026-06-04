@@ -10,35 +10,57 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { ResponsiveLayout } from "@/components/layout/responsive-layout"
-import { ResponsiveContainer } from "@/components/layout/responsive-container"
-import { ResponsiveGrid, ResponsiveGridItem } from "@/components/layout/responsive-grid"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Switch } from "@/components/ui/switch"
-import { Slider } from "@/components/ui/slider"
-import { useResponsiveLayout, type LayoutConfig } from "@/lib/responsive-layout"
-import { useLayoutContext } from "@/components/layout/responsive-layout"
-import { Monitor, Smartphone, Tablet, Layout, Grid, Maximize, Save, RotateCcw } from "lucide-react"
+import { useState } from 'react';
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
+import { ResponsiveContainer } from '@/components/layout/responsive-container';
+import {
+  ResponsiveGrid,
+  ResponsiveGridItem,
+} from '@/components/layout/responsive-grid';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
+import { Slider } from '@/components/ui/slider';
+import {
+  useResponsiveLayout,
+  type LayoutConfig,
+} from '@/lib/responsive-layout';
+import { useLayoutContext } from '@/components/layout/responsive-layout';
+import {
+  Monitor,
+  Smartphone,
+  Tablet,
+  Layout,
+  Grid,
+  Maximize,
+  Save,
+  RotateCcw,
+} from 'lucide-react';
 
 export default function LayoutSettingsPage() {
-  const { screenSize, windowSize, isMobile, isTablet, isDesktop, orientation } = useResponsiveLayout()
+  const { screenSize, windowSize, isMobile, isTablet, isDesktop, orientation } =
+    useResponsiveLayout();
 
-  const { layoutConfig, updateLayoutConfig } = useLayoutContext()
-  const [tempConfig, setTempConfig] = useState<LayoutConfig>(layoutConfig)
+  const { layoutConfig, updateLayoutConfig } = useLayoutContext();
+  const [tempConfig, setTempConfig] = useState<LayoutConfig>(layoutConfig);
 
   const handleConfigChange = (updates: Partial<LayoutConfig>) => {
-    setTempConfig((prev) => ({ ...prev, ...updates }))
-  }
+    setTempConfig((prev) => ({ ...prev, ...updates }));
+  };
 
   const saveConfig = () => {
-    updateLayoutConfig(tempConfig)
+    updateLayoutConfig(tempConfig);
     // 保存到本地存储
-    localStorage.setItem("layout-config", JSON.stringify(tempConfig))
-  }
+    localStorage.setItem('layout-config', JSON.stringify(tempConfig));
+  };
 
   const resetConfig = () => {
     const defaultConfig: LayoutConfig = {
@@ -63,15 +85,15 @@ export default function LayoutSettingsPage() {
         columns: { mobile: 1, tablet: 2, desktop: 3 },
         gap: { mobile: 16, tablet: 20, desktop: 24 },
       },
-    }
-    setTempConfig(defaultConfig)
-  }
+    };
+    setTempConfig(defaultConfig);
+  };
 
   const getDeviceIcon = () => {
-    if (isMobile) return <Smartphone className="h-5 w-5" />
-    if (isTablet) return <Tablet className="h-5 w-5" />
-    return <Monitor className="h-5 w-5" />
-  }
+    if (isMobile) return <Smartphone className="h-5 w-5" />;
+    if (isTablet) return <Tablet className="h-5 w-5" />;
+    return <Monitor className="h-5 w-5" />;
+  };
 
   return (
     <ResponsiveLayout>
@@ -80,7 +102,9 @@ export default function LayoutSettingsPage() {
           {/* 页面标题 */}
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">布局设置</h1>
-            <p className="text-lg text-gray-600">自定义系统的响应式布局和显示效果</p>
+            <p className="text-lg text-gray-600">
+              自定义系统的响应式布局和显示效果
+            </p>
           </div>
 
           {/* 当前设备信息 */}
@@ -99,7 +123,9 @@ export default function LayoutSettingsPage() {
                 }}
               >
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-blue-600">{screenSize.toUpperCase()}</div>
+                  <div className="text-2xl font-bold text-blue-600">
+                    {screenSize.toUpperCase()}
+                  </div>
                   <div className="text-sm text-gray-500">屏幕尺寸</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
@@ -109,12 +135,14 @@ export default function LayoutSettingsPage() {
                   <div className="text-sm text-gray-500">分辨率</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-purple-600">{orientation}</div>
+                  <div className="text-2xl font-bold text-purple-600">
+                    {orientation}
+                  </div>
                   <div className="text-sm text-gray-500">方向</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <div className="text-2xl font-bold text-orange-600">
-                    {isMobile ? "移动" : isTablet ? "平板" : "桌面"}
+                    {isMobile ? '移动' : isTablet ? '平板' : '桌面'}
                   </div>
                   <div className="text-sm text-gray-500">设备类型</div>
                 </div>
@@ -142,14 +170,19 @@ export default function LayoutSettingsPage() {
                 <CardContent className="space-y-6">
                   {/* 宽度设置 */}
                   <div className="space-y-4">
-                    <label className="text-sm font-medium">展开宽度: {tempConfig.sidebar.width.expanded}px</label>
+                    <label className="text-sm font-medium">
+                      展开宽度: {tempConfig.sidebar.width.expanded}px
+                    </label>
                     <Slider
                       value={[tempConfig.sidebar.width.expanded]}
                       onValueChange={([value]) =>
                         handleConfigChange({
                           sidebar: {
                             ...tempConfig.sidebar,
-                            width: { ...tempConfig.sidebar.width, expanded: value },
+                            width: {
+                              ...tempConfig.sidebar.width,
+                              expanded: value,
+                            },
                           },
                         })
                       }
@@ -160,14 +193,19 @@ export default function LayoutSettingsPage() {
                   </div>
 
                   <div className="space-y-4">
-                    <label className="text-sm font-medium">收缩宽度: {tempConfig.sidebar.width.collapsed}px</label>
+                    <label className="text-sm font-medium">
+                      收缩宽度: {tempConfig.sidebar.width.collapsed}px
+                    </label>
                     <Slider
                       value={[tempConfig.sidebar.width.collapsed]}
                       onValueChange={([value]) =>
                         handleConfigChange({
                           sidebar: {
                             ...tempConfig.sidebar,
-                            width: { ...tempConfig.sidebar.width, collapsed: value },
+                            width: {
+                              ...tempConfig.sidebar.width,
+                              collapsed: value,
+                            },
                           },
                         })
                       }
@@ -181,13 +219,18 @@ export default function LayoutSettingsPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="font-medium">自动收缩</div>
-                      <div className="text-sm text-gray-500">无操作时自动收缩</div>
+                      <div className="text-sm text-gray-500">
+                        无操作时自动收缩
+                      </div>
                     </div>
                     <Switch
                       checked={tempConfig.sidebar.autoCollapse}
                       onCheckedChange={(checked) =>
                         handleConfigChange({
-                          sidebar: { ...tempConfig.sidebar, autoCollapse: checked },
+                          sidebar: {
+                            ...tempConfig.sidebar,
+                            autoCollapse: checked,
+                          },
                         })
                       }
                     />
@@ -202,7 +245,10 @@ export default function LayoutSettingsPage() {
                         value={[tempConfig.sidebar.collapseDelay]}
                         onValueChange={([value]) =>
                           handleConfigChange({
-                            sidebar: { ...tempConfig.sidebar, collapseDelay: value },
+                            sidebar: {
+                              ...tempConfig.sidebar,
+                              collapseDelay: value,
+                            },
                           })
                         }
                         min={1000}
@@ -216,13 +262,18 @@ export default function LayoutSettingsPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="font-medium">悬停展开</div>
-                      <div className="text-sm text-gray-500">鼠标悬停时展开</div>
+                      <div className="text-sm text-gray-500">
+                        鼠标悬停时展开
+                      </div>
                     </div>
                     <Switch
                       checked={tempConfig.sidebar.hoverExpand}
                       onCheckedChange={(checked) =>
                         handleConfigChange({
-                          sidebar: { ...tempConfig.sidebar, hoverExpand: checked },
+                          sidebar: {
+                            ...tempConfig.sidebar,
+                            hoverExpand: checked,
+                          },
                         })
                       }
                     />
@@ -244,7 +295,9 @@ export default function LayoutSettingsPage() {
                 <CardContent className="space-y-6">
                   {/* 最大宽度 */}
                   <div className="space-y-4">
-                    <label className="text-sm font-medium">最大宽度: {tempConfig.content.maxWidth}px</label>
+                    <label className="text-sm font-medium">
+                      最大宽度: {tempConfig.content.maxWidth}px
+                    </label>
                     <Slider
                       value={[tempConfig.content.maxWidth]}
                       onValueChange={([value]) =>
@@ -262,7 +315,9 @@ export default function LayoutSettingsPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="font-medium">居中对齐</div>
-                      <div className="text-sm text-gray-500">内容区域居中显示</div>
+                      <div className="text-sm text-gray-500">
+                        内容区域居中显示
+                      </div>
                     </div>
                     <Switch
                       checked={tempConfig.content.centered}
@@ -276,14 +331,19 @@ export default function LayoutSettingsPage() {
 
                   {/* 内边距设置 */}
                   <div className="space-y-4">
-                    <label className="text-sm font-medium">移动端内边距: {tempConfig.content.padding.mobile}px</label>
+                    <label className="text-sm font-medium">
+                      移动端内边距: {tempConfig.content.padding.mobile}px
+                    </label>
                     <Slider
                       value={[tempConfig.content.padding.mobile]}
                       onValueChange={([value]) =>
                         handleConfigChange({
                           content: {
                             ...tempConfig.content,
-                            padding: { ...tempConfig.content.padding, mobile: value },
+                            padding: {
+                              ...tempConfig.content.padding,
+                              mobile: value,
+                            },
                           },
                         })
                       }
@@ -294,14 +354,19 @@ export default function LayoutSettingsPage() {
                   </div>
 
                   <div className="space-y-4">
-                    <label className="text-sm font-medium">平板端内边距: {tempConfig.content.padding.tablet}px</label>
+                    <label className="text-sm font-medium">
+                      平板端内边距: {tempConfig.content.padding.tablet}px
+                    </label>
                     <Slider
                       value={[tempConfig.content.padding.tablet]}
                       onValueChange={([value]) =>
                         handleConfigChange({
                           content: {
                             ...tempConfig.content,
-                            padding: { ...tempConfig.content.padding, tablet: value },
+                            padding: {
+                              ...tempConfig.content.padding,
+                              tablet: value,
+                            },
                           },
                         })
                       }
@@ -312,14 +377,19 @@ export default function LayoutSettingsPage() {
                   </div>
 
                   <div className="space-y-4">
-                    <label className="text-sm font-medium">桌面端内边距: {tempConfig.content.padding.desktop}px</label>
+                    <label className="text-sm font-medium">
+                      桌面端内边距: {tempConfig.content.padding.desktop}px
+                    </label>
                     <Slider
                       value={[tempConfig.content.padding.desktop]}
                       onValueChange={([value]) =>
                         handleConfigChange({
                           content: {
                             ...tempConfig.content,
-                            padding: { ...tempConfig.content.padding, desktop: value },
+                            padding: {
+                              ...tempConfig.content.padding,
+                              desktop: value,
+                            },
                           },
                         })
                       }
@@ -354,14 +424,19 @@ export default function LayoutSettingsPage() {
                       <h4 className="font-medium">网格列数</h4>
 
                       <div className="space-y-4">
-                        <label className="text-sm font-medium">移动端: {tempConfig.grid.columns.mobile}列</label>
+                        <label className="text-sm font-medium">
+                          移动端: {tempConfig.grid.columns.mobile}列
+                        </label>
                         <Slider
                           value={[tempConfig.grid.columns.mobile]}
                           onValueChange={([value]) =>
                             handleConfigChange({
                               grid: {
                                 ...tempConfig.grid,
-                                columns: { ...tempConfig.grid.columns, mobile: value },
+                                columns: {
+                                  ...tempConfig.grid.columns,
+                                  mobile: value,
+                                },
                               },
                             })
                           }
@@ -372,14 +447,19 @@ export default function LayoutSettingsPage() {
                       </div>
 
                       <div className="space-y-4">
-                        <label className="text-sm font-medium">平板端: {tempConfig.grid.columns.tablet}列</label>
+                        <label className="text-sm font-medium">
+                          平板端: {tempConfig.grid.columns.tablet}列
+                        </label>
                         <Slider
                           value={[tempConfig.grid.columns.tablet]}
                           onValueChange={([value]) =>
                             handleConfigChange({
                               grid: {
                                 ...tempConfig.grid,
-                                columns: { ...tempConfig.grid.columns, tablet: value },
+                                columns: {
+                                  ...tempConfig.grid.columns,
+                                  tablet: value,
+                                },
                               },
                             })
                           }
@@ -390,14 +470,19 @@ export default function LayoutSettingsPage() {
                       </div>
 
                       <div className="space-y-4">
-                        <label className="text-sm font-medium">桌面端: {tempConfig.grid.columns.desktop}列</label>
+                        <label className="text-sm font-medium">
+                          桌面端: {tempConfig.grid.columns.desktop}列
+                        </label>
                         <Slider
                           value={[tempConfig.grid.columns.desktop]}
                           onValueChange={([value]) =>
                             handleConfigChange({
                               grid: {
                                 ...tempConfig.grid,
-                                columns: { ...tempConfig.grid.columns, desktop: value },
+                                columns: {
+                                  ...tempConfig.grid.columns,
+                                  desktop: value,
+                                },
                               },
                             })
                           }
@@ -413,7 +498,9 @@ export default function LayoutSettingsPage() {
                       <h4 className="font-medium">网格间距</h4>
 
                       <div className="space-y-4">
-                        <label className="text-sm font-medium">移动端: {tempConfig.grid.gap.mobile}px</label>
+                        <label className="text-sm font-medium">
+                          移动端: {tempConfig.grid.gap.mobile}px
+                        </label>
                         <Slider
                           value={[tempConfig.grid.gap.mobile]}
                           onValueChange={([value]) =>
@@ -431,7 +518,9 @@ export default function LayoutSettingsPage() {
                       </div>
 
                       <div className="space-y-4">
-                        <label className="text-sm font-medium">平板端: {tempConfig.grid.gap.tablet}px</label>
+                        <label className="text-sm font-medium">
+                          平板端: {tempConfig.grid.gap.tablet}px
+                        </label>
                         <Slider
                           value={[tempConfig.grid.gap.tablet]}
                           onValueChange={([value]) =>
@@ -449,7 +538,9 @@ export default function LayoutSettingsPage() {
                       </div>
 
                       <div className="space-y-4">
-                        <label className="text-sm font-medium">桌面端: {tempConfig.grid.gap.desktop}px</label>
+                        <label className="text-sm font-medium">
+                          桌面端: {tempConfig.grid.gap.desktop}px
+                        </label>
                         <Slider
                           value={[tempConfig.grid.gap.desktop]}
                           onValueChange={([value]) =>
@@ -486,5 +577,5 @@ export default function LayoutSettingsPage() {
         </div>
       </ResponsiveContainer>
     </ResponsiveLayout>
-  )
+  );
 }

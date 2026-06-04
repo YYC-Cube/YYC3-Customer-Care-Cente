@@ -9,11 +9,11 @@
 @tags: [类型定义],[业务模块],[定价]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -28,9 +28,11 @@
 ### 1. 背景与目标
 
 #### 1.1 项目背景
+
 YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五化」理念的现代化AI代理服务落地页，采用Next.js 15.0.3构建，集成了国际化系统、3D场景交互、动画效果和响应式设计。
 
 #### 1.2 文档目标
+
 - 规范业务模块-定价类型字典相关的业务标准与技术落地要求
 - 为项目相关人员提供清晰的参考依据
 - 保障相关模块开发、实施、运维的一致性与规范性
@@ -38,6 +40,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 ### 2. 设计原则
 
 #### 2.1 五高原则
+
 - **高可用性**：确保系统7x24小时稳定运行
 - **高性能**：优化加载速度和交互响应
 - **高安全性**：保护用户数据和隐私安全
@@ -45,6 +48,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **高可维护性**：便于后续维护和升级
 
 #### 2.2 五标体系
+
 - **标准化**：统一的技术和流程标准
 - **规范化**：严格的开发和管理规范
 - **自动化**：提高开发效率和质量
@@ -52,6 +56,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **可视化**：直观的监控和管理界面
 
 #### 2.3 五化架构
+
 - **流程化**：标准化的开发流程
 - **文档化**：完善的文档体系
 - **工具化**：高效的开发工具链
@@ -79,19 +84,51 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 export type PricingId = string | number;
 
 // 货币类型
-export type Currency = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'KRW' | 'CAD' | 'AUD' | 'INR' | 'BRL';
+export type Currency =
+  | 'USD'
+  | 'EUR'
+  | 'GBP'
+  | 'JPY'
+  | 'CNY'
+  | 'KRW'
+  | 'CAD'
+  | 'AUD'
+  | 'INR'
+  | 'BRL';
 
 // 计费周期类型
-export type BillingCycle = 'monthly' | 'yearly' | 'quarterly' | 'semi-annually' | 'annually' | 'custom';
+export type BillingCycle =
+  | 'monthly'
+  | 'yearly'
+  | 'quarterly'
+  | 'semi-annually'
+  | 'annually'
+  | 'custom';
 
 // 折扣类型
-export type DiscountType = 'percentage' | 'fixed' | 'free-trial' | 'volume' | 'loyalty' | 'promotional';
+export type DiscountType =
+  | 'percentage'
+  | 'fixed'
+  | 'free-trial'
+  | 'volume'
+  | 'loyalty'
+  | 'promotional';
 
 // 定价模型类型
-export type PricingModel = 'flat-rate' | 'usage-based' | 'tiered' | 'volume' | 'hybrid' | 'custom';
+export type PricingModel =
+  | 'flat-rate'
+  | 'usage-based'
+  | 'tiered'
+  | 'volume'
+  | 'hybrid'
+  | 'custom';
 
 // 定价状态类型
-export type PricingStatus = 'active' | 'inactive' | 'coming-soon' | 'deprecated';
+export type PricingStatus =
+  | 'active'
+  | 'inactive'
+  | 'coming-soon'
+  | 'deprecated';
 
 // 价格类型
 export type PriceType = 'list' | 'actual' | 'discounted' | 'msrp' | 'wholesale';
@@ -100,10 +137,24 @@ export type PriceType = 'list' | 'actual' | 'discounted' | 'msrp' | 'wholesale';
 export type TaxType = 'vat' | 'sales' | 'gst' | 'pst' | 'hst' | 'custom';
 
 // 支付方式类型
-export type PaymentMethod = 'credit-card' | 'debit-card' | 'paypal' | 'bank-transfer' | 'crypto' | 'cash' | 'check' | 'invoice';
+export type PaymentMethod =
+  | 'credit-card'
+  | 'debit-card'
+  | 'paypal'
+  | 'bank-transfer'
+  | 'crypto'
+  | 'cash'
+  | 'check'
+  | 'invoice';
 
 // 订阅状态类型
-export type SubscriptionStatus = 'active' | 'trial' | 'canceled' | 'expired' | 'paused' | 'pending';
+export type SubscriptionStatus =
+  | 'active'
+  | 'trial'
+  | 'canceled'
+  | 'expired'
+  | 'paused'
+  | 'pending';
 ```
 
 #### 4.2 定价计划类型
@@ -120,25 +171,25 @@ export interface PricingPlan {
   currency: Currency;
   createdAt: string;
   updatedAt: string;
-  
+
   // 价格信息
   prices: PricingTier[];
-  
+
   // 特性信息
   features: PlanFeature[];
-  
+
   // 限制信息
   limits?: PlanLimit[];
-  
+
   // 折扣信息
   discounts?: Discount[];
-  
+
   // 计费信息
   billing?: BillingInfo;
-  
+
   // 元数据
   metadata?: Record<string, any>;
-  
+
   // 关联信息
   serviceId?: string;
   isPopular?: boolean;
@@ -273,7 +324,15 @@ export interface SubscriptionItem {
 export interface SubscriptionHistory {
   id: string;
   subscriptionId: SubscriptionId;
-  type: 'create' | 'update' | 'cancel' | 'renew' | 'upgrade' | 'downgrade' | 'pause' | 'resume';
+  type:
+    | 'create'
+    | 'update'
+    | 'cancel'
+    | 'renew'
+    | 'upgrade'
+    | 'downgrade'
+    | 'pause'
+    | 'resume';
   oldValue?: any;
   newValue?: any;
   userId?: string;
@@ -289,7 +348,14 @@ export interface SubscriptionHistory {
 export type InvoiceId = string | number;
 
 // 发票状态类型
-export type InvoiceStatus = 'draft' | 'pending' | 'paid' | 'partial' | 'overdue' | 'void' | 'refunded';
+export type InvoiceStatus =
+  | 'draft'
+  | 'pending'
+  | 'paid'
+  | 'partial'
+  | 'overdue'
+  | 'void'
+  | 'refunded';
 
 // 发票接口
 export interface Invoice {
@@ -354,7 +420,13 @@ export interface InvoiceDiscount {
 export type PaymentId = string | number;
 
 // 支付状态类型
-export type PaymentStatus = 'pending' | 'processing' | 'completed' | 'failed' | 'refunded' | 'disputed';
+export type PaymentStatus =
+  | 'pending'
+  | 'processing'
+  | 'completed'
+  | 'failed'
+  | 'refunded'
+  | 'disputed';
 
 // 支付接口
 export interface Payment {
@@ -477,14 +549,14 @@ export interface PricingPlanListRequest {
   billingCycle?: BillingCycle;
   currency?: Currency;
   serviceId?: string;
-  
+
   // 搜索参数
   search?: string;
-  
+
   // 排序参数
   sortBy?: 'name' | 'price' | 'createdAt' | 'sortOrder';
   sortDirection?: 'asc' | 'desc';
-  
+
   // 分页参数
   page?: number;
   pageSize?: number;
@@ -731,7 +803,7 @@ export interface PricingAnalytics {
       amount: number;
     }[];
   };
-  
+
   // 订阅统计
   subscriptions: {
     total: number;
@@ -742,7 +814,7 @@ export interface PricingAnalytics {
     retentionRate: number;
     growthRate: number;
   };
-  
+
   // 计划统计
   plans: {
     total: number;
@@ -753,7 +825,7 @@ export interface PricingAnalytics {
     mostPopular: PricingId;
     averagePrice: number;
   };
-  
+
   // 支付统计
   payments: {
     total: number;
@@ -767,7 +839,7 @@ export interface PricingAnalytics {
       amount: number;
     }[];
   };
-  
+
   // 发票统计
   invoices: {
     total: number;
@@ -776,7 +848,7 @@ export interface PricingAnalytics {
     averageAmount: number;
     collectionRate: number;
   };
-  
+
   // 客户统计
   customers: {
     total: number;
@@ -815,7 +887,7 @@ export interface PricingRecommendation {
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

@@ -10,12 +10,29 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { BarChart3, TrendingUp, Users, DollarSign, Target, Activity, ArrowUpRight, ArrowDownRight, FileText, CheckCircle } from 'lucide-react'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import {
+  BarChart3,
+  TrendingUp,
+  Users,
+  DollarSign,
+  Target,
+  Activity,
+  ArrowUpRight,
+  ArrowDownRight,
+  FileText,
+  CheckCircle,
+} from 'lucide-react';
 
 export function DashboardContent() {
   return (
@@ -28,12 +45,12 @@ export function DashboardContent() {
             欢迎回来！
           </h1>
           <p className="text-gray-600 mt-2">
-            今天是{" "}
-            {new Date().toLocaleDateString("zh-CN", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-              weekday: "long",
+            今天是{' '}
+            {new Date().toLocaleDateString('zh-CN', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              weekday: 'long',
             })}
           </p>
         </div>
@@ -57,11 +74,15 @@ export function DashboardContent() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="border-l-4 border-l-emerald-500 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">总销售额</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">
+              总销售额
+            </CardTitle>
             <DollarSign className="h-4 w-4 text-emerald-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-700">¥2,847,392</div>
+            <div className="text-2xl font-bold text-emerald-700">
+              ¥2,847,392
+            </div>
             <div className="flex items-center text-xs text-emerald-600 mt-1">
               <ArrowUpRight className="w-3 h-3 mr-1" />
               <span>+12.5% 较上月</span>
@@ -71,7 +92,9 @@ export function DashboardContent() {
 
         <Card className="border-l-4 border-l-emerald-500 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">活跃客户</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">
+              活跃客户
+            </CardTitle>
             <Users className="h-4 w-4 text-emerald-600" />
           </CardHeader>
           <CardContent>
@@ -85,7 +108,9 @@ export function DashboardContent() {
 
         <Card className="border-l-4 border-l-emerald-500 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">待办任务</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">
+              待办任务
+            </CardTitle>
             <CheckCircle className="h-4 w-4 text-emerald-600" />
           </CardHeader>
           <CardContent>
@@ -99,7 +124,9 @@ export function DashboardContent() {
 
         <Card className="border-l-4 border-l-emerald-500 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">转化率</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">
+              转化率
+            </CardTitle>
             <Target className="h-4 w-4 text-emerald-600" />
           </CardHeader>
           <CardContent>
@@ -132,7 +159,9 @@ export function DashboardContent() {
               <div className="w-full h-4 bg-emerald-100 rounded-full overflow-hidden">
                 <div className="w-4/5 h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-500"></div>
               </div>
-              <div className="text-xs text-gray-600">完成度: 94.9% (¥2,847,392)</div>
+              <div className="text-xs text-gray-600">
+                完成度: 94.9% (¥2,847,392)
+              </div>
 
               <div className="h-32 bg-emerald-50 rounded-lg flex items-center justify-center mt-4">
                 <p className="text-emerald-600 font-medium">销售趋势图表区域</p>
@@ -176,7 +205,7 @@ export function DashboardContent() {
                   <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-500"
-                      style={{ width: "73%" }}
+                      style={{ width: '73%' }}
                     ></div>
                   </div>
                 </div>
@@ -188,7 +217,7 @@ export function DashboardContent() {
                   <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-500"
-                      style={{ width: "68%" }}
+                      style={{ width: '68%' }}
                     ></div>
                   </div>
                 </div>
@@ -200,7 +229,7 @@ export function DashboardContent() {
                   <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-500"
-                      style={{ width: "82%" }}
+                      style={{ width: '82%' }}
                     ></div>
                   </div>
                 </div>
@@ -270,31 +299,31 @@ export function DashboardContent() {
             <div className="space-y-3">
               {[
                 {
-                  type: "success",
-                  title: "月度销售报告已生成",
-                  description: "2024年1月销售数据分析完成",
-                  time: "2小时前",
+                  type: 'success',
+                  title: '月度销售报告已生成',
+                  description: '2024年1月销售数据分析完成',
+                  time: '2小时前',
                   icon: FileText,
                 },
                 {
-                  type: "info",
-                  title: "新客户注册",
-                  description: "ABC公司完成注册并提交了首个订单",
-                  time: "4小时前",
+                  type: 'info',
+                  title: '新客户注册',
+                  description: 'ABC公司完成注册并提交了首个订单',
+                  time: '4小时前',
                   icon: Users,
                 },
                 {
-                  type: "warning",
-                  title: "KPI预警",
-                  description: "客户转化率低于预期目标",
-                  time: "6小时前",
+                  type: 'warning',
+                  title: 'KPI预警',
+                  description: '客户转化率低于预期目标',
+                  time: '6小时前',
                   icon: Target,
                 },
                 {
-                  type: "success",
-                  title: "系统更新完成",
-                  description: "数据分析模块功能优化上线",
-                  time: "1天前",
+                  type: 'success',
+                  title: '系统更新完成',
+                  description: '数据分析模块功能优化上线',
+                  time: '1天前',
                   icon: Activity,
                 },
               ].map((activity, index) => (
@@ -304,31 +333,37 @@ export function DashboardContent() {
                 >
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      activity.type === "success"
-                        ? "bg-emerald-100"
-                        : activity.type === "info"
-                          ? "bg-blue-100"
-                          : activity.type === "warning"
-                            ? "bg-orange-100"
-                            : "bg-gray-100"
+                      activity.type === 'success'
+                        ? 'bg-emerald-100'
+                        : activity.type === 'info'
+                          ? 'bg-blue-100'
+                          : activity.type === 'warning'
+                            ? 'bg-orange-100'
+                            : 'bg-gray-100'
                     }`}
                   >
                     <activity.icon
                       className={`w-4 h-4 ${
-                        activity.type === "success"
-                          ? "text-emerald-600"
-                          : activity.type === "info"
-                            ? "text-blue-600"
-                            : activity.type === "warning"
-                              ? "text-orange-600"
-                              : "text-gray-600"
+                        activity.type === 'success'
+                          ? 'text-emerald-600'
+                          : activity.type === 'info'
+                            ? 'text-blue-600'
+                            : activity.type === 'warning'
+                              ? 'text-orange-600'
+                              : 'text-gray-600'
                       }`}
                     />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-medium text-gray-900">{activity.title}</h4>
-                    <p className="text-sm text-gray-600">{activity.description}</p>
-                    <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
+                    <h4 className="font-medium text-gray-900">
+                      {activity.title}
+                    </h4>
+                    <p className="text-sm text-gray-600">
+                      {activity.description}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {activity.time}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -337,5 +372,5 @@ export function DashboardContent() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

@@ -9,11 +9,11 @@
 @tags: [测试文档],[数据管理],[测试规范]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -28,9 +28,11 @@
 ### 1. 背景与目标
 
 #### 1.1 项目背景
+
 YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五化」理念的现代化AI代理服务落地页，采用Next.js 14+构建，集成了国际化系统、3D场景交互、动画效果和响应式设计。
 
 #### 1.2 文档目标
+
 - 规范测试数据管理相关的业务标准与技术落地要求
 - 为项目相关人员提供清晰的参考依据
 - 保障相关模块开发、实施、运维的一致性与规范性
@@ -38,6 +40,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 ### 2. 设计原则
 
 #### 2.1 五高原则
+
 - **高可用性**：确保系统7x24小时稳定运行
 - **高性能**：优化加载速度和交互响应
 - **高安全性**：保护用户数据和隐私安全
@@ -45,6 +48,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **高可维护性**：便于后续维护和升级
 
 #### 2.2 五标体系
+
 - **标准化**：统一的技术和流程标准
 - **规范化**：严格的开发和管理规范
 - **自动化**：提高开发效率和质量
@@ -52,6 +56,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **可视化**：直观的监控和管理界面
 
 #### 2.3 五化架构
+
 - **流程化**：标准化的开发流程
 - **文档化**：完善的文档体系
 - **工具化**：高效的开发工具链
@@ -124,13 +129,21 @@ export class TestDataGenerator {
     return {
       id: faker.string.uuid(),
       userId: faker.string.uuid(),
-      items: Array.from({ length: faker.number.int({ min: 1, max: 5 }) }, () => ({
-        productId: faker.string.uuid(),
-        quantity: faker.number.int({ min: 1, max: 10 }),
-        price: parseFloat(faker.commerce.price()),
-      })),
+      items: Array.from(
+        { length: faker.number.int({ min: 1, max: 5 }) },
+        () => ({
+          productId: faker.string.uuid(),
+          quantity: faker.number.int({ min: 1, max: 10 }),
+          price: parseFloat(faker.commerce.price()),
+        })
+      ),
       totalAmount: parseFloat(faker.commerce.price({ min: 100, max: 10000 })),
-      status: faker.helpers.arrayElement(['pending', 'paid', 'shipped', 'delivered']),
+      status: faker.helpers.arrayElement([
+        'pending',
+        'paid',
+        'shipped',
+        'delivered',
+      ]),
       createdAt: faker.date.recent(),
     };
   }
@@ -275,10 +288,10 @@ export class DatabaseIsolation {
 
   static async createTestDatabase(testName: string): Promise<string> {
     const dbName = `test_${testName}_${Date.now()}`;
-    
+
     await prisma.$executeRawUnsafe(`CREATE DATABASE ${dbName}`);
     this.testDatabases.set(testName, dbName);
-    
+
     return dbName;
   }
 
@@ -295,13 +308,13 @@ export class DatabaseIsolation {
       /\/[^/]+$/,
       `/${dbName}`
     );
-    
+
     const testPrisma = new PrismaClient({
       datasources: {
         db: { url: connectionString },
       },
     });
-    
+
     return testPrisma;
   }
 }
@@ -317,7 +330,7 @@ export class MockDataIsolation {
 
   static setupMock(testName: string, mockData: any) {
     this.mocks.set(testName, mockData);
-    
+
     vi.mock('@/lib/api', () => ({
       fetchData: vi.fn(() => mockData),
     }));
@@ -361,9 +374,9 @@ export class TestDataVersion {
 
   static async loadVersion(version: keyof typeof TestDataVersion.versions) {
     const config = this.versions[version];
-    
+
     await TestDataCleaner.cleanupAllTestData();
-    
+
     const users = TestDataGenerator.generateBulkUsers(config.users);
     await prisma.user.createMany({ data: users });
 
@@ -427,7 +440,9 @@ export class TestDataSecurity {
     return {
       ...TestDataGenerator.generateUser(),
       email: `test_${Date.now()}@example.com`,
-      phone: `1380000${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`,
+      phone: `1380000${Math.floor(Math.random() * 10000)
+        .toString()
+        .padStart(4, '0')}`,
     };
   }
 }
@@ -453,7 +468,7 @@ export class TestDataAccessControl {
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

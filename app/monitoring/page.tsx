@@ -10,10 +10,10 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { ProductionMonitoringDashboard } from "@/components/monitoring/production-monitoring-dashboard"
+import { ProductionMonitoringDashboard } from '@/components/monitoring/production-monitoring-dashboard';
 
 export default function MonitoringPage() {
-  return <ProductionMonitoringDashboard />
+  return <ProductionMonitoringDashboard />;
 }

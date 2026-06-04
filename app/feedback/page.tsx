@@ -10,10 +10,10 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { FeedbackCollectionSystem } from "@/components/user-feedback/feedback-collection-system"
+import { FeedbackCollectionSystem } from '@/components/user-feedback/feedback-collection-system';
 
 export default function FeedbackPage() {
-  return <FeedbackCollectionSystem />
+  return <FeedbackCollectionSystem />;
 }

@@ -10,18 +10,38 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Progress } from "@/components/ui/progress"
-import { Switch } from "@/components/ui/switch"
-import { Slider } from "@/components/ui/slider"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend } from "recharts"
+import { useState, useEffect } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Progress } from '@/components/ui/progress';
+import { Switch } from '@/components/ui/switch';
+import { Slider } from '@/components/ui/slider';
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from '@/components/ui/chart';
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+  Legend,
+} from 'recharts';
 import {
   Zap,
   TrendingUp,
@@ -39,188 +59,190 @@ import {
   Gauge,
   MaximizeIcon as Optimize,
   Database,
-} from "lucide-react"
+} from 'lucide-react';
 
 interface PerformanceMetric {
-  id: string
-  name: string
-  value: number
-  unit: string
-  status: "excellent" | "good" | "warning" | "critical"
-  trend: "up" | "down" | "stable"
-  target: number
-  impact: "high" | "medium" | "low"
+  id: string;
+  name: string;
+  value: number;
+  unit: string;
+  status: 'excellent' | 'good' | 'warning' | 'critical';
+  trend: 'up' | 'down' | 'stable';
+  target: number;
+  impact: 'high' | 'medium' | 'low';
 }
 
 interface OptimizationRule {
-  id: string
-  name: string
-  description: string
-  category: "frontend" | "backend" | "database" | "network"
-  enabled: boolean
-  impact: "high" | "medium" | "low"
-  complexity: "easy" | "medium" | "hard"
-  estimatedGain: number
+  id: string;
+  name: string;
+  description: string;
+  category: 'frontend' | 'backend' | 'database' | 'network';
+  enabled: boolean;
+  impact: 'high' | 'medium' | 'low';
+  complexity: 'easy' | 'medium' | 'hard';
+  estimatedGain: number;
 }
 
 export function PerformanceOptimizationCenter() {
   const [metrics, setMetrics] = useState<PerformanceMetric[]>([
     {
-      id: "page_load",
-      name: "页面加载时间",
+      id: 'page_load',
+      name: '页面加载时间',
       value: 2.3,
-      unit: "秒",
-      status: "good",
-      trend: "down",
+      unit: '秒',
+      status: 'good',
+      trend: 'down',
       target: 2.0,
-      impact: "high",
+      impact: 'high',
     },
     {
-      id: "first_paint",
-      name: "首次绘制",
+      id: 'first_paint',
+      name: '首次绘制',
       value: 1.2,
-      unit: "秒",
-      status: "excellent",
-      trend: "stable",
+      unit: '秒',
+      status: 'excellent',
+      trend: 'stable',
       target: 1.5,
-      impact: "high",
+      impact: 'high',
     },
     {
-      id: "interactive",
-      name: "可交互时间",
+      id: 'interactive',
+      name: '可交互时间',
       value: 3.8,
-      unit: "秒",
-      status: "warning",
-      trend: "up",
+      unit: '秒',
+      status: 'warning',
+      trend: 'up',
       target: 3.0,
-      impact: "high",
+      impact: 'high',
     },
     {
-      id: "bundle_size",
-      name: "包大小",
+      id: 'bundle_size',
+      name: '包大小',
       value: 2.1,
-      unit: "MB",
-      status: "good",
-      trend: "stable",
+      unit: 'MB',
+      status: 'good',
+      trend: 'stable',
       target: 2.0,
-      impact: "medium",
+      impact: 'medium',
     },
     {
-      id: "memory_usage",
-      name: "内存使用",
+      id: 'memory_usage',
+      name: '内存使用',
       value: 45.2,
-      unit: "MB",
-      status: "good",
-      trend: "down",
+      unit: 'MB',
+      status: 'good',
+      trend: 'down',
       target: 50.0,
-      impact: "medium",
+      impact: 'medium',
     },
     {
-      id: "api_response",
-      name: "API响应时间",
+      id: 'api_response',
+      name: 'API响应时间',
       value: 180,
-      unit: "ms",
-      status: "good",
-      trend: "stable",
+      unit: 'ms',
+      status: 'good',
+      trend: 'stable',
       target: 200,
-      impact: "high",
+      impact: 'high',
     },
-  ])
+  ]);
 
-  const [optimizationRules, setOptimizationRules] = useState<OptimizationRule[]>([
+  const [optimizationRules, setOptimizationRules] = useState<
+    OptimizationRule[]
+  >([
     {
-      id: "lazy_loading",
-      name: "图片懒加载",
-      description: "对页面中的图片实施懒加载，减少初始加载时间",
-      category: "frontend",
+      id: 'lazy_loading',
+      name: '图片懒加载',
+      description: '对页面中的图片实施懒加载，减少初始加载时间',
+      category: 'frontend',
       enabled: true,
-      impact: "high",
-      complexity: "easy",
+      impact: 'high',
+      complexity: 'easy',
       estimatedGain: 25,
     },
     {
-      id: "code_splitting",
-      name: "代码分割",
-      description: "将代码按路由分割，减少初始包大小",
-      category: "frontend",
+      id: 'code_splitting',
+      name: '代码分割',
+      description: '将代码按路由分割，减少初始包大小',
+      category: 'frontend',
       enabled: true,
-      impact: "high",
-      complexity: "medium",
+      impact: 'high',
+      complexity: 'medium',
       estimatedGain: 30,
     },
     {
-      id: "cache_optimization",
-      name: "缓存优化",
-      description: "优化浏览器缓存策略，提升重复访问性能",
-      category: "frontend",
+      id: 'cache_optimization',
+      name: '缓存优化',
+      description: '优化浏览器缓存策略，提升重复访问性能',
+      category: 'frontend',
       enabled: false,
-      impact: "medium",
-      complexity: "easy",
+      impact: 'medium',
+      complexity: 'easy',
       estimatedGain: 20,
     },
     {
-      id: "api_caching",
-      name: "API缓存",
-      description: "实施API响应缓存，减少服务器负载",
-      category: "backend",
+      id: 'api_caching',
+      name: 'API缓存',
+      description: '实施API响应缓存，减少服务器负载',
+      category: 'backend',
       enabled: true,
-      impact: "high",
-      complexity: "medium",
+      impact: 'high',
+      complexity: 'medium',
       estimatedGain: 40,
     },
     {
-      id: "database_indexing",
-      name: "数据库索引优化",
-      description: "优化数据库查询索引，提升查询性能",
-      category: "database",
+      id: 'database_indexing',
+      name: '数据库索引优化',
+      description: '优化数据库查询索引，提升查询性能',
+      category: 'database',
       enabled: false,
-      impact: "high",
-      complexity: "hard",
+      impact: 'high',
+      complexity: 'hard',
       estimatedGain: 50,
     },
     {
-      id: "cdn_optimization",
-      name: "CDN优化",
-      description: "使用CDN加速静态资源加载",
-      category: "network",
+      id: 'cdn_optimization',
+      name: 'CDN优化',
+      description: '使用CDN加速静态资源加载',
+      category: 'network',
       enabled: true,
-      impact: "medium",
-      complexity: "easy",
+      impact: 'medium',
+      complexity: 'easy',
       estimatedGain: 35,
     },
-  ])
+  ]);
 
-  const [isOptimizing, setIsOptimizing] = useState(false)
-  const [autoOptimization, setAutoOptimization] = useState(false)
-  const [optimizationLevel, setOptimizationLevel] = useState([2])
+  const [isOptimizing, setIsOptimizing] = useState(false);
+  const [autoOptimization, setAutoOptimization] = useState(false);
+  const [optimizationLevel, setOptimizationLevel] = useState([2]);
 
   // 性能趋势数据
   const performanceTrend = [
-    { time: "00:00", loadTime: 2.8, memory: 52, apiResponse: 220 },
-    { time: "04:00", loadTime: 2.5, memory: 48, apiResponse: 195 },
-    { time: "08:00", loadTime: 3.2, memory: 58, apiResponse: 245 },
-    { time: "12:00", loadTime: 2.9, memory: 55, apiResponse: 210 },
-    { time: "16:00", loadTime: 2.3, memory: 45, apiResponse: 180 },
-    { time: "20:00", loadTime: 2.1, memory: 42, apiResponse: 165 },
-  ]
+    { time: '00:00', loadTime: 2.8, memory: 52, apiResponse: 220 },
+    { time: '04:00', loadTime: 2.5, memory: 48, apiResponse: 195 },
+    { time: '08:00', loadTime: 3.2, memory: 58, apiResponse: 245 },
+    { time: '12:00', loadTime: 2.9, memory: 55, apiResponse: 210 },
+    { time: '16:00', loadTime: 2.3, memory: 45, apiResponse: 180 },
+    { time: '20:00', loadTime: 2.1, memory: 42, apiResponse: 165 },
+  ];
 
   // 优化效果数据
   const optimizationEffect = [
-    { metric: "页面加载", before: 3.5, after: 2.3, improvement: 34 },
-    { metric: "首次绘制", before: 1.8, after: 1.2, improvement: 33 },
-    { metric: "包大小", before: 3.2, after: 2.1, improvement: 34 },
-    { metric: "内存使用", before: 68, after: 45, improvement: 34 },
-    { metric: "API响应", before: 280, after: 180, improvement: 36 },
-  ]
+    { metric: '页面加载', before: 3.5, after: 2.3, improvement: 34 },
+    { metric: '首次绘制', before: 1.8, after: 1.2, improvement: 33 },
+    { metric: '包大小', before: 3.2, after: 2.1, improvement: 34 },
+    { metric: '内存使用', before: 68, after: 45, improvement: 34 },
+    { metric: 'API响应', before: 280, after: 180, improvement: 36 },
+  ];
 
   // 资源使用分析
   const resourceUsage = [
-    { category: "JavaScript", size: 850, percentage: 40, optimized: 680 },
-    { category: "CSS", size: 320, percentage: 15, optimized: 240 },
-    { category: "图片", size: 650, percentage: 30, optimized: 420 },
-    { category: "字体", size: 180, percentage: 8, optimized: 150 },
-    { category: "其他", size: 150, percentage: 7, optimized: 120 },
-  ]
+    { category: 'JavaScript', size: 850, percentage: 40, optimized: 680 },
+    { category: 'CSS', size: 320, percentage: 15, optimized: 240 },
+    { category: '图片', size: 650, percentage: 30, optimized: 420 },
+    { category: '字体', size: 180, percentage: 8, optimized: 150 },
+    { category: '其他', size: 150, percentage: 7, optimized: 120 },
+  ];
 
   useEffect(() => {
     // 模拟实时性能数据更新
@@ -229,76 +251,76 @@ export function PerformanceOptimizationCenter() {
         prev.map((metric) => ({
           ...metric,
           value: Math.max(0, metric.value + (Math.random() - 0.5) * 0.2),
-          trend: Math.random() > 0.5 ? "up" : "down",
-        })),
-      )
-    }, 5000)
+          trend: Math.random() > 0.5 ? 'up' : 'down',
+        }))
+      );
+    }, 5000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "excellent":
-        return "text-green-600 bg-green-100"
-      case "good":
-        return "text-blue-600 bg-blue-100"
-      case "warning":
-        return "text-yellow-600 bg-yellow-100"
-      case "critical":
-        return "text-red-600 bg-red-100"
+      case 'excellent':
+        return 'text-green-600 bg-green-100';
+      case 'good':
+        return 'text-blue-600 bg-blue-100';
+      case 'warning':
+        return 'text-yellow-600 bg-yellow-100';
+      case 'critical':
+        return 'text-red-600 bg-red-100';
       default:
-        return "text-gray-600 bg-gray-100"
+        return 'text-gray-600 bg-gray-100';
     }
-  }
+  };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case "excellent":
-        return <CheckCircle className="w-4 h-4" />
-      case "good":
-        return <CheckCircle className="w-4 h-4" />
-      case "warning":
-        return <AlertTriangle className="w-4 h-4" />
-      case "critical":
-        return <AlertTriangle className="w-4 h-4" />
+      case 'excellent':
+        return <CheckCircle className="w-4 h-4" />;
+      case 'good':
+        return <CheckCircle className="w-4 h-4" />;
+      case 'warning':
+        return <AlertTriangle className="w-4 h-4" />;
+      case 'critical':
+        return <AlertTriangle className="w-4 h-4" />;
       default:
-        return <Activity className="w-4 h-4" />
+        return <Activity className="w-4 h-4" />;
     }
-  }
+  };
 
   const getTrendIcon = (trend: string) => {
     switch (trend) {
-      case "up":
-        return <TrendingUp className="w-4 h-4 text-red-600" />
-      case "down":
-        return <TrendingDown className="w-4 h-4 text-green-600" />
+      case 'up':
+        return <TrendingUp className="w-4 h-4 text-red-600" />;
+      case 'down':
+        return <TrendingDown className="w-4 h-4 text-green-600" />;
       default:
-        return <div className="w-4 h-4 bg-gray-400 rounded-full" />
+        return <div className="w-4 h-4 bg-gray-400 rounded-full" />;
     }
-  }
+  };
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case "frontend":
-        return <Zap className="w-4 h-4" />
-      case "backend":
-        return <Database className="w-4 h-4" />
-      case "database":
-        return <HardDrive className="w-4 h-4" />
-      case "network":
-        return <Network className="w-4 h-4" />
+      case 'frontend':
+        return <Zap className="w-4 h-4" />;
+      case 'backend':
+        return <Database className="w-4 h-4" />;
+      case 'database':
+        return <HardDrive className="w-4 h-4" />;
+      case 'network':
+        return <Network className="w-4 h-4" />;
       default:
-        return <Settings className="w-4 h-4" />
+        return <Settings className="w-4 h-4" />;
     }
-  }
+  };
 
   const runOptimization = async () => {
-    setIsOptimizing(true)
+    setIsOptimizing(true);
 
     // 模拟优化过程
     for (let i = 0; i <= 100; i += 10) {
-      await new Promise((resolve) => setTimeout(resolve, 200))
+      await new Promise((resolve) => setTimeout(resolve, 200));
       // 这里可以更新优化进度
     }
 
@@ -307,36 +329,41 @@ export function PerformanceOptimizationCenter() {
       prev.map((metric) => ({
         ...metric,
         value: metric.value * 0.85, // 模拟15%的性能提升
-        status: metric.value * 0.85 < metric.target ? "excellent" : metric.status,
-      })),
-    )
+        status:
+          metric.value * 0.85 < metric.target ? 'excellent' : metric.status,
+      }))
+    );
 
-    setIsOptimizing(false)
-  }
+    setIsOptimizing(false);
+  };
 
   const toggleRule = (ruleId: string) => {
     setOptimizationRules((prev) =>
-      prev.map((rule) => (rule.id === ruleId ? { ...rule, enabled: !rule.enabled } : rule)),
-    )
-  }
+      prev.map((rule) =>
+        rule.id === ruleId ? { ...rule, enabled: !rule.enabled } : rule
+      )
+    );
+  };
 
   const getOverallScore = () => {
     const scores = metrics.map((metric) => {
       switch (metric.status) {
-        case "excellent":
-          return 100
-        case "good":
-          return 80
-        case "warning":
-          return 60
-        case "critical":
-          return 30
+        case 'excellent':
+          return 100;
+        case 'good':
+          return 80;
+        case 'warning':
+          return 60;
+        case 'critical':
+          return 30;
         default:
-          return 50
+          return 50;
       }
-    })
-    return Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length)
-  }
+    });
+    return Math.round(
+      scores.reduce((sum, score) => sum + score, 0) / scores.length
+    );
+  };
 
   return (
     <div className="p-6 space-y-6">
@@ -351,15 +378,22 @@ export function PerformanceOptimizationCenter() {
         <div className="flex space-x-2">
           <div className="flex items-center space-x-2">
             <span className="text-sm">自动优化</span>
-            <Switch checked={autoOptimization} onCheckedChange={setAutoOptimization} />
+            <Switch
+              checked={autoOptimization}
+              onCheckedChange={setAutoOptimization}
+            />
           </div>
           <Button variant="outline" onClick={() => window.location.reload()}>
             <RefreshCw className="w-4 h-4 mr-2" />
             刷新数据
           </Button>
           <Button onClick={runOptimization} disabled={isOptimizing}>
-            {isOptimizing ? <Pause className="w-4 h-4 mr-2" /> : <Play className="w-4 h-4 mr-2" />}
-            {isOptimizing ? "优化中..." : "开始优化"}
+            {isOptimizing ? (
+              <Pause className="w-4 h-4 mr-2" />
+            ) : (
+              <Play className="w-4 h-4 mr-2" />
+            )}
+            {isOptimizing ? '优化中...' : '开始优化'}
           </Button>
         </div>
       </div>
@@ -371,7 +405,9 @@ export function PerformanceOptimizationCenter() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">性能评分</p>
-                <p className="text-3xl font-bold text-green-600">{getOverallScore()}</p>
+                <p className="text-3xl font-bold text-green-600">
+                  {getOverallScore()}
+                </p>
               </div>
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                 <Gauge className="w-6 h-6 text-green-600" />
@@ -387,7 +423,11 @@ export function PerformanceOptimizationCenter() {
               <div>
                 <p className="text-sm text-gray-600">优化建议</p>
                 <p className="text-3xl font-bold text-blue-600">
-                  {optimizationRules.filter((r) => !r.enabled && r.impact === "high").length}
+                  {
+                    optimizationRules.filter(
+                      (r) => !r.enabled && r.impact === 'high'
+                    ).length
+                  }
                 </p>
               </div>
               <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
@@ -411,7 +451,9 @@ export function PerformanceOptimizationCenter() {
                 <Optimize className="w-6 h-6 text-purple-600" />
               </div>
             </div>
-            <p className="text-sm text-gray-600 mt-2">共 {optimizationRules.length} 个规则</p>
+            <p className="text-sm text-gray-600 mt-2">
+              共 {optimizationRules.length} 个规则
+            </p>
           </CardContent>
         </Card>
 
@@ -422,8 +464,10 @@ export function PerformanceOptimizationCenter() {
                 <p className="text-sm text-gray-600">预期提升</p>
                 <p className="text-3xl font-bold text-orange-600">
                   {Math.round(
-                    optimizationRules.filter((r) => r.enabled).reduce((sum, r) => sum + r.estimatedGain, 0) /
-                      optimizationRules.filter((r) => r.enabled).length,
+                    optimizationRules
+                      .filter((r) => r.enabled)
+                      .reduce((sum, r) => sum + r.estimatedGain, 0) /
+                      optimizationRules.filter((r) => r.enabled).length
                   )}
                   %
                 </p>
@@ -456,13 +500,13 @@ export function PerformanceOptimizationCenter() {
                     <Badge className={getStatusColor(metric.status)}>
                       {getStatusIcon(metric.status)}
                       <span className="ml-1">
-                        {metric.status === "excellent"
-                          ? "优秀"
-                          : metric.status === "good"
-                            ? "良好"
-                            : metric.status === "warning"
-                              ? "警告"
-                              : "严重"}
+                        {metric.status === 'excellent'
+                          ? '优秀'
+                          : metric.status === 'good'
+                            ? '良好'
+                            : metric.status === 'warning'
+                              ? '警告'
+                              : '严重'}
                       </span>
                     </Badge>
                   </div>
@@ -471,7 +515,8 @@ export function PerformanceOptimizationCenter() {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <span className="text-3xl font-bold">
-                        {metric.value.toFixed(metric.unit === "ms" ? 0 : 1)} {metric.unit}
+                        {metric.value.toFixed(metric.unit === 'ms' ? 0 : 1)}{' '}
+                        {metric.unit}
                       </span>
                       {getTrendIcon(metric.trend)}
                     </div>
@@ -485,12 +530,21 @@ export function PerformanceOptimizationCenter() {
                       <div className="flex justify-between text-sm text-gray-600">
                         <span>影响程度</span>
                         <Badge variant="outline" className="text-xs">
-                          {metric.impact === "high" ? "高" : metric.impact === "medium" ? "中" : "低"}
+                          {metric.impact === 'high'
+                            ? '高'
+                            : metric.impact === 'medium'
+                              ? '中'
+                              : '低'}
                         </Badge>
                       </div>
                     </div>
                     <Progress
-                      value={Math.min(100, (metric.target / Math.max(metric.value, metric.target)) * 100)}
+                      value={Math.min(
+                        100,
+                        (metric.target /
+                          Math.max(metric.value, metric.target)) *
+                          100
+                      )}
                       className="h-2"
                     />
                   </div>
@@ -503,19 +557,22 @@ export function PerformanceOptimizationCenter() {
         <TabsContent value="optimization" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {optimizationRules.map((rule) => (
-              <Card key={rule.id} className={rule.enabled ? "border-green-200 bg-green-50" : ""}>
+              <Card
+                key={rule.id}
+                className={rule.enabled ? 'border-green-200 bg-green-50' : ''}
+              >
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                       <div
                         className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          rule.category === "frontend"
-                            ? "bg-blue-100 text-blue-600"
-                            : rule.category === "backend"
-                              ? "bg-green-100 text-green-600"
-                              : rule.category === "database"
-                                ? "bg-purple-100 text-purple-600"
-                                : "bg-orange-100 text-orange-600"
+                          rule.category === 'frontend'
+                            ? 'bg-blue-100 text-blue-600'
+                            : rule.category === 'backend'
+                              ? 'bg-green-100 text-green-600'
+                              : rule.category === 'database'
+                                ? 'bg-purple-100 text-purple-600'
+                                : 'bg-orange-100 text-orange-600'
                         }`}
                       >
                         {getCategoryIcon(rule.category)}
@@ -523,17 +580,20 @@ export function PerformanceOptimizationCenter() {
                       <div>
                         <CardTitle className="text-lg">{rule.name}</CardTitle>
                         <Badge variant="outline" className="text-xs">
-                          {rule.category === "frontend"
-                            ? "前端"
-                            : rule.category === "backend"
-                              ? "后端"
-                              : rule.category === "database"
-                                ? "数据库"
-                                : "网络"}
+                          {rule.category === 'frontend'
+                            ? '前端'
+                            : rule.category === 'backend'
+                              ? '后端'
+                              : rule.category === 'database'
+                                ? '数据库'
+                                : '网络'}
                         </Badge>
                       </div>
                     </div>
-                    <Switch checked={rule.enabled} onCheckedChange={() => toggleRule(rule.id)} />
+                    <Switch
+                      checked={rule.enabled}
+                      onCheckedChange={() => toggleRule(rule.id)}
+                    />
                   </div>
                   <CardDescription>{rule.description}</CardDescription>
                 </CardHeader>
@@ -545,14 +605,18 @@ export function PerformanceOptimizationCenter() {
                         <Badge
                           variant="outline"
                           className={
-                            rule.impact === "high"
-                              ? "border-red-200 text-red-800"
-                              : rule.impact === "medium"
-                                ? "border-yellow-200 text-yellow-800"
-                                : "border-green-200 text-green-800"
+                            rule.impact === 'high'
+                              ? 'border-red-200 text-red-800'
+                              : rule.impact === 'medium'
+                                ? 'border-yellow-200 text-yellow-800'
+                                : 'border-green-200 text-green-800'
                           }
                         >
-                          {rule.impact === "high" ? "高" : rule.impact === "medium" ? "中" : "低"}
+                          {rule.impact === 'high'
+                            ? '高'
+                            : rule.impact === 'medium'
+                              ? '中'
+                              : '低'}
                         </Badge>
                       </div>
                       <div>
@@ -560,19 +624,25 @@ export function PerformanceOptimizationCenter() {
                         <Badge
                           variant="outline"
                           className={
-                            rule.complexity === "hard"
-                              ? "border-red-200 text-red-800"
-                              : rule.complexity === "medium"
-                                ? "border-yellow-200 text-yellow-800"
-                                : "border-green-200 text-green-800"
+                            rule.complexity === 'hard'
+                              ? 'border-red-200 text-red-800'
+                              : rule.complexity === 'medium'
+                                ? 'border-yellow-200 text-yellow-800'
+                                : 'border-green-200 text-green-800'
                           }
                         >
-                          {rule.complexity === "hard" ? "困难" : rule.complexity === "medium" ? "中等" : "简单"}
+                          {rule.complexity === 'hard'
+                            ? '困难'
+                            : rule.complexity === 'medium'
+                              ? '中等'
+                              : '简单'}
                         </Badge>
                       </div>
                       <div>
                         <p className="text-gray-600">预期提升</p>
-                        <p className="font-bold text-green-600">{rule.estimatedGain}%</p>
+                        <p className="font-bold text-green-600">
+                          {rule.estimatedGain}%
+                        </p>
                       </div>
                     </div>
                     <Progress value={rule.estimatedGain} className="h-2" />
@@ -593,16 +663,16 @@ export function PerformanceOptimizationCenter() {
               <ChartContainer
                 config={{
                   loadTime: {
-                    label: "加载时间(秒)",
-                    color: "hsl(var(--chart-1))",
+                    label: '加载时间(秒)',
+                    color: 'hsl(var(--chart-1))',
                   },
                   memory: {
-                    label: "内存使用(MB)",
-                    color: "hsl(var(--chart-2))",
+                    label: '内存使用(MB)',
+                    color: 'hsl(var(--chart-2))',
                   },
                   apiResponse: {
-                    label: "API响应(ms)",
-                    color: "hsl(var(--chart-3))",
+                    label: 'API响应(ms)',
+                    color: 'hsl(var(--chart-3))',
                   },
                 }}
                 className="h-[400px]"
@@ -651,12 +721,12 @@ export function PerformanceOptimizationCenter() {
               <ChartContainer
                 config={{
                   before: {
-                    label: "优化前",
-                    color: "hsl(var(--chart-1))",
+                    label: '优化前',
+                    color: 'hsl(var(--chart-1))',
                   },
                   after: {
-                    label: "优化后",
-                    color: "hsl(var(--chart-2))",
+                    label: '优化后',
+                    color: 'hsl(var(--chart-2))',
                   },
                 }}
                 className="h-[300px]"
@@ -694,14 +764,23 @@ export function PerformanceOptimizationCenter() {
                           {resource.size}KB → {resource.optimized}KB
                         </span>
                         <Badge className="bg-green-100 text-green-800">
-                          -{Math.round(((resource.size - resource.optimized) / resource.size) * 100)}%
+                          -
+                          {Math.round(
+                            ((resource.size - resource.optimized) /
+                              resource.size) *
+                              100
+                          )}
+                          %
                         </Badge>
                       </div>
                     </div>
                     <div className="relative">
                       <Progress value={resource.percentage} className="h-3" />
                       <Progress
-                        value={(resource.optimized / resource.size) * resource.percentage}
+                        value={
+                          (resource.optimized / resource.size) *
+                          resource.percentage
+                        }
                         className="h-3 absolute top-0 bg-green-200"
                       />
                     </div>
@@ -719,13 +798,16 @@ export function PerformanceOptimizationCenter() {
               <CardContent>
                 <div className="space-y-3">
                   {[
-                    { name: "HTML", time: 120, color: "bg-blue-500" },
-                    { name: "CSS", time: 80, color: "bg-green-500" },
-                    { name: "JavaScript", time: 200, color: "bg-yellow-500" },
-                    { name: "图片", time: 150, color: "bg-purple-500" },
-                    { name: "字体", time: 60, color: "bg-pink-500" },
+                    { name: 'HTML', time: 120, color: 'bg-blue-500' },
+                    { name: 'CSS', time: 80, color: 'bg-green-500' },
+                    { name: 'JavaScript', time: 200, color: 'bg-yellow-500' },
+                    { name: '图片', time: 150, color: 'bg-purple-500' },
+                    { name: '字体', time: 60, color: 'bg-pink-500' },
                   ].map((item, index) => (
-                    <div key={item.name} className="flex items-center space-x-3">
+                    <div
+                      key={item.name}
+                      className="flex items-center space-x-3"
+                    >
                       <span className="w-20 text-sm">{item.name}</span>
                       <div className="flex-1 bg-gray-200 rounded-full h-4 relative">
                         <div
@@ -733,7 +815,9 @@ export function PerformanceOptimizationCenter() {
                           style={{ width: `${(item.time / 200) * 100}%` }}
                         />
                       </div>
-                      <span className="text-sm text-gray-600">{item.time}ms</span>
+                      <span className="text-sm text-gray-600">
+                        {item.time}ms
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -747,15 +831,19 @@ export function PerformanceOptimizationCenter() {
               <CardContent>
                 <div className="space-y-4">
                   {[
-                    { type: "浏览器缓存", rate: 85 },
-                    { type: "CDN缓存", rate: 92 },
-                    { type: "API缓存", rate: 78 },
-                    { type: "数据库缓存", rate: 88 },
+                    { type: '浏览器缓存', rate: 85 },
+                    { type: 'CDN缓存', rate: 92 },
+                    { type: 'API缓存', rate: 78 },
+                    { type: '数据库缓存', rate: 88 },
                   ].map((cache) => (
                     <div key={cache.type} className="space-y-2">
                       <div className="flex justify-between">
-                        <span className="text-sm font-medium">{cache.type}</span>
-                        <span className="text-sm text-gray-600">{cache.rate}%</span>
+                        <span className="text-sm font-medium">
+                          {cache.type}
+                        </span>
+                        <span className="text-sm text-gray-600">
+                          {cache.rate}%
+                        </span>
                       </div>
                       <Progress value={cache.rate} className="h-2" />
                     </div>
@@ -777,16 +865,25 @@ export function PerformanceOptimizationCenter() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-medium">自动优化</h4>
-                    <p className="text-sm text-gray-600">启用后系统将自动应用优化建议</p>
+                    <p className="text-sm text-gray-600">
+                      启用后系统将自动应用优化建议
+                    </p>
                   </div>
-                  <Switch checked={autoOptimization} onCheckedChange={setAutoOptimization} />
+                  <Switch
+                    checked={autoOptimization}
+                    onCheckedChange={setAutoOptimization}
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="font-medium">优化级别</span>
                     <span className="text-sm text-gray-600">
-                      {optimizationLevel[0] === 1 ? "保守" : optimizationLevel[0] === 2 ? "平衡" : "激进"}
+                      {optimizationLevel[0] === 1
+                        ? '保守'
+                        : optimizationLevel[0] === 2
+                          ? '平衡'
+                          : '激进'}
                     </span>
                   </div>
                   <Slider
@@ -838,5 +935,5 @@ export function PerformanceOptimizationCenter() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

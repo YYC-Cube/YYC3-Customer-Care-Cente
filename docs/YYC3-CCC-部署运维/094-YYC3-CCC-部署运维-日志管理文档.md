@@ -9,11 +9,11 @@
 @tags: [部署运维],[日志管理],[日志配置]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -28,9 +28,11 @@
 ### 1. 背景与目标
 
 #### 1.1 项目背景
+
 YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五化」理念的现代化AI代理服务落地页，采用Next.js 14+构建，集成了国际化系统、3D场景交互、动画效果和响应式设计。
 
 #### 1.2 文档目标
+
 - 规范日志管理文档相关的业务标准与技术落地要求
 - 为项目相关人员提供清晰的参考依据
 - 保障相关模块开发、实施、运维的一致性与规范性
@@ -38,6 +40,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 ### 2. 设计原则
 
 #### 2.1 五高原则
+
 - **高可用性**：确保系统7x24小时稳定运行
 - **高性能**：优化加载速度和交互响应
 - **高安全性**：保护用户数据和隐私安全
@@ -45,6 +48,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **高可维护性**：便于后续维护和升级
 
 #### 2.2 五标体系
+
 - **标准化**：统一的技术和流程标准
 - **规范化**：严格的开发和管理规范
 - **自动化**：提高开发效率和质量
@@ -52,6 +56,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **可视化**：直观的监控和管理界面
 
 #### 2.3 五化架构
+
 - **流程化**：标准化的开发流程
 - **文档化**：完善的文档体系
 - **工具化**：高效的开发工具链
@@ -107,25 +112,25 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 
 #### 4.2 日志工具集成
 
-| 日志类型 | 工具 | 用途 |
-|---------|------|------|
-| 前端日志 | Sentry | 前端错误和性能日志 |
-| 后端日志 | Vercel Logs | 服务器端运行日志 |
-| 构建日志 | Vercel Build Logs | 构建和部署过程日志 |
-| 访问日志 | Vercel Analytics | 用户访问和行为日志 |
-| 自定义日志 | 自定义Logger | 业务逻辑和操作日志 |
+| 日志类型   | 工具              | 用途               |
+| ---------- | ----------------- | ------------------ |
+| 前端日志   | Sentry            | 前端错误和性能日志 |
+| 后端日志   | Vercel Logs       | 服务器端运行日志   |
+| 构建日志   | Vercel Build Logs | 构建和部署过程日志 |
+| 访问日志   | Vercel Analytics  | 用户访问和行为日志 |
+| 自定义日志 | 自定义Logger      | 业务逻辑和操作日志 |
 
 ### 5. 日志类型与格式
 
 #### 5.1 日志类型
 
-| 类型 | 描述 | 示例 |
-|------|------|------|
-| **错误日志** | 系统错误和异常 | 500错误、数据库连接失败 |
+| 类型         | 描述               | 示例                      |
+| ------------ | ------------------ | ------------------------- |
+| **错误日志** | 系统错误和异常     | 500错误、数据库连接失败   |
 | **警告日志** | 潜在问题和异常情况 | 资源使用过高、API调用失败 |
-| **信息日志** | 正常操作和流程 | 用户登录、API调用成功 |
-| **调试日志** | 详细的调试信息 | 变量值、函数执行流程 |
-| **审计日志** | 安全相关操作 | 权限变更、敏感操作 |
+| **信息日志** | 正常操作和流程     | 用户登录、API调用成功     |
+| **调试日志** | 详细的调试信息     | 变量值、函数执行流程      |
+| **审计日志** | 安全相关操作       | 权限变更、敏感操作        |
 
 #### 5.2 日志格式
 
@@ -166,23 +171,23 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 
 #### 6.1 日志级别
 
-| 级别 | 描述 | 使用场景 |
-|------|------|----------|
+| 级别      | 描述     | 使用场景               |
+| --------- | -------- | ---------------------- |
 | **FATAL** | 致命错误 | 系统崩溃、核心功能失效 |
-| **ERROR** | 错误 | 操作失败、异常情况 |
-| **WARN** | 警告 | 潜在问题、需要关注 |
-| **INFO** | 信息 | 正常操作、重要事件 |
-| **DEBUG** | 调试 | 详细信息、开发调试 |
-| **TRACE** | 追踪 | 最详细的信息 |
+| **ERROR** | 错误     | 操作失败、异常情况     |
+| **WARN**  | 警告     | 潜在问题、需要关注     |
+| **INFO**  | 信息     | 正常操作、重要事件     |
+| **DEBUG** | 调试     | 详细信息、开发调试     |
+| **TRACE** | 追踪     | 最详细的信息           |
 
 #### 6.2 环境级别配置
 
-| 环境 | 默认级别 | 日志文件 |
-|------|----------|----------|
-| 生产环境 | INFO | 只记录INFO及以上级别 |
-| 预发布环境 | WARN | 记录WARN及以上级别 |
-| 开发环境 | DEBUG | 记录DEBUG及以上级别 |
-| 测试环境 | TRACE | 记录所有级别 |
+| 环境       | 默认级别 | 日志文件             |
+| ---------- | -------- | -------------------- |
+| 生产环境   | INFO     | 只记录INFO及以上级别 |
+| 预发布环境 | WARN     | 记录WARN及以上级别   |
+| 开发环境   | DEBUG    | 记录DEBUG及以上级别  |
+| 测试环境   | TRACE    | 记录所有级别         |
 
 ### 7. 日志收集与存储
 
@@ -198,7 +203,7 @@ Sentry.captureException(error);
 Sentry.captureMessage('User logged in', 'info');
 
 // 自定义上下文
-Sentry.configureScope(scope => {
+Sentry.configureScope((scope) => {
   scope.setUser({ id: '12345', email: 'user@example.com' });
   scope.setTag('feature', 'authentication');
   scope.setExtra('ip', '192.168.1.1');
@@ -225,7 +230,7 @@ const logger = {
     if (process.env.NODE_ENV === 'development') {
       console.debug(`[DEBUG] ${message}`, context);
     }
-  }
+  },
 };
 ```
 
@@ -240,17 +245,19 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(request: NextRequest) {
   const start = Date.now();
   const requestId = crypto.randomUUID();
-  
+
   // 记录请求开始
   console.info(`[API] [${requestId}] ${request.method} ${request.url}`);
-  
+
   const response = NextResponse.next();
-  
+
   // 记录请求结束
   const end = Date.now();
   const duration = end - start;
-  console.info(`[API] [${requestId}] ${request.method} ${request.url} ${response.status} ${duration}ms`);
-  
+  console.info(
+    `[API] [${requestId}] ${request.method} ${request.url} ${response.status} ${duration}ms`
+  );
+
   return response;
 }
 ```
@@ -258,12 +265,14 @@ export function middleware(request: NextRequest) {
 #### 7.3 日志存储配置
 
 **Vercel 日志存储：**
+
 - 自动存储构建和运行日志
 - 保留期：生产环境 90 天，开发环境 14 天
 - 支持日志搜索和过滤
 - 集成第三方日志服务
 
 **自定义日志存储：**
+
 - 配置 CloudWatch Logs 或 ELK Stack
 - 设置日志轮转和压缩
 - 实现日志备份策略
@@ -274,16 +283,19 @@ export function middleware(request: NextRequest) {
 #### 8.1 日志查询
 
 **Vercel 日志查询：**
+
 - 通过 Vercel 控制台搜索和过滤日志
 - 支持按时间范围、级别、服务等维度查询
 - 提供日志导出功能
 
 **Sentry 日志查询：**
+
 - 通过 Sentry 控制台查询错误和性能日志
 - 支持按用户、环境、版本等维度查询
 - 提供高级搜索和过滤功能
 
 **自定义日志查询：**
+
 - 使用 ELK Stack (Elasticsearch, Logstash, Kibana)
 - 配置 Grafana 日志面板
 - 实现自定义日志查询 API
@@ -291,18 +303,21 @@ export function middleware(request: NextRequest) {
 #### 8.2 日志分析
 
 **错误分析：**
+
 - 错误类型分布
 - 错误趋势分析
 - 影响用户数统计
 - 错误关联分析
 
 **性能分析：**
+
 - API 响应时间分布
 - 页面加载性能分析
 - 资源使用分析
 - 瓶颈识别和优化
 
 **用户行为分析：**
+
 - 用户访问路径
 - 功能使用频率
 - 转化率分析
@@ -313,21 +328,23 @@ export function middleware(request: NextRequest) {
 #### 9.1 归档策略
 
 | 日志类型 | 保留期 | 归档方式 |
-|---------|--------|----------|
-| 错误日志 | 1年 | 压缩存储 |
-| 警告日志 | 6个月 | 压缩存储 |
-| 信息日志 | 3个月 | 压缩存储 |
-| 调试日志 | 1个月 | 自动清理 |
-| 构建日志 | 14天 | 自动清理 |
+| -------- | ------ | -------- |
+| 错误日志 | 1年    | 压缩存储 |
+| 警告日志 | 6个月  | 压缩存储 |
+| 信息日志 | 3个月  | 压缩存储 |
+| 调试日志 | 1个月  | 自动清理 |
+| 构建日志 | 14天   | 自动清理 |
 
 #### 9.2 清理策略
 
 **自动清理：**
+
 - 配置日志轮转和清理脚本
 - 使用 Vercel 自动清理功能
 - 实现基于时间的清理策略
 
 **手动清理：**
+
 - 定期手动清理过期日志
 - 清理超大日志文件
 - 清理敏感信息日志
@@ -335,11 +352,13 @@ export function middleware(request: NextRequest) {
 #### 9.3 备份策略
 
 **备份频率：**
+
 - 生产环境：每日备份
 - 预发布环境：每周备份
 - 开发环境：按需备份
 
 **备份存储：**
+
 - 使用对象存储服务（如 S3）
 - 实现异地备份
 - 配置备份加密
@@ -350,6 +369,7 @@ export function middleware(request: NextRequest) {
 #### 10.1 日志安全
 
 **敏感信息保护：**
+
 - 日志脱敏：对敏感信息进行脱敏处理
 - 访问控制：限制日志访问权限
 - 传输加密：确保日志传输安全
@@ -357,23 +377,25 @@ export function middleware(request: NextRequest) {
 
 **脱敏规则：**
 
-| 敏感信息 | 脱敏方式 | 示例 |
-|---------|----------|------|
-| 密码 | 完全隐藏 | ******** |
-| 邮箱 | 部分隐藏 | us***@example.com |
-| 手机号 | 部分隐藏 | 138****1234 |
-| 身份证 | 部分隐藏 | 1101********1234 |
-| 银行卡 | 部分隐藏 | **** **** **** 1234 |
+| 敏感信息 | 脱敏方式 | 示例                        |
+| -------- | -------- | --------------------------- |
+| 密码     | 完全隐藏 | **\*\*\*\***                |
+| 邮箱     | 部分隐藏 | us\*\*\*@example.com        |
+| 手机号   | 部分隐藏 | 138\*\*\*\*1234             |
+| 身份证   | 部分隐藏 | 1101**\*\*\*\***1234        |
+| 银行卡   | 部分隐藏 | \***\* \*\*** \*\*\*\* 1234 |
 
 #### 10.2 合规要求
 
 **GDPR 合规：**
+
 - 明确记录数据处理活动
 - 提供数据访问和删除机制
 - 确保数据最小化原则
 - 实现数据保护影响评估
 
 **行业合规：**
+
 - 根据行业要求调整日志策略
 - 保留必要的审计日志
 - 定期进行合规检查
@@ -384,12 +406,14 @@ export function middleware(request: NextRequest) {
 #### 11.1 日志记录规范
 
 **结构化日志：**
+
 - 使用 JSON 格式记录日志
 - 包含必要的上下文信息
 - 保持日志格式一致性
 - 便于机器解析和分析
 
 **关键信息：**
+
 - 时间戳（ISO 格式）
 - 日志级别
 - 服务名称
@@ -402,12 +426,14 @@ export function middleware(request: NextRequest) {
 #### 11.2 性能优化
 
 **日志性能：**
+
 - 避免过度日志记录
 - 使用异步日志记录
 - 批量处理日志
 - 优化日志存储和检索
 
 **生产环境：**
+
 - 只记录必要的日志
 - 避免记录调试信息
 - 实现日志采样
@@ -416,12 +442,14 @@ export function middleware(request: NextRequest) {
 #### 11.3 故障排查
 
 **快速定位：**
+
 - 使用请求 ID 关联相关日志
 - 实现日志链路追踪
 - 提供详细的错误上下文
 - 配置关键操作的详细日志
 
 **故障分析：**
+
 - 汇总相关日志
 - 分析错误模式
 - 识别根本原因
@@ -434,6 +462,7 @@ export function middleware(request: NextRequest) {
 **问题**：日志量过大，影响系统性能
 
 **解决方案**：
+
 - 调整日志级别
 - 实现日志采样
 - 优化日志存储
@@ -444,6 +473,7 @@ export function middleware(request: NextRequest) {
 **问题**：部分日志未被记录或丢失
 
 **解决方案**：
+
 - 检查日志配置
 - 验证日志传输链路
 - 实现日志缓冲机制
@@ -454,6 +484,7 @@ export function middleware(request: NextRequest) {
 **问题**：日志记录和查询存在延迟
 
 **解决方案**：
+
 - 优化日志收集机制
 - 增加日志处理能力
 - 实现异步日志处理
@@ -464,6 +495,7 @@ export function middleware(request: NextRequest) {
 **问题**：日志中包含敏感信息
 
 **解决方案**：
+
 - 实现日志脱敏
 - 审查日志记录代码
 - 配置敏感信息过滤器
@@ -477,7 +509,7 @@ export function middleware(request: NextRequest) {
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

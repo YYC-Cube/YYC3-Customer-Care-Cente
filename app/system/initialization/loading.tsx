@@ -10,11 +10,11 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton"
-import { Database, RefreshCw } from "lucide-react"
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Database, RefreshCw } from 'lucide-react';
 
 export default function InitializationLoading() {
   return (
@@ -129,7 +129,9 @@ export default function InitializationLoading() {
             <div className="flex items-center space-x-3">
               <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
               <div className="space-y-1">
-                <p className="text-sm font-medium text-blue-900">系统初始化中</p>
+                <p className="text-sm font-medium text-blue-900">
+                  系统初始化中
+                </p>
                 <p className="text-xs text-blue-600">正在检查系统组件...</p>
               </div>
             </div>
@@ -137,5 +139,5 @@ export default function InitializationLoading() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

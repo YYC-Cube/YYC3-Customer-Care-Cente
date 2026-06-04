@@ -10,15 +10,15 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { ResponsiveLayout } from "@/components/layout/responsive-layout"
-import { InvoiceManagement } from "@/components/invoice-management"
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
+import { InvoiceManagement } from '@/components/invoice-management';
 
 export default function InvoicesPage() {
   return (
     <ResponsiveLayout showSidebar={true} showHeader={true}>
       <InvoiceManagement />
     </ResponsiveLayout>
-  )
+  );
 }

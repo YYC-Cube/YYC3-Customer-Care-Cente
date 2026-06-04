@@ -10,17 +10,36 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import {
   Dialog,
   DialogContent,
@@ -28,7 +47,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from '@/components/ui/dialog';
 import {
   TrendingUp,
   TrendingDown,
@@ -41,115 +60,115 @@ import {
   DollarSign,
   CheckCircle,
   XCircle,
-} from "lucide-react"
+} from 'lucide-react';
 
 interface BudgetItem {
-  id: string
-  category: string
-  subcategory: string
-  budgetAmount: number
-  actualAmount: number
-  period: string
-  status: "on-track" | "over-budget" | "under-budget"
-  variance: number
-  variancePercent: number
-  lastUpdated: Date
+  id: string;
+  category: string;
+  subcategory: string;
+  budgetAmount: number;
+  actualAmount: number;
+  period: string;
+  status: 'on-track' | 'over-budget' | 'under-budget';
+  variance: number;
+  variancePercent: number;
+  lastUpdated: Date;
 }
 
 interface BudgetAlert {
-  id: string
-  type: "warning" | "danger" | "info"
-  category: string
-  message: string
-  threshold: number
-  currentValue: number
-  timestamp: Date
+  id: string;
+  type: 'warning' | 'danger' | 'info';
+  category: string;
+  message: string;
+  threshold: number;
+  currentValue: number;
+  timestamp: Date;
 }
 
 export function BudgetManagement() {
   const [budgetItems, setBudgetItems] = useState<BudgetItem[]>([
     {
-      id: "1",
-      category: "运营费用",
-      subcategory: "人力成本",
+      id: '1',
+      category: '运营费用',
+      subcategory: '人力成本',
       budgetAmount: 500000,
       actualAmount: 480000,
-      period: "2024-Q1",
-      status: "under-budget",
+      period: '2024-Q1',
+      status: 'under-budget',
       variance: -20000,
       variancePercent: -4.0,
       lastUpdated: new Date(),
     },
     {
-      id: "2",
-      category: "运营费用",
-      subcategory: "办公租金",
+      id: '2',
+      category: '运营费用',
+      subcategory: '办公租金',
       budgetAmount: 120000,
       actualAmount: 125000,
-      period: "2024-Q1",
-      status: "over-budget",
+      period: '2024-Q1',
+      status: 'over-budget',
       variance: 5000,
       variancePercent: 4.2,
       lastUpdated: new Date(),
     },
     {
-      id: "3",
-      category: "营销费用",
-      subcategory: "广告投放",
+      id: '3',
+      category: '营销费用',
+      subcategory: '广告投放',
       budgetAmount: 200000,
       actualAmount: 180000,
-      period: "2024-Q1",
-      status: "under-budget",
+      period: '2024-Q1',
+      status: 'under-budget',
       variance: -20000,
       variancePercent: -10.0,
       lastUpdated: new Date(),
     },
     {
-      id: "4",
-      category: "研发费用",
-      subcategory: "技术设备",
+      id: '4',
+      category: '研发费用',
+      subcategory: '技术设备',
       budgetAmount: 300000,
       actualAmount: 320000,
-      period: "2024-Q1",
-      status: "over-budget",
+      period: '2024-Q1',
+      status: 'over-budget',
       variance: 20000,
       variancePercent: 6.7,
       lastUpdated: new Date(),
     },
-  ])
+  ]);
 
   const [budgetAlerts, setBudgetAlerts] = useState<BudgetAlert[]>([
     {
-      id: "1",
-      type: "warning",
-      category: "办公租金",
-      message: "办公租金支出超出预算4.2%，建议关注",
+      id: '1',
+      type: 'warning',
+      category: '办公租金',
+      message: '办公租金支出超出预算4.2%，建议关注',
       threshold: 120000,
       currentValue: 125000,
       timestamp: new Date(),
     },
     {
-      id: "2",
-      type: "danger",
-      category: "技术设备",
-      message: "技术设备支出超出预算6.7%，需要立即处理",
+      id: '2',
+      type: 'danger',
+      category: '技术设备',
+      message: '技术设备支出超出预算6.7%，需要立即处理',
       threshold: 300000,
       currentValue: 320000,
       timestamp: new Date(),
     },
     {
-      id: "3",
-      type: "info",
-      category: "广告投放",
-      message: "广告投放预算使用率90%，可考虑增加投入",
+      id: '3',
+      type: 'info',
+      category: '广告投放',
+      message: '广告投放预算使用率90%，可考虑增加投入',
       threshold: 200000,
       currentValue: 180000,
       timestamp: new Date(),
     },
-  ])
+  ]);
 
-  const [selectedPeriod, setSelectedPeriod] = useState("2024-Q1")
-  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
+  const [selectedPeriod, setSelectedPeriod] = useState('2024-Q1');
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
   // 计算总体预算统计
   const budgetStats = {
@@ -159,36 +178,38 @@ export function BudgetManagement() {
     utilizationRate:
       budgetItems.reduce((sum, item) => sum + item.actualAmount, 0) /
       budgetItems.reduce((sum, item) => sum + item.budgetAmount, 0),
-    overBudgetCount: budgetItems.filter((item) => item.status === "over-budget").length,
-    onTrackCount: budgetItems.filter((item) => item.status === "on-track").length,
-  }
+    overBudgetCount: budgetItems.filter((item) => item.status === 'over-budget')
+      .length,
+    onTrackCount: budgetItems.filter((item) => item.status === 'on-track')
+      .length,
+  };
 
-  const getStatusBadge = (status: BudgetItem["status"]) => {
+  const getStatusBadge = (status: BudgetItem['status']) => {
     const statusConfig = {
-      "on-track": { label: "正常", className: "bg-green-100 text-green-800" },
-      "over-budget": { label: "超预算", className: "bg-red-100 text-red-800" },
-      "under-budget": { label: "节约", className: "bg-blue-100 text-blue-800" },
-    }
-    const config = statusConfig[status]
-    return <Badge className={config.className}>{config.label}</Badge>
-  }
+      'on-track': { label: '正常', className: 'bg-green-100 text-green-800' },
+      'over-budget': { label: '超预算', className: 'bg-red-100 text-red-800' },
+      'under-budget': { label: '节约', className: 'bg-blue-100 text-blue-800' },
+    };
+    const config = statusConfig[status];
+    return <Badge className={config.className}>{config.label}</Badge>;
+  };
 
-  const getAlertIcon = (type: BudgetAlert["type"]) => {
+  const getAlertIcon = (type: BudgetAlert['type']) => {
     switch (type) {
-      case "danger":
-        return <XCircle className="w-4 h-4 text-red-600" />
-      case "warning":
-        return <AlertTriangle className="w-4 h-4 text-yellow-600" />
-      case "info":
-        return <CheckCircle className="w-4 h-4 text-blue-600" />
+      case 'danger':
+        return <XCircle className="w-4 h-4 text-red-600" />;
+      case 'warning':
+        return <AlertTriangle className="w-4 h-4 text-yellow-600" />;
+      case 'info':
+        return <CheckCircle className="w-4 h-4 text-blue-600" />;
     }
-  }
+  };
 
   const getVarianceColor = (variance: number) => {
-    if (variance > 0) return "text-red-600"
-    if (variance < 0) return "text-green-600"
-    return "text-gray-600"
-  }
+    if (variance > 0) return 'text-red-600';
+    if (variance < 0) return 'text-green-600';
+    return 'text-gray-600';
+  };
 
   return (
     <div className="p-6 space-y-6 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 min-h-screen">
@@ -219,7 +240,10 @@ export function BudgetManagement() {
             <Download className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-all duration-300" />
             导出报告
           </Button>
-          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+          <Dialog
+            open={isCreateDialogOpen}
+            onOpenChange={setIsCreateDialogOpen}
+          >
             <DialogTrigger asChild>
               <Button className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white transition-all duration-300 hover:shadow-xl hover:scale-105 group">
                 <Plus className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-all duration-300" />
@@ -245,7 +269,9 @@ export function BudgetManagement() {
             <Target className="h-4 w-4 text-emerald-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-700">¥{budgetStats.totalBudget.toLocaleString()}</div>
+            <div className="text-2xl font-bold text-emerald-700">
+              ¥{budgetStats.totalBudget.toLocaleString()}
+            </div>
             <p className="text-xs text-gray-600">本季度预算总额</p>
           </CardContent>
         </Card>
@@ -256,8 +282,12 @@ export function BudgetManagement() {
             <DollarSign className="h-4 w-4 text-emerald-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-700">¥{budgetStats.totalActual.toLocaleString()}</div>
-            <p className="text-xs text-gray-600">使用率 {(budgetStats.utilizationRate * 100).toFixed(1)}%</p>
+            <div className="text-2xl font-bold text-emerald-700">
+              ¥{budgetStats.totalActual.toLocaleString()}
+            </div>
+            <p className="text-xs text-gray-600">
+              使用率 {(budgetStats.utilizationRate * 100).toFixed(1)}%
+            </p>
           </CardContent>
         </Card>
 
@@ -271,11 +301,18 @@ export function BudgetManagement() {
             )}
           </CardHeader>
           <CardContent>
-            <div className={`text-2xl font-bold ${getVarianceColor(budgetStats.totalVariance)}`}>
-              {budgetStats.totalVariance >= 0 ? "+" : ""}¥{budgetStats.totalVariance.toLocaleString()}
+            <div
+              className={`text-2xl font-bold ${getVarianceColor(budgetStats.totalVariance)}`}
+            >
+              {budgetStats.totalVariance >= 0 ? '+' : ''}¥
+              {budgetStats.totalVariance.toLocaleString()}
             </div>
             <p className="text-xs text-gray-600">
-              {((budgetStats.totalVariance / budgetStats.totalBudget) * 100).toFixed(1)}% 差异
+              {(
+                (budgetStats.totalVariance / budgetStats.totalBudget) *
+                100
+              ).toFixed(1)}
+              % 差异
             </p>
           </CardContent>
         </Card>
@@ -286,7 +323,9 @@ export function BudgetManagement() {
             <AlertTriangle className="h-4 w-4 text-red-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-red-600">{budgetStats.overBudgetCount}</div>
+            <div className="text-2xl font-bold text-red-600">
+              {budgetStats.overBudgetCount}
+            </div>
             <p className="text-xs text-gray-600">需要关注的项目</p>
           </CardContent>
         </Card>
@@ -297,7 +336,9 @@ export function BudgetManagement() {
             <CheckCircle className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">{budgetStats.onTrackCount}</div>
+            <div className="text-2xl font-bold text-green-600">
+              {budgetStats.onTrackCount}
+            </div>
             <p className="text-xs text-gray-600">执行良好的项目</p>
           </CardContent>
         </Card>
@@ -323,15 +364,23 @@ export function BudgetManagement() {
                 {budgetItems.map((item) => (
                   <div key={item.id} className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium">{item.subcategory}</span>
+                      <span className="text-sm font-medium">
+                        {item.subcategory}
+                      </span>
                       <span className="text-sm text-muted-foreground">
-                        {((item.actualAmount / item.budgetAmount) * 100).toFixed(1)}%
+                        {(
+                          (item.actualAmount / item.budgetAmount) *
+                          100
+                        ).toFixed(1)}
+                        %
                       </span>
                     </div>
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-500"
-                        style={{ width: `${Math.min((item.actualAmount / item.budgetAmount) * 100, 100)}%` }}
+                        style={{
+                          width: `${Math.min((item.actualAmount / item.budgetAmount) * 100, 100)}%`,
+                        }}
                       ></div>
                     </div>
                     <div className="flex justify-between text-xs text-muted-foreground">
@@ -354,18 +403,23 @@ export function BudgetManagement() {
                   {Object.entries(
                     budgetItems.reduce(
                       (acc, item) => {
-                        acc[item.category] = (acc[item.category] || 0) + item.budgetAmount
-                        return acc
+                        acc[item.category] =
+                          (acc[item.category] || 0) + item.budgetAmount;
+                        return acc;
                       },
-                      {} as Record<string, number>,
-                    ),
+                      {} as Record<string, number>
+                    )
                   ).map(([category, amount]) => {
-                    const percentage = (amount / budgetStats.totalBudget) * 100
+                    const percentage = (amount / budgetStats.totalBudget) * 100;
                     return (
                       <div key={category} className="space-y-2">
                         <div className="flex justify-between">
-                          <span className="text-sm font-medium">{category}</span>
-                          <span className="text-sm">¥{amount.toLocaleString()}</span>
+                          <span className="text-sm font-medium">
+                            {category}
+                          </span>
+                          <span className="text-sm">
+                            ¥{amount.toLocaleString()}
+                          </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
                           <div
@@ -373,9 +427,11 @@ export function BudgetManagement() {
                             style={{ width: `${percentage}%` }}
                           ></div>
                         </div>
-                        <div className="text-xs text-muted-foreground text-right">{percentage.toFixed(1)}%</div>
+                        <div className="text-xs text-muted-foreground text-right">
+                          {percentage.toFixed(1)}%
+                        </div>
                       </div>
-                    )
+                    );
                   })}
                 </div>
               </CardContent>
@@ -405,15 +461,22 @@ export function BudgetManagement() {
                 <TableBody>
                   {budgetItems.map((item) => (
                     <TableRow key={item.id}>
-                      <TableCell className="font-medium">{item.category}</TableCell>
+                      <TableCell className="font-medium">
+                        {item.category}
+                      </TableCell>
                       <TableCell>{item.subcategory}</TableCell>
-                      <TableCell>¥{item.budgetAmount.toLocaleString()}</TableCell>
-                      <TableCell>¥{item.actualAmount.toLocaleString()}</TableCell>
+                      <TableCell>
+                        ¥{item.budgetAmount.toLocaleString()}
+                      </TableCell>
+                      <TableCell>
+                        ¥{item.actualAmount.toLocaleString()}
+                      </TableCell>
                       <TableCell className={getVarianceColor(item.variance)}>
-                        {item.variance >= 0 ? "+" : ""}¥{item.variance.toLocaleString()}
+                        {item.variance >= 0 ? '+' : ''}¥
+                        {item.variance.toLocaleString()}
                         <br />
                         <span className="text-xs">
-                          ({item.variancePercent >= 0 ? "+" : ""}
+                          ({item.variancePercent >= 0 ? '+' : ''}
                           {item.variancePercent.toFixed(1)}%)
                         </span>
                       </TableCell>
@@ -456,25 +519,33 @@ export function BudgetManagement() {
                   <div
                     key={alert.id}
                     className={`p-4 rounded-lg border transition-all duration-300 hover:scale-105 ${
-                      alert.type === "danger"
-                        ? "border-red-200 bg-red-50"
-                        : alert.type === "warning"
-                          ? "border-yellow-200 bg-yellow-50"
-                          : "border-blue-200 bg-blue-50"
+                      alert.type === 'danger'
+                        ? 'border-red-200 bg-red-50'
+                        : alert.type === 'warning'
+                          ? 'border-yellow-200 bg-yellow-50'
+                          : 'border-blue-200 bg-blue-50'
                     }`}
                   >
                     <div className="flex items-start space-x-3">
                       {getAlertIcon(alert.type)}
                       <div className="flex-1">
                         <h4 className="font-medium">{alert.category}</h4>
-                        <p className="text-sm text-muted-foreground mt-1">{alert.message}</p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {alert.message}
+                        </p>
                         <div className="flex items-center space-x-4 mt-2 text-xs text-muted-foreground">
                           <span>阈值: ¥{alert.threshold.toLocaleString()}</span>
-                          <span>当前: ¥{alert.currentValue.toLocaleString()}</span>
-                          <span>{alert.timestamp.toLocaleString("zh-CN")}</span>
+                          <span>
+                            当前: ¥{alert.currentValue.toLocaleString()}
+                          </span>
+                          <span>{alert.timestamp.toLocaleString('zh-CN')}</span>
                         </div>
                       </div>
-                      <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105 group">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="transition-all duration-300 hover:scale-105 group"
+                      >
                         处理
                       </Button>
                     </div>
@@ -519,21 +590,31 @@ export function BudgetManagement() {
                         <AlertTriangle className="w-4 h-4 text-red-600" />
                         <span className="font-medium text-red-800">高风险</span>
                       </div>
-                      <p className="text-sm text-red-600 mt-1">技术设备预算可能超支15%</p>
+                      <p className="text-sm text-red-600 mt-1">
+                        技术设备预算可能超支15%
+                      </p>
                     </div>
                     <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                       <div className="flex items-center space-x-2">
                         <AlertTriangle className="w-4 h-4 text-yellow-600" />
-                        <span className="font-medium text-yellow-800">中风险</span>
+                        <span className="font-medium text-yellow-800">
+                          中风险
+                        </span>
                       </div>
-                      <p className="text-sm text-yellow-600 mt-1">办公租金存在上涨风险</p>
+                      <p className="text-sm text-yellow-600 mt-1">
+                        办公租金存在上涨风险
+                      </p>
                     </div>
                     <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-4 h-4 text-green-600" />
-                        <span className="font-medium text-green-800">低风险</span>
+                        <span className="font-medium text-green-800">
+                          低风险
+                        </span>
                       </div>
-                      <p className="text-sm text-green-600 mt-1">人力成本控制良好</p>
+                      <p className="text-sm text-green-600 mt-1">
+                        人力成本控制良好
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -543,17 +624,17 @@ export function BudgetManagement() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
 
 function CreateBudgetForm({ onClose }: { onClose: () => void }) {
   const [formData, setFormData] = useState({
-    category: "",
-    subcategory: "",
-    budgetAmount: "",
-    period: "2024-Q2",
-    description: "",
-  })
+    category: '',
+    subcategory: '',
+    budgetAmount: '',
+    period: '2024-Q2',
+    description: '',
+  });
 
   return (
     <div className="space-y-4">
@@ -562,7 +643,9 @@ function CreateBudgetForm({ onClose }: { onClose: () => void }) {
           <Label htmlFor="category">预算类别</Label>
           <Select
             value={formData.category}
-            onValueChange={(value) => setFormData((prev) => ({ ...prev, category: value }))}
+            onValueChange={(value) =>
+              setFormData((prev) => ({ ...prev, category: value }))
+            }
           >
             <SelectTrigger className="border-l-4 border-l-emerald-500">
               <SelectValue placeholder="选择类别" />
@@ -580,7 +663,9 @@ function CreateBudgetForm({ onClose }: { onClose: () => void }) {
           <Input
             id="subcategory"
             value={formData.subcategory}
-            onChange={(e) => setFormData((prev) => ({ ...prev, subcategory: e.target.value }))}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, subcategory: e.target.value }))
+            }
             placeholder="输入子类别"
             className="border-l-4 border-l-emerald-500"
           />
@@ -594,7 +679,9 @@ function CreateBudgetForm({ onClose }: { onClose: () => void }) {
             id="budgetAmount"
             type="number"
             value={formData.budgetAmount}
-            onChange={(e) => setFormData((prev) => ({ ...prev, budgetAmount: e.target.value }))}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, budgetAmount: e.target.value }))
+            }
             placeholder="输入预算金额"
             className="border-l-4 border-l-emerald-500"
           />
@@ -603,7 +690,9 @@ function CreateBudgetForm({ onClose }: { onClose: () => void }) {
           <Label htmlFor="period">预算周期</Label>
           <Select
             value={formData.period}
-            onValueChange={(value) => setFormData((prev) => ({ ...prev, period: value }))}
+            onValueChange={(value) =>
+              setFormData((prev) => ({ ...prev, period: value }))
+            }
           >
             <SelectTrigger className="border-l-4 border-l-emerald-500">
               <SelectValue />
@@ -622,7 +711,9 @@ function CreateBudgetForm({ onClose }: { onClose: () => void }) {
         <Input
           id="description"
           value={formData.description}
-          onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, description: e.target.value }))
+          }
           placeholder="预算项目描述"
           className="border-l-4 border-l-emerald-500"
         />
@@ -640,5 +731,5 @@ function CreateBudgetForm({ onClose }: { onClose: () => void }) {
         </Button>
       </div>
     </div>
-  )
+  );
 }

@@ -1,11 +1,10 @@
-
 # YYC³（YanYuCloudCube）团队标准化审核清单
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -73,14 +72,14 @@ YYC³(YanYuCloudCube) 审核框架基于 **「五高五标五化」** 核心理�
 
 YYC³ 审核清单从六个核心维度对项目进行全面评估，各维度权重如下：
 
-| 评估维度 | 权重 | 核心关注点 |
-|---------|------|-----------|
-| 技术架构 | 25% | 架构设计、技术选型、扩展性 |
-| 代码质量 | 20% | 代码规范、可读性、可维护性 |
-| 功能完整 | 20% | 功能实现、用户体验、需求匹配 |
-| 开发运维 | 15% | CI/CD、自动化、部署流程 |
-| 性能安全 | 15% | 性能优化、安全防护、漏洞检测 |
-| 商业价值 | 5% | 业务契合度、市场前景、成本效益 |
+| 评估维度 | 权重 | 核心关注点                     |
+| -------- | ---- | ------------------------------ |
+| 技术架构 | 25%  | 架构设计、技术选型、扩展性     |
+| 代码质量 | 20%  | 代码规范、可读性、可维护性     |
+| 功能完整 | 20%  | 功能实现、用户体验、需求匹配   |
+| 开发运维 | 15%  | CI/CD、自动化、部署流程        |
+| 性能安全 | 15%  | 性能优化、安全防护、漏洞检测   |
+| 商业价值 | 5%   | 业务契合度、市场前景、成本效益 |
 
 ### 🔬 各维度详细指标
 
@@ -261,11 +260,11 @@ YYC³ 审核清单从六个核心维度对项目进行全面评估，各维度�
 ```markdown
 # 🔖 YYC³ (Header)
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 ```
 
 </details>
@@ -296,10 +295,10 @@ YYC³ 审核清单从六个核心维度对项目进行全面评估，各维度�
 ```markdown
 ## 📄 文档标尾 (Footer)
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」
 ```
 
 <details open>
@@ -452,13 +451,13 @@ check_system_health() {
 
 ## 📊 评分标准
 
-| 评分区间 | 评级 | 说明 |
-|---------|------|------|
-| 90-100 | S | 优秀，完全符合所有标准 |
-| 80-89 | A | 良好，符合大部分标准，少量问题 |
-| 70-79 | B | 合格，基本符合标准，存在一些问题 |
-| 60-69 | C | 待改进，部分符合标准，存在明显问题 |
-| 0-59 | D | 不合格，不符合大部分标准，需要全面整改 |
+| 评分区间 | 评级 | 说明                                   |
+| -------- | ---- | -------------------------------------- |
+| 90-100   | S    | 优秀，完全符合所有标准                 |
+| 80-89    | A    | 良好，符合大部分标准，少量问题         |
+| 70-79    | B    | 合格，基本符合标准，存在一些问题       |
+| 60-69    | C    | 待改进，部分符合标准，存在明显问题     |
+| 0-59     | D    | 不合格，不符合大部分标准，需要全面整改 |
 
 ### 评分方法
 
@@ -521,11 +520,13 @@ check_system_health() {
 1. **文档更新**：本文档将定期更新以适应团队技术栈和规范的变化，请关注最新版本。
 
 2. **使用建议**：
+
    - 建议在项目初始化阶段就开始使用本检查清单
    - 定期进行标准化审核，确保项目始终符合规范
    - 结合自动化工具使用，提高审核效率和准确性
 
 3. **适用范围**：
+
    - 适用于 YYC³ 团队所有新项目
    - 旧项目建议逐步迁移到本规范
    - 特殊项目可根据实际情况调整部分标准
@@ -537,7 +538,7 @@ check_system_health() {
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

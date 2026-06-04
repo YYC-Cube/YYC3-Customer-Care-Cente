@@ -10,9 +10,9 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { PerformanceChart } from "@/components/charts/performance-chart"
+import { PerformanceChart } from '@/components/charts/performance-chart';
 
 export default function PerformanceAnalyticsPage() {
   return (
@@ -23,5 +23,5 @@ export default function PerformanceAnalyticsPage() {
       </div>
       <PerformanceChart />
     </div>
-  )
+  );
 }

@@ -49,7 +49,10 @@ export default function DocumentsLoading() {
         <div className="flex-1 p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
-              <div key={i} className="bg-white/80 backdrop-blur-sm border-0 shadow-lg rounded-lg p-4">
+              <div
+                key={i}
+                className="bg-white/80 backdrop-blur-sm border-0 shadow-lg rounded-lg p-4"
+              >
                 <div className="space-y-3">
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-gray-200 rounded animate-pulse"></div>
@@ -71,5 +74,5 @@ export default function DocumentsLoading() {
         </div>
       </div>
     </div>
-  )
+  );
 }

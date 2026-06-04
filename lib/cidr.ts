@@ -33,17 +33,17 @@ export interface IPAccessControlConfig {
  */
 export function parseCIDR(cidr: string): CIDRRange {
   const [address, prefix] = cidr.split('/');
-  
+
   if (!address || !prefix) {
     throw new Error(`Invalid CIDR format: ${cidr}`);
   }
-  
+
   const prefixNum = parseInt(prefix, 10);
-  
+
   if (isNaN(prefixNum) || prefixNum < 0 || prefixNum > 32) {
     throw new Error(`Invalid CIDR prefix: ${prefix}`);
   }
-  
+
   return { address, prefix: prefixNum };
 }
 
@@ -54,17 +54,18 @@ export function parseCIDR(cidr: string): CIDRRange {
  */
 export function ipToInt(ip: string): number {
   const parts = ip.split('.');
-  
+
   if (parts.length !== 4) {
     throw new Error(`Invalid IPv4 address: ${ip}`);
   }
-  
+
   return (
-    (parseInt(parts[0], 10) << 24) |
-    (parseInt(parts[1], 10) << 16) |
-    (parseInt(parts[2], 10) << 8) |
-    parseInt(parts[3], 10)
-  ) >>> 0;
+    ((parseInt(parts[0], 10) << 24) |
+      (parseInt(parts[1], 10) << 16) |
+      (parseInt(parts[2], 10) << 8) |
+      parseInt(parts[3], 10)) >>>
+    0
+  );
 }
 
 /**
@@ -89,8 +90,8 @@ export function intToIp(int: number): string {
 export function getNetworkAddress(cidr: string): number {
   const { address, prefix } = parseCIDR(cidr);
   const ipInt = ipToInt(address);
-  const mask = (~((1 << (32 - prefix)) - 1)) >>> 0;
-  
+  const mask = ~((1 << (32 - prefix)) - 1) >>> 0;
+
   return (ipInt & mask) >>> 0;
 }
 
@@ -103,7 +104,7 @@ export function getBroadcastAddress(cidr: string): number {
   const { address, prefix } = parseCIDR(cidr);
   const ipInt = ipToInt(address);
   const mask = ((1 << (32 - prefix)) - 1) >>> 0;
-  
+
   return (ipInt | mask) >>> 0;
 }
 
@@ -118,7 +119,7 @@ export function isIPInCIDR(ip: string, cidr: string): boolean {
     const ipInt = ipToInt(ip);
     const networkInt = getNetworkAddress(cidr);
     const broadcastInt = getBroadcastAddress(cidr);
-    
+
     return ipInt >= networkInt && ipInt <= broadcastInt;
   } catch (error) {
     console.error(`Error checking IP ${ip} in CIDR ${cidr}:`, error);
@@ -133,7 +134,7 @@ export function isIPInCIDR(ip: string, cidr: string): boolean {
  * @returns True if IP matches any CIDR range
  */
 export function isIPInAnyCIDR(ip: string, cidrRanges: string[]): boolean {
-  return cidrRanges.some(cidr => isIPInCIDR(ip, cidr));
+  return cidrRanges.some((cidr) => isIPInCIDR(ip, cidr));
 }
 
 /**
@@ -143,14 +144,14 @@ export function isIPInAnyCIDR(ip: string, cidrRanges: string[]): boolean {
  */
 export function isValidIPv4(ip: string): boolean {
   const pattern = /^(\d{1,3}\.){3}\d{1,3}$/;
-  
+
   if (!pattern.test(ip)) {
     return false;
   }
-  
+
   const parts = ip.split('.');
-  
-  return parts.every(part => {
+
+  return parts.every((part) => {
     const num = parseInt(part, 10);
     return num >= 0 && num <= 255;
   });
@@ -179,11 +180,11 @@ export function getIPsInCIDR(cidr: string): string[] {
   const networkInt = getNetworkAddress(cidr);
   const broadcastInt = getBroadcastAddress(cidr);
   const ips: string[] = [];
-  
+
   for (let ip = networkInt; ip <= broadcastInt; ip++) {
     ips.push(intToIp(ip));
   }
-  
+
   return ips;
 }
 
@@ -203,17 +204,20 @@ export function getCIDRSize(cidr: string): number {
  * @param config - IP access control configuration
  * @returns True if IP is allowed access
  */
-export function checkIPAccess(ip: string, config: IPAccessControlConfig): boolean {
+export function checkIPAccess(
+  ip: string,
+  config: IPAccessControlConfig
+): boolean {
   if (!isValidIPv4(ip)) {
     return config.defaultAction === 'allow';
   }
-  
+
   for (const rule of config.rules) {
     if (isIPInCIDR(ip, rule.cidr)) {
       return rule.action === 'allow';
     }
   }
-  
+
   return config.defaultAction === 'allow';
 }
 
@@ -229,7 +233,7 @@ export function createIPAccessControl(
 ): IPAccessControlConfig {
   return {
     defaultAction,
-    rules: rules.filter(rule => isValidCIDR(rule.cidr)),
+    rules: rules.filter((rule) => isValidCIDR(rule.cidr)),
   };
 }
 
@@ -238,19 +242,21 @@ export function createIPAccessControl(
  * @param headers - Request headers object
  * @returns Client IP address string
  */
-export function getClientIP(headers: Record<string, string | string[] | undefined>): string {
+export function getClientIP(
+  headers: Record<string, string | string[] | undefined>
+): string {
   const forwarded = headers['x-forwarded-for'];
   const realIP = headers['x-real-ip'];
-  
+
   if (forwarded) {
     const ips = Array.isArray(forwarded) ? forwarded[0] : forwarded;
     return ips.split(',')[0].trim();
   }
-  
+
   if (realIP) {
     return Array.isArray(realIP) ? realIP[0] : realIP;
   }
-  
+
   return '0.0.0.0';
 }
 
@@ -258,11 +264,7 @@ export function getClientIP(headers: Record<string, string | string[] | undefine
  * Common CIDR ranges for reference
  */
 export const CommonCIDRRanges = {
-  private: [
-    '10.0.0.0/8',
-    '172.16.0.0/12',
-    '192.168.0.0/16',
-  ],
+  private: ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'],
   loopback: ['127.0.0.0/8'],
   linkLocal: ['169.254.0.0/16'],
   multicast: ['224.0.0.0/4'],

@@ -10,172 +10,178 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import React, { useState, useMemo } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
+import { Badge } from '@/components/ui/badge';
 import {
-  LayoutDashboard,
-  Users,
-  CheckSquare,
-  DollarSign,
-  Target,
-  FileCheck,
-  MessageSquare,
-  TrendingUp,
-  BarChart3,
-  ArrowUpRight,
-  ArrowDownRight,
-  Clock,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
+import {
   AlertCircle,
-} from "lucide-react"
+  ArrowDownRight,
+  ArrowUpRight,
+  BarChart3,
+  CheckSquare,
+  Clock,
+  DollarSign,
+  FileCheck,
+  LayoutDashboard,
+  MessageSquare,
+  Target,
+  TrendingUp,
+  Users,
+} from 'lucide-react';
+import React, { useMemo } from 'react';
 
 // 使用useMemo缓存静态数据，避免每次渲染时重新创建
 const useDashboardData = () => {
   return useMemo(() => {
     const moduleData = [
       {
-        id: "customers",
-        title: "客户管理",
-        description: "管理客户信息和关系",
+        id: 'customers',
+        title: '客户管理',
+        description: '管理客户信息和关系',
         icon: Users,
-        stats: { total: 1248, active: 892, growth: "+12%" },
+        stats: { total: 1248, active: 892, growth: '+12%' },
         progress: 85,
-        status: "正常",
-        color: "from-blue-500 to-cyan-500",
-        bgColor: "from-blue-50 to-cyan-50",
-        borderColor: "border-blue-200",
+        status: '正常',
+        color: 'from-blue-500 to-cyan-500',
+        bgColor: 'from-blue-50 to-cyan-50',
+        borderColor: 'border-blue-200',
       },
       {
-        id: "tasks",
-        title: "任务管理",
-        description: "跟踪项目进度和任务分配",
+        id: 'tasks',
+        title: '任务管理',
+        description: '跟踪项目进度和任务分配',
         icon: CheckSquare,
-        stats: { total: 156, completed: 89, growth: "+8%" },
+        stats: { total: 156, completed: 89, growth: '+8%' },
         progress: 57,
-        status: "进行中",
-        color: "from-green-500 to-emerald-500",
-        bgColor: "from-green-50 to-emerald-50",
-        borderColor: "border-green-200",
+        status: '进行中',
+        color: 'from-green-500 to-emerald-500',
+        bgColor: 'from-green-50 to-emerald-50',
+        borderColor: 'border-green-200',
       },
       {
-        id: "finance",
-        title: "财务管理",
-        description: "财务数据分析和报表",
+        id: 'finance',
+        title: '财务管理',
+        description: '财务数据分析和报表',
         icon: DollarSign,
-        stats: { total: "¥2.4M", monthly: "¥180K", growth: "+15%" },
+        stats: { total: '¥2.4M', monthly: '¥180K', growth: '+15%' },
         progress: 92,
-        status: "优秀",
-        color: "from-yellow-500 to-orange-500",
-        bgColor: "from-yellow-50 to-orange-50",
-        borderColor: "border-yellow-200",
+        status: '优秀',
+        color: 'from-yellow-500 to-orange-500',
+        bgColor: 'from-yellow-50 to-orange-50',
+        borderColor: 'border-yellow-200',
       },
       {
-        id: "okr",
-        title: "OKR管理",
-        description: "目标与关键结果跟踪",
+        id: 'okr',
+        title: 'OKR管理',
+        description: '目标与关键结果跟踪',
         icon: Target,
-        stats: { total: 24, achieved: 18, growth: "+5%" },
+        stats: { total: 24, achieved: 18, growth: '+5%' },
         progress: 75,
-        status: "良好",
-        color: "from-purple-500 to-pink-500",
-        bgColor: "from-purple-50 to-pink-50",
-        borderColor: "border-purple-200",
+        status: '良好',
+        color: 'from-purple-500 to-pink-500',
+        bgColor: 'from-purple-50 to-pink-50',
+        borderColor: 'border-purple-200',
       },
       {
-        id: "approval",
-        title: "审批中心",
-        description: "工作流程和审批管理",
+        id: 'approval',
+        title: '审批中心',
+        description: '工作流程和审批管理',
         icon: FileCheck,
-        stats: { total: 89, pending: 12, growth: "-3%" },
+        stats: { total: 89, pending: 12, growth: '-3%' },
         progress: 86,
-        status: "待处理",
-        color: "from-indigo-500 to-blue-500",
-        bgColor: "from-indigo-50 to-blue-50",
-        borderColor: "border-indigo-200",
+        status: '待处理',
+        color: 'from-indigo-500 to-blue-500',
+        bgColor: 'from-indigo-50 to-blue-50',
+        borderColor: 'border-indigo-200',
       },
       {
-        id: "communication",
-        title: "沟通中心",
-        description: "团队协作和沟通平台",
+        id: 'communication',
+        title: '沟通中心',
+        description: '团队协作和沟通平台',
         icon: MessageSquare,
-        stats: { total: 2341, unread: 23, growth: "+25%" },
+        stats: { total: 2341, unread: 23, growth: '+25%' },
         progress: 68,
-        status: "活跃",
-        color: "from-teal-500 to-cyan-500",
-        bgColor: "from-teal-50 to-cyan-50",
-        borderColor: "border-teal-200",
+        status: '活跃',
+        color: 'from-teal-500 to-cyan-500',
+        bgColor: 'from-teal-50 to-cyan-50',
+        borderColor: 'border-teal-200',
       },
       {
-        id: "kpi",
-        title: "KPI跟踪",
-        description: "关键绩效指标监控",
+        id: 'kpi',
+        title: 'KPI跟踪',
+        description: '关键绩效指标监控',
         icon: TrendingUp,
-        stats: { total: 16, achieved: 12, growth: "+7%" },
+        stats: { total: 16, achieved: 12, growth: '+7%' },
         progress: 75,
-        status: "达标",
-        color: "from-rose-500 to-pink-500",
-        bgColor: "from-rose-50 to-pink-50",
-        borderColor: "border-rose-200",
+        status: '达标',
+        color: 'from-rose-500 to-pink-500',
+        bgColor: 'from-rose-50 to-pink-50',
+        borderColor: 'border-rose-200',
       },
       {
-        id: "analytics",
-        title: "数据分析",
-        description: "业务数据洞察和分析",
+        id: 'analytics',
+        title: '数据分析',
+        description: '业务数据洞察和分析',
         icon: BarChart3,
-        stats: { total: "45TB", processed: "38TB", growth: "+18%" },
+        stats: { total: '45TB', processed: '38TB', growth: '+18%' },
         progress: 84,
-        status: "正常",
-        color: "from-violet-500 to-purple-500",
-        bgColor: "from-violet-50 to-purple-50",
-        borderColor: "border-violet-200",
+        status: '正常',
+        color: 'from-violet-500 to-purple-500',
+        bgColor: 'from-violet-50 to-purple-50',
+        borderColor: 'border-violet-200',
       },
-    ]
+    ];
 
     const quickStats = [
       {
-        title: "今日任务",
-        value: "24",
-        change: "+3",
-        trend: "up",
+        title: '今日任务',
+        value: '24',
+        change: '+3',
+        trend: 'up',
         icon: CheckSquare,
-        color: "text-green-600",
+        color: 'text-green-600',
       },
       {
-        title: "待审批",
-        value: "8",
-        change: "-2",
-        trend: "down",
+        title: '待审批',
+        value: '8',
+        change: '-2',
+        trend: 'down',
         icon: Clock,
-        color: "text-orange-600",
+        color: 'text-orange-600',
       },
       {
-        title: "新消息",
-        value: "15",
-        change: "+5",
-        trend: "up",
+        title: '新消息',
+        value: '15',
+        change: '+5',
+        trend: 'up',
         icon: MessageSquare,
-        color: "text-blue-600",
+        color: 'text-blue-600',
       },
       {
-        title: "告警",
-        value: "2",
-        change: "0",
-        trend: "stable",
+        title: '告警',
+        value: '2',
+        change: '0',
+        trend: 'stable',
         icon: AlertCircle,
-        color: "text-red-600",
+        color: 'text-red-600',
       },
-    ]
+    ];
 
-    return { moduleData, quickStats }
-  }, [])
-}
+    return { moduleData, quickStats };
+  }, []);
+};
 
 // 快速统计卡片组件
 const QuickStatCard = React.memo(({ stat }: { stat: any }) => {
-  const Icon = stat.icon
+  const Icon = stat.icon;
   return (
     <Card className="border-sky-200 shadow-sm hover:shadow-md transition-shadow">
       <CardContent className="p-4">
@@ -184,33 +190,40 @@ const QuickStatCard = React.memo(({ stat }: { stat: any }) => {
             <p className="text-sm text-slate-600 mb-1">{stat.title}</p>
             <p className="text-2xl font-bold text-slate-800">{stat.value}</p>
             <div className="flex items-center mt-1">
-              {stat.trend === "up" && <ArrowUpRight className="w-4 h-4 text-green-500 mr-1" />}
-              {stat.trend === "down" && <ArrowDownRight className="w-4 h-4 text-red-500 mr-1" />}
+              {stat.trend === 'up' && (
+                <ArrowUpRight className="w-4 h-4 text-green-500 mr-1" />
+              )}
+              {stat.trend === 'down' && (
+                <ArrowDownRight className="w-4 h-4 text-red-500 mr-1" />
+              )}
               <span
                 className={`text-sm ${
-                  stat.trend === "up"
-                    ? "text-green-600"
-                    : stat.trend === "down"
-                      ? "text-red-600"
-                      : "text-slate-500"
+                  stat.trend === 'up'
+                    ? 'text-green-600'
+                    : stat.trend === 'down'
+                      ? 'text-red-600'
+                      : 'text-slate-500'
                 }`}
               >
                 {stat.change}
               </span>
             </div>
           </div>
-          <div className={`w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center`}>
+          <div
+            className={`w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center`}
+          >
             <Icon className={`w-6 h-6 ${stat.color}`} />
           </div>
         </div>
       </CardContent>
     </Card>
-  )
-})
+  );
+});
+QuickStatCard.displayName = 'QuickStatCard';
 
 // 模块卡片组件
 const ModuleCard = React.memo(({ module }: { module: any }) => {
-  const Icon = module.icon
+  const Icon = module.icon;
   return (
     <Card
       key={module.id}
@@ -223,33 +236,42 @@ const ModuleCard = React.memo(({ module }: { module: any }) => {
           >
             <Icon className="w-6 h-6 text-white" />
           </div>
-          <Badge variant="secondary" className={`bg-gradient-to-r ${module.bgColor} text-slate-700 border-0`}>
+          <Badge
+            variant="secondary"
+            className={`bg-gradient-to-r ${module.bgColor} text-slate-700 border-0`}
+          >
             {module.status}
           </Badge>
         </div>
         <CardTitle className="text-lg text-slate-800 group-hover:text-sky-700 transition-colors">
           {module.title}
         </CardTitle>
-        <CardDescription className="text-slate-600">{module.description}</CardDescription>
+        <CardDescription className="text-slate-600">
+          {module.description}
+        </CardDescription>
       </CardHeader>
       <CardContent className="pt-0">
         <div className="space-y-3">
           <div className="flex justify-between text-sm">
             <span className="text-slate-600">完成度</span>
-            <span className="font-medium text-slate-800">{module.progress}%</span>
+            <span className="font-medium text-slate-800">
+              {module.progress}%
+            </span>
           </div>
           <Progress value={module.progress} className="h-2" />
           <div className="flex justify-between items-center text-sm">
             <span className="text-slate-600">
-              {typeof module.stats.total === "string" ? module.stats.total : `${module.stats.total} 项`}
+              {typeof module.stats.total === 'string'
+                ? module.stats.total
+                : `${module.stats.total} 项`}
             </span>
             <span
               className={`font-medium ${
-                module.stats.growth.startsWith("+")
-                  ? "text-green-600"
-                  : module.stats.growth.startsWith("-")
-                    ? "text-red-600"
-                    : "text-slate-600"
+                module.stats.growth.startsWith('+')
+                  ? 'text-green-600'
+                  : module.stats.growth.startsWith('-')
+                    ? 'text-red-600'
+                    : 'text-slate-600'
               }`}
             >
               {module.stats.growth}
@@ -258,8 +280,9 @@ const ModuleCard = React.memo(({ module }: { module: any }) => {
         </div>
       </CardContent>
     </Card>
-  )
-})
+  );
+});
+ModuleCard.displayName = 'ModuleCard';
 
 // 系统状态卡片组件
 const SystemStatusCard = React.memo(() => {
@@ -295,12 +318,13 @@ const SystemStatusCard = React.memo(() => {
         </div>
       </CardContent>
     </Card>
-  )
-})
+  );
+});
+SystemStatusCard.displayName = 'SystemStatusCard';
 
 // 主仪表盘组件
 const DashboardModuleComponent = () => {
-  const { moduleData, quickStats } = useDashboardData()
+  const { moduleData, quickStats } = useDashboardData();
 
   return (
     <div className="space-y-6">
@@ -332,8 +356,8 @@ const DashboardModuleComponent = () => {
       {/* 系统状态 */}
       <SystemStatusCard />
     </div>
-  )
-}
+  );
+};
 
 // 使用React.memo包装主组件，避免不必要的重渲染
-export const DashboardModule = React.memo(DashboardModuleComponent)
+export const DashboardModule = React.memo(DashboardModuleComponent);

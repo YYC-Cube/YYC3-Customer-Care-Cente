@@ -10,20 +10,37 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { useSearchParams } from "next/navigation"
-import { RealTimeChat } from "@/components/real-time-chat"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { MessageSquare, Users, Plus, Settings, Search, Filter, Zap, TrendingUp } from "lucide-react"
+import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { RealTimeChat } from '@/components/real-time-chat';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import {
+  MessageSquare,
+  Users,
+  Plus,
+  Settings,
+  Search,
+  Filter,
+  Zap,
+  TrendingUp,
+} from 'lucide-react';
 
 export default function ChatPage() {
-  const searchParams = useSearchParams()
-  const [selectedRoomId, setSelectedRoomId] = useState<string | undefined>(searchParams.get("id") || undefined)
-  const [currentUserId] = useState("current-user") // 实际应用中从认证系统获取
+  const searchParams = useSearchParams();
+  const [selectedRoomId, setSelectedRoomId] = useState<string | undefined>(
+    searchParams.get('id') || undefined
+  );
+  const [currentUserId] = useState('current-user'); // 实际应用中从认证系统获取
 
   // 聊天统计数据
   const [chatStats, setChatStats] = useState({
@@ -31,7 +48,7 @@ export default function ChatPage() {
     activeChats: 8,
     onlineUsers: 23,
     todayMessages: 156,
-  })
+  });
 
   return (
     <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50 via-sky-50 to-indigo-50 min-h-screen">
@@ -78,7 +95,9 @@ export default function ChatPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">{chatStats.totalMessages.toLocaleString()}</div>
+            <div className="text-2xl font-bold text-blue-600">
+              {chatStats.totalMessages.toLocaleString()}
+            </div>
             <p className="text-sm text-muted-foreground">累计发送消息</p>
           </CardContent>
         </Card>
@@ -91,7 +110,9 @@ export default function ChatPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">{chatStats.activeChats}</div>
+            <div className="text-2xl font-bold text-blue-600">
+              {chatStats.activeChats}
+            </div>
             <p className="text-sm text-muted-foreground">正在进行的对话</p>
           </CardContent>
         </Card>
@@ -104,7 +125,9 @@ export default function ChatPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">{chatStats.onlineUsers}</div>
+            <div className="text-2xl font-bold text-blue-600">
+              {chatStats.onlineUsers}
+            </div>
             <p className="text-sm text-muted-foreground">当前在线人数</p>
           </CardContent>
         </Card>
@@ -117,7 +140,9 @@ export default function ChatPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">{chatStats.todayMessages}</div>
+            <div className="text-2xl font-bold text-blue-600">
+              {chatStats.todayMessages}
+            </div>
             <p className="text-sm text-muted-foreground">今天发送的消息</p>
           </CardContent>
         </Card>
@@ -136,7 +161,11 @@ export default function ChatPage() {
                 <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
                 在线
               </Badge>
-              <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105 group">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="transition-all duration-300 hover:scale-105 group"
+              >
                 <Settings className="w-4 h-4 group-hover:translate-x-1 transition-all duration-300" />
               </Button>
             </div>
@@ -188,5 +217,5 @@ export default function ChatPage() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -9,11 +9,11 @@
 @tags: [安装指南, 系统要求, 安装方式, 本地开发, 在线部署]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -142,6 +142,7 @@ docker-compose down
 ```
 
 **Docker Compose 包含的服务**：
+
 - 应用服务（端口 3200）
 - Redis 缓存服务（端口 6379）
 - PostgreSQL 数据库服务（端口 5432）
@@ -285,6 +286,7 @@ NEXT_PUBLIC_TIMEZONE="Asia/Shanghai"
 ```
 
 **重要提示**：
+
 - 不要将 `.env.local` 文件提交到版本控制系统
 - 生产环境使用 `.env.production` 文件
 - 所有敏感信息都应使用环境变量管理
@@ -295,26 +297,26 @@ NEXT_PUBLIC_TIMEZONE="Asia/Shanghai"
 在 `next.config.mjs` 中：
 
 \`\`\`javascript
-/** @type {import('next').NextConfig} */
+/\*_ @type {import('next').NextConfig} _/
 const nextConfig = {
-  // 启用 React 严格模式
-  reactStrictMode: true,
-  
-  // 图片优化
-  images: {
-    domains: ['your-cdn-domain.com'],
-    formats: ['image/avif', 'image/webp'],
-  },
-  
-  // 压缩
-  compress: true,
-  
-  // PWA 配置
-  pwa: {
-    dest: 'public',
-    register: true,
-    skipWaiting: true,
-  },
+// 启用 React 严格模式
+reactStrictMode: true,
+
+// 图片优化
+images: {
+domains: ['your-cdn-domain.com'],
+formats: ['image/avif', 'image/webp'],
+},
+
+// 压缩
+compress: true,
+
+// PWA 配置
+pwa: {
+dest: 'public',
+register: true,
+skipWaiting: true,
+},
 }
 
 export default nextConfig
@@ -367,19 +369,20 @@ yarn test:watch
 
 **测试命令说明**：
 
-| 命令 | 说明 | 适用场景 |
-|------|------|---------|
-| `npm run test` | 交互式运行所有测试 | 开发调试 |
-| `npm run test:unit` | 运行单元测试并生成覆盖率 | CI/CD 流程 |
-| `npm run test:coverage` | 生成详细的覆盖率报告 | 代码质量检查 |
-| `npm run test:ui` | 启动可视化测试界面 | 可视化调试 |
-| `npm run test:watch` | 监视模式，自动重新运行 | 开发时持续测试 |
+| 命令                    | 说明                     | 适用场景       |
+| ----------------------- | ------------------------ | -------------- |
+| `npm run test`          | 交互式运行所有测试       | 开发调试       |
+| `npm run test:unit`     | 运行单元测试并生成覆盖率 | CI/CD 流程     |
+| `npm run test:coverage` | 生成详细的覆盖率报告     | 代码质量检查   |
+| `npm run test:ui`       | 启动可视化测试界面       | 可视化调试     |
+| `npm run test:watch`    | 监视模式，自动重新运行   | 开发时持续测试 |
 
 **测试覆盖率目标**：
+
 - 代码行覆盖率：≥ 80%
 - 函数覆盖率：≥ 80%
 - 分支覆盖率：≥ 80%
-- 语句覆盖率：≥ 80**
+- 语句覆盖率：≥ 80\*\*
 
 **查看测试报告**：
 
@@ -1007,7 +1010,7 @@ NODE_OPTIONS=--max-old-space-size=4096 npm run build
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

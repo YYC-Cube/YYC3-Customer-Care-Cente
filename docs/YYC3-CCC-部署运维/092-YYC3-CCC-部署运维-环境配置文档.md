@@ -9,11 +9,11 @@
 @tags: [部署运维],[环境配置],[配置管理]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -68,18 +68,21 @@ YYC³ Customer Care Center 项目是一个基于「五高五标五化」理念�
 #### 3.1 环境定义
 
 **开发环境（Development）**：
+
 - 用途：本地开发和测试
 - 访问地址：`http://localhost:3200`
 - 启动命令：`npm run dev`
 - 特点：热重载、快速刷新、详细错误信息
 
 **预发布环境（Staging）**：
+
 - 用途：预发布测试和验证
 - 访问地址：`https://yyc3-ccc-staging.vercel.app`
 - 部署方式：自动部署（develop 分支）
 - 特点：模拟生产环境、功能验证、性能测试
 
 **生产环境（Production）**：
+
 - 用途：正式上线和用户访问
 - 访问地址：`https://yyc3-ccc.vercel.app`（或自定义域名）
 - 部署方式：自动部署（main 分支）
@@ -251,30 +254,30 @@ const nextConfig = {
   swcMinify: true,
   compress: true,
   poweredByHeader: false,
-  
+
   images: {
     domains: ['yyc3.cube.com'],
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  
+
   experimental: {
     optimizePackageImports: ['@radix-ui/react-icons'],
   },
-  
+
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  
+
   typescript: {
     ignoreBuildErrors: false,
   },
-  
+
   eslint: {
     ignoreDuringBuilds: false,
   },
-  
+
   env: {
     NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,
     NEXT_PUBLIC_APP_VERSION: process.env.NEXT_PUBLIC_APP_VERSION,
@@ -325,19 +328,18 @@ export default nextConfig;
 
 ```json
 {
-  "extends": [
-    "next/core-web-vitals",
-    "next/typescript",
-    "prettier"
-  ],
+  "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
   "rules": {
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "prefer-const": "error",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error", {
-      "argsIgnorePattern": "^_",
-      "varsIgnorePattern": "^_"
-    }]
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ]
   }
 }
 ```
@@ -377,12 +379,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      exclude: [
-        'node_modules/',
-        'tests/',
-        '**/*.config.*',
-        '**/*.d.ts',
-      ],
+      exclude: ['node_modules/', 'tests/', '**/*.config.*', '**/*.d.ts'],
     },
   },
   resolve: {
@@ -431,15 +428,17 @@ const requiredEnvVars = [
 
 export function validateEnvVars() {
   const missingVars: string[] = [];
-  
+
   requiredEnvVars.forEach((varName) => {
     if (!process.env[varName]) {
       missingVars.push(varName);
     }
   });
-  
+
   if (missingVars.length > 0) {
-    throw new Error(`Missing required environment variables: ${missingVars.join(', ')}`);
+    throw new Error(
+      `Missing required environment variables: ${missingVars.join(', ')}`
+    );
   }
 }
 ```
@@ -539,8 +538,9 @@ describe('Configuration', () => {
 
 <div align="center">
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」
+
 </div>

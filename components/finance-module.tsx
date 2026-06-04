@@ -10,15 +10,27 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import {
   Dialog,
   DialogContent,
@@ -26,7 +38,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from '@/components/ui/dialog';
 import {
   DollarSign,
   TrendingUp,
@@ -39,7 +51,7 @@ import {
   Filter,
   Download,
   Target,
-} from "lucide-react"
+} from 'lucide-react';
 import {
   XAxis,
   YAxis,
@@ -53,157 +65,157 @@ import {
   PieChart as RechartsPieChart,
   Pie,
   Cell,
-} from "recharts"
+} from 'recharts';
 
 export function FinanceModule() {
-  const [selectedPeriod, setSelectedPeriod] = useState("month")
-  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
+  const [selectedPeriod, setSelectedPeriod] = useState('month');
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
   // 财务数据
   const revenueData = [
-    { month: "1月", revenue: 2400000, expense: 1800000, profit: 600000 },
-    { month: "2月", revenue: 2600000, expense: 1900000, profit: 700000 },
-    { month: "3月", revenue: 2800000, expense: 2000000, profit: 800000 },
-    { month: "4月", revenue: 3100000, expense: 2200000, profit: 900000 },
-    { month: "5月", revenue: 3300000, expense: 2300000, profit: 1000000 },
-    { month: "6月", revenue: 3500000, expense: 2400000, profit: 1100000 },
-  ]
+    { month: '1月', revenue: 2400000, expense: 1800000, profit: 600000 },
+    { month: '2月', revenue: 2600000, expense: 1900000, profit: 700000 },
+    { month: '3月', revenue: 2800000, expense: 2000000, profit: 800000 },
+    { month: '4月', revenue: 3100000, expense: 2200000, profit: 900000 },
+    { month: '5月', revenue: 3300000, expense: 2300000, profit: 1000000 },
+    { month: '6月', revenue: 3500000, expense: 2400000, profit: 1100000 },
+  ];
 
   const expenseData = [
-    { category: "人力成本", amount: 1200000, percentage: 35, color: "#10b981" },
-    { category: "运营费用", amount: 800000, percentage: 23, color: "#3b82f6" },
-    { category: "市场推广", amount: 600000, percentage: 17, color: "#f59e0b" },
-    { category: "技术投入", amount: 500000, percentage: 15, color: "#8b5cf6" },
-    { category: "其他费用", amount: 350000, percentage: 10, color: "#ef4444" },
-  ]
+    { category: '人力成本', amount: 1200000, percentage: 35, color: '#10b981' },
+    { category: '运营费用', amount: 800000, percentage: 23, color: '#3b82f6' },
+    { category: '市场推广', amount: 600000, percentage: 17, color: '#f59e0b' },
+    { category: '技术投入', amount: 500000, percentage: 15, color: '#8b5cf6' },
+    { category: '其他费用', amount: 350000, percentage: 10, color: '#ef4444' },
+  ];
 
   const cashFlowData = [
-    { week: "第1周", inflow: 800000, outflow: 600000, net: 200000 },
-    { week: "第2周", inflow: 900000, outflow: 650000, net: 250000 },
-    { week: "第3周", inflow: 750000, outflow: 700000, net: 50000 },
-    { week: "第4周", inflow: 1100000, outflow: 800000, net: 300000 },
-  ]
+    { week: '第1周', inflow: 800000, outflow: 600000, net: 200000 },
+    { week: '第2周', inflow: 900000, outflow: 650000, net: 250000 },
+    { week: '第3周', inflow: 750000, outflow: 700000, net: 50000 },
+    { week: '第4周', inflow: 1100000, outflow: 800000, net: 300000 },
+  ];
 
   const kpiMetrics = [
     {
-      title: "总收入",
-      value: "¥350万",
-      change: "+12.5%",
-      trend: "up",
+      title: '总收入',
+      value: '¥350万',
+      change: '+12.5%',
+      trend: 'up',
       icon: DollarSign,
-      target: "¥400万",
+      target: '¥400万',
       progress: 87.5,
     },
     {
-      title: "净利润",
-      value: "¥110万",
-      change: "+18.2%",
-      trend: "up",
+      title: '净利润',
+      value: '¥110万',
+      change: '+18.2%',
+      trend: 'up',
       icon: TrendingUp,
-      target: "¥120万",
+      target: '¥120万',
       progress: 91.7,
     },
     {
-      title: "总支出",
-      value: "¥240万",
-      change: "+8.1%",
-      trend: "up",
+      title: '总支出',
+      value: '¥240万',
+      change: '+8.1%',
+      trend: 'up',
       icon: Calculator,
-      target: "¥250万",
+      target: '¥250万',
       progress: 96.0,
     },
     {
-      title: "利润率",
-      value: "31.4%",
-      change: "+2.3%",
-      trend: "up",
+      title: '利润率',
+      value: '31.4%',
+      change: '+2.3%',
+      trend: 'up',
       icon: Target,
-      target: "35%",
+      target: '35%',
       progress: 89.7,
     },
-  ]
+  ];
 
   const recentTransactions = [
     {
-      id: "1",
-      type: "income",
-      description: "客户付款 - 项目A",
+      id: '1',
+      type: 'income',
+      description: '客户付款 - 项目A',
       amount: 150000,
-      date: "2025-06-20",
-      status: "completed",
-      category: "销售收入",
+      date: '2025-06-20',
+      status: 'completed',
+      category: '销售收入',
     },
     {
-      id: "2",
-      type: "expense",
-      description: "办公设备采购",
+      id: '2',
+      type: 'expense',
+      description: '办公设备采购',
       amount: 25000,
-      date: "2025-06-19",
-      status: "completed",
-      category: "运营费用",
+      date: '2025-06-19',
+      status: 'completed',
+      category: '运营费用',
     },
     {
-      id: "3",
-      type: "income",
-      description: "服务费收入",
+      id: '3',
+      type: 'income',
+      description: '服务费收入',
       amount: 80000,
-      date: "2025-06-18",
-      status: "pending",
-      category: "服务收入",
+      date: '2025-06-18',
+      status: 'pending',
+      category: '服务收入',
     },
     {
-      id: "4",
-      type: "expense",
-      description: "员工薪资发放",
+      id: '4',
+      type: 'expense',
+      description: '员工薪资发放',
       amount: 180000,
-      date: "2025-06-15",
-      status: "completed",
-      category: "��力成本",
+      date: '2025-06-15',
+      status: 'completed',
+      category: '��力成本',
     },
     {
-      id: "5",
-      type: "expense",
-      description: "市场推广费用",
+      id: '5',
+      type: 'expense',
+      description: '市场推广费用',
       amount: 35000,
-      date: "2025-06-14",
-      status: "completed",
-      category: "市场推广",
+      date: '2025-06-14',
+      status: 'completed',
+      category: '市场推广',
     },
-  ]
+  ];
 
   const getTransactionIcon = (type: string) => {
-    return type === "income" ? (
+    return type === 'income' ? (
       <TrendingUp className="w-4 h-4 text-green-600" />
     ) : (
       <TrendingDown className="w-4 h-4 text-red-600" />
-    )
-  }
+    );
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "completed":
-        return "bg-green-100 text-green-800"
-      case "pending":
-        return "bg-yellow-100 text-yellow-800"
-      case "failed":
-        return "bg-red-100 text-red-800"
+      case 'completed':
+        return 'bg-green-100 text-green-800';
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'failed':
+        return 'bg-red-100 text-red-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "completed":
-        return "已完成"
-      case "pending":
-        return "待处理"
-      case "failed":
-        return "失败"
+      case 'completed':
+        return '已完成';
+      case 'pending':
+        return '待处理';
+      case 'failed':
+        return '失败';
       default:
-        return "未知"
+        return '未知';
     }
-  }
+  };
 
   return (
     <div className="p-6 space-y-6 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 min-h-screen">
@@ -242,7 +254,10 @@ export function FinanceModule() {
             <Download className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-all duration-300" />
             导出
           </Button>
-          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+          <Dialog
+            open={isCreateDialogOpen}
+            onOpenChange={setIsCreateDialogOpen}
+          >
             <DialogTrigger asChild>
               <Button className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white transition-all duration-300 hover:shadow-xl hover:scale-105 group">
                 <Plus className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-all duration-300" />
@@ -298,7 +313,10 @@ export function FinanceModule() {
                   </div>
                 </div>
                 <div className="flex justify-end space-x-2">
-                  <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsCreateDialogOpen(false)}
+                  >
                     取消
                   </Button>
                   <Button
@@ -322,13 +340,19 @@ export function FinanceModule() {
             className="border-l-4 border-l-emerald-500 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">{metric.title}</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                {metric.title}
+              </CardTitle>
               <metric.icon className="h-4 w-4 text-emerald-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-emerald-700">{metric.value}</div>
+              <div className="text-2xl font-bold text-emerald-700">
+                {metric.value}
+              </div>
               <div className="flex items-center justify-between mt-2">
-                <p className={`text-xs ${metric.trend === "up" ? "text-green-600" : "text-red-600"}`}>
+                <p
+                  className={`text-xs ${metric.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}
+                >
                   {metric.change} 较上期
                 </p>
                 <p className="text-xs text-gray-500">目标: {metric.target}</p>
@@ -340,7 +364,9 @@ export function FinanceModule() {
                     style={{ width: `${metric.progress}%` }}
                   ></div>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">完成度: {metric.progress}%</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  完成度: {metric.progress}%
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -364,7 +390,12 @@ export function FinanceModule() {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
                 <YAxis />
-                <Tooltip formatter={(value) => [`¥${((value as number) / 10000).toFixed(0)}万`, ""]} />
+                <Tooltip
+                  formatter={(value) => [
+                    `¥${((value as number) / 10000).toFixed(0)}万`,
+                    '',
+                  ]}
+                />
                 <Area
                   type="monotone"
                   dataKey="revenue"
@@ -382,11 +413,23 @@ export function FinanceModule() {
                   name="利润"
                 />
                 <defs>
-                  <linearGradient id="emeraldGradient" x1="0" y1="0" x2="0" y2="1">
+                  <linearGradient
+                    id="emeraldGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
                     <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
                     <stop offset="95%" stopColor="#10b981" stopOpacity={0.1} />
                   </linearGradient>
-                  <linearGradient id="emeraldDarkGradient" x1="0" y1="0" x2="0" y2="1">
+                  <linearGradient
+                    id="emeraldDarkGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
                     <stop offset="5%" stopColor="#059669" stopOpacity={0.8} />
                     <stop offset="95%" stopColor="#059669" stopOpacity={0.1} />
                   </linearGradient>
@@ -415,13 +458,20 @@ export function FinanceModule() {
                   outerRadius={100}
                   fill="#8884d8"
                   dataKey="amount"
-                  label={({ category, percentage }) => `${category}: ${percentage}%`}
+                  label={({ category, percentage }) =>
+                    `${category}: ${percentage}%`
+                  }
                 >
                   {expenseData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value) => [`¥${((value as number) / 10000).toFixed(0)}万`, ""]} />
+                <Tooltip
+                  formatter={(value) => [
+                    `¥${((value as number) / 10000).toFixed(0)}万`,
+                    '',
+                  ]}
+                />
               </RechartsPieChart>
             </ResponsiveContainer>
           </CardContent>
@@ -445,10 +495,30 @@ export function FinanceModule() {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="week" />
                 <YAxis />
-                <Tooltip formatter={(value) => [`¥${((value as number) / 10000).toFixed(0)}万`, ""]} />
-                <Bar dataKey="inflow" fill="#10b981" name="流入" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="outflow" fill="#ef4444" name="流出" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="net" fill="#3b82f6" name="净流量" radius={[4, 4, 0, 0]} />
+                <Tooltip
+                  formatter={(value) => [
+                    `¥${((value as number) / 10000).toFixed(0)}万`,
+                    '',
+                  ]}
+                />
+                <Bar
+                  dataKey="inflow"
+                  fill="#10b981"
+                  name="流入"
+                  radius={[4, 4, 0, 0]}
+                />
+                <Bar
+                  dataKey="outflow"
+                  fill="#ef4444"
+                  name="流出"
+                  radius={[4, 4, 0, 0]}
+                />
+                <Bar
+                  dataKey="net"
+                  fill="#3b82f6"
+                  name="净流量"
+                  radius={[4, 4, 0, 0]}
+                />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
@@ -474,15 +544,24 @@ export function FinanceModule() {
                     <div className="flex items-center space-x-3">
                       {getTransactionIcon(transaction.type)}
                       <div>
-                        <h4 className="font-medium text-gray-900">{transaction.description}</h4>
-                        <p className="text-sm text-gray-600">{transaction.category}</p>
+                        <h4 className="font-medium text-gray-900">
+                          {transaction.description}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {transaction.category}
+                        </p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className={`font-bold ${transaction.type === "income" ? "text-green-600" : "text-red-600"}`}>
-                        {transaction.type === "income" ? "+" : "-"}¥{transaction.amount.toLocaleString()}
+                      <p
+                        className={`font-bold ${transaction.type === 'income' ? 'text-green-600' : 'text-red-600'}`}
+                      >
+                        {transaction.type === 'income' ? '+' : '-'}¥
+                        {transaction.amount.toLocaleString()}
                       </p>
-                      <Badge className={getStatusColor(transaction.status)}>{getStatusText(transaction.status)}</Badge>
+                      <Badge className={getStatusColor(transaction.status)}>
+                        {getStatusText(transaction.status)}
+                      </Badge>
                     </div>
                   </div>
                   <div className="flex justify-between items-center text-sm text-gray-500">
@@ -581,5 +660,5 @@ export function FinanceModule() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

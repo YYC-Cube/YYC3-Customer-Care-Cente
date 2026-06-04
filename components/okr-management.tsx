@@ -10,90 +10,146 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Progress } from "@/components/ui/progress"
-import { Target, TrendingUp, Award, Calendar, Users, CheckCircle, Plus, Settings, BarChart3 } from 'lucide-react'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Progress } from '@/components/ui/progress';
+import {
+  Target,
+  TrendingUp,
+  Award,
+  Calendar,
+  Users,
+  CheckCircle,
+  Plus,
+  Settings,
+  BarChart3,
+} from 'lucide-react';
 
 export function OKRManagement() {
   const okrs = [
     {
-      id: "OKR-001",
-      objective: "提升客户满意度",
-      owner: "客户成功团队",
-      quarter: "2024 Q2",
+      id: 'OKR-001',
+      objective: '提升客户满意度',
+      owner: '客户成功团队',
+      quarter: '2024 Q2',
       progress: 75,
-      status: "on-track",
+      status: 'on-track',
       keyResults: [
-        { description: "客户满意度达到95%", current: 92, target: 95, progress: 97 },
-        { description: "客户投诉减少50%", current: 45, target: 50, progress: 90 },
-        { description: "客户续约率达到90%", current: 87, target: 90, progress: 97 },
+        {
+          description: '客户满意度达到95%',
+          current: 92,
+          target: 95,
+          progress: 97,
+        },
+        {
+          description: '客户投诉减少50%',
+          current: 45,
+          target: 50,
+          progress: 90,
+        },
+        {
+          description: '客户续约率达到90%',
+          current: 87,
+          target: 90,
+          progress: 97,
+        },
       ],
     },
     {
-      id: "OKR-002",
-      objective: "提高产品质量",
-      owner: "技术团队",
-      quarter: "2024 Q2",
+      id: 'OKR-002',
+      objective: '提高产品质量',
+      owner: '技术团队',
+      quarter: '2024 Q2',
       progress: 68,
-      status: "at-risk",
+      status: 'at-risk',
       keyResults: [
-        { description: "Bug数量减少60%", current: 55, target: 60, progress: 92 },
-        { description: "代码覆盖率达到85%", current: 78, target: 85, progress: 92 },
-        { description: "发布周期缩短至2周", current: 80, target: 100, progress: 80 },
+        {
+          description: 'Bug数量减少60%',
+          current: 55,
+          target: 60,
+          progress: 92,
+        },
+        {
+          description: '代码覆盖率达到85%',
+          current: 78,
+          target: 85,
+          progress: 92,
+        },
+        {
+          description: '发布周期缩短至2周',
+          current: 80,
+          target: 100,
+          progress: 80,
+        },
       ],
     },
     {
-      id: "OKR-003",
-      objective: "扩大市场份额",
-      owner: "销售团队",
-      quarter: "2024 Q2",
+      id: 'OKR-003',
+      objective: '扩大市场份额',
+      owner: '销售团队',
+      quarter: '2024 Q2',
       progress: 82,
-      status: "on-track",
+      status: 'on-track',
       keyResults: [
-        { description: "新客户获取增长30%", current: 28, target: 30, progress: 93 },
-        { description: "市场占有率提升至15%", current: 14, target: 15, progress: 93 },
-        { description: "销售额增长25%", current: 22, target: 25, progress: 88 },
+        {
+          description: '新客户获取增长30%',
+          current: 28,
+          target: 30,
+          progress: 93,
+        },
+        {
+          description: '市场占有率提升至15%',
+          current: 14,
+          target: 15,
+          progress: 93,
+        },
+        { description: '销售额增长25%', current: 22, target: 25, progress: 88 },
       ],
     },
-  ]
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "on-track":
-        return "bg-green-100 text-green-800"
-      case "at-risk":
-        return "bg-orange-100 text-orange-800"
-      case "off-track":
-        return "bg-red-100 text-red-800"
+      case 'on-track':
+        return 'bg-green-100 text-green-800';
+      case 'at-risk':
+        return 'bg-orange-100 text-orange-800';
+      case 'off-track':
+        return 'bg-red-100 text-red-800';
       default:
-        return "bg-blue-100 text-blue-800"
+        return 'bg-blue-100 text-blue-800';
     }
-  }
+  };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "on-track":
-        return "正常进行"
-      case "at-risk":
-        return "存在风险"
-      case "off-track":
-        return "偏离目标"
+      case 'on-track':
+        return '正常进行';
+      case 'at-risk':
+        return '存在风险';
+      case 'off-track':
+        return '偏离目标';
       default:
-        return "未知状态"
+        return '未知状态';
     }
-  }
+  };
 
   const getProgressColor = (progress: number) => {
-    if (progress >= 80) return "from-blue-400 to-blue-500"
-    if (progress >= 60) return "from-blue-300 to-blue-400"
-    if (progress >= 40) return "from-orange-400 to-orange-500"
-    return "from-red-400 to-red-500"
-  }
+    if (progress >= 80) return 'from-blue-400 to-blue-500';
+    if (progress >= 60) return 'from-blue-300 to-blue-400';
+    if (progress >= 40) return 'from-orange-400 to-orange-500';
+    return 'from-red-400 to-red-500';
+  };
 
   return (
     <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 min-h-screen">
@@ -129,7 +185,9 @@ export function OKRManagement() {
             <Target className="h-4 w-4 text-blue-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-700">{okrs.length}</div>
+            <div className="text-2xl font-bold text-blue-700">
+              {okrs.length}
+            </div>
             <p className="text-xs text-gray-600">本季度目标</p>
           </CardContent>
         </Card>
@@ -141,7 +199,7 @@ export function OKRManagement() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-700">
-              {okrs.filter((okr) => okr.status === "on-track").length}
+              {okrs.filter((okr) => okr.status === 'on-track').length}
             </div>
             <p className="text-xs text-gray-600">达标目标</p>
           </CardContent>
@@ -154,7 +212,10 @@ export function OKRManagement() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-blue-700">
-              {Math.round(okrs.reduce((sum, okr) => sum + okr.progress, 0) / okrs.length)}%
+              {Math.round(
+                okrs.reduce((sum, okr) => sum + okr.progress, 0) / okrs.length
+              )}
+              %
             </div>
             <p className="text-xs text-gray-600">整体完成度</p>
           </CardContent>
@@ -198,7 +259,9 @@ export function OKRManagement() {
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex-1">
-                      <h3 className="font-bold text-gray-900 text-lg">{okr.objective}</h3>
+                      <h3 className="font-bold text-gray-900 text-lg">
+                        {okr.objective}
+                      </h3>
                       <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
                         <div className="flex items-center">
                           <Users className="w-4 h-4 mr-1" />
@@ -211,9 +274,13 @@ export function OKRManagement() {
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Badge className={getStatusColor(okr.status)}>{getStatusText(okr.status)}</Badge>
+                      <Badge className={getStatusColor(okr.status)}>
+                        {getStatusText(okr.status)}
+                      </Badge>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-blue-700">{okr.progress}%</div>
+                        <div className="text-2xl font-bold text-blue-700">
+                          {okr.progress}%
+                        </div>
                         <div className="text-xs text-gray-500">整体进度</div>
                       </div>
                     </div>
@@ -232,8 +299,12 @@ export function OKRManagement() {
                       {okr.keyResults.map((kr, index) => (
                         <div key={index} className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium">{kr.description}</span>
-                            <span className="text-sm text-gray-600">{kr.progress}%</span>
+                            <span className="text-sm font-medium">
+                              {kr.description}
+                            </span>
+                            <span className="text-sm text-gray-600">
+                              {kr.progress}%
+                            </span>
                           </div>
                           <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                             <div
@@ -255,30 +326,57 @@ export function OKRManagement() {
             <TabsContent value="team" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { team: "销售团队", objectives: 3, avgScore: 8.5, members: 8 },
-                  { team: "技术团队", objectives: 4, avgScore: 7.8, members: 12 },
-                  { team: "产品团队", objectives: 2, avgScore: 9.1, members: 6 },
-                  { team: "运营团队", objectives: 3, avgScore: 8.2, members: 10 },
+                  {
+                    team: '销售团队',
+                    objectives: 3,
+                    avgScore: 8.5,
+                    members: 8,
+                  },
+                  {
+                    team: '技术团队',
+                    objectives: 4,
+                    avgScore: 7.8,
+                    members: 12,
+                  },
+                  {
+                    team: '产品团队',
+                    objectives: 2,
+                    avgScore: 9.1,
+                    members: 6,
+                  },
+                  {
+                    team: '运营团队',
+                    objectives: 3,
+                    avgScore: 8.2,
+                    members: 10,
+                  },
                 ].map((team, index) => (
                   <Card
                     key={index}
                     className="border-l-4 border-l-blue-500 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                   >
                     <CardHeader>
-                      <CardTitle className="text-base text-blue-700">{team.team}</CardTitle>
+                      <CardTitle className="text-base text-blue-700">
+                        {team.team}
+                      </CardTitle>
                       <CardDescription>{team.members} 名成员</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3">
                         <div className="flex justify-between">
                           <span className="text-sm">目标数量</span>
-                          <Badge variant="secondary" className="bg-blue-50 text-blue-700">
+                          <Badge
+                            variant="secondary"
+                            className="bg-blue-50 text-blue-700"
+                          >
                             {team.objectives}
                           </Badge>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-sm">平均得分</span>
-                          <span className="font-medium text-green-600">{team.avgScore}/10</span>
+                          <span className="font-medium text-green-600">
+                            {team.avgScore}/10
+                          </span>
                         </div>
                         <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
                           <div
@@ -297,22 +395,30 @@ export function OKRManagement() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Card className="border-l-4 border-l-blue-500 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-base text-blue-700">整体进度</CardTitle>
+                    <CardTitle className="text-base text-blue-700">
+                      整体进度
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-600 mb-2">75%</div>
+                      <div className="text-3xl font-bold text-blue-600 mb-2">
+                        75%
+                      </div>
                       <div className="w-full h-4 bg-gray-200 rounded-full overflow-hidden">
                         <div className="w-3/4 h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all duration-500"></div>
                       </div>
-                      <p className="text-sm text-gray-600 mt-2">季度目标完成度</p>
+                      <p className="text-sm text-gray-600 mt-2">
+                        季度目标完成度
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
 
                 <Card className="border-l-4 border-l-blue-500 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-base text-blue-700">风险目标</CardTitle>
+                    <CardTitle className="text-base text-blue-700">
+                      风险目标
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
@@ -334,7 +440,9 @@ export function OKRManagement() {
 
                 <Card className="border-l-4 border-l-blue-500 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-base text-blue-700">关键里程碑</CardTitle>
+                    <CardTitle className="text-base text-blue-700">
+                      关键里程碑
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
@@ -359,9 +467,24 @@ export function OKRManagement() {
             <TabsContent value="review" className="space-y-4">
               <div className="space-y-4">
                 {[
-                  { period: "2024 Q1", score: 8.7, status: "已完成", highlights: "超额完成销售目标，客户满意度创新高" },
-                  { period: "2023 Q4", score: 7.9, status: "已完成", highlights: "产品功能迭代顺利，用户增长稳定" },
-                  { period: "2023 Q3", score: 8.2, status: "已完成", highlights: "团队协作效率提升，项目按时交付" },
+                  {
+                    period: '2024 Q1',
+                    score: 8.7,
+                    status: '已完成',
+                    highlights: '超额完成销售目标，客户满意度创新高',
+                  },
+                  {
+                    period: '2023 Q4',
+                    score: 7.9,
+                    status: '已完成',
+                    highlights: '产品功能迭代顺利，用户增长稳定',
+                  },
+                  {
+                    period: '2023 Q3',
+                    score: 8.2,
+                    status: '已完成',
+                    highlights: '团队协作效率提升，项目按时交付',
+                  },
                 ].map((review, index) => (
                   <Card
                     key={index}
@@ -372,19 +495,28 @@ export function OKRManagement() {
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
                             <h3 className="font-medium">{review.period}</h3>
-                            <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                            <Badge
+                              variant="outline"
+                              className="bg-green-50 text-green-700 border-green-200"
+                            >
                               {review.status}
                             </Badge>
-                            <span className="text-lg font-bold text-green-600">{review.score}/10</span>
+                            <span className="text-lg font-bold text-green-600">
+                              {review.score}/10
+                            </span>
                           </div>
-                          <p className="text-sm text-gray-600">{review.highlights}</p>
+                          <p className="text-sm text-gray-600">
+                            {review.highlights}
+                          </p>
                         </div>
                         <Button
                           variant="outline"
                           size="sm"
                           className="border-l-4 border-l-blue-500 transition-all duration-300 hover:scale-105 bg-transparent group"
                         >
-                          <span className="group-hover:translate-x-1 transition-all duration-300">查看详情</span>
+                          <span className="group-hover:translate-x-1 transition-all duration-300">
+                            查看详情
+                          </span>
                         </Button>
                       </div>
                     </CardContent>
@@ -396,5 +528,5 @@ export function OKRManagement() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

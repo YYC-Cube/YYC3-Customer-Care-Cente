@@ -22,7 +22,12 @@ describe('API Integration Tests', () => {
       server = createServer((req: IncomingMessage, res: ServerResponse) => {
         if (req.url === '/api/health') {
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ status: 'healthy', timestamp: new Date().toISOString() }));
+          res.end(
+            JSON.stringify({
+              status: 'healthy',
+              timestamp: new Date().toISOString(),
+            })
+          );
         } else if (req.url === '/api/users') {
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ users: [] }));
@@ -31,11 +36,11 @@ describe('API Integration Tests', () => {
           res.end(JSON.stringify({ error: 'Not found' }));
         }
       });
-      
+
       server.listen(PORT, () => {
         resolve(undefined);
       });
-      
+
       server.on('error', (err: any) => {
         if (err.code === 'EADDRINUSE') {
           console.log(`Port ${PORT} is already in use, skipping API tests`);
@@ -50,7 +55,7 @@ describe('API Integration Tests', () => {
   afterAll(() => {
     if (server) {
       return new Promise((resolve) => {
-        server.close(() => {
+        server!.close(() => {
           resolve(undefined);
         });
       });

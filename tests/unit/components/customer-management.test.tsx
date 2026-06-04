@@ -28,7 +28,8 @@ describe('CustomerManagement', () => {
 
   it('should handle customer search functionality', () => {
     render(<CustomerManagement />);
-    const searchInput = screen.getByPlaceholderText('搜索客户姓名、公司或邮箱...');
+    const searchInput =
+      screen.getByPlaceholderText('搜索客户姓名、公司或邮箱...');
     fireEvent.change(searchInput, { target: { value: '张明华' } });
     expect(searchInput).toHaveValue('张明华');
   });

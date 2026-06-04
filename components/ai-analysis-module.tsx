@@ -10,14 +10,26 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Select as LucideSelect, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import {
+  Select as LucideSelect,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import {
   Brain,
   Zap,
@@ -37,7 +49,7 @@ import {
   Cpu,
   Package,
   Calculator,
-} from "lucide-react"
+} from 'lucide-react';
 import {
   XAxis,
   YAxis,
@@ -47,186 +59,186 @@ import {
   AreaChart,
   Area,
   BarChart as RechartsBarChart,
-} from "recharts"
+} from 'recharts';
 
 export function AIAnalysisModule() {
-  const [selectedModel, setSelectedModel] = useState("gpt-4")
-  const [analysisType, setAnalysisType] = useState("predictive")
-  const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const [selectedModel, setSelectedModel] = useState('gpt-4');
+  const [analysisType, setAnalysisType] = useState('predictive');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   // AI分析数据
   const aiInsights = [
     {
-      title: "销售预测",
+      title: '销售预测',
       confidence: 94,
-      prediction: "下月销售额预计增长15%",
-      impact: "high",
-      category: "sales",
+      prediction: '下月销售额预计增长15%',
+      impact: 'high',
+      category: 'sales',
     },
     {
-      title: "客户流失风险",
+      title: '客户流失风险',
       confidence: 87,
-      prediction: "3位VIP客户存在流失风险",
-      impact: "high",
-      category: "customer",
+      prediction: '3位VIP客户存在流失风险',
+      impact: 'high',
+      category: 'customer',
     },
     {
-      title: "库存优化",
+      title: '库存优化',
       confidence: 91,
-      prediction: "建议增加产品A库存20%",
-      impact: "medium",
-      category: "inventory",
+      prediction: '建议增加产品A库存20%',
+      impact: 'medium',
+      category: 'inventory',
     },
     {
-      title: "市场趋势",
+      title: '市场趋势',
       confidence: 89,
-      prediction: "Q3市场需求将上升12%",
-      impact: "medium",
-      category: "market",
+      prediction: 'Q3市场需求将上升12%',
+      impact: 'medium',
+      category: 'market',
     },
-  ]
+  ];
 
   // 预测数据
   const predictionData = [
-    { month: "7月", actual: 2800000, predicted: 3220000, confidence: 0.94 },
-    { month: "8月", actual: null, predicted: 3450000, confidence: 0.91 },
-    { month: "9月", actual: null, predicted: 3680000, confidence: 0.88 },
-    { month: "10月", actual: null, predicted: 3920000, confidence: 0.85 },
-    { month: "11月", actual: null, predicted: 4150000, confidence: 0.82 },
-    { month: "12月", actual: null, predicted: 4380000, confidence: 0.79 },
-  ]
+    { month: '7月', actual: 2800000, predicted: 3220000, confidence: 0.94 },
+    { month: '8月', actual: null, predicted: 3450000, confidence: 0.91 },
+    { month: '9月', actual: null, predicted: 3680000, confidence: 0.88 },
+    { month: '10月', actual: null, predicted: 3920000, confidence: 0.85 },
+    { month: '11月', actual: null, predicted: 4150000, confidence: 0.82 },
+    { month: '12月', actual: null, predicted: 4380000, confidence: 0.79 },
+  ];
 
   // 智能推荐
   const recommendations = [
     {
-      id: "1",
-      title: "优化营销策略",
-      description: "基于客户行为分析，建议调整数字营销投入分配",
-      priority: "high",
-      impact: "提升转化率15%",
-      effort: "中等",
-      category: "marketing",
+      id: '1',
+      title: '优化营销策略',
+      description: '基于客户行为分析，建议调整数字营销投入分配',
+      priority: 'high',
+      impact: '提升转化率15%',
+      effort: '中等',
+      category: 'marketing',
     },
     {
-      id: "2",
-      title: "库存管理优化",
-      description: "AI预测显示某些产品需求将大幅增长",
-      priority: "medium",
-      impact: "减少缺货风险",
-      effort: "低",
-      category: "inventory",
+      id: '2',
+      title: '库存管理优化',
+      description: 'AI预测显示某些产品需求将大幅增长',
+      priority: 'medium',
+      impact: '减少缺货风险',
+      effort: '低',
+      category: 'inventory',
     },
     {
-      id: "3",
-      title: "客户服务改进",
-      description: "分析客户反馈，识别服务流程中的痛点",
-      priority: "high",
-      impact: "提升满意度20%",
-      effort: "高",
-      category: "service",
+      id: '3',
+      title: '客户服务改进',
+      description: '分析客户反馈，识别服务流程中的痛点',
+      priority: 'high',
+      impact: '提升满意度20%',
+      effort: '高',
+      category: 'service',
     },
     {
-      id: "4",
-      title: "定价策略调整",
-      description: "市场分析建议对特定产品进行价格优化",
-      priority: "medium",
-      impact: "增加利润率8%",
-      effort: "中等",
-      category: "pricing",
+      id: '4',
+      title: '定价策略调整',
+      description: '市场分析建议对特定产品进行价格优化',
+      priority: 'medium',
+      impact: '增加利润率8%',
+      effort: '中等',
+      category: 'pricing',
     },
-  ]
+  ];
 
   // AI模型状态
   const modelStatus = [
     {
-      name: "销售预测模型",
-      status: "active",
+      name: '销售预测模型',
+      status: 'active',
       accuracy: 94.2,
-      lastTrained: "2025-06-15",
+      lastTrained: '2025-06-15',
       predictions: 1247,
     },
     {
-      name: "客户分析模型",
-      status: "active",
+      name: '客户分析模型',
+      status: 'active',
       accuracy: 91.8,
-      lastTrained: "2025-06-18",
+      lastTrained: '2025-06-18',
       predictions: 856,
     },
     {
-      name: "库存优化模型",
-      status: "training",
+      name: '库存优化模型',
+      status: 'training',
       accuracy: 89.5,
-      lastTrained: "2025-06-20",
+      lastTrained: '2025-06-20',
       predictions: 432,
     },
     {
-      name: "市场趋势模型",
-      status: "active",
+      name: '市场趋势模型',
+      status: 'active',
       accuracy: 87.3,
-      lastTrained: "2025-06-12",
+      lastTrained: '2025-06-12',
       predictions: 678,
     },
-  ]
+  ];
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
-      case "high":
-        return "bg-red-100 text-red-800"
-      case "medium":
-        return "bg-yellow-100 text-yellow-800"
-      case "low":
-        return "bg-green-100 text-green-800"
+      case 'high':
+        return 'bg-red-100 text-red-800';
+      case 'medium':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'low':
+        return 'bg-green-100 text-green-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case "high":
-        return "bg-red-100 text-red-800"
-      case "medium":
-        return "bg-yellow-100 text-yellow-800"
-      case "low":
-        return "bg-green-100 text-green-800"
+      case 'high':
+        return 'bg-red-100 text-red-800';
+      case 'medium':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'low':
+        return 'bg-green-100 text-green-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "active":
-        return "bg-green-100 text-green-800"
-      case "training":
-        return "bg-blue-100 text-blue-800"
-      case "inactive":
-        return "bg-gray-100 text-gray-800"
+      case 'active':
+        return 'bg-green-100 text-green-800';
+      case 'training':
+        return 'bg-blue-100 text-blue-800';
+      case 'inactive':
+        return 'bg-gray-100 text-gray-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case "sales":
-        return <DollarSign className="w-4 h-4" />
-      case "customer":
-        return <Users className="w-4 h-4" />
-      case "inventory":
-        return <Package className="w-4 h-4" />
-      case "market":
-        return <TrendingUp className="w-4 h-4" />
-      case "marketing":
-        return <Target className="w-4 h-4" />
-      case "service":
-        return <MessageSquare className="w-4 h-4" />
-      case "pricing":
-        return <Calculator className="w-4 h-4" />
+      case 'sales':
+        return <DollarSign className="w-4 h-4" />;
+      case 'customer':
+        return <Users className="w-4 h-4" />;
+      case 'inventory':
+        return <Package className="w-4 h-4" />;
+      case 'market':
+        return <TrendingUp className="w-4 h-4" />;
+      case 'marketing':
+        return <Target className="w-4 h-4" />;
+      case 'service':
+        return <MessageSquare className="w-4 h-4" />;
+      case 'pricing':
+        return <Calculator className="w-4 h-4" />;
       default:
-        return <Activity className="w-4 h-4" />
+        return <Activity className="w-4 h-4" />;
     }
-  }
+  };
 
   return (
     <div className="p-6 space-y-6 bg-gradient-to-br from-purple-50 via-violet-50 to-indigo-50 min-h-screen">
@@ -237,7 +249,9 @@ export function AIAnalysisModule() {
             <Brain className="w-8 h-8 mr-3 text-purple-600" />
             AI智能助手
           </h1>
-          <p className="text-gray-600 mt-2">人工智能驱动的业务分析和决策支持系统</p>
+          <p className="text-gray-600 mt-2">
+            人工智能驱动的业务分析和决策支持系统
+          </p>
         </div>
         <div className="flex space-x-3">
           <LucideSelect value={selectedModel} onValueChange={setSelectedModel}>
@@ -273,7 +287,9 @@ export function AIAnalysisModule() {
             className="border-l-4 border-l-purple-500 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">{insight.title}</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                {insight.title}
+              </CardTitle>
               {getCategoryIcon(insight.category)}
             </CardHeader>
             <CardContent>
@@ -281,9 +297,15 @@ export function AIAnalysisModule() {
                 <p className="text-sm text-gray-700">{insight.prediction}</p>
                 <div className="flex items-center justify-between">
                   <Badge className={getImpactColor(insight.impact)}>
-                    {insight.impact === "high" ? "高影响" : insight.impact === "medium" ? "中影响" : "低影响"}
+                    {insight.impact === 'high'
+                      ? '高影响'
+                      : insight.impact === 'medium'
+                        ? '中影响'
+                        : '低影响'}
                   </Badge>
-                  <span className="text-xs text-purple-600 font-medium">{insight.confidence}% 置信度</span>
+                  <span className="text-xs text-purple-600 font-medium">
+                    {insight.confidence}% 置信度
+                  </span>
                 </div>
                 <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div
@@ -317,7 +339,7 @@ export function AIAnalysisModule() {
                 <Tooltip
                   formatter={(value, name) => [
                     `¥${((value as number) / 10000).toFixed(0)}万`,
-                    name === "actual" ? "实际" : "预测",
+                    name === 'actual' ? '实际' : '预测',
                   ]}
                 />
                 <Area
@@ -338,11 +360,23 @@ export function AIAnalysisModule() {
                   name="predicted"
                 />
                 <defs>
-                  <linearGradient id="purpleGradient" x1="0" y1="0" x2="0" y2="1">
+                  <linearGradient
+                    id="purpleGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
                     <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8} />
                     <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.1} />
                   </linearGradient>
-                  <linearGradient id="purpleLightGradient" x1="0" y1="0" x2="0" y2="1">
+                  <linearGradient
+                    id="purpleLightGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
                     <stop offset="5%" stopColor="#a855f7" stopOpacity={0.6} />
                     <stop offset="95%" stopColor="#a855f7" stopOpacity={0.1} />
                   </linearGradient>
@@ -390,7 +424,10 @@ export function AIAnalysisModule() {
                 </div>
               </div>
               <div className="flex space-x-2">
-                <Input placeholder="输入您的问题..." className="flex-1 border-l-4 border-l-purple-500" />
+                <Input
+                  placeholder="输入您的问题..."
+                  className="flex-1 border-l-4 border-l-purple-500"
+                />
                 <Button
                   size="sm"
                   className="bg-gradient-to-r from-purple-500 to-violet-600 hover:from-purple-600 hover:to-violet-700 text-white transition-all duration-300 hover:scale-105 group"
@@ -427,14 +464,22 @@ export function AIAnalysisModule() {
                       <h4 className="font-medium text-gray-900">{rec.title}</h4>
                     </div>
                     <Badge className={getPriorityColor(rec.priority)}>
-                      {rec.priority === "high" ? "高优先级" : rec.priority === "medium" ? "中优先级" : "低优先级"}
+                      {rec.priority === 'high'
+                        ? '高优先级'
+                        : rec.priority === 'medium'
+                          ? '中优先级'
+                          : '低优先级'}
                     </Badge>
                   </div>
-                  <p className="text-sm text-gray-600 mb-3">{rec.description}</p>
+                  <p className="text-sm text-gray-600 mb-3">
+                    {rec.description}
+                  </p>
                   <div className="grid grid-cols-2 gap-4 text-xs">
                     <div>
                       <span className="text-gray-500">预期影响: </span>
-                      <span className="font-medium text-green-600">{rec.impact}</span>
+                      <span className="font-medium text-green-600">
+                        {rec.impact}
+                      </span>
                     </div>
                     <div>
                       <span className="text-gray-500">实施难度: </span>
@@ -483,7 +528,11 @@ export function AIAnalysisModule() {
                   <div className="flex justify-between items-start mb-2">
                     <h4 className="font-medium text-gray-900">{model.name}</h4>
                     <Badge className={getStatusColor(model.status)}>
-                      {model.status === "active" ? "运行中" : model.status === "training" ? "训练中" : "未激活"}
+                      {model.status === 'active'
+                        ? '运行中'
+                        : model.status === 'training'
+                          ? '训练中'
+                          : '未激活'}
                     </Badge>
                   </div>
                   <div className="grid grid-cols-2 gap-4 text-sm mb-3">
@@ -497,7 +546,9 @@ export function AIAnalysisModule() {
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-gray-500">最后训练: {model.lastTrained}</span>
+                    <span className="text-xs text-gray-500">
+                      最后训练: {model.lastTrained}
+                    </span>
                     <div className="flex space-x-1">
                       <Button
                         variant="ghost"
@@ -570,5 +621,5 @@ export function AIAnalysisModule() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

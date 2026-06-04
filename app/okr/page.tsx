@@ -10,15 +10,15 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { ResponsiveLayout } from "@/components/layout/responsive-layout"
-import { OKRManagement } from "@/components/okr-management"
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
+import { OKRManagement } from '@/components/okr-management';
 
 export default function OKRPage() {
   return (
     <ResponsiveLayout showSidebar={true} showHeader={true}>
       <OKRManagement />
     </ResponsiveLayout>
-  )
+  );
 }

@@ -10,10 +10,10 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { DatabaseManagement } from "@/components/database-management"
+import { DatabaseManagement } from '@/components/database-management';
 
 export default function DatabasePage() {
-  return <DatabaseManagement />
+  return <DatabaseManagement />;
 }

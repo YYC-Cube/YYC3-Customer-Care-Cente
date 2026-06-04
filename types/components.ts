@@ -5,7 +5,24 @@
  * @version 1.0.0
  */
 
-import type { ID, DateTime, Status, Priority, Visibility, Locale, Theme, Size, Color, Alignment, Direction, Layout, Animation, Transition, LoadingState, EmptyState } from './global';
+import type {
+  ID,
+  DateTime,
+  Status,
+  Priority,
+  Visibility,
+  Locale,
+  Theme,
+  Size,
+  Color,
+  Alignment,
+  Direction,
+  Layout,
+  Animation,
+  Transition,
+  LoadingState,
+  EmptyState,
+} from './global';
 
 // 通用组件Props类型
 export interface BaseProps {
@@ -18,7 +35,13 @@ export interface BaseProps {
 
 // 按钮组件Props类型
 export interface ButtonProps extends BaseProps {
-  variant?: 'default' | 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive';
+  variant?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'outline'
+    | 'ghost'
+    | 'destructive';
   size?: Size;
   disabled?: boolean;
   loading?: boolean;
@@ -171,7 +194,15 @@ export interface GridItemProps extends BaseProps {
 
 // 标签组件Props类型
 export interface BadgeProps extends BaseProps {
-  variant?: 'default' | 'primary' | 'secondary' | 'outline' | 'destructive' | 'success' | 'warning' | 'info';
+  variant?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'outline'
+    | 'destructive'
+    | 'success'
+    | 'warning'
+    | 'info';
   size?: Size;
   dot?: boolean;
   count?: number;
@@ -309,7 +340,12 @@ export interface AccordionContentProps extends BaseProps {
 // 导航栏组件Props类型
 export interface NavbarProps extends BaseProps {
   brand?: React.ReactNode;
-  links?: Array<{ label: string; href: string; active?: boolean; onClick?: () => void }>;
+  links?: Array<{
+    label: string;
+    href: string;
+    active?: boolean;
+    onClick?: () => void;
+  }>;
   actions?: React.ReactNode;
   mobileMenu?: React.ReactNode;
 }
@@ -319,14 +355,22 @@ export interface SidebarProps extends BaseProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   brand?: React.ReactNode;
-  links?: Array<{ label: string; href: string; active?: boolean; onClick?: () => void }>;
+  links?: Array<{
+    label: string;
+    href: string;
+    active?: boolean;
+    onClick?: () => void;
+  }>;
   actions?: React.ReactNode;
 }
 
 // 页脚组件Props类型
 export interface FooterProps extends BaseProps {
   brand?: React.ReactNode;
-  links?: Array<{ title: string; items: Array<{ label: string; href: string }> }>;
+  links?: Array<{
+    title: string;
+    items: Array<{ label: string; href: string }>;
+  }>;
   copyright?: string;
   social?: Array<{ icon: React.ReactNode; href: string; label: string }>;
 }
@@ -507,7 +551,11 @@ export interface AudioProps extends BaseProps {
 export interface MapProps extends BaseProps {
   center?: { lat: number; lng: number };
   zoom?: number;
-  markers?: Array<{ id: string; position: { lat: number; lng: number }; title?: string }>;
+  markers?: Array<{
+    id: string;
+    position: { lat: number; lng: number };
+    title?: string;
+  }>;
   onMarkerClick?: (marker: any) => void;
   onMapClick?: (position: { lat: number; lng: number }) => void;
 }
@@ -515,7 +563,15 @@ export interface MapProps extends BaseProps {
 // 图表组件Props类型
 export interface ChartProps extends BaseProps {
   data: any;
-  type?: 'line' | 'bar' | 'pie' | 'doughnut' | 'radar' | 'polarArea' | 'scatter' | 'bubble';
+  type?:
+    | 'line'
+    | 'bar'
+    | 'pie'
+    | 'doughnut'
+    | 'radar'
+    | 'polarArea'
+    | 'scatter'
+    | 'bubble';
   options?: any;
   height?: number | string;
   width?: number | string;
@@ -663,7 +719,12 @@ export interface MobileMenuProps extends BaseProps {
 
 // 移动端导航组件Props类型
 export interface MobileNavigationProps extends BaseProps {
-  links?: Array<{ label: string; href: string; active?: boolean; onClick?: () => void }>;
+  links?: Array<{
+    label: string;
+    href: string;
+    active?: boolean;
+    onClick?: () => void;
+  }>;
   actions?: React.ReactNode;
 }
 
@@ -671,7 +732,12 @@ export interface MobileNavigationProps extends BaseProps {
 export interface MobileBottomNavigationProps extends BaseProps {
   value: string;
   onValueChange: (value: string) => void;
-  items: Array<{ value: string; label: string; icon: React.ReactNode; badge?: number }>;
+  items: Array<{
+    value: string;
+    label: string;
+    icon: React.ReactNode;
+    badge?: number;
+  }>;
 }
 
 // 深色模式切换组件Props类型
@@ -741,8 +807,7 @@ export interface ContextMenuItemProps extends BaseProps {
 }
 
 // 上下文菜单分隔符组件Props类型
-export interface ContextMenuSeparatorProps extends BaseProps {
-}
+export interface ContextMenuSeparatorProps extends BaseProps {}
 
 // 工具条组件Props类型
 export interface ToolbarProps extends BaseProps {
@@ -772,8 +837,7 @@ export interface ToolbarDropdownProps extends BaseProps {
 }
 
 // 工具栏分割器组件Props类型
-export interface ToolbarSeparatorProps extends BaseProps {
-}
+export interface ToolbarSeparatorProps extends BaseProps {}
 
 // 卡片操作组件Props类型
 export interface CardActionsProps extends BaseProps {

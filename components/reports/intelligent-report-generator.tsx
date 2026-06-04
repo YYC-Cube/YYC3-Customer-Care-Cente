@@ -10,18 +10,30 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
   DialogContent,
@@ -29,8 +41,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+} from '@/components/ui/dialog';
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from '@/components/ui/chart';
 import {
   LineChart,
   Line,
@@ -42,7 +58,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   Legend,
-} from "recharts"
+} from 'recharts';
 import {
   FileText,
   BarChart3,
@@ -61,242 +77,270 @@ import {
   Zap,
   Sparkles,
   Play,
-} from "lucide-react"
+} from 'lucide-react';
 
 interface ReportTemplate {
-  id: string
-  name: string
-  description: string
-  category: string
-  type: "dashboard" | "table" | "chart" | "document"
-  frequency: "daily" | "weekly" | "monthly" | "quarterly" | "yearly" | "custom"
-  dataSource: string[]
-  metrics: string[]
-  filters: ReportFilter[]
-  isActive: boolean
-  lastGenerated?: Date
-  createdBy: string
-  usage: number
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  type: 'dashboard' | 'table' | 'chart' | 'document';
+  frequency: 'daily' | 'weekly' | 'monthly' | 'quarterly' | 'yearly' | 'custom';
+  dataSource: string[];
+  metrics: string[];
+  filters: ReportFilter[];
+  isActive: boolean;
+  lastGenerated?: Date;
+  createdBy: string;
+  usage: number;
 }
 
 interface ReportFilter {
-  field: string
-  operator: string
-  value: any
-  label: string
+  field: string;
+  operator: string;
+  value: any;
+  label: string;
 }
 
 interface GeneratedReport {
-  id: string
-  templateId: string
-  name: string
-  generatedAt: Date
-  format: "pdf" | "excel" | "csv" | "html"
-  size: string
-  status: "generating" | "completed" | "failed"
-  downloadUrl?: string
+  id: string;
+  templateId: string;
+  name: string;
+  generatedAt: Date;
+  format: 'pdf' | 'excel' | 'csv' | 'html';
+  size: string;
+  status: 'generating' | 'completed' | 'failed';
+  downloadUrl?: string;
 }
 
 export function IntelligentReportGenerator() {
   const [templates, setTemplates] = useState<ReportTemplate[]>([
     {
-      id: "template_1",
-      name: "销售业绩月报",
-      description: "月度销售数据汇总和分析报告",
-      category: "销售",
-      type: "dashboard",
-      frequency: "monthly",
-      dataSource: ["customers", "orders", "revenue"],
-      metrics: ["总销售额", "新客户数", "转化率", "客单价"],
+      id: 'template_1',
+      name: '销售业绩月报',
+      description: '月度销售数据汇总和分析报告',
+      category: '销售',
+      type: 'dashboard',
+      frequency: 'monthly',
+      dataSource: ['customers', 'orders', 'revenue'],
+      metrics: ['总销售额', '新客户数', '转化率', '客单价'],
       filters: [
-        { field: "date", operator: "between", value: ["2024-01-01", "2024-01-31"], label: "时间范围" },
-        { field: "status", operator: "equals", value: "completed", label: "订单状态" },
+        {
+          field: 'date',
+          operator: 'between',
+          value: ['2024-01-01', '2024-01-31'],
+          label: '时间范围',
+        },
+        {
+          field: 'status',
+          operator: 'equals',
+          value: 'completed',
+          label: '订单状态',
+        },
       ],
       isActive: true,
-      lastGenerated: new Date("2024-01-20"),
-      createdBy: "张经理",
+      lastGenerated: new Date('2024-01-20'),
+      createdBy: '张经理',
       usage: 45,
     },
     {
-      id: "template_2",
-      name: "客户分析报告",
-      description: "客户行为和满意度分析",
-      category: "客户",
-      type: "document",
-      frequency: "weekly",
-      dataSource: ["customers", "feedback", "interactions"],
-      metrics: ["活跃客户数", "满意度评分", "流失率", "生命周期价值"],
+      id: 'template_2',
+      name: '客户分析报告',
+      description: '客户行为和满意度分析',
+      category: '客户',
+      type: 'document',
+      frequency: 'weekly',
+      dataSource: ['customers', 'feedback', 'interactions'],
+      metrics: ['活跃客户数', '满意度评分', '流失率', '生命周期价值'],
       filters: [
-        { field: "customerType", operator: "in", value: ["premium", "standard"], label: "客户类型" },
-        { field: "region", operator: "equals", value: "华东", label: "地区" },
+        {
+          field: 'customerType',
+          operator: 'in',
+          value: ['premium', 'standard'],
+          label: '客户类型',
+        },
+        { field: 'region', operator: 'equals', value: '华东', label: '地区' },
       ],
       isActive: true,
-      lastGenerated: new Date("2024-01-18"),
-      createdBy: "李分析师",
+      lastGenerated: new Date('2024-01-18'),
+      createdBy: '李分析师',
       usage: 32,
     },
     {
-      id: "template_3",
-      name: "任务完成统计",
-      description: "团队任务执行情况统计",
-      category: "项目",
-      type: "chart",
-      frequency: "daily",
-      dataSource: ["tasks", "users", "projects"],
-      metrics: ["完成任务数", "平均完成时间", "逾期率", "团队效率"],
+      id: 'template_3',
+      name: '任务完成统计',
+      description: '团队任务执行情况统计',
+      category: '项目',
+      type: 'chart',
+      frequency: 'daily',
+      dataSource: ['tasks', 'users', 'projects'],
+      metrics: ['完成任务数', '平均完成时间', '逾期率', '团队效率'],
       filters: [
-        { field: "priority", operator: "in", value: ["high", "medium"], label: "优先级" },
-        { field: "assignee", operator: "not_null", value: null, label: "已分配" },
+        {
+          field: 'priority',
+          operator: 'in',
+          value: ['high', 'medium'],
+          label: '优先级',
+        },
+        {
+          field: 'assignee',
+          operator: 'not_null',
+          value: null,
+          label: '已分配',
+        },
       ],
       isActive: false,
-      lastGenerated: new Date("2024-01-19"),
-      createdBy: "王项目经理",
+      lastGenerated: new Date('2024-01-19'),
+      createdBy: '王项目经理',
       usage: 28,
     },
-  ])
+  ]);
 
   const [generatedReports, setGeneratedReports] = useState<GeneratedReport[]>([
     {
-      id: "report_1",
-      templateId: "template_1",
-      name: "销售业绩月报_2024年1月",
-      generatedAt: new Date("2024-01-20 10:30:00"),
-      format: "pdf",
-      size: "2.3 MB",
-      status: "completed",
-      downloadUrl: "/reports/sales_202401.pdf",
+      id: 'report_1',
+      templateId: 'template_1',
+      name: '销售业绩月报_2024年1月',
+      generatedAt: new Date('2024-01-20 10:30:00'),
+      format: 'pdf',
+      size: '2.3 MB',
+      status: 'completed',
+      downloadUrl: '/reports/sales_202401.pdf',
     },
     {
-      id: "report_2",
-      templateId: "template_2",
-      name: "客户分析报告_第3周",
-      generatedAt: new Date("2024-01-18 14:15:00"),
-      format: "excel",
-      size: "1.8 MB",
-      status: "completed",
-      downloadUrl: "/reports/customer_analysis_w3.xlsx",
+      id: 'report_2',
+      templateId: 'template_2',
+      name: '客户分析报告_第3周',
+      generatedAt: new Date('2024-01-18 14:15:00'),
+      format: 'excel',
+      size: '1.8 MB',
+      status: 'completed',
+      downloadUrl: '/reports/customer_analysis_w3.xlsx',
     },
     {
-      id: "report_3",
-      templateId: "template_3",
-      name: "任务完成统计_2024-01-19",
-      generatedAt: new Date("2024-01-19 09:00:00"),
-      format: "html",
-      size: "856 KB",
-      status: "generating",
+      id: 'report_3',
+      templateId: 'template_3',
+      name: '任务完成统计_2024-01-19',
+      generatedAt: new Date('2024-01-19 09:00:00'),
+      format: 'html',
+      size: '856 KB',
+      status: 'generating',
     },
-  ])
+  ]);
 
   const [newTemplate, setNewTemplate] = useState({
-    name: "",
-    description: "",
-    category: "",
-    type: "dashboard" as ReportTemplate["type"],
-    frequency: "monthly" as ReportTemplate["frequency"],
+    name: '',
+    description: '',
+    category: '',
+    type: 'dashboard' as ReportTemplate['type'],
+    frequency: 'monthly' as ReportTemplate['frequency'],
     dataSource: [] as string[],
     metrics: [] as string[],
-  })
+  });
 
-  const [showTemplateDialog, setShowTemplateDialog] = useState(false)
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [showTemplateDialog, setShowTemplateDialog] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
   // 报告使用统计
   const reportUsageData = [
-    { month: "10月", generated: 45, downloaded: 38 },
-    { month: "11月", generated: 52, downloaded: 47 },
-    { month: "12月", generated: 48, downloaded: 42 },
-    { month: "1月", generated: 61, downloaded: 55 },
-  ]
+    { month: '10月', generated: 45, downloaded: 38 },
+    { month: '11月', generated: 52, downloaded: 47 },
+    { month: '12月', generated: 48, downloaded: 42 },
+    { month: '1月', generated: 61, downloaded: 55 },
+  ];
 
   // 报告类型分布
   const reportTypeData = [
-    { type: "仪表板", count: 12, color: "#3b82f6" },
-    { type: "图表", count: 8, color: "#10b981" },
-    { type: "文档", count: 6, color: "#f59e0b" },
-    { type: "表格", count: 4, color: "#8b5cf6" },
-  ]
+    { type: '仪表板', count: 12, color: '#3b82f6' },
+    { type: '图表', count: 8, color: '#10b981' },
+    { type: '文档', count: 6, color: '#f59e0b' },
+    { type: '表格', count: 4, color: '#8b5cf6' },
+  ];
 
   // 数据源使用频率
   const dataSourceUsage = [
-    { source: "客户数据", usage: 85, reports: 15 },
-    { source: "销售数据", usage: 78, reports: 12 },
-    { source: "任务数据", usage: 65, reports: 10 },
-    { source: "财务数据", usage: 52, reports: 8 },
-    { source: "用户数据", usage: 45, reports: 6 },
-  ]
+    { source: '客户数据', usage: 85, reports: 15 },
+    { source: '销售数据', usage: 78, reports: 12 },
+    { source: '任务数据', usage: 65, reports: 10 },
+    { source: '财务数据', usage: 52, reports: 8 },
+    { source: '用户数据', usage: 45, reports: 6 },
+  ];
 
   const filteredTemplates = templates.filter((template) => {
-    const matchesSearch = template.name.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = selectedCategory === "all" || template.category === selectedCategory
-    return matchesSearch && matchesCategory
-  })
+    const matchesSearch = template.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategory === 'all' || template.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case "dashboard":
-        return <BarChart3 className="w-4 h-4" />
-      case "chart":
-        return <TrendingUp className="w-4 h-4" />
-      case "document":
-        return <FileText className="w-4 h-4" />
-      case "table":
-        return <Target className="w-4 h-4" />
+      case 'dashboard':
+        return <BarChart3 className="w-4 h-4" />;
+      case 'chart':
+        return <TrendingUp className="w-4 h-4" />;
+      case 'document':
+        return <FileText className="w-4 h-4" />;
+      case 'table':
+        return <Target className="w-4 h-4" />;
       default:
-        return <FileText className="w-4 h-4" />
+        return <FileText className="w-4 h-4" />;
     }
-  }
+  };
 
   const getTypeLabel = (type: string) => {
     const labels = {
-      dashboard: "仪表板",
-      chart: "图表",
-      document: "文档",
-      table: "表格",
-    }
-    return labels[type as keyof typeof labels] || type
-  }
+      dashboard: '仪表板',
+      chart: '图表',
+      document: '文档',
+      table: '表格',
+    };
+    return labels[type as keyof typeof labels] || type;
+  };
 
   const getFrequencyLabel = (frequency: string) => {
     const labels = {
-      daily: "每日",
-      weekly: "每周",
-      monthly: "每月",
-      quarterly: "每季度",
-      yearly: "每年",
-      custom: "自定义",
-    }
-    return labels[frequency as keyof typeof labels] || frequency
-  }
+      daily: '每日',
+      weekly: '每周',
+      monthly: '每月',
+      quarterly: '每季度',
+      yearly: '每年',
+      custom: '自定义',
+    };
+    return labels[frequency as keyof typeof labels] || frequency;
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "completed":
-        return "bg-green-100 text-green-800"
-      case "generating":
-        return "bg-blue-100 text-blue-800"
-      case "failed":
-        return "bg-red-100 text-red-800"
+      case 'completed':
+        return 'bg-green-100 text-green-800';
+      case 'generating':
+        return 'bg-blue-100 text-blue-800';
+      case 'failed':
+        return 'bg-red-100 text-red-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const generateReport = (templateId: string) => {
-    const template = templates.find((t) => t.id === templateId)
-    if (!template) return
+    const template = templates.find((t) => t.id === templateId);
+    if (!template) return;
 
     const newReport: GeneratedReport = {
       id: `report_${Date.now()}`,
       templateId,
-      name: `${template.name}_${new Date().toLocaleDateString("zh-CN")}`,
+      name: `${template.name}_${new Date().toLocaleDateString('zh-CN')}`,
       generatedAt: new Date(),
-      format: "pdf",
-      size: "生成中...",
-      status: "generating",
-    }
+      format: 'pdf',
+      size: '生成中...',
+      status: 'generating',
+    };
 
-    setGeneratedReports((prev) => [newReport, ...prev])
+    setGeneratedReports((prev) => [newReport, ...prev]);
 
     // 模拟报告生成过程
     setTimeout(() => {
@@ -305,15 +349,15 @@ export function IntelligentReportGenerator() {
           report.id === newReport.id
             ? {
                 ...report,
-                status: "completed",
+                status: 'completed',
                 size: `${(Math.random() * 3 + 0.5).toFixed(1)} MB`,
                 downloadUrl: `/reports/${template.name.toLowerCase()}_${Date.now()}.pdf`,
               }
-            : report,
-        ),
-      )
-    }, 3000)
-  }
+            : report
+        )
+      );
+    }, 3000);
+  };
 
   const createTemplate = () => {
     const template: ReportTemplate = {
@@ -321,28 +365,32 @@ export function IntelligentReportGenerator() {
       ...newTemplate,
       filters: [],
       isActive: true,
-      createdBy: "当前用户",
+      createdBy: '当前用户',
       usage: 0,
-    }
+    };
 
-    setTemplates((prev) => [template, ...prev])
+    setTemplates((prev) => [template, ...prev]);
     setNewTemplate({
-      name: "",
-      description: "",
-      category: "",
-      type: "dashboard",
-      frequency: "monthly",
+      name: '',
+      description: '',
+      category: '',
+      type: 'dashboard',
+      frequency: 'monthly',
       dataSource: [],
       metrics: [],
-    })
-    setShowTemplateDialog(false)
-  }
+    });
+    setShowTemplateDialog(false);
+  };
 
   const toggleTemplate = (templateId: string) => {
     setTemplates((prev) =>
-      prev.map((template) => (template.id === templateId ? { ...template, isActive: !template.isActive } : template)),
-    )
-  }
+      prev.map((template) =>
+        template.id === templateId
+          ? { ...template, isActive: !template.isActive }
+          : template
+      )
+    );
+  };
 
   return (
     <div className="p-6 space-y-6">
@@ -352,14 +400,19 @@ export function IntelligentReportGenerator() {
             <FileText className="w-8 h-8 mr-3 text-blue-600" />
             智能报表生成器
           </h1>
-          <p className="text-muted-foreground">自动化生成各类业务报表和分析报告</p>
+          <p className="text-muted-foreground">
+            自动化生成各类业务报表和分析报告
+          </p>
         </div>
         <div className="flex space-x-2">
           <Button variant="outline">
             <Download className="w-4 h-4 mr-2" />
             批量下载
           </Button>
-          <Dialog open={showTemplateDialog} onOpenChange={setShowTemplateDialog}>
+          <Dialog
+            open={showTemplateDialog}
+            onOpenChange={setShowTemplateDialog}
+          >
             <DialogTrigger asChild>
               <Button>
                 <Plus className="w-4 h-4 mr-2" />
@@ -369,7 +422,9 @@ export function IntelligentReportGenerator() {
             <DialogContent className="max-w-2xl">
               <DialogHeader>
                 <DialogTitle>创建报表模板</DialogTitle>
-                <DialogDescription>设���自定义报表模板，实现自动化报表生成</DialogDescription>
+                <DialogDescription>
+                  设���自定义报表模板，实现自动化报表生成
+                </DialogDescription>
               </DialogHeader>
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
@@ -377,7 +432,9 @@ export function IntelligentReportGenerator() {
                     <Label>模板名称</Label>
                     <Input
                       value={newTemplate.name}
-                      onChange={(e) => setNewTemplate({ ...newTemplate, name: e.target.value })}
+                      onChange={(e) =>
+                        setNewTemplate({ ...newTemplate, name: e.target.value })
+                      }
                       placeholder="输入模板名称"
                     />
                   </div>
@@ -385,7 +442,12 @@ export function IntelligentReportGenerator() {
                     <Label>报表类别</Label>
                     <Input
                       value={newTemplate.category}
-                      onChange={(e) => setNewTemplate({ ...newTemplate, category: e.target.value })}
+                      onChange={(e) =>
+                        setNewTemplate({
+                          ...newTemplate,
+                          category: e.target.value,
+                        })
+                      }
                       placeholder="如：销售、客户、财务"
                     />
                   </div>
@@ -394,7 +456,12 @@ export function IntelligentReportGenerator() {
                   <Label>模板描述</Label>
                   <Textarea
                     value={newTemplate.description}
-                    onChange={(e) => setNewTemplate({ ...newTemplate, description: e.target.value })}
+                    onChange={(e) =>
+                      setNewTemplate({
+                        ...newTemplate,
+                        description: e.target.value,
+                      })
+                    }
                     placeholder="描述报表的用途和内容"
                     rows={3}
                   />
@@ -405,7 +472,10 @@ export function IntelligentReportGenerator() {
                     <Select
                       value={newTemplate.type}
                       onValueChange={(value) =>
-                        setNewTemplate({ ...newTemplate, type: value as ReportTemplate["type"] })
+                        setNewTemplate({
+                          ...newTemplate,
+                          type: value as ReportTemplate['type'],
+                        })
                       }
                     >
                       <SelectTrigger>
@@ -424,7 +494,10 @@ export function IntelligentReportGenerator() {
                     <Select
                       value={newTemplate.frequency}
                       onValueChange={(value) =>
-                        setNewTemplate({ ...newTemplate, frequency: value as ReportTemplate["frequency"] })
+                        setNewTemplate({
+                          ...newTemplate,
+                          frequency: value as ReportTemplate['frequency'],
+                        })
                       }
                     >
                       <SelectTrigger>
@@ -444,8 +517,18 @@ export function IntelligentReportGenerator() {
                 <div>
                   <Label>数据源</Label>
                   <div className="grid grid-cols-3 gap-2 mt-2">
-                    {["客户数据", "销售数据", "任务数据", "财务数据", "用户数据", "产品数据"].map((source) => (
-                      <label key={source} className="flex items-center space-x-2">
+                    {[
+                      '客户数据',
+                      '销售数据',
+                      '任务数据',
+                      '财务数据',
+                      '用户数据',
+                      '产品数据',
+                    ].map((source) => (
+                      <label
+                        key={source}
+                        className="flex items-center space-x-2"
+                      >
                         <Checkbox
                           checked={newTemplate.dataSource.includes(source)}
                           onCheckedChange={(checked) => {
@@ -453,12 +536,14 @@ export function IntelligentReportGenerator() {
                               setNewTemplate({
                                 ...newTemplate,
                                 dataSource: [...newTemplate.dataSource, source],
-                              })
+                              });
                             } else {
                               setNewTemplate({
                                 ...newTemplate,
-                                dataSource: newTemplate.dataSource.filter((s) => s !== source),
-                              })
+                                dataSource: newTemplate.dataSource.filter(
+                                  (s) => s !== source
+                                ),
+                              });
                             }
                           }}
                         />
@@ -468,10 +553,16 @@ export function IntelligentReportGenerator() {
                   </div>
                 </div>
                 <div className="flex justify-end space-x-2">
-                  <Button variant="outline" onClick={() => setShowTemplateDialog(false)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowTemplateDialog(false)}
+                  >
                     取消
                   </Button>
-                  <Button onClick={createTemplate} disabled={!newTemplate.name || !newTemplate.description}>
+                  <Button
+                    onClick={createTemplate}
+                    disabled={!newTemplate.name || !newTemplate.description}
+                  >
                     创建模板
                   </Button>
                 </div>
@@ -493,7 +584,9 @@ export function IntelligentReportGenerator() {
         <Card>
           <CardContent className="p-6 text-center">
             <Zap className="w-8 h-8 mx-auto mb-2 text-green-600" />
-            <p className="text-2xl font-bold">{templates.filter((t) => t.isActive).length}</p>
+            <p className="text-2xl font-bold">
+              {templates.filter((t) => t.isActive).length}
+            </p>
             <p className="text-sm text-gray-600">活跃模板</p>
           </CardContent>
         </Card>
@@ -507,7 +600,9 @@ export function IntelligentReportGenerator() {
         <Card>
           <CardContent className="p-6 text-center">
             <TrendingUp className="w-8 h-8 mx-auto mb-2 text-orange-600" />
-            <p className="text-2xl font-bold">{generatedReports.filter((r) => r.status === "completed").length}</p>
+            <p className="text-2xl font-bold">
+              {generatedReports.filter((r) => r.status === 'completed').length}
+            </p>
             <p className="text-sm text-gray-600">已完成</p>
           </CardContent>
         </Card>
@@ -537,7 +632,10 @@ export function IntelligentReportGenerator() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Filter className="w-4 h-4 text-gray-500" />
-                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <Select
+                    value={selectedCategory}
+                    onValueChange={setSelectedCategory}
+                  >
                     <SelectTrigger className="w-32">
                       <SelectValue />
                     </SelectTrigger>
@@ -560,7 +658,9 @@ export function IntelligentReportGenerator() {
               <Card
                 key={template.id}
                 className={`hover:shadow-lg transition-shadow ${
-                  template.isActive ? "border-green-200 bg-green-50" : "border-gray-200"
+                  template.isActive
+                    ? 'border-green-200 bg-green-50'
+                    : 'border-gray-200'
                 }`}
               >
                 <CardHeader>
@@ -570,15 +670,21 @@ export function IntelligentReportGenerator() {
                         {getTypeIcon(template.type)}
                       </div>
                       <div>
-                        <CardTitle className="text-lg">{template.name}</CardTitle>
+                        <CardTitle className="text-lg">
+                          {template.name}
+                        </CardTitle>
                         <Badge variant="outline">{template.category}</Badge>
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Badge
-                        className={template.isActive ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}
+                        className={
+                          template.isActive
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-gray-100 text-gray-800'
+                        }
                       >
-                        {template.isActive ? "活跃" : "暂停"}
+                        {template.isActive ? '活跃' : '暂停'}
                       </Badge>
                     </div>
                   </div>
@@ -588,11 +694,15 @@ export function IntelligentReportGenerator() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <p className="text-gray-600">报表类型</p>
-                      <p className="font-medium">{getTypeLabel(template.type)}</p>
+                      <p className="font-medium">
+                        {getTypeLabel(template.type)}
+                      </p>
                     </div>
                     <div>
                       <p className="text-gray-600">生成频率</p>
-                      <p className="font-medium">{getFrequencyLabel(template.frequency)}</p>
+                      <p className="font-medium">
+                        {getFrequencyLabel(template.frequency)}
+                      </p>
                     </div>
                     <div>
                       <p className="text-gray-600">使用次数</p>
@@ -600,7 +710,10 @@ export function IntelligentReportGenerator() {
                     </div>
                     <div>
                       <p className="text-gray-600">最后生成</p>
-                      <p className="font-medium">{template.lastGenerated?.toLocaleDateString("zh-CN") || "未生成"}</p>
+                      <p className="font-medium">
+                        {template.lastGenerated?.toLocaleDateString('zh-CN') ||
+                          '未生成'}
+                      </p>
                     </div>
                   </div>
 
@@ -608,7 +721,11 @@ export function IntelligentReportGenerator() {
                     <p className="text-sm font-medium mb-2">数据源</p>
                     <div className="flex flex-wrap gap-1">
                       {template.dataSource.map((source, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
+                        <Badge
+                          key={index}
+                          variant="secondary"
+                          className="text-xs"
+                        >
                           {source}
                         </Badge>
                       ))}
@@ -619,7 +736,11 @@ export function IntelligentReportGenerator() {
                     <p className="text-sm font-medium mb-2">关键指标</p>
                     <div className="flex flex-wrap gap-1">
                       {template.metrics.map((metric, index) => (
-                        <Badge key={index} variant="outline" className="text-xs">
+                        <Badge
+                          key={index}
+                          variant="outline"
+                          className="text-xs"
+                        >
                           {metric}
                         </Badge>
                       ))}
@@ -628,7 +749,11 @@ export function IntelligentReportGenerator() {
 
                   <div className="flex justify-between pt-4 border-t">
                     <div className="flex space-x-2">
-                      <Button size="sm" onClick={() => generateReport(template.id)} disabled={!template.isActive}>
+                      <Button
+                        size="sm"
+                        onClick={() => generateReport(template.id)}
+                        disabled={!template.isActive}
+                      >
                         <Sparkles className="w-4 h-4 mr-1" />
                         生成报表
                       </Button>
@@ -638,8 +763,16 @@ export function IntelligentReportGenerator() {
                       </Button>
                     </div>
                     <div className="flex space-x-1">
-                      <Button variant="outline" size="sm" onClick={() => toggleTemplate(template.id)}>
-                        {template.isActive ? <Trash2 className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => toggleTemplate(template.id)}
+                      >
+                        {template.isActive ? (
+                          <Trash2 className="w-4 h-4" />
+                        ) : (
+                          <Play className="w-4 h-4" />
+                        )}
                       </Button>
                       <Button variant="outline" size="sm">
                         <Edit className="w-4 h-4" />
@@ -670,7 +803,7 @@ export function IntelligentReportGenerator() {
                         <div className="flex items-center space-x-4 text-sm text-gray-600 mt-1">
                           <span className="flex items-center">
                             <Calendar className="w-4 h-4 mr-1" />
-                            {report.generatedAt.toLocaleString("zh-CN")}
+                            {report.generatedAt.toLocaleString('zh-CN')}
                           </span>
                           <span>{report.format.toUpperCase()}</span>
                           <span>{report.size}</span>
@@ -679,10 +812,14 @@ export function IntelligentReportGenerator() {
                     </div>
                     <div className="flex items-center space-x-3">
                       <Badge className={getStatusColor(report.status)}>
-                        {report.status === "completed" ? "已完成" : report.status === "generating" ? "生成中" : "失败"}
+                        {report.status === 'completed'
+                          ? '已完成'
+                          : report.status === 'generating'
+                            ? '生成中'
+                            : '失败'}
                       </Badge>
                       <div className="flex space-x-2">
-                        {report.status === "completed" && (
+                        {report.status === 'completed' && (
                           <>
                             <Button variant="outline" size="sm">
                               <Eye className="w-4 h-4 mr-1" />
@@ -698,10 +835,12 @@ export function IntelligentReportGenerator() {
                             </Button>
                           </>
                         )}
-                        {report.status === "generating" && (
+                        {report.status === 'generating' && (
                           <div className="flex items-center space-x-2">
                             <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
-                            <span className="text-sm text-gray-600">生成中...</span>
+                            <span className="text-sm text-gray-600">
+                              生成中...
+                            </span>
                           </div>
                         )}
                       </div>
@@ -724,12 +863,12 @@ export function IntelligentReportGenerator() {
                 <ChartContainer
                   config={{
                     generated: {
-                      label: "生成数量",
-                      color: "hsl(var(--chart-1))",
+                      label: '生成数量',
+                      color: 'hsl(var(--chart-1))',
                     },
                     downloaded: {
-                      label: "下载数量",
-                      color: "hsl(var(--chart-2))",
+                      label: '下载数量',
+                      color: 'hsl(var(--chart-2))',
                     },
                   }}
                   className="h-[300px]"
@@ -741,8 +880,18 @@ export function IntelligentReportGenerator() {
                       <YAxis />
                       <ChartTooltip content={<ChartTooltipContent />} />
                       <Legend />
-                      <Line type="monotone" dataKey="generated" stroke="var(--color-generated)" strokeWidth={2} />
-                      <Line type="monotone" dataKey="downloaded" stroke="var(--color-downloaded)" strokeWidth={2} />
+                      <Line
+                        type="monotone"
+                        dataKey="generated"
+                        stroke="var(--color-generated)"
+                        strokeWidth={2}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="downloaded"
+                        stroke="var(--color-downloaded)"
+                        strokeWidth={2}
+                      />
                     </LineChart>
                   </ResponsiveContainer>
                 </ChartContainer>
@@ -758,8 +907,8 @@ export function IntelligentReportGenerator() {
                 <ChartContainer
                   config={{
                     count: {
-                      label: "数量",
-                      color: "hsl(var(--chart-3))",
+                      label: '数量',
+                      color: 'hsl(var(--chart-3))',
                     },
                   }}
                   className="h-[300px]"
@@ -772,7 +921,9 @@ export function IntelligentReportGenerator() {
                         cy="50%"
                         outerRadius={80}
                         dataKey="count"
-                        label={({ type, percent }) => `${type} ${(percent * 100).toFixed(0)}%`}
+                        label={({ type, percent }) =>
+                          `${type} ${(percent * 100).toFixed(0)}%`
+                        }
                       >
                         {reportTypeData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.color} />
@@ -828,15 +979,27 @@ export function IntelligentReportGenerator() {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm">自动生成报表</span>
-                      <input type="checkbox" defaultChecked className="rounded" />
+                      <input
+                        type="checkbox"
+                        defaultChecked
+                        className="rounded"
+                      />
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm">生成失败重试</span>
-                      <input type="checkbox" defaultChecked className="rounded" />
+                      <input
+                        type="checkbox"
+                        defaultChecked
+                        className="rounded"
+                      />
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm">生成完成通知</span>
-                      <input type="checkbox" defaultChecked className="rounded" />
+                      <input
+                        type="checkbox"
+                        defaultChecked
+                        className="rounded"
+                      />
                     </div>
                   </div>
                 </div>
@@ -859,9 +1022,13 @@ export function IntelligentReportGenerator() {
               <div className="space-y-4">
                 <h4 className="font-medium">导出格式</h4>
                 <div className="grid grid-cols-4 gap-4">
-                  {["PDF", "Excel", "CSV", "HTML"].map((format) => (
+                  {['PDF', 'Excel', 'CSV', 'HTML'].map((format) => (
                     <label key={format} className="flex items-center space-x-2">
-                      <input type="checkbox" defaultChecked className="rounded" />
+                      <input
+                        type="checkbox"
+                        defaultChecked
+                        className="rounded"
+                      />
                       <span className="text-sm">{format}</span>
                     </label>
                   ))}
@@ -890,5 +1057,5 @@ export function IntelligentReportGenerator() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

@@ -169,7 +169,7 @@ describe('CIDR Utilities', () => {
     it('should use default action when no rules match', () => {
       const allowConfig = createIPAccessControl('allow', []);
       const denyConfig = createIPAccessControl('deny', []);
-      
+
       expect(checkIPAccess('192.168.1.1', allowConfig)).toBe(true);
       expect(checkIPAccess('192.168.1.1', denyConfig)).toBe(false);
     });

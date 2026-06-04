@@ -19,36 +19,33 @@ import {
  * @license MIT
  */
 
-const ipAccessConfig = createIPAccessControl(
-  'deny',
-  [
-    {
-      cidr: '0.0.0.0/8',
-      action: 'allow',
-      description: 'Development network 0.0.0.0/8',
-    },
-    {
-      cidr: '10.0.0.0/8',
-      action: 'allow',
-      description: 'Private network 10.0.0.0/8',
-    },
-    {
-      cidr: '172.16.0.0/12',
-      action: 'allow',
-      description: 'Private network 172.16.0.0/12',
-    },
-    {
-      cidr: '192.168.0.0/16',
-      action: 'allow',
-      description: 'Private network 192.168.0.0/16',
-    },
-    {
-      cidr: '127.0.0.0/8',
-      action: 'allow',
-      description: 'Loopback addresses',
-    },
-  ]
-);
+const ipAccessConfig = createIPAccessControl('deny', [
+  {
+    cidr: '0.0.0.0/8',
+    action: 'allow',
+    description: 'Development network 0.0.0.0/8',
+  },
+  {
+    cidr: '10.0.0.0/8',
+    action: 'allow',
+    description: 'Private network 10.0.0.0/8',
+  },
+  {
+    cidr: '172.16.0.0/12',
+    action: 'allow',
+    description: 'Private network 172.16.0.0/12',
+  },
+  {
+    cidr: '192.168.0.0/16',
+    action: 'allow',
+    description: 'Private network 192.168.0.0/16',
+  },
+  {
+    cidr: '127.0.0.0/8',
+    action: 'allow',
+    description: 'Loopback addresses',
+  },
+]);
 
 const allowedPaths = [
   '/api/health',
@@ -60,30 +57,34 @@ const allowedPaths = [
 ];
 
 const bypassIPCheck = (pathname: string): boolean => {
-  return allowedPaths.some(path => pathname.startsWith(path));
+  return allowedPaths.some((path) => pathname.startsWith(path));
 };
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  
+
   if (bypassIPCheck(pathname)) {
     return NextResponse.next();
   }
-  
-  const clientIP = getClientIP(request.headers);
-  
+
+  const headersRecord: Record<string, string | string[] | undefined> = {};
+  request.headers.forEach((value, key) => {
+    headersRecord[key] = value;
+  });
+  const clientIP = getClientIP(headersRecord);
+
   if (!isValidIPv4(clientIP)) {
     return NextResponse.json(
       { error: 'Invalid IP address', ip: clientIP },
       { status: 400 }
     );
   }
-  
+
   const isAllowed = checkIPAccess(clientIP, ipAccessConfig);
-  
+
   if (!isAllowed) {
     console.warn(`IP access denied: ${clientIP} - ${pathname}`);
-    
+
     return NextResponse.json(
       {
         error: 'Access denied',
@@ -93,20 +94,18 @@ export function middleware(request: NextRequest) {
       { status: 403 }
     );
   }
-  
+
   const response = NextResponse.next();
-  
+
   response.headers.set('X-Client-IP', clientIP);
   response.headers.set('X-Access-Control-Allow-Origin', '*');
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'DENY');
   response.headers.set('X-XSS-Protection', '1; mode=block');
-  
+
   return response;
 }
 
 export const config = {
-  matcher: [
-    '/((?!_next/static|_next/image|favicon.ico).*)',
-  ],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 };

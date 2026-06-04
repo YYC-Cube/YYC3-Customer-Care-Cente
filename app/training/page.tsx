@@ -10,10 +10,10 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { UserTrainingCenter } from "@/components/training/user-training-center"
+import { UserTrainingCenter } from '@/components/training/user-training-center';
 
 export default function TrainingPage() {
-  return <UserTrainingCenter />
+  return <UserTrainingCenter />;
 }

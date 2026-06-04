@@ -10,9 +10,9 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { FinanceChart } from "@/components/charts/finance-chart"
+import { FinanceChart } from '@/components/charts/finance-chart';
 
 export default function FinanceReportsPage() {
   return (
@@ -23,5 +23,5 @@ export default function FinanceReportsPage() {
       </div>
       <FinanceChart />
     </div>
-  )
+  );
 }
