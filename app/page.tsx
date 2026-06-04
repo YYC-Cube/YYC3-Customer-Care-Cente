@@ -10,15 +10,15 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { ResponsiveLayout } from "@/components/layout/responsive-layout"
-import { DashboardContent } from "@/components/dashboard-content"
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
+import { DashboardContent } from '@/components/dashboard-content';
 
 export default function HomePage() {
   return (
     <ResponsiveLayout showSidebar={true} showHeader={true}>
       <DashboardContent />
     </ResponsiveLayout>
-  )
+  );
 }

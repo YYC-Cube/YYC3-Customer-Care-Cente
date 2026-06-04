@@ -10,11 +10,18 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton"
-import { BarChart3, TrendingUp, Users, DollarSign, Target, Activity } from "lucide-react"
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import {
+  BarChart3,
+  TrendingUp,
+  Users,
+  DollarSign,
+  Target,
+  Activity,
+} from 'lucide-react';
 
 export default function AnalysisLoading() {
   return (
@@ -28,16 +35,18 @@ export default function AnalysisLoading() {
       {/* 统计卡片加载状态 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { icon: BarChart3, color: "bg-blue-100" },
-          { icon: TrendingUp, color: "bg-green-100" },
-          { icon: Users, color: "bg-purple-100" },
-          { icon: DollarSign, color: "bg-orange-100" },
+          { icon: BarChart3, color: 'bg-blue-100' },
+          { icon: TrendingUp, color: 'bg-green-100' },
+          { icon: Users, color: 'bg-purple-100' },
+          { icon: DollarSign, color: 'bg-orange-100' },
         ].map((item, index) => (
           <Card key={index} className="border-l-4 border-l-gray-200">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <Skeleton className="h-4 w-20" />
-                <div className={`w-8 h-8 rounded-lg ${item.color} flex items-center justify-center`}>
+                <div
+                  className={`w-8 h-8 rounded-lg ${item.color} flex items-center justify-center`}
+                >
                   <item.icon className="w-4 h-4 text-gray-400" />
                 </div>
               </div>
@@ -170,13 +179,17 @@ export default function AnalysisLoading() {
             <div className="flex items-center space-x-3">
               <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
               <div className="space-y-1">
-                <p className="text-sm font-medium text-blue-900">正在加载分析数据</p>
-                <p className="text-xs text-blue-600">请稍候，正在处理大量数据...</p>
+                <p className="text-sm font-medium text-blue-900">
+                  正在加载分析数据
+                </p>
+                <p className="text-xs text-blue-600">
+                  请稍候，正在处理大量数据...
+                </p>
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
     </div>
-  )
+  );
 }

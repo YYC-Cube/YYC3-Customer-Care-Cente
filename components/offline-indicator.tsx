@@ -10,63 +10,75 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { WifiOff, Wifi, AlertCircle } from "lucide-react"
+import { useState, useEffect } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { WifiOff, Wifi, AlertCircle } from 'lucide-react';
 
 export function OfflineIndicator() {
-  const [isOnline, setIsOnline] = useState(true)
-  const [showIndicator, setShowIndicator] = useState(false)
+  const [isOnline, setIsOnline] = useState(true);
+  const [showIndicator, setShowIndicator] = useState(false);
 
   useEffect(() => {
     const updateOnlineStatus = () => {
-      const online = navigator.onLine
-      setIsOnline(online)
+      const online = navigator.onLine;
+      setIsOnline(online);
 
       if (!online) {
-        setShowIndicator(true)
+        setShowIndicator(true);
       } else {
         // 延迟隐藏指示器，让用户看到连接恢复
-        setTimeout(() => setShowIndicator(false), 2000)
+        setTimeout(() => setShowIndicator(false), 2000);
       }
-    }
+    };
 
     // 初始状态检查
-    updateOnlineStatus()
+    updateOnlineStatus();
 
     // 监听网络状态变化
-    window.addEventListener("online", updateOnlineStatus)
-    window.addEventListener("offline", updateOnlineStatus)
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
 
     return () => {
-      window.removeEventListener("online", updateOnlineStatus)
-      window.removeEventListener("offline", updateOnlineStatus)
-    }
-  }, [])
+      window.removeEventListener('online', updateOnlineStatus);
+      window.removeEventListener('offline', updateOnlineStatus);
+    };
+  }, []);
 
-  if (!showIndicator) return null
+  if (!showIndicator) return null;
 
   return (
     <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-      <Card className={`${isOnline ? "bg-emerald-50 border-emerald-200" : "bg-orange-50 border-orange-200"} shadow-lg`}>
+      <Card
+        className={`${isOnline ? 'bg-emerald-50 border-emerald-200' : 'bg-orange-50 border-orange-200'} shadow-lg`}
+      >
         <CardContent className="px-4 py-2">
           <div className="flex items-center space-x-2">
             {isOnline ? (
               <>
                 <Wifi className="w-4 h-4 text-emerald-600" />
-                <span className="text-sm font-medium text-emerald-800">网络连接已恢复</span>
-                <Badge variant="outline" className="bg-emerald-100 text-emerald-700 border-emerald-300">
+                <span className="text-sm font-medium text-emerald-800">
+                  网络连接已恢复
+                </span>
+                <Badge
+                  variant="outline"
+                  className="bg-emerald-100 text-emerald-700 border-emerald-300"
+                >
                   在线
                 </Badge>
               </>
             ) : (
               <>
                 <WifiOff className="w-4 h-4 text-orange-600" />
-                <span className="text-sm font-medium text-orange-800">网络连接断开</span>
-                <Badge variant="outline" className="bg-orange-100 text-orange-700 border-orange-300">
+                <span className="text-sm font-medium text-orange-800">
+                  网络连接断开
+                </span>
+                <Badge
+                  variant="outline"
+                  className="bg-orange-100 text-orange-700 border-orange-300"
+                >
                   离线
                 </Badge>
               </>
@@ -81,5 +93,5 @@ export function OfflineIndicator() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -10,12 +10,18 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   CheckCircle,
   AlertTriangle,
@@ -30,7 +36,7 @@ import {
   Star,
   Zap,
   Activity,
-} from "lucide-react"
+} from 'lucide-react';
 
 // 导航栏功能分析数据
 const navigationAnalysis = {
@@ -42,226 +48,241 @@ const navigationAnalysis = {
   },
   modules: [
     {
-      id: "dashboard",
-      name: "综合看板",
-      icon: "Home",
-      status: "完成",
+      id: 'dashboard',
+      name: '综合看板',
+      icon: 'Home',
+      status: '完成',
       completeness: 95,
-      features: ["数据统计", "图表展示", "快速操作", "系统状态"],
-      issues: ["缺少实时数据更新"],
-      priority: "高",
+      features: ['数据统计', '图表展示', '快速操作', '系统状态'],
+      issues: ['缺少实时数据更新'],
+      priority: '高',
     },
     {
-      id: "customers",
-      name: "客户管理",
-      icon: "Users",
-      status: "进行中",
+      id: 'customers',
+      name: '客户管理',
+      icon: 'Users',
+      status: '进行中',
       completeness: 80,
-      features: ["客户列表", "详情查看", "编辑功能", "搜索筛选"],
-      issues: ["缺少批量操作", "导出功能待完善"],
-      priority: "高",
+      features: ['客户列表', '详情查看', '编辑功能', '搜索筛选'],
+      issues: ['缺少批量操作', '导出功能待完善'],
+      priority: '高',
     },
     {
-      id: "tasks",
-      name: "任务管理",
-      icon: "CheckSquare",
-      status: "进行中",
+      id: 'tasks',
+      name: '任务管理',
+      icon: 'CheckSquare',
+      status: '进行中',
       completeness: 75,
-      features: ["任务看板", "状态管理", "分配功能", "时间跟踪"],
-      issues: ["缺少依赖关系", "通知提醒待完善"],
-      priority: "高",
+      features: ['任务看板', '状态管理', '分配功能', '时间跟踪'],
+      issues: ['缺少依赖关系', '通知提醒待完善'],
+      priority: '高',
     },
     {
-      id: "finance",
-      name: "财务中心",
-      icon: "DollarSign",
-      status: "开发中",
+      id: 'finance',
+      name: '财务中心',
+      icon: 'DollarSign',
+      status: '开发中',
       completeness: 60,
-      features: ["基础框架", "数据展示"],
-      issues: ["核心功能未实现", "报表功能缺失"],
-      priority: "中",
+      features: ['基础框架', '数据展示'],
+      issues: ['核心功能未实现', '报表功能缺失'],
+      priority: '中',
     },
     {
-      id: "approval",
-      name: "OA审批",
-      icon: "FileCheck",
-      status: "规划中",
+      id: 'approval',
+      name: 'OA审批',
+      icon: 'FileCheck',
+      status: '规划中',
       completeness: 40,
-      features: ["基础界面"],
-      issues: ["工作流引擎未实现", "表单配置缺失"],
-      priority: "中",
+      features: ['基础界面'],
+      issues: ['工作流引擎未实现', '表单配置缺失'],
+      priority: '中',
     },
     {
-      id: "communication",
-      name: "内部沟通",
-      icon: "MessageCircle",
-      status: "规划中",
+      id: 'communication',
+      name: '内部沟通',
+      icon: 'MessageCircle',
+      status: '规划中',
       completeness: 35,
-      features: ["基础界面"],
-      issues: ["实时通信未实现", "文件分享功能缺失"],
-      priority: "中",
+      features: ['基础界面'],
+      issues: ['实时通信未实现', '文件分享功能缺失'],
+      priority: '中',
     },
     {
-      id: "okr",
-      name: "OKR管理",
-      icon: "Target",
-      status: "开发中",
+      id: 'okr',
+      name: 'OKR管理',
+      icon: 'Target',
+      status: '开发中',
       completeness: 50,
-      features: ["目标设置", "进度跟踪"],
-      issues: ["评估功能待完善", "团队协作功能缺失"],
-      priority: "低",
+      features: ['目标设置', '进度跟踪'],
+      issues: ['评估功能待完善', '团队协作功能缺失'],
+      priority: '低',
     },
     {
-      id: "kpi",
-      name: "KPI跟踪",
-      icon: "BarChart3",
-      status: "开发中",
+      id: 'kpi',
+      name: 'KPI跟踪',
+      icon: 'BarChart3',
+      status: '开发中',
       completeness: 45,
-      features: ["指标展示", "图表分析"],
-      issues: ["自定义指标功能缺失", "预警机制待实现"],
-      priority: "低",
+      features: ['指标展示', '图表分析'],
+      issues: ['自定义指标功能缺失', '预警机制待实现'],
+      priority: '低',
     },
     {
-      id: "analytics",
-      name: "数据分析",
-      icon: "TrendingUp",
-      status: "规划中",
+      id: 'analytics',
+      name: '数据分析',
+      icon: 'TrendingUp',
+      status: '规划中',
       completeness: 30,
-      features: ["基础图表"],
-      issues: ["高级分析功能缺失", "数据源集成待完善"],
-      priority: "低",
+      features: ['基础图表'],
+      issues: ['高级分析功能缺失', '数据源集成待完善'],
+      priority: '低',
     },
     {
-      id: "notifications",
-      name: "通知中心",
-      icon: "Bell",
-      status: "规划中",
+      id: 'notifications',
+      name: '通知中心',
+      icon: 'Bell',
+      status: '规划中',
       completeness: 25,
-      features: ["基础界面"],
-      issues: ["实时通知未实现", "消息分类功能缺失"],
-      priority: "中",
+      features: ['基础界面'],
+      issues: ['实时通知未实现', '消息分类功能缺失'],
+      priority: '中',
     },
     {
-      id: "permissions",
-      name: "权限管理",
-      icon: "Shield",
-      status: "规划中",
+      id: 'permissions',
+      name: '权限管理',
+      icon: 'Shield',
+      status: '规划中',
       completeness: 20,
-      features: ["基础界面"],
-      issues: ["角色权限系统未实现", "数据权限控制缺失"],
-      priority: "高",
+      features: ['基础界面'],
+      issues: ['角色权限系统未实现', '数据权限控制缺失'],
+      priority: '高',
     },
   ],
   usabilityIssues: [
     {
-      category: "导航体验",
-      issues: ["侧边栏折叠状态下缺少快速访问功能", "移动端导航体验需要优化", "面包屑导航缺失", "快捷键支持不足"],
-      severity: "中",
+      category: '导航体验',
+      issues: [
+        '侧边栏折叠状态下缺少快速访问功能',
+        '移动端导航体验需要优化',
+        '面包屑导航缺失',
+        '快捷键支持不足',
+      ],
+      severity: '中',
     },
     {
-      category: "视觉设计",
-      issues: ["激活状态指示不够明显", "图标与功能匹配度有待提升", "颜色对比度需要优化", "加载状态反馈不足"],
-      severity: "低",
+      category: '视觉设计',
+      issues: [
+        '激活状态指示不够明显',
+        '图标与功能匹配度有待提升',
+        '颜色对比度需要优化',
+        '加载状态反馈不足',
+      ],
+      severity: '低',
     },
     {
-      category: "交互反馈",
-      issues: ["点击反馈延迟", "悬停效果不一致", "错误状态处理不完善", "成功操作反馈缺失"],
-      severity: "中",
+      category: '交互反馈',
+      issues: [
+        '点击反馈延迟',
+        '悬停效果不一致',
+        '错误状态处理不完善',
+        '成功操作反馈缺失',
+      ],
+      severity: '中',
     },
   ],
   recommendations: [
     {
-      title: "优先完善核心模块",
-      description: "重点完善客户管理、任务管理和权限管理模块",
-      impact: "高",
-      effort: "中",
-      timeline: "2-3周",
+      title: '优先完善核心模块',
+      description: '重点完善客户管理、任务管理和权限管理模块',
+      impact: '高',
+      effort: '中',
+      timeline: '2-3周',
     },
     {
-      title: "改进导航体验",
-      description: "添加面包屑导航、快捷键支持和搜索功能",
-      impact: "中",
-      effort: "低",
-      timeline: "1周",
+      title: '改进导航体验',
+      description: '添加面包屑导航、快捷键支持和搜索功能',
+      impact: '中',
+      effort: '低',
+      timeline: '1周',
     },
     {
-      title: "统一视觉设计",
-      description: "规范图标使用、颜色方案和交互状态",
-      impact: "中",
-      effort: "低",
-      timeline: "1周",
+      title: '统一视觉设计',
+      description: '规范图标使用、颜色方案和交互状态',
+      impact: '中',
+      effort: '低',
+      timeline: '1周',
     },
     {
-      title: "移动端优化",
-      description: "优化移动端导航体验和响应式布局",
-      impact: "中",
-      effort: "中",
-      timeline: "2周",
+      title: '移动端优化',
+      description: '优化移动端导航体验和响应式布局',
+      impact: '中',
+      effort: '中',
+      timeline: '2周',
     },
     {
-      title: "性能优化",
-      description: "优化导航切换性能和页面加载速度",
-      impact: "中",
-      effort: "中",
-      timeline: "1-2周",
+      title: '性能优化',
+      description: '优化导航切换性能和页面加载速度',
+      impact: '中',
+      effort: '中',
+      timeline: '1-2周',
     },
   ],
-}
+};
 
 export function NavigationAnalysisReport() {
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "完成":
-        return "bg-emerald-100 text-emerald-700 border-emerald-200"
-      case "进行中":
-        return "bg-blue-100 text-blue-700 border-blue-200"
-      case "开发中":
-        return "bg-yellow-100 text-yellow-700 border-yellow-200"
-      case "规划中":
-        return "bg-orange-100 text-orange-700 border-orange-200"
+      case '完成':
+        return 'bg-emerald-100 text-emerald-700 border-emerald-200';
+      case '进行中':
+        return 'bg-blue-100 text-blue-700 border-blue-200';
+      case '开发中':
+        return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+      case '规划中':
+        return 'bg-orange-100 text-orange-700 border-orange-200';
       default:
-        return "bg-gray-100 text-gray-700 border-gray-200"
+        return 'bg-gray-100 text-gray-700 border-gray-200';
     }
-  }
+  };
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case "高":
-        return "bg-red-100 text-red-700 border-red-200"
-      case "中":
-        return "bg-yellow-100 text-yellow-700 border-yellow-200"
-      case "低":
-        return "bg-green-100 text-green-700 border-green-200"
+      case '高':
+        return 'bg-red-100 text-red-700 border-red-200';
+      case '中':
+        return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+      case '低':
+        return 'bg-green-100 text-green-700 border-green-200';
       default:
-        return "bg-gray-100 text-gray-700 border-gray-200"
+        return 'bg-gray-100 text-gray-700 border-gray-200';
     }
-  }
+  };
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {
-      case "高":
-        return "text-red-600"
-      case "中":
-        return "text-yellow-600"
-      case "低":
-        return "text-green-600"
+      case '高':
+        return 'text-red-600';
+      case '中':
+        return 'text-yellow-600';
+      case '低':
+        return 'text-green-600';
       default:
-        return "text-gray-600"
+        return 'text-gray-600';
     }
-  }
+  };
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
-      case "高":
-        return "bg-red-50 text-red-700 border-red-200"
-      case "中":
-        return "bg-yellow-50 text-yellow-700 border-yellow-200"
-      case "低":
-        return "bg-green-50 text-green-700 border-green-200"
+      case '高':
+        return 'bg-red-50 text-red-700 border-red-200';
+      case '中':
+        return 'bg-yellow-50 text-yellow-700 border-yellow-200';
+      case '低':
+        return 'bg-green-50 text-green-700 border-green-200';
       default:
-        return "bg-gray-50 text-gray-700 border-gray-200"
+        return 'bg-gray-50 text-gray-700 border-gray-200';
     }
-  }
+  };
 
   return (
     <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/50 to-blue-50/30 min-h-full">
@@ -275,21 +296,32 @@ export function NavigationAnalysisReport() {
             导航栏功能完善度分析报告
           </h1>
           <p className="text-slate-600 mt-2">企业管理系统全局审核与优化建议</p>
-          <p className="text-sm text-slate-500">生成时间: {new Date().toLocaleDateString("zh-CN")} • 版本: v1.0</p>
+          <p className="text-sm text-slate-500">
+            生成时间: {new Date().toLocaleDateString('zh-CN')} • 版本: v1.0
+          </p>
         </div>
       </div>
 
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="bg-sky-100/50 border border-sky-200 mb-6">
-          <TabsTrigger value="overview" className="data-[state=active]:bg-white data-[state=active]:text-sky-700">
+          <TabsTrigger
+            value="overview"
+            className="data-[state=active]:bg-white data-[state=active]:text-sky-700"
+          >
             <BarChart3 className="w-4 h-4 mr-2" />
             总体概览
           </TabsTrigger>
-          <TabsTrigger value="modules" className="data-[state=active]:bg-white data-[state=active]:text-sky-700">
+          <TabsTrigger
+            value="modules"
+            className="data-[state=active]:bg-white data-[state=active]:text-sky-700"
+          >
             <Package className="w-4 h-4 mr-2" />
             模块分析
           </TabsTrigger>
-          <TabsTrigger value="issues" className="data-[state=active]:bg-white data-[state=active]:text-sky-700">
+          <TabsTrigger
+            value="issues"
+            className="data-[state=active]:bg-white data-[state=active]:text-sky-700"
+          >
             <AlertTriangle className="w-4 h-4 mr-2" />
             问题识别
           </TabsTrigger>
@@ -318,44 +350,64 @@ export function NavigationAnalysisReport() {
                   <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-sky-500 rounded-3xl flex items-center justify-center mx-auto mb-3">
                     <CheckCircle className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="font-semibold text-slate-800 mb-1">功能完整性</h3>
+                  <h3 className="font-semibold text-slate-800 mb-1">
+                    功能完整性
+                  </h3>
                   <div className="text-3xl font-bold text-blue-600 mb-2">
                     {navigationAnalysis.overall.completeness}%
                   </div>
-                  <Progress value={navigationAnalysis.overall.completeness} className="h-2" />
+                  <Progress
+                    value={navigationAnalysis.overall.completeness}
+                    className="h-2"
+                  />
                 </div>
 
                 <div className="text-center">
                   <div className="w-20 h-20 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-3xl flex items-center justify-center mx-auto mb-3">
                     <Users className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="font-semibold text-slate-800 mb-1">用户体验</h3>
+                  <h3 className="font-semibold text-slate-800 mb-1">
+                    用户体验
+                  </h3>
                   <div className="text-3xl font-bold text-emerald-600 mb-2">
                     {navigationAnalysis.overall.usability}%
                   </div>
-                  <Progress value={navigationAnalysis.overall.usability} className="h-2" />
+                  <Progress
+                    value={navigationAnalysis.overall.usability}
+                    className="h-2"
+                  />
                 </div>
 
                 <div className="text-center">
                   <div className="w-20 h-20 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-3xl flex items-center justify-center mx-auto mb-3">
                     <Zap className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="font-semibold text-slate-800 mb-1">性能表现</h3>
+                  <h3 className="font-semibold text-slate-800 mb-1">
+                    性能表现
+                  </h3>
                   <div className="text-3xl font-bold text-purple-600 mb-2">
                     {navigationAnalysis.overall.performance}%
                   </div>
-                  <Progress value={navigationAnalysis.overall.performance} className="h-2" />
+                  <Progress
+                    value={navigationAnalysis.overall.performance}
+                    className="h-2"
+                  />
                 </div>
 
                 <div className="text-center">
                   <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-3xl flex items-center justify-center mx-auto mb-3">
                     <Shield className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="font-semibold text-slate-800 mb-1">可访问性</h3>
+                  <h3 className="font-semibold text-slate-800 mb-1">
+                    可访问性
+                  </h3>
                   <div className="text-3xl font-bold text-orange-600 mb-2">
                     {navigationAnalysis.overall.accessibility}%
                   </div>
-                  <Progress value={navigationAnalysis.overall.accessibility} className="h-2" />
+                  <Progress
+                    value={navigationAnalysis.overall.accessibility}
+                    className="h-2"
+                  />
                 </div>
               </div>
             </CardContent>
@@ -376,7 +428,11 @@ export function NavigationAnalysisReport() {
                       <span className="font-medium text-slate-800">已完成</span>
                     </div>
                     <div className="text-lg font-bold text-emerald-600">
-                      {navigationAnalysis.modules.filter((m) => m.status === "完成").length}
+                      {
+                        navigationAnalysis.modules.filter(
+                          (m) => m.status === '完成'
+                        ).length
+                      }
                     </div>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-blue-50/50 rounded-lg">
@@ -385,7 +441,11 @@ export function NavigationAnalysisReport() {
                       <span className="font-medium text-slate-800">进行中</span>
                     </div>
                     <div className="text-lg font-bold text-blue-600">
-                      {navigationAnalysis.modules.filter((m) => m.status === "进行中").length}
+                      {
+                        navigationAnalysis.modules.filter(
+                          (m) => m.status === '进行中'
+                        ).length
+                      }
                     </div>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-yellow-50/50 rounded-lg">
@@ -394,7 +454,11 @@ export function NavigationAnalysisReport() {
                       <span className="font-medium text-slate-800">开发中</span>
                     </div>
                     <div className="text-lg font-bold text-yellow-600">
-                      {navigationAnalysis.modules.filter((m) => m.status === "开发中").length}
+                      {
+                        navigationAnalysis.modules.filter(
+                          (m) => m.status === '开发中'
+                        ).length
+                      }
                     </div>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-orange-50/50 rounded-lg">
@@ -403,7 +467,11 @@ export function NavigationAnalysisReport() {
                       <span className="font-medium text-slate-800">规划中</span>
                     </div>
                     <div className="text-lg font-bold text-orange-600">
-                      {navigationAnalysis.modules.filter((m) => m.status === "规划中").length}
+                      {
+                        navigationAnalysis.modules.filter(
+                          (m) => m.status === '规划中'
+                        ).length
+                      }
                     </div>
                   </div>
                 </div>
@@ -424,7 +492,12 @@ export function NavigationAnalysisReport() {
                         <div className="bg-gradient-to-r from-red-400 to-red-500 h-2 rounded-full w-1/2" />
                       </div>
                       <span className="font-medium text-red-600">
-                        {navigationAnalysis.modules.filter((m) => m.priority === "高").length}个
+                        {
+                          navigationAnalysis.modules.filter(
+                            (m) => m.priority === '高'
+                          ).length
+                        }
+                        个
                       </span>
                     </div>
                   </div>
@@ -435,7 +508,12 @@ export function NavigationAnalysisReport() {
                         <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 h-2 rounded-full w-1/3" />
                       </div>
                       <span className="font-medium text-yellow-600">
-                        {navigationAnalysis.modules.filter((m) => m.priority === "中").length}个
+                        {
+                          navigationAnalysis.modules.filter(
+                            (m) => m.priority === '中'
+                          ).length
+                        }
+                        个
                       </span>
                     </div>
                   </div>
@@ -446,7 +524,12 @@ export function NavigationAnalysisReport() {
                         <div className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full w-1/4" />
                       </div>
                       <span className="font-medium text-green-600">
-                        {navigationAnalysis.modules.filter((m) => m.priority === "低").length}个
+                        {
+                          navigationAnalysis.modules.filter(
+                            (m) => m.priority === '低'
+                          ).length
+                        }
+                        个
                       </span>
                     </div>
                   </div>
@@ -475,15 +558,25 @@ export function NavigationAnalysisReport() {
                           <Home className="w-5 h-5 text-white" />
                         </div>
                         <div>
-                          <h4 className="font-medium text-slate-800">{module.name}</h4>
-                          <p className="text-sm text-slate-500">ID: {module.id}</p>
+                          <h4 className="font-medium text-slate-800">
+                            {module.name}
+                          </h4>
+                          <p className="text-sm text-slate-500">
+                            ID: {module.id}
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Badge variant="outline" className={getStatusColor(module.status)}>
+                        <Badge
+                          variant="outline"
+                          className={getStatusColor(module.status)}
+                        >
                           {module.status}
                         </Badge>
-                        <Badge variant="outline" className={getPriorityColor(module.priority)}>
+                        <Badge
+                          variant="outline"
+                          className={getPriorityColor(module.priority)}
+                        >
                           {module.priority}优先级
                         </Badge>
                       </div>
@@ -491,8 +584,12 @@ export function NavigationAnalysisReport() {
 
                     <div className="mb-3">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-sm font-medium text-slate-600">完善度</span>
-                        <span className="text-sm font-bold text-slate-800">{module.completeness}%</span>
+                        <span className="text-sm font-medium text-slate-600">
+                          完善度
+                        </span>
+                        <span className="text-sm font-bold text-slate-800">
+                          {module.completeness}%
+                        </span>
                       </div>
                       <div className="w-full bg-sky-100 rounded-full h-2">
                         <div
@@ -528,7 +625,10 @@ export function NavigationAnalysisReport() {
                         </h5>
                         <ul className="space-y-1">
                           {module.issues.map((issue, issueIndex) => (
-                            <li key={issueIndex} className="text-sm text-red-600 flex items-center">
+                            <li
+                              key={issueIndex}
+                              className="text-sm text-red-600 flex items-center"
+                            >
                               <div className="w-1.5 h-1.5 bg-red-400 rounded-full mr-2" />
                               {issue}
                             </li>
@@ -552,19 +652,28 @@ export function NavigationAnalysisReport() {
             <CardContent>
               <div className="space-y-6">
                 {navigationAnalysis.usabilityIssues.map((category, index) => (
-                  <div key={index} className="border rounded-xl p-4 bg-sky-50/30">
+                  <div
+                    key={index}
+                    className="border rounded-xl p-4 bg-sky-50/30"
+                  >
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="font-medium text-slate-800 flex items-center">
                         <AlertTriangle className="w-4 h-4 mr-2 text-orange-500" />
                         {category.category}
                       </h4>
-                      <Badge variant="outline" className={`${getSeverityColor(category.severity)} border-current`}>
+                      <Badge
+                        variant="outline"
+                        className={`${getSeverityColor(category.severity)} border-current`}
+                      >
                         {category.severity}严重度
                       </Badge>
                     </div>
                     <ul className="space-y-2">
                       {category.issues.map((issue, issueIndex) => (
-                        <li key={issueIndex} className="text-sm text-slate-600 flex items-start">
+                        <li
+                          key={issueIndex}
+                          className="text-sm text-slate-600 flex items-start"
+                        >
                           <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-2 mt-2 flex-shrink-0" />
                           {issue}
                         </li>
@@ -586,19 +695,32 @@ export function NavigationAnalysisReport() {
             <CardContent>
               <div className="space-y-4">
                 {navigationAnalysis.recommendations.map((rec, index) => (
-                  <div key={index} className="border rounded-xl p-4 hover:shadow-sm transition-all duration-200">
+                  <div
+                    key={index}
+                    className="border rounded-xl p-4 hover:shadow-sm transition-all duration-200"
+                  >
                     <div className="flex items-center justify-between mb-3">
-                      <h4 className="font-medium text-slate-800">{rec.title}</h4>
+                      <h4 className="font-medium text-slate-800">
+                        {rec.title}
+                      </h4>
                       <div className="flex items-center space-x-2">
-                        <Badge variant="outline" className={getImpactColor(rec.impact)}>
+                        <Badge
+                          variant="outline"
+                          className={getImpactColor(rec.impact)}
+                        >
                           {rec.impact}影响
                         </Badge>
-                        <Badge variant="outline" className="bg-sky-50 text-sky-600 border-sky-200">
+                        <Badge
+                          variant="outline"
+                          className="bg-sky-50 text-sky-600 border-sky-200"
+                        >
                           {rec.timeline}
                         </Badge>
                       </div>
                     </div>
-                    <p className="text-sm text-slate-600 mb-2">{rec.description}</p>
+                    <p className="text-sm text-slate-600 mb-2">
+                      {rec.description}
+                    </p>
                     <div className="flex items-center text-xs text-slate-500">
                       <Star className="w-3 h-3 mr-1 text-yellow-500" />
                       预期工作量: {rec.effort} • 预计时间: {rec.timeline}
@@ -618,7 +740,9 @@ export function NavigationAnalysisReport() {
             <CardContent>
               <div className="space-y-4">
                 <div className="p-4 bg-red-50/50 rounded-xl border border-red-200">
-                  <h5 className="font-medium text-red-800 mb-2">🔥 紧急优化 (本周)</h5>
+                  <h5 className="font-medium text-red-800 mb-2">
+                    🔥 紧急优化 (本周)
+                  </h5>
                   <ul className="space-y-1 text-sm text-red-700">
                     <li>• 完善客户管理模块的批量操作功能</li>
                     <li>• 实现权限管理的基础角色系统</li>
@@ -627,7 +751,9 @@ export function NavigationAnalysisReport() {
                 </div>
 
                 <div className="p-4 bg-yellow-50/50 rounded-xl border border-yellow-200">
-                  <h5 className="font-medium text-yellow-800 mb-2">⚡ 重要改进 (2周内)</h5>
+                  <h5 className="font-medium text-yellow-800 mb-2">
+                    ⚡ 重要改进 (2周内)
+                  </h5>
                   <ul className="space-y-1 text-sm text-yellow-700">
                     <li>• 添加面包屑导航和快捷键支持</li>
                     <li>• 优化移动端导航体验</li>
@@ -637,7 +763,9 @@ export function NavigationAnalysisReport() {
                 </div>
 
                 <div className="p-4 bg-blue-50/50 rounded-xl border border-blue-200">
-                  <h5 className="font-medium text-blue-800 mb-2">📈 功能扩展 (1个月内)</h5>
+                  <h5 className="font-medium text-blue-800 mb-2">
+                    📈 功能扩展 (1个月内)
+                  </h5>
                   <ul className="space-y-1 text-sm text-blue-700">
                     <li>• 实现财务模块的核心功能</li>
                     <li>• 开发OA审批的工作流引擎</li>
@@ -651,5 +779,5 @@ export function NavigationAnalysisReport() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

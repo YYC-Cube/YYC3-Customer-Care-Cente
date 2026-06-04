@@ -31,28 +31,30 @@
 ### 修复方式
 
 **修复前：**
+
 ```tsx
-import { AdaptiveSidebar } from "@/components/layout/adaptive-sidebar"
+import { AdaptiveSidebar } from '@/components/layout/adaptive-sidebar';
 
 export default function Page() {
   return (
     <AdaptiveSidebar defaultModule="module-name">
       <PageContent />
     </AdaptiveSidebar>
-  )
+  );
 }
 ```
 
 **修复后：**
+
 ```tsx
-import { ResponsiveLayout } from "@/components/layout/responsive-layout"
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
 
 export default function Page() {
   return (
     <ResponsiveLayout showSidebar={true} showHeader={true}>
       <PageContent />
     </ResponsiveLayout>
-  )
+  );
 }
 ```
 
@@ -108,6 +110,7 @@ RootLayout (app/layout.tsx)
 所有页面文件已验证不再使用 `AdaptiveSidebar` 组件，全部改用 `ResponsiveLayout` 组件。
 
 运行命令验证：
+
 ```bash
 find app -name "page.tsx" -type f -exec grep -l "AdaptiveSidebar" {} \;
 ```
@@ -133,7 +136,7 @@ find app -name "page.tsx" -type f -exec grep -l "AdaptiveSidebar" {} \;
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

@@ -10,8 +10,8 @@
  * @license MIT
  */
 
-import { DatabaseManager } from "@/components/database-manager"
+import { DatabaseManager } from '@/components/database-manager';
 
 export default function DatabasePage() {
-  return <DatabaseManager />
+  return <DatabaseManager />;
 }

@@ -85,10 +85,10 @@ python YYC3-CCC-文档闭环生成器.py --update
 
 ## 📊 文档状态
 
-| 文档编号 | 文档名称 | 状态 | 更新日期 |
-|---------|---------|------|---------|
-| 001 | YYC3-CCC.py | ✅ 已完成 | 2026-01-23 |
-| 002 | YYC3-CCC-文档闭环生成器.py | ✅ 已完成 | 2026-01-23 |
+| 文档编号 | 文档名称                   | 状态      | 更新日期   |
+| -------- | -------------------------- | --------- | ---------- |
+| 001      | YYC3-CCC.py                | ✅ 已完成 | 2026-01-23 |
+| 002      | YYC3-CCC-文档闭环生成器.py | ✅ 已完成 | 2026-01-23 |
 
 ## 🔧 脚本工具
 
@@ -211,8 +211,9 @@ python YYC3-CCC-文档闭环生成器.py --directory 部署运维
 
 <div align="center">
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」
+
 </div>

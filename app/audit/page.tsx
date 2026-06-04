@@ -10,10 +10,10 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { GlobalStartupAudit } from "@/components/global-startup-audit"
+import { GlobalStartupAudit } from '@/components/global-startup-audit';
 
 export default function AuditPage() {
-  return <GlobalStartupAudit />
+  return <GlobalStartupAudit />;
 }

@@ -9,11 +9,11 @@
 @tags: [类型定义],[前端],[接口数据]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -28,9 +28,11 @@
 ### 1. 背景与目标
 
 #### 1.1 项目背景
+
 YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五化」理念的现代化AI代理服务落地页，采用Next.js 15.0.3构建，集成了国际化系统、3D场景交互、动画效果和响应式设计。
 
 #### 1.2 文档目标
+
 - 规范前端-请求响应数据类型相关的业务标准与技术落地要求
 - 为项目相关人员提供清晰的参考依据
 - 保障相关模块开发、实施、运维的一致性与规范性
@@ -38,6 +40,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 ### 2. 设计原则
 
 #### 2.1 五高原则
+
 - **高可用性**：确保系统7x24小时稳定运行
 - **高性能**：优化加载速度和交互响应
 - **高安全性**：保护用户数据和隐私安全
@@ -45,6 +48,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **高可维护性**：便于后续维护和升级
 
 #### 2.2 五标体系
+
 - **标准化**：统一的技术和流程标准
 - **规范化**：严格的开发和管理规范
 - **自动化**：提高开发效率和质量
@@ -52,6 +56,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **可视化**：直观的监控和管理界面
 
 #### 2.3 五化架构
+
 - **流程化**：标准化的开发流程
 - **文档化**：完善的文档体系
 - **工具化**：高效的开发工具链
@@ -76,7 +81,14 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 
 ```typescript
 // API请求方法类型
-export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'OPTIONS' | 'HEAD';
+export type HttpMethod =
+  | 'GET'
+  | 'POST'
+  | 'PUT'
+  | 'DELETE'
+  | 'PATCH'
+  | 'OPTIONS'
+  | 'HEAD';
 
 // API请求头类型
 export interface HttpHeaders {
@@ -175,7 +187,13 @@ export interface UserInfo {
 
 ```typescript
 // 错误类型
-export type ErrorType = 'validation' | 'authentication' | 'authorization' | 'server' | 'network' | 'unknown';
+export type ErrorType =
+  | 'validation'
+  | 'authentication'
+  | 'authorization'
+  | 'server'
+  | 'network'
+  | 'unknown';
 
 // 错误详情接口
 export interface ErrorDetail {
@@ -218,7 +236,7 @@ export interface UnknownError extends ApiError {
 }
 
 // 通用错误接口
-export type GenericError = 
+export type GenericError =
   | ValidationError
   | AuthenticationError
   | AuthorizationError
@@ -254,7 +272,18 @@ export interface SortingRequest {
 }
 
 // 筛选操作类型
-export type FilterOperator = 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'contains' | 'startsWith' | 'endsWith' | 'in' | 'notIn';
+export type FilterOperator =
+  | 'eq'
+  | 'ne'
+  | 'gt'
+  | 'gte'
+  | 'lt'
+  | 'lte'
+  | 'contains'
+  | 'startsWith'
+  | 'endsWith'
+  | 'in'
+  | 'notIn';
 
 // 筛选条件接口
 export interface FilterCondition {
@@ -270,7 +299,10 @@ export interface FilterRequest {
 }
 
 // 综合查询参数接口
-export interface QueryRequest extends PaginationRequest, SortingRequest, FilterRequest {
+export interface QueryRequest
+  extends PaginationRequest,
+    SortingRequest,
+    FilterRequest {
   // 扩展字段
 }
 ```
@@ -281,7 +313,14 @@ export interface QueryRequest extends PaginationRequest, SortingRequest, FilterR
 
 ```typescript
 // 服务分类类型
-export type ServiceCategory = 'ai' | 'customer-support' | 'sales' | 'marketing' | 'it' | 'hr' | 'finance';
+export type ServiceCategory =
+  | 'ai'
+  | 'customer-support'
+  | 'sales'
+  | 'marketing'
+  | 'it'
+  | 'hr'
+  | 'finance';
 
 // 服务状态类型
 export type ServiceStatus = 'active' | 'inactive' | 'coming-soon';
@@ -542,7 +581,13 @@ export interface FileDeleteRequest {
 
 ```typescript
 // WebSocket事件类型
-export type WebSocketEvent = 'connect' | 'disconnect' | 'error' | 'message' | 'ping' | 'pong';
+export type WebSocketEvent =
+  | 'connect'
+  | 'disconnect'
+  | 'error'
+  | 'message'
+  | 'ping'
+  | 'pong';
 
 // WebSocket消息类型
 export type WebSocketMessageType = 'text' | 'json' | 'binary';
@@ -566,12 +611,17 @@ export interface WebSocketConfig {
 }
 
 // WebSocket状态类型
-export type WebSocketStatus = 'connecting' | 'connected' | 'disconnecting' | 'disconnected' | 'error';
+export type WebSocketStatus =
+  | 'connecting'
+  | 'connected'
+  | 'disconnecting'
+  | 'disconnected'
+  | 'error';
 ```
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

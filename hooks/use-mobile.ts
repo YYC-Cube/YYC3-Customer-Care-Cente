@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react';
 
 /**
  * 🎯 useMediaQuery
@@ -10,18 +10,18 @@ import { useState, useEffect } from "react"
  * @returns 是否匹配该媒体查询
  */
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false)
+  const [matches, setMatches] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return
+    if (typeof window === 'undefined') return;
 
-    const mediaQueryList = window.matchMedia(query)
-    const updateMatch = () => setMatches(mediaQueryList.matches)
+    const mediaQueryList = window.matchMedia(query);
+    const updateMatch = () => setMatches(mediaQueryList.matches);
 
-    updateMatch()
-    mediaQueryList.addEventListener("change", updateMatch)
-    return () => mediaQueryList.removeEventListener("change", updateMatch)
-  }, [query])
+    updateMatch();
+    mediaQueryList.addEventListener('change', updateMatch);
+    return () => mediaQueryList.removeEventListener('change', updateMatch);
+  }, [query]);
 
-  return matches
+  return matches;
 }

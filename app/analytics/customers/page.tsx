@@ -10,9 +10,9 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { CustomerManagement } from "@/components/customer-management"
+import { CustomerManagement } from '@/components/customer-management';
 
 export default function CustomerAnalyticsPage() {
   return (
@@ -23,5 +23,5 @@ export default function CustomerAnalyticsPage() {
       </div>
       <CustomerManagement />
     </div>
-  )
+  );
 }

@@ -10,14 +10,20 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
-import { CheckSquare, Clock, Plus, Calendar, Flag, User } from "lucide-react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { CheckSquare, Clock, Plus, Calendar, Flag, User } from 'lucide-react';
 
 export function TaskModule() {
   return (
@@ -132,36 +138,36 @@ export function TaskModule() {
               <div className="space-y-3">
                 {[
                   {
-                    title: "客户管理系统优化",
-                    project: "CRM项目",
-                    assignee: "张三",
-                    priority: "高",
+                    title: '客户管理系统优化',
+                    project: 'CRM项目',
+                    assignee: '张三',
+                    priority: '高',
                     progress: 75,
-                    dueDate: "2024-01-20",
+                    dueDate: '2024-01-20',
                   },
                   {
-                    title: "移动端界面设计",
-                    project: "APP开发",
-                    assignee: "李四",
-                    priority: "中",
+                    title: '移动端界面设计',
+                    project: 'APP开发',
+                    assignee: '李四',
+                    priority: '中',
                     progress: 45,
-                    dueDate: "2024-01-25",
+                    dueDate: '2024-01-25',
                   },
                   {
-                    title: "数据库性能优化",
-                    project: "系统升级",
-                    assignee: "王五",
-                    priority: "高",
+                    title: '数据库性能优化',
+                    project: '系统升级',
+                    assignee: '王五',
+                    priority: '高',
                     progress: 60,
-                    dueDate: "2024-01-18",
+                    dueDate: '2024-01-18',
                   },
                   {
-                    title: "用户反馈处理",
-                    project: "产品维护",
-                    assignee: "赵六",
-                    priority: "低",
+                    title: '用户反馈处理',
+                    project: '产品维护',
+                    assignee: '赵六',
+                    priority: '低',
                     progress: 30,
-                    dueDate: "2024-01-30",
+                    dueDate: '2024-01-30',
                   },
                 ].map((task, index) => (
                   <Card
@@ -187,7 +193,11 @@ export function TaskModule() {
                         <div className="flex items-center space-x-2">
                           <Badge
                             variant={
-                              task.priority === "高" ? "destructive" : task.priority === "中" ? "default" : "secondary"
+                              task.priority === '高'
+                                ? 'destructive'
+                                : task.priority === '中'
+                                  ? 'default'
+                                  : 'secondary'
                             }
                           >
                             {task.priority}
@@ -219,25 +229,25 @@ export function TaskModule() {
               <div className="space-y-3">
                 {[
                   {
-                    title: "用户登录功能开发",
-                    project: "Web平台",
-                    assignee: "张三",
-                    completedDate: "2024-01-15",
-                    duration: "5天",
+                    title: '用户登录功能开发',
+                    project: 'Web平台',
+                    assignee: '张三',
+                    completedDate: '2024-01-15',
+                    duration: '5天',
                   },
                   {
-                    title: "支付接口集成",
-                    project: "电商系统",
-                    assignee: "李四",
-                    completedDate: "2024-01-12",
-                    duration: "3天",
+                    title: '支付接口集成',
+                    project: '电商系统',
+                    assignee: '李四',
+                    completedDate: '2024-01-12',
+                    duration: '3天',
                   },
                   {
-                    title: "数据报表设计",
-                    project: "BI系统",
-                    assignee: "王五",
-                    completedDate: "2024-01-10",
-                    duration: "7天",
+                    title: '数据报表设计',
+                    project: 'BI系统',
+                    assignee: '王五',
+                    completedDate: '2024-01-10',
+                    duration: '7天',
                   },
                 ].map((task, index) => (
                   <Card
@@ -260,9 +270,15 @@ export function TaskModule() {
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-sm font-medium text-green-600">已完成</div>
-                          <div className="text-xs text-muted-foreground">{task.completedDate}</div>
-                          <div className="text-xs text-muted-foreground">耗时: {task.duration}</div>
+                          <div className="text-sm font-medium text-green-600">
+                            已完成
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {task.completedDate}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            耗时: {task.duration}
+                          </div>
                         </div>
                       </div>
                     </CardContent>
@@ -275,24 +291,24 @@ export function TaskModule() {
               <div className="space-y-3">
                 {[
                   {
-                    title: "系统安全审计",
-                    project: "安全项目",
-                    assignee: "张三",
-                    dueDate: "2024-01-10",
+                    title: '系统安全审计',
+                    project: '安全项目',
+                    assignee: '张三',
+                    dueDate: '2024-01-10',
                     overdueDays: 5,
                   },
                   {
-                    title: "API文档更新",
-                    project: "开发文档",
-                    assignee: "李四",
-                    dueDate: "2024-01-08",
+                    title: 'API文档更新',
+                    project: '开发文档',
+                    assignee: '李四',
+                    dueDate: '2024-01-08',
                     overdueDays: 7,
                   },
                   {
-                    title: "性能测试报告",
-                    project: "测试项目",
-                    assignee: "王五",
-                    dueDate: "2024-01-12",
+                    title: '性能测试报告',
+                    project: '测试项目',
+                    assignee: '王五',
+                    dueDate: '2024-01-12',
                     overdueDays: 3,
                   },
                 ].map((task, index) => (
@@ -316,8 +332,12 @@ export function TaskModule() {
                           </div>
                         </div>
                         <div className="text-right">
-                          <Badge variant="destructive">逾期 {task.overdueDays} 天</Badge>
-                          <div className="text-xs text-muted-foreground mt-1">截止: {task.dueDate}</div>
+                          <Badge variant="destructive">
+                            逾期 {task.overdueDays} 天
+                          </Badge>
+                          <div className="text-xs text-muted-foreground mt-1">
+                            截止: {task.dueDate}
+                          </div>
                           <Button variant="outline" size="sm" className="mt-2">
                             立即处理
                           </Button>
@@ -332,12 +352,48 @@ export function TaskModule() {
             <TabsContent value="team" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
-                  { name: "张三", role: "前端开发", tasks: 12, completed: 8, avatar: "Z" },
-                  { name: "李四", role: "后端开发", tasks: 15, completed: 11, avatar: "L" },
-                  { name: "王五", role: "UI设计师", tasks: 8, completed: 6, avatar: "W" },
-                  { name: "赵六", role: "测试工程师", tasks: 10, completed: 9, avatar: "Z" },
-                  { name: "钱七", role: "产品经理", tasks: 6, completed: 4, avatar: "Q" },
-                  { name: "孙八", role: "项目经理", tasks: 5, completed: 5, avatar: "S" },
+                  {
+                    name: '张三',
+                    role: '前端开发',
+                    tasks: 12,
+                    completed: 8,
+                    avatar: 'Z',
+                  },
+                  {
+                    name: '李四',
+                    role: '后端开发',
+                    tasks: 15,
+                    completed: 11,
+                    avatar: 'L',
+                  },
+                  {
+                    name: '王五',
+                    role: 'UI设计师',
+                    tasks: 8,
+                    completed: 6,
+                    avatar: 'W',
+                  },
+                  {
+                    name: '赵六',
+                    role: '测试工程师',
+                    tasks: 10,
+                    completed: 9,
+                    avatar: 'Z',
+                  },
+                  {
+                    name: '钱七',
+                    role: '产品经理',
+                    tasks: 6,
+                    completed: 4,
+                    avatar: 'Q',
+                  },
+                  {
+                    name: '孙八',
+                    role: '项目经理',
+                    tasks: 5,
+                    completed: 5,
+                    avatar: 'S',
+                  },
                 ].map((member, index) => (
                   <Card
                     key={index}
@@ -350,7 +406,9 @@ export function TaskModule() {
                         </div>
                         <div>
                           <h3 className="font-medium">{member.name}</h3>
-                          <p className="text-sm text-muted-foreground">{member.role}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {member.role}
+                          </p>
                         </div>
                       </div>
                       <div className="space-y-2">
@@ -363,11 +421,14 @@ export function TaskModule() {
                         <div className="w-full h-2 bg-sky-100 rounded-full overflow-hidden">
                           <div
                             className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full"
-                            style={{ width: `${(member.completed / member.tasks) * 100}%` }}
+                            style={{
+                              width: `${(member.completed / member.tasks) * 100}%`,
+                            }}
                           ></div>
                         </div>
                         <div className="text-xs text-muted-foreground">
-                          完成率: {Math.round((member.completed / member.tasks) * 100)}%
+                          完成率:{' '}
+                          {Math.round((member.completed / member.tasks) * 100)}%
                         </div>
                       </div>
                     </CardContent>
@@ -379,5 +440,5 @@ export function TaskModule() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

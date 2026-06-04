@@ -10,130 +10,155 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { ResponsiveLayout } from "@/components/layout/responsive-layout"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Target, TrendingUp, TrendingDown, AlertTriangle, CheckCircle, BarChart3, Users, DollarSign, Activity, Calendar, Settings, Plus } from 'lucide-react'
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
+  Target,
+  TrendingUp,
+  TrendingDown,
+  AlertTriangle,
+  CheckCircle,
+  BarChart3,
+  Users,
+  DollarSign,
+  Activity,
+  Calendar,
+  Settings,
+  Plus,
+} from 'lucide-react';
 
 export default function KPIPage() {
   const kpis = [
     {
-      id: "KPI-001",
-      name: "月度销售额",
-      category: "销售",
+      id: 'KPI-001',
+      name: '月度销售额',
+      category: '销售',
       current: 2847392,
       target: 3000000,
-      unit: "¥",
-      trend: "up",
+      unit: '¥',
+      trend: 'up',
       change: 12.5,
-      status: "on-track",
-      description: "本月销售收入总额",
+      status: 'on-track',
+      description: '本月销售收入总额',
     },
     {
-      id: "KPI-002",
-      name: "客户满意度",
-      category: "客户",
+      id: 'KPI-002',
+      name: '客户满意度',
+      category: '客户',
       current: 4.2,
       target: 4.5,
-      unit: "分",
-      trend: "up",
+      unit: '分',
+      trend: 'up',
       change: 5.2,
-      status: "at-risk",
-      description: "客户满意度评分",
+      status: 'at-risk',
+      description: '客户满意度评分',
     },
     {
-      id: "KPI-003",
-      name: "员工效率",
-      category: "运营",
+      id: 'KPI-003',
+      name: '员工效率',
+      category: '运营',
       current: 85.6,
       target: 90,
-      unit: "%",
-      trend: "up",
+      unit: '%',
+      trend: 'up',
       change: 3.4,
-      status: "on-track",
-      description: "员工工作效率指标",
+      status: 'on-track',
+      description: '员工工作效率指标',
     },
     {
-      id: "KPI-004",
-      name: "成本控制率",
-      category: "财务",
+      id: 'KPI-004',
+      name: '成本控制率',
+      category: '财务',
       current: 78.2,
       target: 75,
-      unit: "%",
-      trend: "down",
+      unit: '%',
+      trend: 'down',
       change: -2.1,
-      status: "off-track",
-      description: "成本控制效果指标",
+      status: 'off-track',
+      description: '成本控制效果指标',
     },
-  ]
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "on-track":
-        return "bg-green-100 text-green-800"
-      case "at-risk":
-        return "bg-orange-100 text-orange-800"
-      case "off-track":
-        return "bg-red-100 text-red-800"
+      case 'on-track':
+        return 'bg-green-100 text-green-800';
+      case 'at-risk':
+        return 'bg-orange-100 text-orange-800';
+      case 'off-track':
+        return 'bg-red-100 text-red-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "on-track":
-        return "正常"
-      case "at-risk":
-        return "风险"
-      case "off-track":
-        return "异常"
+      case 'on-track':
+        return '正常';
+      case 'at-risk':
+        return '风险';
+      case 'off-track':
+        return '异常';
       default:
-        return "未知"
+        return '未知';
     }
-  }
+  };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case "on-track":
-        return <CheckCircle className="w-4 h-4 text-green-600" />
-      case "at-risk":
-        return <AlertTriangle className="w-4 h-4 text-orange-600" />
-      case "off-track":
-        return <AlertTriangle className="w-4 h-4 text-red-600" />
+      case 'on-track':
+        return <CheckCircle className="w-4 h-4 text-green-600" />;
+      case 'at-risk':
+        return <AlertTriangle className="w-4 h-4 text-orange-600" />;
+      case 'off-track':
+        return <AlertTriangle className="w-4 h-4 text-red-600" />;
       default:
-        return <Target className="w-4 h-4 text-gray-600" />
+        return <Target className="w-4 h-4 text-gray-600" />;
     }
-  }
+  };
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case "销售":
-        return "bg-orange-100 text-orange-800"
-      case "客户":
-        return "bg-orange-100 text-orange-800"
-      case "运营":
-        return "bg-orange-100 text-orange-800"
-      case "财务":
-        return "bg-orange-100 text-orange-800"
+      case '销售':
+        return 'bg-orange-100 text-orange-800';
+      case '客户':
+        return 'bg-orange-100 text-orange-800';
+      case '运营':
+        return 'bg-orange-100 text-orange-800';
+      case '财务':
+        return 'bg-orange-100 text-orange-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const calculateProgress = (current: number, target: number) => {
-    return Math.min((current / target) * 100, 100)
-  }
+    return Math.min((current / target) * 100, 100);
+  };
 
   const getProgressColor = (progress: number, status: string) => {
-    if (status === "off-track") return "from-red-400 to-red-500"
-    if (status === "at-risk") return "from-orange-400 to-orange-500"
-    return "from-orange-400 to-orange-500"
-  }
+    if (status === 'off-track') return 'from-red-400 to-red-500';
+    if (status === 'at-risk') return 'from-orange-400 to-orange-500';
+    return 'from-orange-400 to-orange-500';
+  };
 
   return (
     <ResponsiveLayout showSidebar={true} showHeader={true}>
@@ -182,7 +207,9 @@ export default function KPIPage() {
               <Target className="h-4 w-4 text-orange-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-orange-700">{kpis.length}</div>
+              <div className="text-2xl font-bold text-orange-700">
+                {kpis.length}
+              </div>
               <p className="text-xs text-gray-600">监控指标总数</p>
             </CardContent>
           </Card>
@@ -194,7 +221,7 @@ export default function KPIPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-700">
-                {kpis.filter((kpi) => kpi.status === "on-track").length}
+                {kpis.filter((kpi) => kpi.status === 'on-track').length}
               </div>
               <p className="text-xs text-gray-600">达标指标数量</p>
             </CardContent>
@@ -207,7 +234,7 @@ export default function KPIPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-orange-700">
-                {kpis.filter((kpi) => kpi.status === "at-risk").length}
+                {kpis.filter((kpi) => kpi.status === 'at-risk').length}
               </div>
               <p className="text-xs text-gray-600">需要关注</p>
             </CardContent>
@@ -220,7 +247,7 @@ export default function KPIPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-red-700">
-                {kpis.filter((kpi) => kpi.status === "off-track").length}
+                {kpis.filter((kpi) => kpi.status === 'off-track').length}
               </div>
               <p className="text-xs text-gray-600">需要处理</p>
             </CardContent>
@@ -246,27 +273,37 @@ export default function KPIPage() {
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex-1">
                       <div className="flex items-center space-x-3 mb-2">
-                        <h3 className="font-bold text-gray-900 text-lg">{kpi.name}</h3>
-                        <Badge className={getCategoryColor(kpi.category)}>{kpi.category}</Badge>
-                        <Badge className={getStatusColor(kpi.status)}>{getStatusText(kpi.status)}</Badge>
+                        <h3 className="font-bold text-gray-900 text-lg">
+                          {kpi.name}
+                        </h3>
+                        <Badge className={getCategoryColor(kpi.category)}>
+                          {kpi.category}
+                        </Badge>
+                        <Badge className={getStatusColor(kpi.status)}>
+                          {getStatusText(kpi.status)}
+                        </Badge>
                       </div>
                       <p className="text-gray-600 text-sm">{kpi.description}</p>
                     </div>
                     <div className="text-right">
                       <div className="text-2xl font-bold text-gray-900">
                         {kpi.unit}
-                        {kpi.unit === "¥" ? kpi.current.toLocaleString() : kpi.current}
+                        {kpi.unit === '¥'
+                          ? kpi.current.toLocaleString()
+                          : kpi.current}
                       </div>
                       <div className="text-sm text-gray-500">
                         目标: {kpi.unit}
-                        {kpi.unit === "¥" ? kpi.target.toLocaleString() : kpi.target}
+                        {kpi.unit === '¥'
+                          ? kpi.target.toLocaleString()
+                          : kpi.target}
                       </div>
                       <div
                         className={`flex items-center text-xs mt-1 ${
-                          kpi.trend === "up" ? "text-green-600" : "text-red-600"
+                          kpi.trend === 'up' ? 'text-green-600' : 'text-red-600'
                         }`}
                       >
-                        {kpi.trend === "up" ? (
+                        {kpi.trend === 'up' ? (
                           <TrendingUp className="w-3 h-3 mr-1" />
                         ) : (
                           <TrendingDown className="w-3 h-3 mr-1" />
@@ -279,15 +316,19 @@ export default function KPIPage() {
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span>完成进度</span>
-                      <span>{calculateProgress(kpi.current, kpi.target).toFixed(1)}%</span>
+                      <span>
+                        {calculateProgress(kpi.current, kpi.target).toFixed(1)}%
+                      </span>
                     </div>
                     <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
                       <div
                         className={`h-full bg-gradient-to-r ${getProgressColor(
                           calculateProgress(kpi.current, kpi.target),
-                          kpi.status,
+                          kpi.status
                         )} rounded-full transition-all duration-500`}
-                        style={{ width: `${calculateProgress(kpi.current, kpi.target)}%` }}
+                        style={{
+                          width: `${calculateProgress(kpi.current, kpi.target)}%`,
+                        }}
                       ></div>
                     </div>
                   </div>
@@ -324,11 +365,16 @@ export default function KPIPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {["销售", "客户", "运营", "财务"].map((category) => {
-                  const categoryKPIs = kpis.filter((kpi) => kpi.category === category)
+                {['销售', '客户', '运营', '财务'].map((category) => {
+                  const categoryKPIs = kpis.filter(
+                    (kpi) => kpi.category === category
+                  );
                   const avgProgress =
-                    categoryKPIs.reduce((sum, kpi) => sum + calculateProgress(kpi.current, kpi.target), 0) /
-                    categoryKPIs.length
+                    categoryKPIs.reduce(
+                      (sum, kpi) =>
+                        sum + calculateProgress(kpi.current, kpi.target),
+                      0
+                    ) / categoryKPIs.length;
                   return (
                     <div key={category} className="space-y-2">
                       <div className="flex justify-between text-sm">
@@ -342,7 +388,7 @@ export default function KPIPage() {
                         ></div>
                       </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
             </CardContent>
@@ -350,5 +396,5 @@ export default function KPIPage() {
         </div>
       </div>
     </ResponsiveLayout>
-  )
+  );
 }

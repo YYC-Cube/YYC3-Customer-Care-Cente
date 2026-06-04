@@ -10,14 +10,28 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
-import { Users, UserPlus, Phone, Mail, TrendingUp, Star, Calendar } from "lucide-react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import {
+  Users,
+  UserPlus,
+  Phone,
+  Mail,
+  TrendingUp,
+  Star,
+  Calendar,
+} from 'lucide-react';
 
 export function CustomerModule() {
   return (
@@ -132,36 +146,36 @@ export function CustomerModule() {
               <div className="space-y-3">
                 {[
                   {
-                    name: "张三",
-                    company: "科技有限公司",
-                    phone: "138****1234",
-                    email: "zhang@tech.com",
-                    status: "活跃",
-                    value: "¥125,000",
+                    name: '张三',
+                    company: '科技有限公司',
+                    phone: '138****1234',
+                    email: 'zhang@tech.com',
+                    status: '活跃',
+                    value: '¥125,000',
                   },
                   {
-                    name: "李四",
-                    company: "贸易集团",
-                    phone: "139****5678",
-                    email: "li@trade.com",
-                    status: "潜在",
-                    value: "¥89,000",
+                    name: '李四',
+                    company: '贸易集团',
+                    phone: '139****5678',
+                    email: 'li@trade.com',
+                    status: '潜在',
+                    value: '¥89,000',
                   },
                   {
-                    name: "王五",
-                    company: "制造企业",
-                    phone: "137****9012",
-                    email: "wang@manu.com",
-                    status: "活跃",
-                    value: "¥234,000",
+                    name: '王五',
+                    company: '制造企业',
+                    phone: '137****9012',
+                    email: 'wang@manu.com',
+                    status: '活跃',
+                    value: '¥234,000',
                   },
                   {
-                    name: "赵六",
-                    company: "服务公司",
-                    phone: "136****3456",
-                    email: "zhao@service.com",
-                    status: "休眠",
-                    value: "¥45,000",
+                    name: '赵六',
+                    company: '服务公司',
+                    phone: '136****3456',
+                    email: 'zhao@service.com',
+                    status: '休眠',
+                    value: '¥45,000',
                   },
                 ].map((customer, index) => (
                   <Card
@@ -176,7 +190,9 @@ export function CustomerModule() {
                           </div>
                           <div>
                             <h3 className="font-medium">{customer.name}</h3>
-                            <p className="text-sm text-muted-foreground">{customer.company}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {customer.company}
+                            </p>
                           </div>
                         </div>
                         <div className="flex items-center space-x-4">
@@ -193,16 +209,18 @@ export function CustomerModule() {
                           <div className="text-right">
                             <Badge
                               variant={
-                                customer.status === "活跃"
-                                  ? "default"
-                                  : customer.status === "潜在"
-                                    ? "secondary"
-                                    : "outline"
+                                customer.status === '活跃'
+                                  ? 'default'
+                                  : customer.status === '潜在'
+                                    ? 'secondary'
+                                    : 'outline'
                               }
                             >
                               {customer.status}
                             </Badge>
-                            <div className="text-sm font-medium mt-1">{customer.value}</div>
+                            <div className="text-sm font-medium mt-1">
+                              {customer.value}
+                            </div>
                           </div>
                           <Button variant="outline" size="sm">
                             详情
@@ -276,10 +294,34 @@ export function CustomerModule() {
             <TabsContent value="follow" className="space-y-4">
               <div className="space-y-3">
                 {[
-                  { customer: "张三", action: "电话沟通", time: "2小时前", status: "已完成", note: "讨论了新产品需求" },
-                  { customer: "李四", action: "邮件跟进", time: "1天前", status: "待回复", note: "发送了产品报价单" },
-                  { customer: "王五", action: "现场拜访", time: "3天前", status: "已完成", note: "签署了合作意向书" },
-                  { customer: "赵六", action: "微信沟通", time: "1周前", status: "需跟进", note: "客户表示需要考虑" },
+                  {
+                    customer: '张三',
+                    action: '电话沟通',
+                    time: '2小时前',
+                    status: '已完成',
+                    note: '讨论了新产品需求',
+                  },
+                  {
+                    customer: '李四',
+                    action: '邮件跟进',
+                    time: '1天前',
+                    status: '待回复',
+                    note: '发送了产品报价单',
+                  },
+                  {
+                    customer: '王五',
+                    action: '现场拜访',
+                    time: '3天前',
+                    status: '已完成',
+                    note: '签署了合作意向书',
+                  },
+                  {
+                    customer: '赵六',
+                    action: '微信沟通',
+                    time: '1周前',
+                    status: '需跟进',
+                    note: '客户表示需要考虑',
+                  },
                 ].map((record, index) => (
                   <Card
                     key={index}
@@ -291,17 +333,21 @@ export function CustomerModule() {
                           <div className="flex items-center space-x-2 mb-2">
                             <h4 className="font-medium">{record.customer}</h4>
                             <Badge variant="outline">{record.action}</Badge>
-                            <span className="text-sm text-muted-foreground">{record.time}</span>
+                            <span className="text-sm text-muted-foreground">
+                              {record.time}
+                            </span>
                           </div>
-                          <p className="text-sm text-muted-foreground">{record.note}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {record.note}
+                          </p>
                         </div>
                         <Badge
                           variant={
-                            record.status === "已完成"
-                              ? "default"
-                              : record.status === "待回复"
-                                ? "secondary"
-                                : "destructive"
+                            record.status === '已完成'
+                              ? 'default'
+                              : record.status === '待回复'
+                                ? 'secondary'
+                                : 'destructive'
                           }
                         >
                           {record.status}
@@ -317,32 +363,32 @@ export function CustomerModule() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
                   {
-                    title: "企业ERP系统",
-                    customer: "科技有限公司",
-                    value: "¥500,000",
-                    stage: "需求分析",
-                    probability: "70%",
+                    title: '企业ERP系统',
+                    customer: '科技有限公司',
+                    value: '¥500,000',
+                    stage: '需求分析',
+                    probability: '70%',
                   },
                   {
-                    title: "数字化转型项目",
-                    customer: "制造企业",
-                    value: "¥800,000",
-                    stage: "方案设计",
-                    probability: "85%",
+                    title: '数字化转型项目',
+                    customer: '制造企业',
+                    value: '¥800,000',
+                    stage: '方案设计',
+                    probability: '85%',
                   },
                   {
-                    title: "云服务采购",
-                    customer: "贸易集团",
-                    value: "¥200,000",
-                    stage: "商务谈判",
-                    probability: "60%",
+                    title: '云服务采购',
+                    customer: '贸易集团',
+                    value: '¥200,000',
+                    stage: '商务谈判',
+                    probability: '60%',
                   },
                   {
-                    title: "系统集成服务",
-                    customer: "服务公司",
-                    value: "¥300,000",
-                    stage: "初步接触",
-                    probability: "30%",
+                    title: '系统集成服务',
+                    customer: '服务公司',
+                    value: '¥300,000',
+                    stage: '初步接触',
+                    probability: '30%',
                   },
                 ].map((opportunity, index) => (
                   <Card
@@ -350,14 +396,18 @@ export function CustomerModule() {
                     className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
                   >
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-base">{opportunity.title}</CardTitle>
+                      <CardTitle className="text-base">
+                        {opportunity.title}
+                      </CardTitle>
                       <CardDescription>{opportunity.customer}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-2">
                         <div className="flex justify-between">
                           <span className="text-sm">预期价值</span>
-                          <span className="font-medium">{opportunity.value}</span>
+                          <span className="font-medium">
+                            {opportunity.value}
+                          </span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-sm">当前阶段</span>
@@ -365,7 +415,9 @@ export function CustomerModule() {
                         </div>
                         <div className="flex justify-between">
                           <span className="text-sm">成功概率</span>
-                          <span className="font-medium text-green-600">{opportunity.probability}</span>
+                          <span className="font-medium text-green-600">
+                            {opportunity.probability}
+                          </span>
                         </div>
                       </div>
                     </CardContent>
@@ -377,5 +429,5 @@ export function CustomerModule() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

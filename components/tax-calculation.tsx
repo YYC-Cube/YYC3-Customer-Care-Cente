@@ -10,17 +10,36 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import {
   Calculator,
   FileText,
@@ -32,52 +51,100 @@ import {
   Percent,
   PieChart,
   BarChart3,
-} from "lucide-react"
+} from 'lucide-react';
 
 interface TaxRate {
-  id: string
-  name: string
-  rate: number
-  category: string
-  description: string
+  id: string;
+  name: string;
+  rate: number;
+  category: string;
+  description: string;
 }
 
 interface TaxCalculation {
-  id: string
-  period: string
-  revenue: number
-  vatTax: number
-  incomeTax: number
-  businessTax: number
-  totalTax: number
-  effectiveRate: number
+  id: string;
+  period: string;
+  revenue: number;
+  vatTax: number;
+  incomeTax: number;
+  businessTax: number;
+  totalTax: number;
+  effectiveRate: number;
 }
 
 export function TaxCalculation() {
-  const [selectedPeriod, setSelectedPeriod] = useState("2024-01")
+  const [selectedPeriod, setSelectedPeriod] = useState('2024-01');
   const [calculationData, setCalculationData] = useState({
     revenue: 1000000,
     expenses: 600000,
     vatRate: 0.13,
     incomeTaxRate: 0.25,
     businessTaxRate: 0.05,
-  })
+  });
 
   const taxRates: TaxRate[] = [
-    { id: "1", name: "增值税", rate: 0.13, category: "流转税", description: "一般纳税人标准税率" },
-    { id: "2", name: "增值税(小规模)", rate: 0.03, category: "流转税", description: "小规模纳税人征收率" },
-    { id: "3", name: "企业所得税", rate: 0.25, category: "所得税", description: "企业所得税标准税率" },
-    { id: "4", name: "小微企业所得税", rate: 0.2, category: "所得税", description: "小微企业优惠税率" },
-    { id: "5", name: "个人所得税", rate: 0.45, category: "所得税", description: "个人所得税最高税率" },
-    { id: "6", name: "城建税", rate: 0.07, category: "附加税", description: "城市维护建设税" },
-    { id: "7", name: "教育费附加", rate: 0.03, category: "附加税", description: "教育费附加" },
-    { id: "8", name: "地方教育附加", rate: 0.02, category: "附加税", description: "地方教育费附加" },
-  ]
+    {
+      id: '1',
+      name: '增值税',
+      rate: 0.13,
+      category: '流转税',
+      description: '一般纳税人标准税率',
+    },
+    {
+      id: '2',
+      name: '增值税(小规模)',
+      rate: 0.03,
+      category: '流转税',
+      description: '小规模纳税人征收率',
+    },
+    {
+      id: '3',
+      name: '企业所得税',
+      rate: 0.25,
+      category: '所得税',
+      description: '企业所得税标准税率',
+    },
+    {
+      id: '4',
+      name: '小微企业所得税',
+      rate: 0.2,
+      category: '所得税',
+      description: '小微企业优惠税率',
+    },
+    {
+      id: '5',
+      name: '个人所得税',
+      rate: 0.45,
+      category: '所得税',
+      description: '个人所得税最高税率',
+    },
+    {
+      id: '6',
+      name: '城建税',
+      rate: 0.07,
+      category: '附加税',
+      description: '城市维护建设税',
+    },
+    {
+      id: '7',
+      name: '教育费附加',
+      rate: 0.03,
+      category: '附加税',
+      description: '教育费附加',
+    },
+    {
+      id: '8',
+      name: '地方教育附加',
+      rate: 0.02,
+      category: '附加税',
+      description: '地方教育费附加',
+    },
+  ];
 
   const monthlyTaxData: TaxCalculation[] = [
     {
-      id: "1",
-      period: "2024-01",
+      id: '1',
+      period: '2024-01',
       revenue: 1200000,
       vatTax: 156000,
       incomeTax: 150000,
@@ -86,8 +153,8 @@ export function TaxCalculation() {
       effectiveRate: 0.305,
     },
     {
-      id: "2",
-      period: "2024-02",
+      id: '2',
+      period: '2024-02',
       revenue: 980000,
       vatTax: 127400,
       incomeTax: 122500,
@@ -96,8 +163,8 @@ export function TaxCalculation() {
       effectiveRate: 0.305,
     },
     {
-      id: "3",
-      period: "2024-03",
+      id: '3',
+      period: '2024-03',
       revenue: 1100000,
       vatTax: 143000,
       incomeTax: 137500,
@@ -105,18 +172,19 @@ export function TaxCalculation() {
       totalTax: 335500,
       effectiveRate: 0.305,
     },
-  ]
+  ];
 
   const calculateTax = () => {
-    const { revenue, expenses, vatRate, incomeTaxRate, businessTaxRate } = calculationData
-    const profit = revenue - expenses
+    const { revenue, expenses, vatRate, incomeTaxRate, businessTaxRate } =
+      calculationData;
+    const profit = revenue - expenses;
 
-    const vatTax = revenue * vatRate
-    const incomeTax = profit * incomeTaxRate
-    const businessTax = revenue * businessTaxRate
-    const totalTax = vatTax + incomeTax + businessTax
-    const effectiveRate = totalTax / revenue
-    const netProfit = profit - totalTax
+    const vatTax = revenue * vatRate;
+    const incomeTax = profit * incomeTaxRate;
+    const businessTax = revenue * businessTaxRate;
+    const totalTax = vatTax + incomeTax + businessTax;
+    const effectiveRate = totalTax / revenue;
+    const netProfit = profit - totalTax;
 
     return {
       revenue,
@@ -128,10 +196,10 @@ export function TaxCalculation() {
       totalTax,
       effectiveRate,
       netProfit,
-    }
-  }
+    };
+  };
 
-  const taxResult = calculateTax()
+  const taxResult = calculateTax();
 
   return (
     <div className="p-6 space-y-6">
@@ -297,37 +365,63 @@ export function TaxCalculation() {
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-3 bg-blue-50 rounded-lg">
-                    <div className="text-sm text-blue-600 font-medium">营业收入</div>
-                    <div className="text-xl font-bold text-blue-800">¥{taxResult.revenue.toLocaleString()}</div>
+                    <div className="text-sm text-blue-600 font-medium">
+                      营业收入
+                    </div>
+                    <div className="text-xl font-bold text-blue-800">
+                      ¥{taxResult.revenue.toLocaleString()}
+                    </div>
                   </div>
                   <div className="p-3 bg-red-50 rounded-lg">
-                    <div className="text-sm text-red-600 font-medium">营业成本</div>
-                    <div className="text-xl font-bold text-red-800">¥{taxResult.expenses.toLocaleString()}</div>
+                    <div className="text-sm text-red-600 font-medium">
+                      营业成本
+                    </div>
+                    <div className="text-xl font-bold text-red-800">
+                      ¥{taxResult.expenses.toLocaleString()}
+                    </div>
                   </div>
                 </div>
 
                 <div className="p-3 bg-green-50 rounded-lg">
-                  <div className="text-sm text-green-600 font-medium">毛利润</div>
-                  <div className="text-2xl font-bold text-green-800">¥{taxResult.profit.toLocaleString()}</div>
+                  <div className="text-sm text-green-600 font-medium">
+                    毛利润
+                  </div>
+                  <div className="text-2xl font-bold text-green-800">
+                    ¥{taxResult.profit.toLocaleString()}
+                  </div>
                 </div>
 
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">增值税</span>
-                    <span className="font-medium">¥{taxResult.vatTax.toLocaleString()}</span>
+                    <span className="text-sm text-muted-foreground">
+                      增值税
+                    </span>
+                    <span className="font-medium">
+                      ¥{taxResult.vatTax.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">企业所得税</span>
-                    <span className="font-medium">¥{taxResult.incomeTax.toLocaleString()}</span>
+                    <span className="text-sm text-muted-foreground">
+                      企业所得税
+                    </span>
+                    <span className="font-medium">
+                      ¥{taxResult.incomeTax.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">附加税费</span>
-                    <span className="font-medium">¥{taxResult.businessTax.toLocaleString()}</span>
+                    <span className="text-sm text-muted-foreground">
+                      附加税费
+                    </span>
+                    <span className="font-medium">
+                      ¥{taxResult.businessTax.toLocaleString()}
+                    </span>
                   </div>
                   <hr />
                   <div className="flex justify-between items-center">
                     <span className="font-medium">税费合计</span>
-                    <span className="text-xl font-bold text-red-600">¥{taxResult.totalTax.toLocaleString()}</span>
+                    <span className="text-xl font-bold text-red-600">
+                      ¥{taxResult.totalTax.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-medium">综合税率</span>
@@ -337,7 +431,9 @@ export function TaxCalculation() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-medium">税后净利润</span>
-                    <span className="text-xl font-bold text-green-600">¥{taxResult.netProfit.toLocaleString()}</span>
+                    <span className="text-xl font-bold text-green-600">
+                      ¥{taxResult.netProfit.toLocaleString()}
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -362,7 +458,11 @@ export function TaxCalculation() {
                         <div className="w-2/5 h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full"></div>
                       </div>
                       <span className="text-sm font-medium">
-                        {((taxResult.vatTax / taxResult.totalTax) * 100).toFixed(1)}%
+                        {(
+                          (taxResult.vatTax / taxResult.totalTax) *
+                          100
+                        ).toFixed(1)}
+                        %
                       </span>
                     </div>
                   </div>
@@ -373,7 +473,11 @@ export function TaxCalculation() {
                         <div className="w-2/5 h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full"></div>
                       </div>
                       <span className="text-sm font-medium">
-                        {((taxResult.incomeTax / taxResult.totalTax) * 100).toFixed(1)}%
+                        {(
+                          (taxResult.incomeTax / taxResult.totalTax) *
+                          100
+                        ).toFixed(1)}
+                        %
                       </span>
                     </div>
                   </div>
@@ -384,7 +488,11 @@ export function TaxCalculation() {
                         <div className="w-1/5 h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full"></div>
                       </div>
                       <span className="text-sm font-medium">
-                        {((taxResult.businessTax / taxResult.totalTax) * 100).toFixed(1)}%
+                        {(
+                          (taxResult.businessTax / taxResult.totalTax) *
+                          100
+                        ).toFixed(1)}
+                        %
                       </span>
                     </div>
                   </div>
@@ -394,15 +502,21 @@ export function TaxCalculation() {
                   <h4 className="font-medium">税负优化建议</h4>
                   <div className="space-y-1">
                     <div className="p-2 bg-yellow-50 rounded text-sm">
-                      <span className="font-medium text-yellow-800">增值税优化:</span>
+                      <span className="font-medium text-yellow-800">
+                        增值税优化:
+                      </span>
                       <span className="text-yellow-600"> 考虑进项税抵扣</span>
                     </div>
                     <div className="p-2 bg-green-50 rounded text-sm">
-                      <span className="font-medium text-green-800">所得税优化:</span>
+                      <span className="font-medium text-green-800">
+                        所得税优化:
+                      </span>
                       <span className="text-green-600"> 合理费用扣除</span>
                     </div>
                     <div className="p-2 bg-blue-50 rounded text-sm">
-                      <span className="font-medium text-blue-800">整体优化:</span>
+                      <span className="font-medium text-blue-800">
+                        整体优化:
+                      </span>
                       <span className="text-blue-600"> 税务筹划建议</span>
                     </div>
                   </div>
@@ -455,10 +569,14 @@ export function TaxCalculation() {
                     <TableRow key={rate.id}>
                       <TableCell className="font-medium">{rate.name}</TableCell>
                       <TableCell>
-                        <Badge variant="secondary">{(rate.rate * 100).toFixed(rate.rate < 0.01 ? 1 : 0)}%</Badge>
+                        <Badge variant="secondary">
+                          {(rate.rate * 100).toFixed(rate.rate < 0.01 ? 1 : 0)}%
+                        </Badge>
                       </TableCell>
                       <TableCell>{rate.category}</TableCell>
-                      <TableCell className="text-sm text-muted-foreground">{rate.description}</TableCell>
+                      <TableCell className="text-sm text-muted-foreground">
+                        {rate.description}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -497,7 +615,9 @@ export function TaxCalculation() {
                 <Percent className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-green-600">¥245,800</div>
+                <div className="text-2xl font-bold text-green-600">
+                  ¥245,800
+                </div>
                 <p className="text-xs text-muted-foreground">可节省税费</p>
               </CardContent>
             </Card>
@@ -524,14 +644,22 @@ export function TaxCalculation() {
                 <TableBody>
                   {monthlyTaxData.map((data) => (
                     <TableRow key={data.id}>
-                      <TableCell className="font-medium">{data.period}</TableCell>
+                      <TableCell className="font-medium">
+                        {data.period}
+                      </TableCell>
                       <TableCell>¥{data.revenue.toLocaleString()}</TableCell>
                       <TableCell>¥{data.vatTax.toLocaleString()}</TableCell>
                       <TableCell>¥{data.incomeTax.toLocaleString()}</TableCell>
-                      <TableCell>¥{data.businessTax.toLocaleString()}</TableCell>
-                      <TableCell className="font-medium">¥{data.totalTax.toLocaleString()}</TableCell>
                       <TableCell>
-                        <Badge variant="secondary">{(data.effectiveRate * 100).toFixed(1)}%</Badge>
+                        ¥{data.businessTax.toLocaleString()}
+                      </TableCell>
+                      <TableCell className="font-medium">
+                        ¥{data.totalTax.toLocaleString()}
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="secondary">
+                          {(data.effectiveRate * 100).toFixed(1)}%
+                        </Badge>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -553,15 +681,21 @@ export function TaxCalculation() {
               <CardContent className="space-y-3">
                 <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
                   <div className="font-medium text-red-800">高风险</div>
-                  <div className="text-sm text-red-600">增值税进项税额异常，需要核查</div>
+                  <div className="text-sm text-red-600">
+                    增值税进项税额异常，需要核查
+                  </div>
                 </div>
                 <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                   <div className="font-medium text-yellow-800">中风险</div>
-                  <div className="text-sm text-yellow-600">企业所得税预缴不足，建议补缴</div>
+                  <div className="text-sm text-yellow-600">
+                    企业所得税预缴不足，建议补缴
+                  </div>
                 </div>
                 <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                   <div className="font-medium text-green-800">低风险</div>
-                  <div className="text-sm text-green-600">整体税务合规性良好</div>
+                  <div className="text-sm text-green-600">
+                    整体税务合规性良好
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -608,21 +742,27 @@ export function TaxCalculation() {
                     <Calendar className="w-4 h-4 text-blue-600" />
                     <span className="font-medium">每月15日前</span>
                   </div>
-                  <div className="text-sm text-muted-foreground">增值税、消费税申报缴纳</div>
+                  <div className="text-sm text-muted-foreground">
+                    增值税、消费税申报缴纳
+                  </div>
                 </div>
                 <div className="p-4 border border-sky-200 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <Calendar className="w-4 h-4 text-green-600" />
                     <span className="font-medium">季度末次月15日前</span>
                   </div>
-                  <div className="text-sm text-muted-foreground">企业所得税预缴申报</div>
+                  <div className="text-sm text-muted-foreground">
+                    企业所得税预缴申报
+                  </div>
                 </div>
                 <div className="p-4 border border-sky-200 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <Calendar className="w-4 h-4 text-purple-600" />
                     <span className="font-medium">次年5月31日前</span>
                   </div>
-                  <div className="text-sm text-muted-foreground">企业所得税年度汇算清缴</div>
+                  <div className="text-sm text-muted-foreground">
+                    企业所得税年度汇算清缴
+                  </div>
                 </div>
               </div>
             </CardContent>
@@ -630,5 +770,5 @@ export function TaxCalculation() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

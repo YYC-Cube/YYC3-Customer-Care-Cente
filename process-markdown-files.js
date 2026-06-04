@@ -111,7 +111,7 @@ const markdownFiles = [
   '/Users/yanyu/Git-YYC-Cube/YYC-Cube/yyc3-customer-care-center/docs/YYC3-CCC-项目规划/013-YYC3-CCC-项目规划-资源分配计划.md',
   '/Users/yanyu/Git-YYC-Cube/YYC-Cube/yyc3-customer-care-center/docs/YYC3-CCC-项目规划/012-YYC3-CCC-项目规划-项目进度计划.md',
   '/Users/yanyu/Git-YYC-Cube/YYC-Cube/yyc3-customer-care-center/docs/YYC3-CCC-项目规划/011-YYC3-CCC-项目规划-项目管理计划.md',
-  '/Users/yanyu/Git-YYC-Cube/YYC-Cube/yyc3-customer-care-center/docs/YYC3-CCC-标准化审核清单.md'
+  '/Users/yanyu/Git-YYC-Cube/YYC-Cube/yyc3-customer-care-center/docs/YYC3-CCC-标准化审核清单.md',
 ];
 
 // Process each markdown file
@@ -119,28 +119,28 @@ markdownFiles.forEach((filePath) => {
   try {
     // Read the file content
     const content = fs.readFileSync(filePath, 'utf8');
-    
+
     // Split content into lines
     let lines = content.split('\n');
-    
+
     // Remove leading empty lines
     while (lines.length > 0 && lines[0].trim() === '') {
       lines.shift();
     }
-    
+
     // If there are at least 2 lines, move the second line to become the first
     if (lines.length >= 2) {
       const secondLine = lines[1];
       lines.splice(1, 1);
       lines.unshift(secondLine);
     }
-    
+
     // Join lines back together
     const newContent = lines.join('\n');
-    
+
     // Write the modified content back to the file
     fs.writeFileSync(filePath, newContent, 'utf8');
-    
+
     console.log(`Processed: ${filePath}`);
   } catch (error) {
     console.error(`Error processing ${filePath}:`, error);

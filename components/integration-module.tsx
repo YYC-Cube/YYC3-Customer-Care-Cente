@@ -10,16 +10,22 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
-import { Switch } from "@/components/ui/switch"
-import { Label } from "@/components/ui/label"
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 import {
   Zap,
   Settings,
@@ -35,149 +41,155 @@ import {
   MessageSquare,
   CreditCard,
   BarChart3,
-} from "lucide-react"
+} from 'lucide-react';
 
 interface Integration {
-  id: string
-  name: string
-  description: string
-  category: string
-  status: "connected" | "disconnected" | "error" | "pending"
-  icon: any
-  lastSync: string
-  dataPoints: number
-  isActive: boolean
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  status: 'connected' | 'disconnected' | 'error' | 'pending';
+  icon: any;
+  lastSync: string;
+  dataPoints: number;
+  isActive: boolean;
 }
 
 export function IntegrationModule() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
   const integrations: Integration[] = [
     {
-      id: "1",
-      name: "微信企业版",
-      description: "企业微信集成，支持消息推送和用户同步",
-      category: "通讯",
-      status: "connected",
+      id: '1',
+      name: '微信企业版',
+      description: '企业微信集成，支持消息推送和用户同步',
+      category: '通讯',
+      status: 'connected',
       icon: MessageSquare,
-      lastSync: "2025-06-21 14:30",
+      lastSync: '2025-06-21 14:30',
       dataPoints: 1250,
       isActive: true,
     },
     {
-      id: "2",
-      name: "钉钉",
-      description: "钉钉办公平台集成，支持考勤和审批同步",
-      category: "办公",
-      status: "connected",
+      id: '2',
+      name: '钉钉',
+      description: '钉钉办公平台集成，支持考勤和审批同步',
+      category: '办公',
+      status: 'connected',
       icon: Clock,
-      lastSync: "2025-06-21 13:45",
+      lastSync: '2025-06-21 13:45',
       dataPoints: 890,
       isActive: true,
     },
     {
-      id: "3",
-      name: "支付宝",
-      description: "支付宝支付接口，支持在线支付和账单同步",
-      category: "支付",
-      status: "connected",
+      id: '3',
+      name: '支付宝',
+      description: '支付宝支付接口，支持在线支付和账单同步',
+      category: '支付',
+      status: 'connected',
       icon: CreditCard,
-      lastSync: "2025-06-21 12:20",
+      lastSync: '2025-06-21 12:20',
       dataPoints: 456,
       isActive: true,
     },
     {
-      id: "4",
-      name: "腾讯云",
-      description: "腾讯云服务集成，支持存储和计算资源管理",
-      category: "云服务",
-      status: "error",
+      id: '4',
+      name: '腾讯云',
+      description: '腾讯云服务集成，支持存储和计算资源管理',
+      category: '云服务',
+      status: 'error',
       icon: Cloud,
-      lastSync: "2025-06-20 16:30",
+      lastSync: '2025-06-20 16:30',
       dataPoints: 0,
       isActive: false,
     },
     {
-      id: "5",
-      name: "阿里云邮箱",
-      description: "企业邮箱服务，支持邮件发送和接收",
-      category: "邮件",
-      status: "connected",
+      id: '5',
+      name: '阿里云邮箱',
+      description: '企业邮箱服务，支持邮件发送和接收',
+      category: '邮件',
+      status: 'connected',
       icon: Mail,
-      lastSync: "2025-06-21 10:15",
+      lastSync: '2025-06-21 10:15',
       dataPoints: 234,
       isActive: true,
     },
     {
-      id: "6",
-      name: "百度统计",
-      description: "网站数据分析，支持访问统计和用户行为分析",
-      category: "分析",
-      status: "pending",
+      id: '6',
+      name: '百度统计',
+      description: '网站数据分析，支持访问统计和用户行为分析',
+      category: '分析',
+      status: 'pending',
       icon: BarChart3,
-      lastSync: "从未同步",
+      lastSync: '从未同步',
       dataPoints: 0,
       isActive: false,
     },
-  ]
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "connected":
-        return "bg-green-100 text-green-800"
-      case "disconnected":
-        return "bg-gray-100 text-gray-800"
-      case "error":
-        return "bg-red-100 text-red-800"
-      case "pending":
-        return "bg-yellow-100 text-yellow-800"
+      case 'connected':
+        return 'bg-green-100 text-green-800';
+      case 'disconnected':
+        return 'bg-gray-100 text-gray-800';
+      case 'error':
+        return 'bg-red-100 text-red-800';
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "connected":
-        return "已连接"
-      case "disconnected":
-        return "未连接"
-      case "error":
-        return "连接错误"
-      case "pending":
-        return "待配置"
+      case 'connected':
+        return '已连接';
+      case 'disconnected':
+        return '未连接';
+      case 'error':
+        return '连接错误';
+      case 'pending':
+        return '待配置';
       default:
-        return "未知状态"
+        return '未知状态';
     }
-  }
+  };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case "connected":
-        return <CheckCircle className="w-4 h-4 text-green-600" />
-      case "disconnected":
-        return <Clock className="w-4 h-4 text-gray-600" />
-      case "error":
-        return <AlertTriangle className="w-4 h-4 text-red-600" />
-      case "pending":
-        return <Clock className="w-4 h-4 text-yellow-600" />
+      case 'connected':
+        return <CheckCircle className="w-4 h-4 text-green-600" />;
+      case 'disconnected':
+        return <Clock className="w-4 h-4 text-gray-600" />;
+      case 'error':
+        return <AlertTriangle className="w-4 h-4 text-red-600" />;
+      case 'pending':
+        return <Clock className="w-4 h-4 text-yellow-600" />;
       default:
-        return <Clock className="w-4 h-4 text-gray-600" />
+        return <Clock className="w-4 h-4 text-gray-600" />;
     }
-  }
+  };
 
   const filteredIntegrations = integrations.filter((integration) => {
     const matchesSearch =
       integration.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      integration.description.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = selectedCategory === "all" || integration.category === selectedCategory
-    return matchesSearch && matchesCategory
-  })
+      integration.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategory === 'all' || integration.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
-  const connectedCount = integrations.filter((i) => i.status === "connected").length
-  const errorCount = integrations.filter((i) => i.status === "error").length
-  const totalDataPoints = integrations.reduce((sum, i) => sum + i.dataPoints, 0)
+  const connectedCount = integrations.filter(
+    (i) => i.status === 'connected'
+  ).length;
+  const errorCount = integrations.filter((i) => i.status === 'error').length;
+  const totalDataPoints = integrations.reduce(
+    (sum, i) => sum + i.dataPoints,
+    0
+  );
 
   return (
     <div className="p-6 space-y-6 bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 min-h-screen">
@@ -212,7 +224,9 @@ export function IntegrationModule() {
             <Zap className="h-4 w-4 text-rose-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-rose-700">{integrations.length}</div>
+            <div className="text-2xl font-bold text-rose-700">
+              {integrations.length}
+            </div>
             <p className="text-xs text-rose-600">已配置的服务</p>
           </CardContent>
         </Card>
@@ -223,7 +237,9 @@ export function IntegrationModule() {
             <CheckCircle className="h-4 w-4 text-rose-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-rose-700">{connectedCount}</div>
+            <div className="text-2xl font-bold text-rose-700">
+              {connectedCount}
+            </div>
             <p className="text-xs text-green-600">正常运行中</p>
           </CardContent>
         </Card>
@@ -245,7 +261,9 @@ export function IntegrationModule() {
             <Database className="h-4 w-4 text-rose-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-rose-700">{totalDataPoints.toLocaleString()}</div>
+            <div className="text-2xl font-bold text-rose-700">
+              {totalDataPoints.toLocaleString()}
+            </div>
             <p className="text-xs text-rose-600">今日同步条数</p>
           </CardContent>
         </Card>
@@ -281,10 +299,18 @@ export function IntegrationModule() {
                   />
                 </div>
                 <div className="flex space-x-2">
-                  <Button variant="outline" size="sm" className="border-l-4 border-l-rose-500 bg-transparent">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-l-4 border-l-rose-500 bg-transparent"
+                  >
                     筛选
                   </Button>
-                  <Button variant="outline" size="sm" className="border-l-4 border-l-rose-500 bg-transparent">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-l-4 border-l-rose-500 bg-transparent"
+                  >
                     批量操作
                   </Button>
                 </div>
@@ -301,8 +327,12 @@ export function IntegrationModule() {
                         <div className="flex items-center space-x-3">
                           <integration.icon className="w-8 h-8 text-rose-600" />
                           <div>
-                            <CardTitle className="text-base">{integration.name}</CardTitle>
-                            <Badge variant="outline">{integration.category}</Badge>
+                            <CardTitle className="text-base">
+                              {integration.name}
+                            </CardTitle>
+                            <Badge variant="outline">
+                              {integration.category}
+                            </Badge>
                           </div>
                         </div>
                         <div className="flex items-center space-x-2">
@@ -314,7 +344,9 @@ export function IntegrationModule() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm text-muted-foreground mb-4">{integration.description}</p>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        {integration.description}
+                      </p>
 
                       <div className="space-y-2 text-xs text-muted-foreground">
                         <div className="flex justify-between">
@@ -327,7 +359,10 @@ export function IntegrationModule() {
                         </div>
                         <div className="flex justify-between items-center">
                           <span>启用状态:</span>
-                          <Switch checked={integration.isActive} className="data-[state=checked]:bg-rose-500" />
+                          <Switch
+                            checked={integration.isActive}
+                            className="data-[state=checked]:bg-rose-500"
+                          />
                         </div>
                       </div>
 
@@ -357,7 +392,7 @@ export function IntegrationModule() {
             <TabsContent value="connected" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredIntegrations
-                  .filter((i) => i.status === "connected")
+                  .filter((i) => i.status === 'connected')
                   .map((integration) => (
                     <Card
                       key={integration.id}
@@ -368,24 +403,34 @@ export function IntegrationModule() {
                           <div className="flex items-center space-x-3">
                             <integration.icon className="w-8 h-8 text-green-600" />
                             <div>
-                              <CardTitle className="text-base">{integration.name}</CardTitle>
-                              <Badge className="bg-green-100 text-green-700">运行正常</Badge>
+                              <CardTitle className="text-base">
+                                {integration.name}
+                              </CardTitle>
+                              <Badge className="bg-green-100 text-green-700">
+                                运行正常
+                              </Badge>
                             </div>
                           </div>
                           <CheckCircle className="w-5 h-5 text-green-600" />
                         </div>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-sm text-muted-foreground mb-4">{integration.description}</p>
+                        <p className="text-sm text-muted-foreground mb-4">
+                          {integration.description}
+                        </p>
 
                         <div className="space-y-2 text-xs text-muted-foreground">
                           <div className="flex justify-between">
                             <span>最后同步:</span>
-                            <span className="text-green-600">{integration.lastSync}</span>
+                            <span className="text-green-600">
+                              {integration.lastSync}
+                            </span>
                           </div>
                           <div className="flex justify-between">
                             <span>同步数据:</span>
-                            <span className="font-medium">{integration.dataPoints.toLocaleString()} 条</span>
+                            <span className="font-medium">
+                              {integration.dataPoints.toLocaleString()} 条
+                            </span>
                           </div>
                         </div>
 
@@ -401,7 +446,7 @@ export function IntegrationModule() {
             <TabsContent value="error" className="space-y-4">
               <div className="space-y-4">
                 {filteredIntegrations
-                  .filter((i) => i.status === "error")
+                  .filter((i) => i.status === 'error')
                   .map((integration) => (
                     <Card
                       key={integration.id}
@@ -412,9 +457,15 @@ export function IntegrationModule() {
                           <div className="flex items-center space-x-3">
                             <AlertTriangle className="w-8 h-8 text-red-600" />
                             <div>
-                              <h3 className="font-medium text-red-800">{integration.name}</h3>
-                              <p className="text-sm text-muted-foreground">{integration.description}</p>
-                              <div className="text-xs text-red-600 mt-2">连接失败 - API密钥可能已过期</div>
+                              <h3 className="font-medium text-red-800">
+                                {integration.name}
+                              </h3>
+                              <p className="text-sm text-muted-foreground">
+                                {integration.description}
+                              </p>
+                              <div className="text-xs text-red-600 mt-2">
+                                连接失败 - API密钥可能已过期
+                              </div>
                             </div>
                           </div>
                           <div className="flex space-x-2">
@@ -443,40 +494,65 @@ export function IntegrationModule() {
               <Card className="border-l-4 border-l-rose-500 bg-white/80 backdrop-blur-sm shadow-sm">
                 <CardHeader>
                   <CardTitle className="text-rose-700">全局集成设置</CardTitle>
-                  <CardDescription>配置集成服务的全局参数和安全设置</CardDescription>
+                  <CardDescription>
+                    配置集成服务的全局参数和安全设置
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-6">
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label htmlFor="auto-sync">自动同步</Label>
-                        <p className="text-sm text-muted-foreground">启用后将自动同步所有集成服务的数据</p>
+                        <p className="text-sm text-muted-foreground">
+                          启用后将自动同步所有集成服务的数据
+                        </p>
                       </div>
-                      <Switch id="auto-sync" className="data-[state=checked]:bg-rose-500" />
+                      <Switch
+                        id="auto-sync"
+                        className="data-[state=checked]:bg-rose-500"
+                      />
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label htmlFor="error-notifications">错误通知</Label>
-                        <p className="text-sm text-muted-foreground">集成服务出现错误时发送通知</p>
+                        <p className="text-sm text-muted-foreground">
+                          集成服务出现错误时发送通知
+                        </p>
                       </div>
-                      <Switch id="error-notifications" defaultChecked className="data-[state=checked]:bg-rose-500" />
+                      <Switch
+                        id="error-notifications"
+                        defaultChecked
+                        className="data-[state=checked]:bg-rose-500"
+                      />
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label htmlFor="data-encryption">数据加密</Label>
-                        <p className="text-sm text-muted-foreground">对同步的敏感数据进行加密存储</p>
+                        <p className="text-sm text-muted-foreground">
+                          对同步的敏感数据进行加密存储
+                        </p>
                       </div>
-                      <Switch id="data-encryption" defaultChecked className="data-[state=checked]:bg-rose-500" />
+                      <Switch
+                        id="data-encryption"
+                        defaultChecked
+                        className="data-[state=checked]:bg-rose-500"
+                      />
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label htmlFor="rate-limiting">API限流</Label>
-                        <p className="text-sm text-muted-foreground">启用API请求频率限制保护</p>
+                        <p className="text-sm text-muted-foreground">
+                          启用API请求频率限制保护
+                        </p>
                       </div>
-                      <Switch id="rate-limiting" defaultChecked className="data-[state=checked]:bg-rose-500" />
+                      <Switch
+                        id="rate-limiting"
+                        defaultChecked
+                        className="data-[state=checked]:bg-rose-500"
+                      />
                     </div>
 
                     <div className="pt-4 border-t">
@@ -492,5 +568,5 @@ export function IntegrationModule() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

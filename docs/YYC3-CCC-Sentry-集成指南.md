@@ -19,24 +19,28 @@ YYC³ Customer Care Center 集成了 [Sentry](https://sentry.io/) 错误追踪�
 ## 🎯 功能特性
 
 ### 错误追踪
+
 - 自动捕获 JavaScript 错误
 - React 组件错误边界
 - API 请求错误监控
 - 未处理的异常捕获
 
 ### 性能监控
+
 - 页面加载性能
 - API 响应时间
 - 用户交互延迟
 - 资源加载时间
 
 ### 会话重放
+
 - 用户操作录制
 - 错误发生时的上下文
 - 视频回放功能
 - 性能分析
 
 ### 告警通知
+
 - 实时错误通知
 - Slack 集成
 - 邮件通知
@@ -89,7 +93,7 @@ npx @sentry/wizard@latest -i nextjs
 客户端 Sentry 配置，用于浏览器端错误监控：
 
 ```typescript
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
@@ -98,14 +102,14 @@ Sentry.init({
   environment: process.env.SENTRY_ENVIRONMENT || process.env.NODE_ENV,
 
   // 性能监控
-  tracesSampleRate: parseFloat(process.env.SENTRY_TRACES_SAMPLE_RATE || "0.1"),
+  tracesSampleRate: parseFloat(process.env.SENTRY_TRACES_SAMPLE_RATE || '0.1'),
 
   // 会话重放
   replaysSessionSampleRate: parseFloat(
-    process.env.SENTRY_REPLAY_SESSION_SAMPLE_RATE || "0.01"
+    process.env.SENTRY_REPLAY_SESSION_SAMPLE_RATE || '0.01'
   ),
   replaysOnErrorSampleRate: parseFloat(
-    process.env.SENTRY_REPLAY_ON_ERROR_SAMPLE_RATE || "0.1"
+    process.env.SENTRY_REPLAY_ON_ERROR_SAMPLE_RATE || '0.1'
   ),
 
   // 集成配置
@@ -117,10 +121,7 @@ Sentry.init({
     }),
     Sentry.browserTracingIntegration({
       // 性能追踪配置
-      tracePropagationTargets: [
-        "localhost",
-        /^https:\/\/yourdomain\.com/,
-      ],
+      tracePropagationTargets: ['localhost', /^https:\/\/yourdomain\.com/],
     }),
   ],
 
@@ -141,7 +142,7 @@ Sentry.init({
 服务端 Sentry 配置，用于 Node.js 环境错误监控：
 
 ```typescript
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
@@ -150,7 +151,7 @@ Sentry.init({
   environment: process.env.SENTRY_ENVIRONMENT || process.env.NODE_ENV,
 
   // 性能监控
-  tracesSampleRate: parseFloat(process.env.SENTRY_TRACES_SAMPLE_RATE || "0.1"),
+  tracesSampleRate: parseFloat(process.env.SENTRY_TRACES_SAMPLE_RATE || '0.1'),
 
   // 集成配置
   integrations: [
@@ -173,7 +174,7 @@ Sentry.init({
   // 错误上下文
   beforeSendTransaction(event) {
     // 过滤不需要追踪的事务
-    if (event.transaction === "/health") {
+    if (event.transaction === '/health') {
       return null;
     }
     return event;
@@ -186,12 +187,12 @@ Sentry.init({
 边缘运行时 Sentry 配置：
 
 ```typescript
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   environment: process.env.SENTRY_ENVIRONMENT || process.env.NODE_ENV,
-  tracesSampleRate: parseFloat(process.env.SENTRY_TRACES_SAMPLE_RATE || "0.1"),
+  tracesSampleRate: parseFloat(process.env.SENTRY_TRACES_SAMPLE_RATE || '0.1'),
 });
 ```
 
@@ -200,24 +201,24 @@ Sentry.init({
 ### 自定义错误上下文
 
 ```typescript
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 // 添加用户信息
 Sentry.setUser({
-  id: "user-123",
-  email: "user@example.com",
-  username: "johndoe",
+  id: 'user-123',
+  email: 'user@example.com',
+  username: 'johndoe',
 });
 
 // 添加自定义标签
-Sentry.setTag("page", "dashboard");
-Sentry.setTag("userRole", "admin");
+Sentry.setTag('page', 'dashboard');
+Sentry.setTag('userRole', 'admin');
 
 // 添加额外上下文
-Sentry.setContext("order", {
-  orderId: "order-456",
+Sentry.setContext('order', {
+  orderId: 'order-456',
   amount: 99.99,
-  currency: "USD",
+  currency: 'USD',
 });
 
 // 手动捕获错误
@@ -226,9 +227,9 @@ try {
   await someAsyncOperation();
 } catch (error) {
   Sentry.captureException(error, {
-    level: "error",
+    level: 'error',
     tags: {
-      feature: "payment",
+      feature: 'payment',
     },
   });
 }
@@ -237,19 +238,19 @@ try {
 ### 性能追踪
 
 ```typescript
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 // 创建自定义事务
 const transaction = Sentry.startTransaction({
-  op: "task",
-  name: "process-order",
+  op: 'task',
+  name: 'process-order',
 });
 
 try {
   // 创建子操作
   const validateStep = transaction.startChild({
-    op: "validation",
-    description: "validate-order-data",
+    op: 'validation',
+    description: 'validate-order-data',
   });
 
   // 验证逻辑
@@ -258,8 +259,8 @@ try {
 
   // 处理订单
   const processStep = transaction.startChild({
-    op: "processing",
-    description: "process-payment",
+    op: 'processing',
+    description: 'process-payment',
   });
 
   await processPayment(orderData);
@@ -272,21 +273,21 @@ try {
 ### 面包屑日志
 
 ```typescript
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 // 添加面包屑
 Sentry.addBreadcrumb({
-  category: "user",
-  message: "User clicked checkout button",
-  level: "info",
+  category: 'user',
+  message: 'User clicked checkout button',
+  level: 'info',
 });
 
 Sentry.addBreadcrumb({
-  category: "http",
-  message: "API request to /api/orders",
-  level: "info",
+  category: 'http',
+  message: 'API request to /api/orders',
+  level: 'info',
   data: {
-    method: "POST",
+    method: 'POST',
     status: 200,
   },
 });
@@ -321,7 +322,7 @@ Sentry.init({
 
     // 过滤额外上下文
     if (event.contexts) {
-      Object.keys(event.contexts).forEach(key => {
+      Object.keys(event.contexts).forEach((key) => {
         const context = event.contexts[key];
         if (context) {
           // 移除敏感字段
@@ -429,7 +430,7 @@ Sentry.init({
 
   integrations: [
     new Sentry.Integrations.CaptureConsole({
-      levels: ['error', 'warn']
+      levels: ['error', 'warn'],
     }),
   ],
 });
@@ -441,18 +442,18 @@ Sentry.init({
 
 ```typescript
 // 测试错误捕获
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 // 测试基本错误
-Sentry.captureException(new Error("Test error"));
+Sentry.captureException(new Error('Test error'));
 
 // 测试自定义消息
-Sentry.captureMessage("Test message", "info");
+Sentry.captureMessage('Test message', 'info');
 
 // 测试性能
 const transaction = Sentry.startTransaction({
-  op: "test",
-  name: "test-transaction",
+  op: 'test',
+  name: 'test-transaction',
 });
 transaction.finish();
 ```
@@ -477,15 +478,15 @@ class AppError extends Error {
   constructor(
     message: string,
     public code: string,
-    public severity: "low" | "medium" | "high"
+    public severity: 'low' | 'medium' | 'high'
   ) {
     super(message);
-    this.name = "AppError";
+    this.name = 'AppError';
   }
 }
 
 // 使用示例
-throw new AppError("Payment failed", "PAYMENT_ERROR", "high");
+throw new AppError('Payment failed', 'PAYMENT_ERROR', 'high');
 ```
 
 ### 2. 错误恢复
@@ -519,7 +520,8 @@ class ErrorBoundary extends React.Component {
 ```typescript
 // 采样率配置
 const tracesSampleRate = process.env.NODE_ENV === 'production' ? 0.1 : 1.0;
-const replaysSessionSampleRate = process.env.NODE_ENV === 'production' ? 0.01 : 1.0;
+const replaysSessionSampleRate =
+  process.env.NODE_ENV === 'production' ? 0.01 : 1.0;
 ```
 
 ## 🚨 故障排查
@@ -531,6 +533,7 @@ const replaysSessionSampleRate = process.env.NODE_ENV === 'production' ? 0.01 : 
 **问题**：错误没有出现在 Sentry 控制台
 
 **解决方案**：
+
 - 检查 DSN 是否正确
 - 验证网络连接
 - 检查 CORS 配置
@@ -541,6 +544,7 @@ const replaysSessionSampleRate = process.env.NODE_ENV === 'production' ? 0.01 : 
 **问题**：性能数据与实际情况不符
 
 **解决方案**：
+
 - 调整采样率
 - 检查时间戳配置
 - 验证时区设置
@@ -551,6 +555,7 @@ const replaysSessionSampleRate = process.env.NODE_ENV === 'production' ? 0.01 : 
 **问题**：会话重放功能不可用
 
 **解决方案**：
+
 - 检查采样率配置
 - 验证浏览器兼容性
 - 检查存储权限
@@ -575,7 +580,7 @@ const replaysSessionSampleRate = process.env.NODE_ENV === 'production' ? 0.01 : 
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

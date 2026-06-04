@@ -10,20 +10,36 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Progress } from "@/components/ui/progress"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Progress } from '@/components/ui/progress';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from '@/components/ui/chart';
 import {
   LineChart,
   Line,
@@ -37,7 +53,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   Legend,
-} from "recharts"
+} from 'recharts';
 import {
   Megaphone,
   Users,
@@ -53,91 +69,108 @@ import {
   Edit,
   BarChart3,
   Award,
-} from "lucide-react"
+} from 'lucide-react';
 
 interface Campaign {
-  id: string
-  title: string
-  description: string
-  type: "course_promotion" | "skill_challenge" | "learning_streak" | "certification" | "community_event"
-  status: "draft" | "active" | "paused" | "completed"
-  startDate: Date
-  endDate: Date
-  targetAudience: string[]
-  goals: CampaignGoal[]
-  rewards: Reward[]
-  metrics: CampaignMetrics
-  createdBy: string
+  id: string;
+  title: string;
+  description: string;
+  type:
+    | 'course_promotion'
+    | 'skill_challenge'
+    | 'learning_streak'
+    | 'certification'
+    | 'community_event';
+  status: 'draft' | 'active' | 'paused' | 'completed';
+  startDate: Date;
+  endDate: Date;
+  targetAudience: string[];
+  goals: CampaignGoal[];
+  rewards: Reward[];
+  metrics: CampaignMetrics;
+  createdBy: string;
 }
 
 interface CampaignGoal {
-  id: string
-  description: string
-  target: number
-  current: number
-  unit: string
+  id: string;
+  description: string;
+  target: number;
+  current: number;
+  unit: string;
 }
 
 interface Reward {
-  id: string
-  type: "badge" | "certificate" | "points" | "discount" | "gift"
-  name: string
-  description: string
-  value: string
-  icon: string
+  id: string;
+  type: 'badge' | 'certificate' | 'points' | 'discount' | 'gift';
+  name: string;
+  description: string;
+  value: string;
+  icon: string;
 }
 
 interface CampaignMetrics {
-  participants: number
-  completionRate: number
-  engagement: number
-  satisfaction: number
-  conversions: number
+  participants: number;
+  completionRate: number;
+  engagement: number;
+  satisfaction: number;
+  conversions: number;
 }
 
 interface Participant {
-  id: string
-  userId: string
-  userName: string
-  userAvatar?: string
-  campaignId: string
-  joinedAt: Date
-  progress: number
-  completed: boolean
-  rewards: string[]
+  id: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  campaignId: string;
+  joinedAt: Date;
+  progress: number;
+  completed: boolean;
+  rewards: string[];
 }
 
 export function TrainingPromotionSystem() {
   const [campaigns, setCampaigns] = useState<Campaign[]>([
     {
-      id: "campaign_1",
-      title: "新年学习挑战",
-      description: "新年新技能！完成指定课程获得专属徽章和证书",
-      type: "skill_challenge",
-      status: "active",
-      startDate: new Date("2024-01-01"),
-      endDate: new Date("2024-01-31"),
-      targetAudience: ["新员工", "销售团队"],
+      id: 'campaign_1',
+      title: '新年学习挑战',
+      description: '新年新技能！完成指定课程获得专属徽章和证书',
+      type: 'skill_challenge',
+      status: 'active',
+      startDate: new Date('2024-01-01'),
+      endDate: new Date('2024-01-31'),
+      targetAudience: ['新员工', '销售团队'],
       goals: [
-        { id: "goal_1", description: "完成课程数量", target: 500, current: 342, unit: "门" },
-        { id: "goal_2", description: "参与人数", target: 200, current: 156, unit: "人" },
+        {
+          id: 'goal_1',
+          description: '完成课程数量',
+          target: 500,
+          current: 342,
+          unit: '门',
+        },
+        {
+          id: 'goal_2',
+          description: '参与人数',
+          target: 200,
+          current: 156,
+          unit: '人',
+        },
       ],
       rewards: [
         {
-          id: "reward_1",
-          type: "badge",
-          name: "学习达人",
-          description: "完成5门课程获得",
-          value: "专属徽章",
-          icon: "🏆",
+          id: 'reward_1',
+          type: 'badge',
+          name: '学习达人',
+          description: '完成5门课程获得',
+          value: '专属徽章',
+          icon: '🏆',
         },
         {
-          id: "reward_2",
-          type: "certificate",
-          name: "技能认证",
-          description: "通过所有考试获得",
-          value: "官方证书",
-          icon: "📜",
+          id: 'reward_2',
+          type: 'certificate',
+          name: '技能认证',
+          description: '通过所有考试获得',
+          value: '官方证书',
+          icon: '📜',
         },
       ],
       metrics: {
@@ -147,29 +180,41 @@ export function TrainingPromotionSystem() {
         satisfaction: 4.6,
         conversions: 89,
       },
-      createdBy: "培训部",
+      createdBy: '培训部',
     },
     {
-      id: "campaign_2",
-      title: "客户管理专家认证",
-      description: "深入学习客户管理技能，获得专业认证",
-      type: "certification",
-      status: "active",
-      startDate: new Date("2024-01-15"),
-      endDate: new Date("2024-02-15"),
-      targetAudience: ["销售团队", "客服团队"],
+      id: 'campaign_2',
+      title: '客户管理专家认证',
+      description: '深入学习客户管理技能，获得专业认证',
+      type: 'certification',
+      status: 'active',
+      startDate: new Date('2024-01-15'),
+      endDate: new Date('2024-02-15'),
+      targetAudience: ['销售团队', '客服团队'],
       goals: [
-        { id: "goal_3", description: "认证通过率", target: 80, current: 72, unit: "%" },
-        { id: "goal_4", description: "学习时长", target: 1000, current: 756, unit: "小时" },
+        {
+          id: 'goal_3',
+          description: '认证通过率',
+          target: 80,
+          current: 72,
+          unit: '%',
+        },
+        {
+          id: 'goal_4',
+          description: '学习时长',
+          target: 1000,
+          current: 756,
+          unit: '小时',
+        },
       ],
       rewards: [
         {
-          id: "reward_3",
-          type: "certificate",
-          name: "CRM专家认证",
-          description: "客户管理专业认证",
-          value: "行业认证",
-          icon: "🎖️",
+          id: 'reward_3',
+          type: 'certificate',
+          name: 'CRM专家认证',
+          description: '客户管理专业认证',
+          value: '行业认证',
+          icon: '🎖️',
         },
       ],
       metrics: {
@@ -179,29 +224,41 @@ export function TrainingPromotionSystem() {
         satisfaction: 4.8,
         conversions: 64,
       },
-      createdBy: "人力资源部",
+      createdBy: '人力资源部',
     },
     {
-      id: "campaign_3",
-      title: "连续学习打卡",
-      description: "连续30天学习打卡，养成良好学习习惯",
-      type: "learning_streak",
-      status: "completed",
-      startDate: new Date("2023-12-01"),
-      endDate: new Date("2023-12-31"),
-      targetAudience: ["全体员工"],
+      id: 'campaign_3',
+      title: '连续学习打卡',
+      description: '连续30天学习打卡，养成良好学习习惯',
+      type: 'learning_streak',
+      status: 'completed',
+      startDate: new Date('2023-12-01'),
+      endDate: new Date('2023-12-31'),
+      targetAudience: ['全体员工'],
       goals: [
-        { id: "goal_5", description: "连续打卡天数", target: 30, current: 30, unit: "天" },
-        { id: "goal_6", description: "参与人数", target: 300, current: 278, unit: "人" },
+        {
+          id: 'goal_5',
+          description: '连续打卡天数',
+          target: 30,
+          current: 30,
+          unit: '天',
+        },
+        {
+          id: 'goal_6',
+          description: '参与人数',
+          target: 300,
+          current: 278,
+          unit: '人',
+        },
       ],
       rewards: [
         {
-          id: "reward_4",
-          type: "points",
-          name: "学习积分",
-          description: "每日打卡获得积分",
-          value: "100积分/天",
-          icon: "⭐",
+          id: 'reward_4',
+          type: 'points',
+          name: '学习积分',
+          description: '每日打卡获得积分',
+          value: '100积分/天',
+          icon: '⭐',
         },
       ],
       metrics: {
@@ -211,156 +268,156 @@ export function TrainingPromotionSystem() {
         satisfaction: 4.3,
         conversions: 238,
       },
-      createdBy: "培训部",
+      createdBy: '培训部',
     },
-  ])
+  ]);
 
   const [participants, setParticipants] = useState<Participant[]>([
     {
-      id: "part_1",
-      userId: "user_1",
-      userName: "张三",
-      userAvatar: "/placeholder.svg?height=40&width=40&text=张",
-      campaignId: "campaign_1",
-      joinedAt: new Date("2024-01-05"),
+      id: 'part_1',
+      userId: 'user_1',
+      userName: '张三',
+      userAvatar: '/placeholder.svg?height=40&width=40&text=张',
+      campaignId: 'campaign_1',
+      joinedAt: new Date('2024-01-05'),
       progress: 80,
       completed: false,
-      rewards: ["reward_1"],
+      rewards: ['reward_1'],
     },
     {
-      id: "part_2",
-      userId: "user_2",
-      userName: "李四",
-      userAvatar: "/placeholder.svg?height=40&width=40&text=李",
-      campaignId: "campaign_1",
-      joinedAt: new Date("2024-01-03"),
+      id: 'part_2',
+      userId: 'user_2',
+      userName: '李四',
+      userAvatar: '/placeholder.svg?height=40&width=40&text=李',
+      campaignId: 'campaign_1',
+      joinedAt: new Date('2024-01-03'),
       progress: 100,
       completed: true,
-      rewards: ["reward_1", "reward_2"],
+      rewards: ['reward_1', 'reward_2'],
     },
     {
-      id: "part_3",
-      userId: "user_3",
-      userName: "王五",
-      userAvatar: "/placeholder.svg?height=40&width=40&text=王",
-      campaignId: "campaign_2",
-      joinedAt: new Date("2024-01-18"),
+      id: 'part_3',
+      userId: 'user_3',
+      userName: '王五',
+      userAvatar: '/placeholder.svg?height=40&width=40&text=王',
+      campaignId: 'campaign_2',
+      joinedAt: new Date('2024-01-18'),
       progress: 45,
       completed: false,
       rewards: [],
     },
-  ])
+  ]);
 
   const [newCampaign, setNewCampaign] = useState({
-    title: "",
-    description: "",
-    type: "course_promotion" as Campaign["type"],
-    startDate: "",
-    endDate: "",
+    title: '',
+    description: '',
+    type: 'course_promotion' as Campaign['type'],
+    startDate: '',
+    endDate: '',
     targetAudience: [] as string[],
-  })
+  });
 
   // 活动效果数据
   const campaignEffectiveness = [
-    { month: "10月", participants: 120, completions: 89, satisfaction: 4.2 },
-    { month: "11月", participants: 145, completions: 112, satisfaction: 4.4 },
-    { month: "12月", participants: 278, completions: 238, satisfaction: 4.3 },
-    { month: "1月", participants: 245, completions: 167, satisfaction: 4.7 },
-  ]
+    { month: '10月', participants: 120, completions: 89, satisfaction: 4.2 },
+    { month: '11月', participants: 145, completions: 112, satisfaction: 4.4 },
+    { month: '12月', participants: 278, completions: 238, satisfaction: 4.3 },
+    { month: '1月', participants: 245, completions: 167, satisfaction: 4.7 },
+  ];
 
   // 活动类型分布
   const campaignTypeData = [
-    { type: "技能挑战", count: 8, color: "#3b82f6" },
-    { type: "认证考试", count: 5, color: "#10b981" },
-    { type: "学习打卡", count: 12, color: "#f59e0b" },
-    { type: "社区活动", count: 6, color: "#8b5cf6" },
-    { type: "课程推广", count: 9, color: "#ef4444" },
-  ]
+    { type: '技能挑战', count: 8, color: '#3b82f6' },
+    { type: '认证考试', count: 5, color: '#10b981' },
+    { type: '学习打卡', count: 12, color: '#f59e0b' },
+    { type: '社区活动', count: 6, color: '#8b5cf6' },
+    { type: '课程推广', count: 9, color: '#ef4444' },
+  ];
 
   // 参与度分析
   const engagementData = [
-    { audience: "新员工", participation: 85, completion: 72 },
-    { audience: "销售团队", participation: 92, completion: 78 },
-    { audience: "技术团队", participation: 76, completion: 85 },
-    { audience: "管理层", participation: 68, completion: 89 },
-    { audience: "客服团队", participation: 88, completion: 74 },
-  ]
+    { audience: '新员工', participation: 85, completion: 72 },
+    { audience: '销售团队', participation: 92, completion: 78 },
+    { audience: '技术团队', participation: 76, completion: 85 },
+    { audience: '管理层', participation: 68, completion: 89 },
+    { audience: '客服团队', participation: 88, completion: 74 },
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "active":
-        return "bg-green-100 text-green-800"
-      case "draft":
-        return "bg-gray-100 text-gray-800"
-      case "paused":
-        return "bg-yellow-100 text-yellow-800"
-      case "completed":
-        return "bg-blue-100 text-blue-800"
+      case 'active':
+        return 'bg-green-100 text-green-800';
+      case 'draft':
+        return 'bg-gray-100 text-gray-800';
+      case 'paused':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'completed':
+        return 'bg-blue-100 text-blue-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const getStatusLabel = (status: string) => {
     const labels = {
-      active: "进行中",
-      draft: "草稿",
-      paused: "已暂停",
-      completed: "已完成",
-    }
-    return labels[status as keyof typeof labels] || status
-  }
+      active: '进行中',
+      draft: '草稿',
+      paused: '已暂停',
+      completed: '已完成',
+    };
+    return labels[status as keyof typeof labels] || status;
+  };
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case "course_promotion":
-        return <Megaphone className="w-4 h-4" />
-      case "skill_challenge":
-        return <Target className="w-4 h-4" />
-      case "learning_streak":
-        return <Zap className="w-4 h-4" />
-      case "certification":
-        return <Award className="w-4 h-4" />
-      case "community_event":
-        return <Users className="w-4 h-4" />
+      case 'course_promotion':
+        return <Megaphone className="w-4 h-4" />;
+      case 'skill_challenge':
+        return <Target className="w-4 h-4" />;
+      case 'learning_streak':
+        return <Zap className="w-4 h-4" />;
+      case 'certification':
+        return <Award className="w-4 h-4" />;
+      case 'community_event':
+        return <Users className="w-4 h-4" />;
       default:
-        return <Star className="w-4 h-4" />
+        return <Star className="w-4 h-4" />;
     }
-  }
+  };
 
   const getTypeLabel = (type: string) => {
     const labels = {
-      course_promotion: "课程推广",
-      skill_challenge: "技能挑战",
-      learning_streak: "学习打卡",
-      certification: "认证考试",
-      community_event: "社区活动",
-    }
-    return labels[type as keyof typeof labels] || type
-  }
+      course_promotion: '课程推广',
+      skill_challenge: '技能挑战',
+      learning_streak: '学习打卡',
+      certification: '认证考试',
+      community_event: '社区活动',
+    };
+    return labels[type as keyof typeof labels] || type;
+  };
 
   const getRewardIcon = (type: string) => {
     switch (type) {
-      case "badge":
-        return <Trophy className="w-4 h-4" />
-      case "certificate":
-        return <Award className="w-4 h-4" />
-      case "points":
-        return <Star className="w-4 h-4" />
-      case "discount":
-        return <Gift className="w-4 h-4" />
-      case "gift":
-        return <Gift className="w-4 h-4" />
+      case 'badge':
+        return <Trophy className="w-4 h-4" />;
+      case 'certificate':
+        return <Award className="w-4 h-4" />;
+      case 'points':
+        return <Star className="w-4 h-4" />;
+      case 'discount':
+        return <Gift className="w-4 h-4" />;
+      case 'gift':
+        return <Gift className="w-4 h-4" />;
       default:
-        return <Star className="w-4 h-4" />
+        return <Star className="w-4 h-4" />;
     }
-  }
+  };
 
   const createCampaign = () => {
     const campaign: Campaign = {
       id: `campaign_${Date.now()}`,
       ...newCampaign,
-      status: "draft",
+      status: 'draft',
       startDate: new Date(newCampaign.startDate),
       endDate: new Date(newCampaign.endDate),
       goals: [],
@@ -372,33 +429,33 @@ export function TrainingPromotionSystem() {
         satisfaction: 0,
         conversions: 0,
       },
-      createdBy: "当前用户",
-    }
+      createdBy: '当前用户',
+    };
 
-    setCampaigns((prev) => [campaign, ...prev])
+    setCampaigns((prev) => [campaign, ...prev]);
     setNewCampaign({
-      title: "",
-      description: "",
-      type: "course_promotion",
-      startDate: "",
-      endDate: "",
+      title: '',
+      description: '',
+      type: 'course_promotion',
+      startDate: '',
+      endDate: '',
       targetAudience: [],
-    })
-  }
+    });
+  };
 
   const joinCampaign = (campaignId: string) => {
     const participant: Participant = {
       id: `part_${Date.now()}`,
-      userId: "current_user",
-      userName: "当前用户",
+      userId: 'current_user',
+      userName: '当前用户',
       campaignId,
       joinedAt: new Date(),
       progress: 0,
       completed: false,
       rewards: [],
-    }
+    };
 
-    setParticipants((prev) => [participant, ...prev])
+    setParticipants((prev) => [participant, ...prev]);
 
     // 更新活动参与人数
     setCampaigns((prev) =>
@@ -411,10 +468,10 @@ export function TrainingPromotionSystem() {
                 participants: campaign.metrics.participants + 1,
               },
             }
-          : campaign,
-      ),
-    )
-  }
+          : campaign
+      )
+    );
+  };
 
   return (
     <div className="p-6 space-y-6">
@@ -424,7 +481,9 @@ export function TrainingPromotionSystem() {
             <Megaphone className="w-8 h-8 mr-3 text-orange-600" />
             培训推广系统
           </h1>
-          <p className="text-muted-foreground">创建和管理培训推广活动，提升学习参与度</p>
+          <p className="text-muted-foreground">
+            创建和管理培训推广活动，提升学习参与度
+          </p>
         </div>
         <div className="flex space-x-2">
           <Button variant="outline">
@@ -450,7 +509,9 @@ export function TrainingPromotionSystem() {
         <Card>
           <CardContent className="p-6 text-center">
             <Zap className="w-8 h-8 mx-auto mb-2 text-green-600" />
-            <p className="text-2xl font-bold">{campaigns.filter((c) => c.status === "active").length}</p>
+            <p className="text-2xl font-bold">
+              {campaigns.filter((c) => c.status === 'active').length}
+            </p>
             <p className="text-sm text-gray-600">进行中</p>
           </CardContent>
         </Card>
@@ -464,7 +525,9 @@ export function TrainingPromotionSystem() {
         <Card>
           <CardContent className="p-6 text-center">
             <Trophy className="w-8 h-8 mx-auto mb-2 text-purple-600" />
-            <p className="text-2xl font-bold">{participants.filter((p) => p.completed).length}</p>
+            <p className="text-2xl font-bold">
+              {participants.filter((p) => p.completed).length}
+            </p>
             <p className="text-sm text-gray-600">完成人数</p>
           </CardContent>
         </Card>
@@ -473,8 +536,13 @@ export function TrainingPromotionSystem() {
             <Star className="w-8 h-8 mx-auto mb-2 text-yellow-600" />
             <p className="text-2xl font-bold">
               {campaigns.length > 0
-                ? (campaigns.reduce((sum, c) => sum + c.metrics.satisfaction, 0) / campaigns.length).toFixed(1)
-                : "0"}
+                ? (
+                    campaigns.reduce(
+                      (sum, c) => sum + c.metrics.satisfaction,
+                      0
+                    ) / campaigns.length
+                  ).toFixed(1)
+                : '0'}
             </p>
             <p className="text-sm text-gray-600">平均满意度</p>
           </CardContent>
@@ -492,7 +560,10 @@ export function TrainingPromotionSystem() {
         <TabsContent value="campaigns" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {campaigns.map((campaign) => (
-              <Card key={campaign.id} className="hover:shadow-lg transition-shadow">
+              <Card
+                key={campaign.id}
+                className="hover:shadow-lg transition-shadow"
+              >
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex items-center space-x-2">
@@ -500,11 +571,17 @@ export function TrainingPromotionSystem() {
                         {getTypeIcon(campaign.type)}
                       </div>
                       <div>
-                        <CardTitle className="text-lg">{campaign.title}</CardTitle>
-                        <Badge variant="outline">{getTypeLabel(campaign.type)}</Badge>
+                        <CardTitle className="text-lg">
+                          {campaign.title}
+                        </CardTitle>
+                        <Badge variant="outline">
+                          {getTypeLabel(campaign.type)}
+                        </Badge>
                       </div>
                     </div>
-                    <Badge className={getStatusColor(campaign.status)}>{getStatusLabel(campaign.status)}</Badge>
+                    <Badge className={getStatusColor(campaign.status)}>
+                      {getStatusLabel(campaign.status)}
+                    </Badge>
                   </div>
                   <CardDescription>{campaign.description}</CardDescription>
                 </CardHeader>
@@ -512,19 +589,27 @@ export function TrainingPromotionSystem() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <p className="text-gray-600">开始时间</p>
-                      <p className="font-medium">{campaign.startDate.toLocaleDateString("zh-CN")}</p>
+                      <p className="font-medium">
+                        {campaign.startDate.toLocaleDateString('zh-CN')}
+                      </p>
                     </div>
                     <div>
                       <p className="text-gray-600">结束时间</p>
-                      <p className="font-medium">{campaign.endDate.toLocaleDateString("zh-CN")}</p>
+                      <p className="font-medium">
+                        {campaign.endDate.toLocaleDateString('zh-CN')}
+                      </p>
                     </div>
                     <div>
                       <p className="text-gray-600">参与人数</p>
-                      <p className="font-medium">{campaign.metrics.participants}</p>
+                      <p className="font-medium">
+                        {campaign.metrics.participants}
+                      </p>
                     </div>
                     <div>
                       <p className="text-gray-600">完成率</p>
-                      <p className="font-medium">{campaign.metrics.completionRate.toFixed(1)}%</p>
+                      <p className="font-medium">
+                        {campaign.metrics.completionRate.toFixed(1)}%
+                      </p>
                     </div>
                   </div>
 
@@ -532,7 +617,11 @@ export function TrainingPromotionSystem() {
                     <p className="text-sm font-medium mb-2">目标受众</p>
                     <div className="flex flex-wrap gap-1">
                       {campaign.targetAudience.map((audience, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
+                        <Badge
+                          key={index}
+                          variant="secondary"
+                          className="text-xs"
+                        >
                           {audience}
                         </Badge>
                       ))}
@@ -550,7 +639,10 @@ export function TrainingPromotionSystem() {
                               {goal.current}/{goal.target} {goal.unit}
                             </span>
                           </div>
-                          <Progress value={(goal.current / goal.target) * 100} className="h-1" />
+                          <Progress
+                            value={(goal.current / goal.target) * 100}
+                            className="h-1"
+                          />
                         </div>
                       ))}
                     </div>
@@ -582,8 +674,11 @@ export function TrainingPromotionSystem() {
                         编辑
                       </Button>
                     </div>
-                    {campaign.status === "active" && (
-                      <Button size="sm" onClick={() => joinCampaign(campaign.id)}>
+                    {campaign.status === 'active' && (
+                      <Button
+                        size="sm"
+                        onClick={() => joinCampaign(campaign.id)}
+                      >
                         <Users className="w-4 h-4 mr-1" />
                         参与活动
                       </Button>
@@ -599,7 +694,9 @@ export function TrainingPromotionSystem() {
           <Card>
             <CardHeader>
               <CardTitle>创建推广活动</CardTitle>
-              <CardDescription>设计吸引人的培训推广活动，提升学习参与度</CardDescription>
+              <CardDescription>
+                设计吸引人的培训推广活动，提升学习参与度
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -607,7 +704,9 @@ export function TrainingPromotionSystem() {
                   <Label>活动标题</Label>
                   <Input
                     value={newCampaign.title}
-                    onChange={(e) => setNewCampaign({ ...newCampaign, title: e.target.value })}
+                    onChange={(e) =>
+                      setNewCampaign({ ...newCampaign, title: e.target.value })
+                    }
                     placeholder="输入活动标题"
                   />
                 </div>
@@ -615,7 +714,12 @@ export function TrainingPromotionSystem() {
                   <Label>活动类型</Label>
                   <Select
                     value={newCampaign.type}
-                    onValueChange={(value) => setNewCampaign({ ...newCampaign, type: value as Campaign["type"] })}
+                    onValueChange={(value) =>
+                      setNewCampaign({
+                        ...newCampaign,
+                        type: value as Campaign['type'],
+                      })
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -635,7 +739,12 @@ export function TrainingPromotionSystem() {
                 <Label>活动描述</Label>
                 <Textarea
                   value={newCampaign.description}
-                  onChange={(e) => setNewCampaign({ ...newCampaign, description: e.target.value })}
+                  onChange={(e) =>
+                    setNewCampaign({
+                      ...newCampaign,
+                      description: e.target.value,
+                    })
+                  }
                   placeholder="详细描述活动内容和规则"
                   rows={4}
                 />
@@ -647,7 +756,12 @@ export function TrainingPromotionSystem() {
                   <Input
                     type="date"
                     value={newCampaign.startDate}
-                    onChange={(e) => setNewCampaign({ ...newCampaign, startDate: e.target.value })}
+                    onChange={(e) =>
+                      setNewCampaign({
+                        ...newCampaign,
+                        startDate: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
@@ -655,7 +769,12 @@ export function TrainingPromotionSystem() {
                   <Input
                     type="date"
                     value={newCampaign.endDate}
-                    onChange={(e) => setNewCampaign({ ...newCampaign, endDate: e.target.value })}
+                    onChange={(e) =>
+                      setNewCampaign({
+                        ...newCampaign,
+                        endDate: e.target.value,
+                      })
+                    }
                   />
                 </div>
               </div>
@@ -663,8 +782,18 @@ export function TrainingPromotionSystem() {
               <div>
                 <Label>目标受众</Label>
                 <div className="grid grid-cols-3 gap-2 mt-2">
-                  {["新员工", "销售团队", "技术团队", "管理层", "客服团队", "全体员工"].map((audience) => (
-                    <label key={audience} className="flex items-center space-x-2">
+                  {[
+                    '新员工',
+                    '销售团队',
+                    '技术团队',
+                    '管理层',
+                    '客服团队',
+                    '全体员工',
+                  ].map((audience) => (
+                    <label
+                      key={audience}
+                      className="flex items-center space-x-2"
+                    >
                       <input
                         type="checkbox"
                         checked={newCampaign.targetAudience.includes(audience)}
@@ -672,13 +801,18 @@ export function TrainingPromotionSystem() {
                           if (e.target.checked) {
                             setNewCampaign({
                               ...newCampaign,
-                              targetAudience: [...newCampaign.targetAudience, audience],
-                            })
+                              targetAudience: [
+                                ...newCampaign.targetAudience,
+                                audience,
+                              ],
+                            });
                           } else {
                             setNewCampaign({
                               ...newCampaign,
-                              targetAudience: newCampaign.targetAudience.filter((a) => a !== audience),
-                            })
+                              targetAudience: newCampaign.targetAudience.filter(
+                                (a) => a !== audience
+                              ),
+                            });
                           }
                         }}
                         className="rounded"
@@ -692,7 +826,10 @@ export function TrainingPromotionSystem() {
               <Button
                 onClick={createCampaign}
                 disabled={
-                  !newCampaign.title || !newCampaign.description || !newCampaign.startDate || !newCampaign.endDate
+                  !newCampaign.title ||
+                  !newCampaign.description ||
+                  !newCampaign.startDate ||
+                  !newCampaign.endDate
                 }
                 className="w-full"
               >
@@ -706,23 +843,33 @@ export function TrainingPromotionSystem() {
         <TabsContent value="participants" className="space-y-6">
           <div className="space-y-4">
             {participants.map((participant) => {
-              const campaign = campaigns.find((c) => c.id === participant.campaignId)
+              const campaign = campaigns.find(
+                (c) => c.id === participant.campaignId
+              );
               return (
                 <Card key={participant.id}>
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
                         <Avatar>
-                          <AvatarImage src={participant.userAvatar || "/placeholder.svg"} />
-                          <AvatarFallback>{participant.userName.charAt(0)}</AvatarFallback>
+                          <AvatarImage
+                            src={participant.userAvatar || '/placeholder.svg'}
+                          />
+                          <AvatarFallback>
+                            {participant.userName.charAt(0)}
+                          </AvatarFallback>
                         </Avatar>
                         <div>
-                          <h3 className="font-semibold">{participant.userName}</h3>
-                          <p className="text-sm text-gray-600">{campaign?.title}</p>
+                          <h3 className="font-semibold">
+                            {participant.userName}
+                          </h3>
+                          <p className="text-sm text-gray-600">
+                            {campaign?.title}
+                          </p>
                           <div className="flex items-center space-x-4 text-sm text-gray-500 mt-1">
                             <span className="flex items-center">
                               <Calendar className="w-4 h-4 mr-1" />
-                              {participant.joinedAt.toLocaleDateString("zh-CN")}
+                              {participant.joinedAt.toLocaleDateString('zh-CN')}
                             </span>
                             <span className="flex items-center">
                               <Clock className="w-4 h-4 mr-1" />
@@ -733,8 +880,13 @@ export function TrainingPromotionSystem() {
                       </div>
                       <div className="flex items-center space-x-4">
                         <div className="text-right">
-                          <Progress value={participant.progress} className="w-24 h-2" />
-                          <p className="text-xs text-gray-500 mt-1">{participant.progress}% 完成</p>
+                          <Progress
+                            value={participant.progress}
+                            className="w-24 h-2"
+                          />
+                          <p className="text-xs text-gray-500 mt-1">
+                            {participant.progress}% 完成
+                          </p>
                         </div>
                         <div className="flex space-x-1">
                           {participant.rewards.map((rewardId, index) => (
@@ -746,12 +898,16 @@ export function TrainingPromotionSystem() {
                             </div>
                           ))}
                         </div>
-                        {participant.completed && <Badge className="bg-green-100 text-green-800">已完成</Badge>}
+                        {participant.completed && (
+                          <Badge className="bg-green-100 text-green-800">
+                            已完成
+                          </Badge>
+                        )}
                       </div>
                     </div>
                   </CardContent>
                 </Card>
-              )
+              );
             })}
           </div>
         </TabsContent>
@@ -767,16 +923,16 @@ export function TrainingPromotionSystem() {
                 <ChartContainer
                   config={{
                     participants: {
-                      label: "参与人数",
-                      color: "hsl(var(--chart-1))",
+                      label: '参与人数',
+                      color: 'hsl(var(--chart-1))',
                     },
                     completions: {
-                      label: "完成人数",
-                      color: "hsl(var(--chart-2))",
+                      label: '完成人数',
+                      color: 'hsl(var(--chart-2))',
                     },
                     satisfaction: {
-                      label: "满意度",
-                      color: "hsl(var(--chart-3))",
+                      label: '满意度',
+                      color: 'hsl(var(--chart-3))',
                     },
                   }}
                   className="h-[300px]"
@@ -825,8 +981,8 @@ export function TrainingPromotionSystem() {
                 <ChartContainer
                   config={{
                     count: {
-                      label: "数量",
-                      color: "hsl(var(--chart-4))",
+                      label: '数量',
+                      color: 'hsl(var(--chart-4))',
                     },
                   }}
                   className="h-[300px]"
@@ -839,7 +995,9 @@ export function TrainingPromotionSystem() {
                         cy="50%"
                         outerRadius={80}
                         dataKey="count"
-                        label={({ type, percent }) => `${type} ${(percent * 100).toFixed(0)}%`}
+                        label={({ type, percent }) =>
+                          `${type} ${(percent * 100).toFixed(0)}%`
+                        }
                       >
                         {campaignTypeData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.color} />
@@ -862,12 +1020,12 @@ export function TrainingPromotionSystem() {
               <ChartContainer
                 config={{
                   participation: {
-                    label: "参与率",
-                    color: "hsl(var(--chart-1))",
+                    label: '参与率',
+                    color: 'hsl(var(--chart-1))',
                   },
                   completion: {
-                    label: "完成率",
-                    color: "hsl(var(--chart-2))",
+                    label: '完成率',
+                    color: 'hsl(var(--chart-2))',
                   },
                 }}
                 className="h-[300px]"
@@ -879,7 +1037,10 @@ export function TrainingPromotionSystem() {
                     <YAxis />
                     <ChartTooltip content={<ChartTooltipContent />} />
                     <Legend />
-                    <Bar dataKey="participation" fill="var(--color-participation)" />
+                    <Bar
+                      dataKey="participation"
+                      fill="var(--color-participation)"
+                    />
                     <Bar dataKey="completion" fill="var(--color-completion)" />
                   </BarChart>
                 </ResponsiveContainer>
@@ -889,5 +1050,5 @@ export function TrainingPromotionSystem() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

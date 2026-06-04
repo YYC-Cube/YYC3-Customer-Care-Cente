@@ -10,9 +10,9 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,18 +20,18 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Zap, type LucideIcon } from "lucide-react"
+} from '@/components/ui/dropdown-menu';
+import { Zap, type LucideIcon } from 'lucide-react';
 
 interface QuickAction {
-  icon: LucideIcon
-  label: string
-  action: () => void
-  shortcut?: string
+  icon: LucideIcon;
+  label: string;
+  action: () => void;
+  shortcut?: string;
 }
 
 interface QuickActionsMenuProps {
-  actions: QuickAction[]
+  actions: QuickAction[];
 }
 
 export function QuickActionsMenu({ actions }: QuickActionsMenuProps) {
@@ -51,13 +51,21 @@ export function QuickActionsMenu({ actions }: QuickActionsMenuProps) {
         <DropdownMenuLabel>快速操作</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {actions.map((action, index) => (
-          <DropdownMenuItem key={index} onClick={action.action} className="cursor-pointer">
+          <DropdownMenuItem
+            key={index}
+            onClick={action.action}
+            className="cursor-pointer"
+          >
             <action.icon className="mr-2 h-4 w-4" />
             <span className="flex-1">{action.label}</span>
-            {action.shortcut && <span className="text-xs text-gray-400 ml-2">{action.shortcut}</span>}
+            {action.shortcut && (
+              <span className="text-xs text-gray-400 ml-2">
+                {action.shortcut}
+              </span>
+            )}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

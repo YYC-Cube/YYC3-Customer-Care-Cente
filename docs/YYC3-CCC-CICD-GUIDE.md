@@ -43,11 +43,13 @@ YYC3 Customer Care Center 项目采用全自动化的 CI/CD 流水线，实现�
 **触发条件**: 代码推送到 `main` 或 `develop` 分支，或创建 Pull Request
 
 **流程**:
+
 ```
 代码推送 → 代码质量检查 → 类型检查 → 单元测试 → 构建验证 → 上传构建产物
 ```
 
 **质量门禁**:
+
 - ✅ ESLint 检查通过
 - ✅ Prettier 格式检查通过
 - ✅ TypeScript 类型检查通过
@@ -57,11 +59,13 @@ YYC3 Customer Care Center 项目采用全自动化的 CI/CD 流水线，实现�
 **详细步骤**:
 
 1. **Lint 检查**
+
    - 运行 ESLint 进行代码质量检查
    - 运行 Prettier 进行代码格式检查
    - 运行 TypeScript 类型检查
 
 2. **测试执行**
+
    - 运行所有单元测试
    - 生成测试覆盖率报告
    - 上传覆盖率到 Codecov
@@ -78,6 +82,7 @@ YYC3 Customer Care Center 项目采用全自动化的 CI/CD 流水线，实现�
 **触发条件**: 代码推送到 `main` 分支
 
 **流程**:
+
 ```
 代码推送 → 运行测试 → 构建项目 → 部署到 Vercel 预发布环境 → Slack 通知
 ```
@@ -85,6 +90,7 @@ YYC3 Customer Care Center 项目采用全自动化的 CI/CD 流水线，实现�
 **自动化程度**: 100% 自动化
 
 **部署验证**:
+
 - 自动运行单元测试
 - 构建项目验证
 - Vercel 部署验证
@@ -97,11 +103,13 @@ YYC3 Customer Care Center 项目采用全自动化的 CI/CD 流水线，实现�
 **触发条件**: 代码推送到 `main` 分支或手动触发
 
 **流程**:
+
 ```
 代码推送/手动触发 → 运行测试 → 构建项目 → 人工审批（可选）→ 部署到 Vercel 生产环境 → Slack 通知
 ```
 
 **安全措施**:
+
 - 必须通过所有测试
 - 构建验证通过
 - Vercel 部署验证
@@ -112,6 +120,7 @@ YYC3 Customer Care Center 项目采用全自动化的 CI/CD 流水线，实现�
 ### 必需的 GitHub Secrets
 
 #### 基础配置
+
 ```bash
 NODE_ENV=production
 VERCEL_TOKEN=your-vercel-token
@@ -120,6 +129,7 @@ VERCEL_PROJECT_ID=your-project-id
 ```
 
 #### Sentry 配置
+
 ```bash
 SENTRY_DSN=https://your-sentry-dsn@sentry.io/project-id
 SENTRY_ENVIRONMENT=production
@@ -129,6 +139,7 @@ SENTRY_REPLAY_ON_ERROR_SAMPLE_RATE=0.1
 ```
 
 #### Slack 通知
+
 ```bash
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ```
@@ -136,11 +147,13 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ### 环境变量文件
 
 1. **本地开发**: [`.env.development`](../.env.development)
+
    - 开发环境专用配置
    - 本地数据库连接
    - 开发工具配置
 
 2. **生产环境**: [`.env.production`](../.env.production)
+
    - 生产环境专用配置
    - 生产数据库连接
    - 生产服务配置
@@ -156,6 +169,7 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ### 本地开发环境
 
 1. **启动开发服务器**:
+
    ```bash
    npm install
    npm run dev
@@ -168,16 +182,19 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ### Docker 部署
 
 1. **使用 Docker Compose 启动所有服务**:
+
    ```bash
    docker-compose up -d
    ```
 
 2. **查看服务状态**:
+
    ```bash
    docker-compose ps
    ```
 
 3. **查看日志**:
+
    ```bash
    docker-compose logs -f
    ```
@@ -188,6 +205,7 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
    ```
 
 **Docker Compose 包含的服务**:
+
 - 应用服务 (端口 3200)
 - Redis 缓存服务 (端口 6379)
 - PostgreSQL 数据库服务 (端口 5432)
@@ -195,11 +213,13 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ### 预发布环境部署
 
 1. **自动触发**:
+
    ```bash
    git push origin main
    ```
 
 2. **流程监控**:
+
    - 访问 GitHub Actions 查看部署进度
    - Slack 接收实时通知
 
@@ -210,11 +230,13 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ### 生产环境部署
 
 1. **自动触发**:
+
    ```bash
    git push origin main
    ```
 
 2. **监控部署**:
+
    - 访问 GitHub Actions 查看部署进度
    - Slack 接收实时通知
    - Vercel Dashboard 查看部署状态
@@ -240,6 +262,7 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 **工具库**: [`lib/sentry.ts`](../lib/sentry.ts)
 
 **监控功能**:
+
 - 错误追踪和报告
 - 性能监控
 - 用户会话重放
@@ -256,6 +279,7 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ### 告警渠道
 
 1. **Slack**: 实时通知团队频道
+
    - 部署开始通知
    - 部署完成通知
    - 部署失败通知
@@ -277,12 +301,14 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ### Vercel 自动回滚
 
 **触发条件**:
+
 - 部署验证失败
 - 错误率超过阈值
 - 响应时间异常
 - 健康检查失败
 
 **执行流程**:
+
 1. 访问 Vercel Dashboard
 2. 选择失败的部署
 3. 点击 "Rollback" 按钮
@@ -292,12 +318,14 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ### Git 版本回滚
 
 1. **回滚到上一版本**:
+
    ```bash
    git reset --hard HEAD~1
    git push origin main --force
    ```
 
 2. **回滚到特定版本**:
+
    ```bash
    git checkout <commit-hash>
    git push origin main --force
@@ -310,11 +338,13 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ### Docker 回滚
 
 1. **停止当前服务**:
+
    ```bash
    docker-compose down
    ```
 
 2. **回滚到上一镜像**:
+
    ```bash
    docker-compose pull
    docker-compose up -d
@@ -378,6 +408,7 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 **原因**: 测试失败或构建错误
 
 **解决**:
+
 ```bash
 # 本地运行测试
 npm run test
@@ -397,6 +428,7 @@ npm run format:check
 **原因**: 环境变量缺失或配置错误
 
 **解决**:
+
 - 检查 Vercel 环境变量配置
 - 验证 GitHub Secrets 配置
 - 查看 Vercel 部署日志
@@ -407,6 +439,7 @@ npm run format:check
 **原因**: 端口冲突或配置错误
 
 **解决**:
+
 ```bash
 # 检查端口占用
 lsof -i :3200
@@ -426,6 +459,7 @@ docker-compose up -d --build
 **原因**: 代码问题或配置错误
 
 **解决**:
+
 1. 检查 Sentry 仪表板
 2. 分析错误模式和频率
 3. 查看错误堆栈和上下文
@@ -437,6 +471,7 @@ docker-compose up -d --build
 **原因**: IP 不在允许的 CIDR 范围内
 
 **解决**:
+
 - 检查客户端 IP 地址
 - 验证 CIDR 配置是否正确
 - 更新 [`middleware.ts`](../middleware.ts) 中的访问控制规则
@@ -472,20 +507,20 @@ docker-compose up -d --build
 
 在 GitHub 仓库中配置以下 Secrets：
 
-| Secret 名称 | 描述 | 必需 | 示例 |
-|------------|--------|--------|--------|
-| `VERCEL_TOKEN` | Vercel 部署令牌 | 是 | `xxxxxxxxxxxxx` |
-| `VERCEL_ORG_ID` | Vercel 组织 ID | 是 | `team_xxxxxx` |
-| `VERCEL_PROJECT_ID` | Vercel 项目 ID | 是 | `prj_xxxxxx` |
-| `SLACK_WEBHOOK_URL` | Slack 通知 Webhook | 否 | `https://hooks.slack.com/...` |
-| `SENTRY_DSN` | Sentry DSN | 否 | `https://...@sentry.io/...` |
+| Secret 名称         | 描述               | 必需 | 示例                          |
+| ------------------- | ------------------ | ---- | ----------------------------- |
+| `VERCEL_TOKEN`      | Vercel 部署令牌    | 是   | `xxxxxxxxxxxxx`               |
+| `VERCEL_ORG_ID`     | Vercel 组织 ID     | 是   | `team_xxxxxx`                 |
+| `VERCEL_PROJECT_ID` | Vercel 项目 ID     | 是   | `prj_xxxxxx`                  |
+| `SLACK_WEBHOOK_URL` | Slack 通知 Webhook | 否   | `https://hooks.slack.com/...` |
+| `SENTRY_DSN`        | Sentry DSN         | 否   | `https://...@sentry.io/...`   |
 
 ### B. 端口配置
 
-| 服务 | 端口 | 说明 |
-|------|--------|------|
-| 应用 | 3200 | YYC3 标准端口范围 |
-| Redis | 6379 | 默认 Redis 端口 |
+| 服务       | 端口 | 说明                 |
+| ---------- | ---- | -------------------- |
+| 应用       | 3200 | YYC3 标准端口范围    |
+| Redis      | 6379 | 默认 Redis 端口      |
 | PostgreSQL | 5432 | 默认 PostgreSQL 端口 |
 
 ### C. 文件结构
@@ -518,7 +553,7 @@ tests/
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

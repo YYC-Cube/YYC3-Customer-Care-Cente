@@ -34,12 +34,7 @@ export default defineConfig({
       ],
     },
     include: ['**/*.{test,spec}.{js,jsx,ts,tsx}'],
-    exclude: [
-      'node_modules',
-      'dist',
-      '.next',
-      'coverage',
-    ],
+    exclude: ['node_modules', 'dist', '.next', 'coverage'],
   },
   resolve: {
     alias: {

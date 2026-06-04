@@ -10,9 +10,9 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { SalesChart } from "@/components/charts/sales-chart"
+import { SalesChart } from '@/components/charts/sales-chart';
 
 export default function SalesAnalyticsPage() {
   return (
@@ -23,5 +23,5 @@ export default function SalesAnalyticsPage() {
       </div>
       <SalesChart />
     </div>
-  )
+  );
 }

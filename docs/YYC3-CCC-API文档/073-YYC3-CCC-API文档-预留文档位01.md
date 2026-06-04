@@ -9,11 +9,11 @@
 @tags: [API接口],[文档预留],[扩展文档]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -28,9 +28,11 @@
 ### 1. 背景与目标
 
 #### 1.1 项目背景
+
 YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五化」理念的现代化AI代理服务落地页，采用Next.js 14+构建，集成了国际化系统、3D场景交互、动画效果和响应式设计。
 
 #### 1.2 文档目标
+
 - 规范预留文档位01相关的业务标准与技术落地要求
 - 为项目相关人员提供清晰的参考依据
 - 保障相关模块开发、实施、运维的一致性与规范性
@@ -38,6 +40,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 ### 2. 设计原则
 
 #### 2.1 五高原则
+
 - **高可用性**：确保系统7x24小时稳定运行
 - **高性能**：优化加载速度和交互响应
 - **高安全性**：保护用户数据和隐私安全
@@ -45,6 +48,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **高可维护性**：便于后续维护和升级
 
 #### 2.2 五标体系
+
 - **标准化**：统一的技术和流程标准
 - **规范化**：严格的开发和管理规范
 - **自动化**：提高开发效率和质量
@@ -52,6 +56,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **可视化**：直观的监控和管理界面
 
 #### 2.3 五化架构
+
 - **流程化**：标准化的开发流程
 - **文档化**：完善的文档体系
 - **工具化**：高效的开发工具链
@@ -116,13 +121,13 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 
 **请求参数**：
 
-| 参数名 | 类型 | 必填 | 说明 |
-|--------|------|------|------|
-| page | number | 否 | 页码，默认1 |
-| pageSize | number | 否 | 每页数量，默认10 |
-| status | string | 否 | 订单状态筛选 |
-| startDate | string | 否 | 开始日期 |
-| endDate | string | 否 | 结束日期 |
+| 参数名    | 类型   | 必填 | 说明             |
+| --------- | ------ | ---- | ---------------- |
+| page      | number | 否   | 页码，默认1      |
+| pageSize  | number | 否   | 每页数量，默认10 |
+| status    | string | 否   | 订单状态筛选     |
+| startDate | string | 否   | 开始日期         |
+| endDate   | string | 否   | 结束日期         |
 
 **响应示例**：
 
@@ -280,13 +285,13 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 
 **请求参数**：
 
-| 参数名 | 类型 | 必填 | 说明 |
-|--------|------|------|------|
-| serviceId | string | 否 | 服务ID |
-| page | number | 否 | 页码，默认1 |
-| pageSize | number | 否 | 每页数量，默认10 |
-| sortBy | string | 否 | 排序字段，默认createdAt |
-| sortOrder | string | 否 | 排序方向，asc/desc |
+| 参数名    | 类型   | 必填 | 说明                    |
+| --------- | ------ | ---- | ----------------------- |
+| serviceId | string | 否   | 服务ID                  |
+| page      | number | 否   | 页码，默认1             |
+| pageSize  | number | 否   | 每页数量，默认10        |
+| sortBy    | string | 否   | 排序字段，默认createdAt |
+| sortOrder | string | 否   | 排序方向，asc/desc      |
 
 **响应示例**：
 
@@ -343,12 +348,12 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 
 **请求参数**：
 
-| 参数名 | 类型 | 必填 | 说明 |
-|--------|------|------|------|
-| page | number | 否 | 页码，默认1 |
-| pageSize | number | 否 | 每页数量，默认10 |
-| status | string | 否 | 状态筛选 |
-| type | string | 否 | 类型筛选 |
+| 参数名   | 类型   | 必填 | 说明             |
+| -------- | ------ | ---- | ---------------- |
+| page     | number | 否   | 页码，默认1      |
+| pageSize | number | 否   | 每页数量，默认10 |
+| status   | string | 否   | 状态筛选         |
+| type     | string | 否   | 类型筛选         |
 
 **响应示例**：
 
@@ -426,11 +431,11 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 
 **请求参数**：
 
-| 参数名 | 类型 | 必填 | 说明 |
-|--------|------|------|------|
-| startDate | string | 是 | 开始日期 |
-| endDate | string | 是 | 结束日期 |
-| groupBy | string | 否 | 分组方式，day/week/month |
+| 参数名    | 类型   | 必填 | 说明                     |
+| --------- | ------ | ---- | ------------------------ |
+| startDate | string | 是   | 开始日期                 |
+| endDate   | string | 是   | 结束日期                 |
+| groupBy   | string | 否   | 分组方式，day/week/month |
 
 **响应示例**：
 
@@ -457,11 +462,11 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 
 **请求参数**：
 
-| 参数名 | 类型 | 必填 | 说明 |
-|--------|------|------|------|
-| startDate | string | 是 | 开始日期 |
-| endDate | string | 是 | 结束日期 |
-| groupBy | string | 否 | 分组方式，day/week/month |
+| 参数名    | 类型   | 必填 | 说明                     |
+| --------- | ------ | ---- | ------------------------ |
+| startDate | string | 是   | 开始日期                 |
+| endDate   | string | 是   | 结束日期                 |
+| groupBy   | string | 否   | 分组方式，day/week/month |
 
 **响应示例**：
 
@@ -492,10 +497,10 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 
 **请求参数**：
 
-| 参数名 | 类型 | 必填 | 说明 |
-|--------|------|------|------|
-| startDate | string | 是 | 开始日期 |
-| endDate | string | 是 | 结束日期 |
+| 参数名    | 类型   | 必填 | 说明     |
+| --------- | ------ | ---- | -------- |
+| startDate | string | 是   | 开始日期 |
+| endDate   | string | 是   | 结束日期 |
 
 **响应示例**：
 
@@ -514,7 +519,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

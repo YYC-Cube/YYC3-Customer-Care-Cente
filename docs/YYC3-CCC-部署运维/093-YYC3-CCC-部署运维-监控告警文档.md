@@ -9,11 +9,11 @@
 @tags: [部署运维],[监控告警],[监控配置]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -28,9 +28,11 @@
 ### 1. 背景与目标
 
 #### 1.1 项目背景
+
 YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五化」理念的现代化AI代理服务落地页，采用Next.js 14+构建，集成了国际化系统、3D场景交互、动画效果和响应式设计。
 
 #### 1.2 文档目标
+
 - 规范监控告警文档相关的业务标准与技术落地要求
 - 为项目相关人员提供清晰的参考依据
 - 保障相关模块开发、实施、运维的一致性与规范性
@@ -38,6 +40,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 ### 2. 设计原则
 
 #### 2.1 五高原则
+
 - **高可用性**：确保系统7x24小时稳定运行
 - **高性能**：优化加载速度和交互响应
 - **高安全性**：保护用户数据和隐私安全
@@ -45,6 +48,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **高可维护性**：便于后续维护和升级
 
 #### 2.2 五标体系
+
 - **标准化**：统一的技术和流程标准
 - **规范化**：严格的开发和管理规范
 - **自动化**：提高开发效率和质量
@@ -52,6 +56,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **可视化**：直观的监控和管理界面
 
 #### 2.3 五化架构
+
 - **流程化**：标准化的开发流程
 - **文档化**：完善的文档体系
 - **工具化**：高效的开发工具链
@@ -101,13 +106,13 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 
 #### 4.2 监控工具集成
 
-| 监控类型 | 工具 | 用途 |
-|---------|------|------|
-| 错误追踪 | Sentry | 前端和后端错误监控 |
+| 监控类型 | 工具             | 用途               |
+| -------- | ---------------- | ------------------ |
+| 错误追踪 | Sentry           | 前端和后端错误监控 |
 | 性能监控 | Vercel Analytics | 页面性能和访问统计 |
-| 部署监控 | Vercel Console | 部署状态和构建日志 |
-| 用户行为 | Google Analytics | 用户行为分析 |
-| 健康检查 | 自定义健康端点 | 系统可用性监控 |
+| 部署监控 | Vercel Console   | 部署状态和构建日志 |
+| 用户行为 | Google Analytics | 用户行为分析       |
+| 健康检查 | 自定义健康端点   | 系统可用性监控     |
 
 ### 5. Sentry 监控配置
 
@@ -128,8 +133,12 @@ Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   environment: process.env.NODE_ENV,
   tracesSampleRate: parseFloat(process.env.SENTRY_TRACES_SAMPLE_RATE || '0.1'),
-  replaysSessionSampleRate: parseFloat(process.env.SENTRY_REPLAY_SESSION_SAMPLE_RATE || '0.01'),
-  replaysOnErrorSampleRate: parseFloat(process.env.SENTRY_REPLAY_ON_ERROR_SAMPLE_RATE || '0.1'),
+  replaysSessionSampleRate: parseFloat(
+    process.env.SENTRY_REPLAY_SESSION_SAMPLE_RATE || '0.01'
+  ),
+  replaysOnErrorSampleRate: parseFloat(
+    process.env.SENTRY_REPLAY_ON_ERROR_SAMPLE_RATE || '0.1'
+  ),
   integrations: [
     new Sentry.Replay({
       maskAllText: true,
@@ -174,31 +183,35 @@ export default nextConfig;
 
 #### 6.1 告警分级
 
-| 级别 | 描述 | 响应时间 | 通知渠道 |
-|------|------|----------|----------|
+| 级别   | 描述     | 响应时间 | 通知渠道           |
+| ------ | -------- | -------- | ------------------ |
 | **P0** | 严重故障 | 立即响应 | 电话 + 短信 + 邮件 |
-| **P1** | 高优先级 | 15分钟内 | 短信 + 邮件 |
-| **P2** | 中优先级 | 4小时内 | 邮件 |
-| **P3** | 低优先级 | 24小时内 | 邮件 |
+| **P1** | 高优先级 | 15分钟内 | 短信 + 邮件        |
+| **P2** | 中优先级 | 4小时内  | 邮件               |
+| **P3** | 低优先级 | 24小时内 | 邮件               |
 
 #### 6.2 告警规则示例
 
 **系统可用性告警：**
+
 - 规则：系统连续3次健康检查失败
 - 级别：P0
 - 通知：所有渠道
 
 **错误率告警：**
+
 - 规则：5分钟内错误率超过1%
 - 级别：P1
 - 通知：短信 + 邮件
 
 **性能告警：**
+
 - 规则：平均响应时间超过2秒
 - 级别：P2
 - 通知：邮件
 
 **资源使用告警：**
+
 - 规则：CPU使用率超过80%持续5分钟
 - 级别：P2
 - 通知：邮件
@@ -208,18 +221,22 @@ export default nextConfig;
 #### 7.1 通知渠道
 
 **邮件通知：**
+
 - 配置：在Sentry和Vercel中设置邮件接收人
 - 用途：常规告警和日报
 
 **短信通知：**
+
 - 配置：集成Twilio或其他短信服务
 - 用途：高优先级告警
 
 **Slack通知：**
+
 - 配置：集成Slack Webhook
 - 用途：团队协作和实时告警
 
 **钉钉通知：**
+
 - 配置：集成钉钉机器人
 - 用途：团队协作和实时告警
 
@@ -253,18 +270,21 @@ export default nextConfig;
 #### 8.1 Sentry 监控面板
 
 **错误监控面板：**
+
 - 错误类型分布
 - 错误趋势分析
 - 错误详情查看
 - 影响用户数统计
 
 **性能监控面板：**
+
 - 页面加载性能
 - API响应时间
 - 资源加载时间
 - 用户体验指标
 
 **用户会话面板：**
+
 - 用户会话重放
 - 会话错误分析
 - 用户行为路径
@@ -273,12 +293,14 @@ export default nextConfig;
 #### 8.2 Vercel 监控面板
 
 **部署监控面板：**
+
 - 部署历史记录
 - 部署状态监控
 - 构建日志查看
 - 部署时间分析
 
 **访问监控面板：**
+
 - 访问量统计
 - 页面访问排行
 - 地理位置分布
@@ -289,6 +311,7 @@ export default nextConfig;
 #### 9.1 健康检查端点
 
 **前端健康检查：**
+
 - 端点：`/api/health`
 - 检查内容：前端服务状态
 - 响应格式：
@@ -306,6 +329,7 @@ export default nextConfig;
   ```
 
 **后端健康检查：**
+
 - 端点：`/api/health/backend`
 - 检查内容：后端服务状态
 - 响应格式：
@@ -328,11 +352,11 @@ export default nextConfig;
 
 #### 9.2 健康检查频率
 
-| 环境 | 检查频率 | 超时时间 | 重试次数 |
-|------|----------|----------|----------|
-| 生产环境 | 1分钟 | 5秒 | 3次 |
-| 预发布环境 | 2分钟 | 10秒 | 2次 |
-| 开发环境 | 5分钟 | 15秒 | 1次 |
+| 环境       | 检查频率 | 超时时间 | 重试次数 |
+| ---------- | -------- | -------- | -------- |
+| 生产环境   | 1分钟    | 5秒      | 3次      |
+| 预发布环境 | 2分钟    | 10秒     | 2次      |
+| 开发环境   | 5分钟    | 15秒     | 1次      |
 
 ### 10. 监控最佳实践
 
@@ -364,6 +388,7 @@ export default nextConfig;
 **问题**：监控数据与实际情况不符
 
 **解决方案**：
+
 - 检查监控配置是否正确
 - 验证监控数据采集是否正常
 - 校准监控指标阈值
@@ -374,6 +399,7 @@ export default nextConfig;
 **问题**：短时间内收到大量重复告警
 
 **解决方案**：
+
 - 配置告警聚合规则
 - 调整告警阈值
 - 实现告警抑制机制
@@ -384,6 +410,7 @@ export default nextConfig;
 **问题**：某些系统组件未被监控
 
 **解决方案**：
+
 - 全面梳理系统架构
 - 识别关键组件和依赖
 - 补充监控配置
@@ -394,6 +421,7 @@ export default nextConfig;
 **问题**：正常情况被误判为告警
 
 **解决方案**：
+
 - 分析误报原因
 - 调整告警规则和阈值
 - 增加告警确认机制
@@ -407,7 +435,7 @@ export default nextConfig;
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

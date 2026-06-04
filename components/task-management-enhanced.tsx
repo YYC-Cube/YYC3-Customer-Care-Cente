@@ -10,17 +10,17 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { EnhancedCard } from "@/components/ui/enhanced-card"
-import { EnhancedButton } from "@/components/ui/enhanced-button"
-import { PageContainer } from "@/components/layout/page-container"
-import { commonStyles } from "@/lib/design-system"
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { EnhancedCard } from '@/components/ui/enhanced-card';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
+import { PageContainer } from '@/components/layout/page-container';
+import { commonStyles } from '@/lib/design-system';
 import {
   Search,
   Plus,
@@ -40,124 +40,162 @@ import {
   BarChart3,
   Clock,
   FileIcon as FileTemplate,
-} from "lucide-react"
+} from 'lucide-react';
 
-import { TimeTracker } from "./time-tracker"
-import { TaskTemplates } from "./task-templates"
+import { TimeTracker } from './time-tracker';
+import { TaskTemplates } from './task-templates';
 
 const tasks = [
   {
     id: 1,
-    title: "Q4销售报告制作",
-    description: "整理Q4季度销售数据，制作详细分析报告",
-    status: "进行中",
-    priority: "高",
-    assignee: "张经理",
-    dueDate: "2025-06-25",
+    title: 'Q4销售报告制作',
+    description: '整理Q4季度销售数据，制作详细分析报告',
+    status: '进行中',
+    priority: '高',
+    assignee: '张经理',
+    dueDate: '2025-06-25',
     progress: 75,
-    tags: ["销售", "报告"],
+    tags: ['销售', '报告'],
     comments: 5,
     attachments: 3,
-    timeSpent: "12h 30m",
-    estimatedTime: "16h",
+    timeSpent: '12h 30m',
+    estimatedTime: '16h',
   },
   {
     id: 2,
-    title: "客户满意度调研",
-    description: "对重点客户进行满意度调研，收集反馈意见",
-    status: "待开始",
-    priority: "中",
-    assignee: "李专员",
-    dueDate: "2025-06-28",
+    title: '客户满意度调研',
+    description: '对重点客户进行满意度调研，收集反馈意见',
+    status: '待开始',
+    priority: '中',
+    assignee: '李专员',
+    dueDate: '2025-06-28',
     progress: 0,
-    tags: ["客户", "调研"],
+    tags: ['客户', '调研'],
     comments: 2,
     attachments: 1,
-    timeSpent: "0h",
-    estimatedTime: "8h",
+    timeSpent: '0h',
+    estimatedTime: '8h',
   },
   {
     id: 3,
-    title: "产品库存盘点",
-    description: "对仓库所有产品进行全面盘点，更新库存数据",
-    status: "已完成",
-    priority: "高",
-    assignee: "王主管",
-    dueDate: "2025-06-20",
+    title: '产品库存盘点',
+    description: '对仓库所有产品进行全面盘点，更新库存数据',
+    status: '已完成',
+    priority: '高',
+    assignee: '王主管',
+    dueDate: '2025-06-20',
     progress: 100,
-    tags: ["库存", "盘点"],
+    tags: ['库存', '盘点'],
     comments: 8,
     attachments: 5,
-    timeSpent: "24h 15m",
-    estimatedTime: "20h",
+    timeSpent: '24h 15m',
+    estimatedTime: '20h',
   },
-]
+];
 
 const taskStats = [
-  { label: "总任务数", value: "156", change: "+12", icon: Target, color: "from-blue-400 to-sky-500" },
-  { label: "进行中", value: "42", change: "+8", icon: PlayCircle, color: "from-emerald-400 to-teal-500" },
-  { label: "已完成", value: "98", change: "+15", icon: CheckCircle, color: "from-purple-400 to-indigo-500" },
-  { label: "完成率", value: "87.5%", change: "+5.2%", icon: BarChart3, color: "from-orange-400 to-red-500" },
-]
+  {
+    label: '总任务数',
+    value: '156',
+    change: '+12',
+    icon: Target,
+    color: 'from-blue-400 to-sky-500',
+  },
+  {
+    label: '进行中',
+    value: '42',
+    change: '+8',
+    icon: PlayCircle,
+    color: 'from-emerald-400 to-teal-500',
+  },
+  {
+    label: '已完成',
+    value: '98',
+    change: '+15',
+    icon: CheckCircle,
+    color: 'from-purple-400 to-indigo-500',
+  },
+  {
+    label: '完成率',
+    value: '87.5%',
+    change: '+5.2%',
+    icon: BarChart3,
+    color: 'from-orange-400 to-red-500',
+  },
+];
 
 export function TaskManagementEnhanced() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedTask, setSelectedTask] = useState<number | null>(null)
-  const [activeTab, setActiveTab] = useState("kanban")
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTask, setSelectedTask] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState('kanban');
 
-  const [selectedTasks, setSelectedTasks] = useState<string[]>([])
-  const [showTimeTracker, setShowTimeTracker] = useState(false)
-  const [showTemplates, setShowTemplates] = useState(false)
-  const [showImportExport, setShowImportExport] = useState(false)
-  const [trackingTaskId, setTrackingTaskId] = useState<string | null>(null)
+  const [selectedTasks, setSelectedTasks] = useState<string[]>([]);
+  const [showTimeTracker, setShowTimeTracker] = useState(false);
+  const [showTemplates, setShowTemplates] = useState(false);
+  const [showImportExport, setShowImportExport] = useState(false);
+  const [trackingTaskId, setTrackingTaskId] = useState<string | null>(null);
 
   const filteredTasks = tasks.filter(
     (task) =>
       task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      task.assignee.toLowerCase().includes(searchTerm.toLowerCase()),
-  )
+      task.assignee.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "已完成":
-        return commonStyles.badge.success
-      case "进行中":
-        return commonStyles.badge.primary
-      case "待开始":
-        return commonStyles.badge.warning
+      case '已完成':
+        return commonStyles.badge.success;
+      case '进行中':
+        return commonStyles.badge.primary;
+      case '待开始':
+        return commonStyles.badge.warning;
       default:
-        return commonStyles.badge.secondary
+        return commonStyles.badge.secondary;
     }
-  }
+  };
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case "高":
-        return "border-red-200 text-red-700 bg-red-50"
-      case "中":
-        return "border-yellow-200 text-yellow-700 bg-yellow-50"
-      case "低":
-        return "border-green-200 text-green-700 bg-green-50"
+      case '高':
+        return 'border-red-200 text-red-700 bg-red-50';
+      case '中':
+        return 'border-yellow-200 text-yellow-700 bg-yellow-50';
+      case '低':
+        return 'border-green-200 text-green-700 bg-green-50';
       default:
-        return commonStyles.badge.secondary
+        return commonStyles.badge.secondary;
     }
-  }
+  };
 
   return (
-    <PageContainer title="任务管理" description="高效管理团队任务，提升工作协作效率">
+    <PageContainer
+      title="任务管理"
+      description="高效管理团队任务，提升工作协作效率"
+    >
       {/* 统计卡片 */}
-      <div className={commonStyles.layout.grid + " grid-cols-1 md:grid-cols-2 lg:grid-cols-4"}>
+      <div
+        className={
+          commonStyles.layout.grid +
+          ' grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+        }
+      >
         {taskStats.map((stat, index) => {
-          const Icon = stat.icon
+          const Icon = stat.icon;
           return (
             <EnhancedCard key={index} variant="glass">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">{stat.label}</p>
-                  <p className="text-2xl font-bold text-slate-800">{stat.value}</p>
+                  <p className="text-sm font-medium text-slate-600 mb-1">
+                    {stat.label}
+                  </p>
+                  <p className="text-2xl font-bold text-slate-800">
+                    {stat.value}
+                  </p>
                   <div className="flex items-center mt-2">
                     <TrendingUp className="w-3 h-3 text-emerald-500 mr-1" />
-                    <span className="text-sm font-medium text-emerald-600">{stat.change}</span>
+                    <span className="text-sm font-medium text-emerald-600">
+                      {stat.change}
+                    </span>
                     <span className="text-xs text-slate-500 ml-1">vs 上周</span>
                   </div>
                 </div>
@@ -168,7 +206,7 @@ export function TaskManagementEnhanced() {
                 </div>
               </div>
             </EnhancedCard>
-          )
+          );
         })}
       </div>
 
@@ -177,19 +215,34 @@ export function TaskManagementEnhanced() {
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <div className="flex items-center justify-between mb-6">
             <TabsList className="bg-sky-100/50 border border-sky-200">
-              <TabsTrigger value="kanban" className="data-[state=active]:bg-white data-[state=active]:text-sky-700">
+              <TabsTrigger
+                value="kanban"
+                className="data-[state=active]:bg-white data-[state=active]:text-sky-700"
+              >
                 看板视图
               </TabsTrigger>
-              <TabsTrigger value="list" className="data-[state=active]:bg-white data-[state=active]:text-sky-700">
+              <TabsTrigger
+                value="list"
+                className="data-[state=active]:bg-white data-[state=active]:text-sky-700"
+              >
                 列表视图
               </TabsTrigger>
-              <TabsTrigger value="calendar" className="data-[state=active]:bg-white data-[state=active]:text-sky-700">
+              <TabsTrigger
+                value="calendar"
+                className="data-[state=active]:bg-white data-[state=active]:text-sky-700"
+              >
                 日历视图
               </TabsTrigger>
-              <TabsTrigger value="analytics" className="data-[state=active]:bg-white data-[state=active]:text-sky-700">
+              <TabsTrigger
+                value="analytics"
+                className="data-[state=active]:bg-white data-[state=active]:text-sky-700"
+              >
                 数据分析
               </TabsTrigger>
-              <TabsTrigger value="templates" className="data-[state=active]:bg-white data-[state=active]:text-sky-700">
+              <TabsTrigger
+                value="templates"
+                className="data-[state=active]:bg-white data-[state=active]:text-sky-700"
+              >
                 任务模板
               </TabsTrigger>
               <TabsTrigger
@@ -207,16 +260,24 @@ export function TaskManagementEnhanced() {
                   placeholder="搜索任务..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className={commonStyles.input + " pl-10 w-64"}
+                  className={commonStyles.input + ' pl-10 w-64'}
                 />
               </div>
               <EnhancedButton variant="secondary" icon={Filter}>
                 筛选
               </EnhancedButton>
-              <EnhancedButton variant="secondary" icon={Clock} onClick={() => setShowTimeTracker(true)}>
+              <EnhancedButton
+                variant="secondary"
+                icon={Clock}
+                onClick={() => setShowTimeTracker(true)}
+              >
                 时间追踪
               </EnhancedButton>
-              <EnhancedButton variant="secondary" icon={FileTemplate} onClick={() => setShowTemplates(true)}>
+              <EnhancedButton
+                variant="secondary"
+                icon={FileTemplate}
+                onClick={() => setShowTemplates(true)}
+              >
                 任务模板
               </EnhancedButton>
               <EnhancedButton icon={Plus}>新建任务</EnhancedButton>
@@ -232,24 +293,37 @@ export function TaskManagementEnhanced() {
                     <AlertCircle className="w-5 h-5 mr-2 text-orange-500" />
                     待开始
                   </h3>
-                  <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200">
-                    {filteredTasks.filter((t) => t.status === "待开始").length}
+                  <Badge
+                    variant="outline"
+                    className="bg-orange-50 text-orange-700 border-orange-200"
+                  >
+                    {filteredTasks.filter((t) => t.status === '待开始').length}
                   </Badge>
                 </div>
                 <div className="space-y-3">
                   {filteredTasks
-                    .filter((task) => task.status === "待开始")
+                    .filter((task) => task.status === '待开始')
                     .map((task) => (
-                      <div key={task.id} className={`${commonStyles.card} p-4 hover:scale-[1.02] cursor-pointer`}>
+                      <div
+                        key={task.id}
+                        className={`${commonStyles.card} p-4 hover:scale-[1.02] cursor-pointer`}
+                      >
                         <div className="space-y-3">
                           <div className="flex items-start justify-between">
-                            <h4 className="font-medium text-slate-800 text-sm leading-tight">{task.title}</h4>
-                            <Badge variant="outline" className={getPriorityColor(task.priority)}>
+                            <h4 className="font-medium text-slate-800 text-sm leading-tight">
+                              {task.title}
+                            </h4>
+                            <Badge
+                              variant="outline"
+                              className={getPriorityColor(task.priority)}
+                            >
                               {task.priority}
                             </Badge>
                           </div>
 
-                          <p className="text-xs text-slate-600 line-clamp-2">{task.description}</p>
+                          <p className="text-xs text-slate-600 line-clamp-2">
+                            {task.description}
+                          </p>
 
                           <div className="flex items-center justify-between text-xs">
                             <div className="flex items-center space-x-2">
@@ -300,13 +374,16 @@ export function TaskManagementEnhanced() {
                     <PlayCircle className="w-5 h-5 mr-2 text-blue-500" />
                     进行中
                   </h3>
-                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                    {filteredTasks.filter((t) => t.status === "进行中").length}
+                  <Badge
+                    variant="outline"
+                    className="bg-blue-50 text-blue-700 border-blue-200"
+                  >
+                    {filteredTasks.filter((t) => t.status === '进行中').length}
                   </Badge>
                 </div>
                 <div className="space-y-3">
                   {filteredTasks
-                    .filter((task) => task.status === "进行中")
+                    .filter((task) => task.status === '进行中')
                     .map((task) => (
                       <div
                         key={task.id}
@@ -314,18 +391,27 @@ export function TaskManagementEnhanced() {
                       >
                         <div className="space-y-3">
                           <div className="flex items-start justify-between">
-                            <h4 className="font-medium text-slate-800 text-sm leading-tight">{task.title}</h4>
-                            <Badge variant="outline" className={getPriorityColor(task.priority)}>
+                            <h4 className="font-medium text-slate-800 text-sm leading-tight">
+                              {task.title}
+                            </h4>
+                            <Badge
+                              variant="outline"
+                              className={getPriorityColor(task.priority)}
+                            >
                               {task.priority}
                             </Badge>
                           </div>
 
-                          <p className="text-xs text-slate-600 line-clamp-2">{task.description}</p>
+                          <p className="text-xs text-slate-600 line-clamp-2">
+                            {task.description}
+                          </p>
 
                           <div className="space-y-2">
                             <div className="flex items-center justify-between text-xs">
                               <span className="text-slate-600">进度</span>
-                              <span className="font-medium text-blue-600">{task.progress}%</span>
+                              <span className="font-medium text-blue-600">
+                                {task.progress}%
+                              </span>
                             </div>
                             <div className="w-full bg-sky-100 rounded-full h-2">
                               <div
@@ -388,13 +474,16 @@ export function TaskManagementEnhanced() {
                     <CheckCircle className="w-5 h-5 mr-2 text-emerald-500" />
                     已完成
                   </h3>
-                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
-                    {filteredTasks.filter((t) => t.status === "已完成").length}
+                  <Badge
+                    variant="outline"
+                    className="bg-emerald-50 text-emerald-700 border-emerald-200"
+                  >
+                    {filteredTasks.filter((t) => t.status === '已完成').length}
                   </Badge>
                 </div>
                 <div className="space-y-3">
                   {filteredTasks
-                    .filter((task) => task.status === "已完成")
+                    .filter((task) => task.status === '已完成')
                     .map((task) => (
                       <div
                         key={task.id}
@@ -408,7 +497,9 @@ export function TaskManagementEnhanced() {
                             <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
                           </div>
 
-                          <p className="text-xs text-slate-600 line-clamp-2">{task.description}</p>
+                          <p className="text-xs text-slate-600 line-clamp-2">
+                            {task.description}
+                          </p>
 
                           <div className="flex items-center justify-between text-xs">
                             <div className="flex items-center space-x-2">
@@ -461,33 +552,43 @@ export function TaskManagementEnhanced() {
           <TabsContent value="list" className="space-y-4">
             <div className="space-y-3">
               {filteredTasks.map((task) => (
-                <div key={task.id} className={`${commonStyles.card} p-6 hover:scale-[1.01] cursor-pointer`}>
+                <div
+                  key={task.id}
+                  className={`${commonStyles.card} p-6 hover:scale-[1.01] cursor-pointer`}
+                >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4 flex-1">
                       <div
                         className={`w-3 h-3 rounded-full ${
-                          task.status === "已完成"
-                            ? "bg-emerald-400"
-                            : task.status === "进行中"
-                              ? "bg-blue-400"
-                              : "bg-orange-400"
+                          task.status === '已完成'
+                            ? 'bg-emerald-400'
+                            : task.status === '进行中'
+                              ? 'bg-blue-400'
+                              : 'bg-orange-400'
                         }`}
                       />
 
                       <div className="flex-1">
                         <div className="flex items-center space-x-3 mb-2">
                           <h3
-                            className={`font-semibold text-slate-800 ${task.status === "已完成" ? "line-through decoration-emerald-400" : ""}`}
+                            className={`font-semibold text-slate-800 ${task.status === '已完成' ? 'line-through decoration-emerald-400' : ''}`}
                           >
                             {task.title}
                           </h3>
-                          <Badge variant="outline" className={getPriorityColor(task.priority)}>
+                          <Badge
+                            variant="outline"
+                            className={getPriorityColor(task.priority)}
+                          >
                             {task.priority}
                           </Badge>
-                          <Badge className={getStatusColor(task.status)}>{task.status}</Badge>
+                          <Badge className={getStatusColor(task.status)}>
+                            {task.status}
+                          </Badge>
                         </div>
 
-                        <p className="text-sm text-slate-600 mb-3">{task.description}</p>
+                        <p className="text-sm text-slate-600 mb-3">
+                          {task.description}
+                        </p>
 
                         <div className="flex items-center space-x-6 text-sm text-slate-500">
                           <div className="flex items-center">
@@ -515,9 +616,11 @@ export function TaskManagementEnhanced() {
                     </div>
 
                     <div className="flex items-center space-x-4">
-                      {task.status === "进行中" && (
+                      {task.status === '进行中' && (
                         <div className="text-right">
-                          <p className="text-sm text-slate-600 mb-1">完成进度</p>
+                          <p className="text-sm text-slate-600 mb-1">
+                            完成进度
+                          </p>
                           <div className="flex items-center">
                             <div className="w-20 bg-sky-100 rounded-full h-2 mr-2">
                               <div
@@ -525,16 +628,26 @@ export function TaskManagementEnhanced() {
                                 style={{ width: `${task.progress}%` }}
                               />
                             </div>
-                            <span className="text-sm font-medium text-blue-600">{task.progress}%</span>
+                            <span className="text-sm font-medium text-blue-600">
+                              {task.progress}%
+                            </span>
                           </div>
                         </div>
                       )}
 
                       <div className="flex items-center space-x-2">
-                        <EnhancedButton variant="ghost" size="sm" icon={PlayCircle}>
+                        <EnhancedButton
+                          variant="ghost"
+                          size="sm"
+                          icon={PlayCircle}
+                        >
                           开始
                         </EnhancedButton>
-                        <EnhancedButton variant="ghost" size="sm" icon={MessageSquare}>
+                        <EnhancedButton
+                          variant="ghost"
+                          size="sm"
+                          icon={MessageSquare}
+                        >
                           评论
                         </EnhancedButton>
                         <EnhancedButton
@@ -542,9 +655,9 @@ export function TaskManagementEnhanced() {
                           size="sm"
                           icon={Timer}
                           onClick={() => {
-                            setTrackingTaskId(task.id.toString())
-                            setShowTimeTracker(true)
-                            setActiveTab("time-tracking")
+                            setTrackingTaskId(task.id.toString());
+                            setShowTimeTracker(true);
+                            setActiveTab('time-tracking');
                           }}
                         >
                           计时
@@ -559,12 +672,18 @@ export function TaskManagementEnhanced() {
                   <div className="mt-4 pt-4 border-t border-sky-100 flex items-center justify-between">
                     <div className="flex space-x-2">
                       {task.tags.map((tag) => (
-                        <Badge key={tag} variant="outline" className="bg-sky-50 text-sky-600 border-sky-200">
+                        <Badge
+                          key={tag}
+                          variant="outline"
+                          className="bg-sky-50 text-sky-600 border-sky-200"
+                        >
                           {tag}
                         </Badge>
                       ))}
                     </div>
-                    <div className="text-xs text-slate-500">预计时间: {task.estimatedTime}</div>
+                    <div className="text-xs text-slate-500">
+                      预计时间: {task.estimatedTime}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -585,7 +704,10 @@ export function TaskManagementEnhanced() {
 
           <TabsContent value="analytics" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <EnhancedCard title="任务完成趋势" description="团队任务完成情况分析">
+              <EnhancedCard
+                title="任务完成趋势"
+                description="团队任务完成情况分析"
+              >
                 <div className="h-64 flex items-center justify-center text-slate-500">
                   <div className="text-center">
                     <BarChart3 className="w-16 h-16 mx-auto mb-4 text-sky-300" />
@@ -594,7 +716,10 @@ export function TaskManagementEnhanced() {
                 </div>
               </EnhancedCard>
 
-              <EnhancedCard title="团队效率分析" description="成员工作效率和负载分析">
+              <EnhancedCard
+                title="团队效率分析"
+                description="成员工作效率和负载分析"
+              >
                 <div className="h-64 flex items-center justify-center text-slate-500">
                   <div className="text-center">
                     <TrendingUp className="w-16 h-16 mx-auto mb-4 text-sky-300" />
@@ -604,13 +729,18 @@ export function TaskManagementEnhanced() {
               </EnhancedCard>
             </div>
 
-            <EnhancedCard title="任务分布统计" description="按状态、优先级、负责人统计任务分布">
+            <EnhancedCard
+              title="任务分布统计"
+              description="按状态、优先级、负责人统计任务分布"
+            >
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center p-6 bg-sky-50/50 rounded-xl border border-sky-100">
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-sky-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Target className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-semibold text-slate-800 mb-2">按状态分布</h3>
+                  <h3 className="font-semibold text-slate-800 mb-2">
+                    按状态分布
+                  </h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-slate-600">待开始</span>
@@ -631,7 +761,9 @@ export function TaskManagementEnhanced() {
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Flag className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-semibold text-slate-800 mb-2">按优先级分布</h3>
+                  <h3 className="font-semibold text-slate-800 mb-2">
+                    按优先级分布
+                  </h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-slate-600">高优先级</span>
@@ -652,7 +784,9 @@ export function TaskManagementEnhanced() {
                   <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-semibold text-slate-800 mb-2">团队负载</h3>
+                  <h3 className="font-semibold text-slate-800 mb-2">
+                    团队负载
+                  </h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-slate-600">张经理</span>
@@ -675,7 +809,7 @@ export function TaskManagementEnhanced() {
           <TabsContent value="templates" className="space-y-6">
             <TaskTemplates
               onUseTemplate={(template) => {
-                console.log("使用模板:", template)
+                console.log('使用模板:', template);
                 // 处理模板使用逻辑
               }}
             />
@@ -684,9 +818,13 @@ export function TaskManagementEnhanced() {
           <TabsContent value="time-tracking" className="space-y-6">
             <TimeTracker
               taskId={trackingTaskId || undefined}
-              taskName={trackingTaskId ? tasks.find((t) => t.id.toString() === trackingTaskId)?.title : undefined}
+              taskName={
+                trackingTaskId
+                  ? tasks.find((t) => t.id.toString() === trackingTaskId)?.title
+                  : undefined
+              }
               onTimeUpdate={(totalTime) => {
-                console.log("时间更新:", totalTime)
+                console.log('时间更新:', totalTime);
                 // 更新任务时间
               }}
             />
@@ -694,5 +832,5 @@ export function TaskManagementEnhanced() {
         </Tabs>
       </EnhancedCard>
     </PageContainer>
-  )
+  );
 }

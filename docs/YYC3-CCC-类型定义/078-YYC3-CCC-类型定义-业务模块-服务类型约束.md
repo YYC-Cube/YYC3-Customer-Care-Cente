@@ -9,11 +9,11 @@
 @tags: [类型定义],[业务模块],[服务]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -28,9 +28,11 @@
 ### 1. 背景与目标
 
 #### 1.1 项目背景
+
 YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五化」理念的现代化AI代理服务落地页，采用Next.js 15.0.3构建，集成了国际化系统、3D场景交互、动画效果和响应式设计。
 
 #### 1.2 文档目标
+
 - 规范业务模块-服务类型约束相关的业务标准与技术落地要求
 - 为项目相关人员提供清晰的参考依据
 - 保障相关模块开发、实施、运维的一致性与规范性
@@ -38,6 +40,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 ### 2. 设计原则
 
 #### 2.1 五高原则
+
 - **高可用性**：确保系统7x24小时稳定运行
 - **高性能**：优化加载速度和交互响应
 - **高安全性**：保护用户数据和隐私安全
@@ -45,6 +48,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **高可维护性**：便于后续维护和升级
 
 #### 2.2 五标体系
+
 - **标准化**：统一的技术和流程标准
 - **规范化**：严格的开发和管理规范
 - **自动化**：提高开发效率和质量
@@ -52,6 +56,7 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 - **可视化**：直观的监控和管理界面
 
 #### 2.3 五化架构
+
 - **流程化**：标准化的开发流程
 - **文档化**：完善的文档体系
 - **工具化**：高效的开发工具链
@@ -79,37 +84,91 @@ YYC³ Customer Care Center（YYC3-CCC）项目是一个基于「五高五标五�
 export type ServiceId = string | number;
 
 // 服务分类类型
-export type ServiceCategory = 'ai' | 'customer-support' | 'sales' | 'marketing' | 'it' | 'hr' | 'finance' | 'legal' | 'operations';
+export type ServiceCategory =
+  | 'ai'
+  | 'customer-support'
+  | 'sales'
+  | 'marketing'
+  | 'it'
+  | 'hr'
+  | 'finance'
+  | 'legal'
+  | 'operations';
 
 // 服务子分类类型
-export type ServiceSubcategory = 
+export type ServiceSubcategory =
   // AI服务子分类
-  | 'chatbot' | 'virtual-assistant' | 'content-generation' | 'data-analysis' | 'image-recognition' | 'voice-assistant'
+  | 'chatbot'
+  | 'virtual-assistant'
+  | 'content-generation'
+  | 'data-analysis'
+  | 'image-recognition'
+  | 'voice-assistant'
   // 客户支持子分类
-  | 'help-desk' | 'technical-support' | 'customer-success' | 'account-management'
+  | 'help-desk'
+  | 'technical-support'
+  | 'customer-success'
+  | 'account-management'
   // 销售子分类
-  | 'lead-generation' | 'sales-assistant' | 'crm-management' | 'sales-analytics'
+  | 'lead-generation'
+  | 'sales-assistant'
+  | 'crm-management'
+  | 'sales-analytics'
   // 营销子分类
-  | 'digital-marketing' | 'social-media' | 'email-marketing' | 'content-marketing'
+  | 'digital-marketing'
+  | 'social-media'
+  | 'email-marketing'
+  | 'content-marketing'
   // IT子分类
-  | 'it-support' | 'network-management' | 'cloud-services' | 'cybersecurity'
+  | 'it-support'
+  | 'network-management'
+  | 'cloud-services'
+  | 'cybersecurity'
   // HR子分类
-  | 'recruitment' | 'onboarding' | 'employee-engagement' | 'performance-management'
+  | 'recruitment'
+  | 'onboarding'
+  | 'employee-engagement'
+  | 'performance-management'
   // 财务子分类
-  | 'accounting' | 'taxation' | 'financial-planning' | 'payroll'
+  | 'accounting'
+  | 'taxation'
+  | 'financial-planning'
+  | 'payroll'
   // 法律子分类
-  | 'contract-management' | 'compliance' | 'legal-research' | 'intellectual-property'
+  | 'contract-management'
+  | 'compliance'
+  | 'legal-research'
+  | 'intellectual-property'
   // 运营子分类
-  | 'project-management' | 'supply-chain' | 'inventory-management' | 'quality-assurance';
+  | 'project-management'
+  | 'supply-chain'
+  | 'inventory-management'
+  | 'quality-assurance';
 
 // 服务状态类型
-export type ServiceStatus = 'active' | 'inactive' | 'coming-soon' | 'deprecated' | 'maintenance';
+export type ServiceStatus =
+  | 'active'
+  | 'inactive'
+  | 'coming-soon'
+  | 'deprecated'
+  | 'maintenance';
 
 // 服务级别类型
-export type ServiceTier = 'free' | 'basic' | 'standard' | 'premium' | 'enterprise';
+export type ServiceTier =
+  | 'free'
+  | 'basic'
+  | 'standard'
+  | 'premium'
+  | 'enterprise';
 
 // 服务部署类型
-export type DeploymentType = 'cloud' | 'on-premise' | 'hybrid' | 'saas' | 'paas' | 'iaas';
+export type DeploymentType =
+  | 'cloud'
+  | 'on-premise'
+  | 'hybrid'
+  | 'saas'
+  | 'paas'
+  | 'iaas';
 
 // 服务集成类型
 export type IntegrationType = 'api' | 'webhook' | 'sdk' | 'plugin' | 'custom';
@@ -139,14 +198,14 @@ export interface Service extends BaseService {
   features: ServiceFeature[];
   benefits: string[];
   useCases: string[];
-  
+
   // 媒体信息
   media?: {
     images?: ServiceImage[];
     videos?: ServiceVideo[];
     3dModels?: Service3DModel[];
   };
-  
+
   // 技术信息
   technology?: {
     stack: string[];
@@ -154,10 +213,10 @@ export interface Service extends BaseService {
     apiDocumentation?: string;
     requirements?: string[];
   };
-  
+
   // 定价信息
   pricing: ServicePricing;
-  
+
   // 支持信息
   support?: {
     channels: ('email' | 'chat' | 'phone' | 'ticket' | 'knowledge-base')[];
@@ -166,14 +225,14 @@ export interface Service extends BaseService {
     documentation?: string;
     community?: string;
   };
-  
+
   // 合规信息
   compliance?: {
     certifications: string[];
     dataPrivacy?: string;
     securityMeasures?: string[];
   };
-  
+
   // 统计信息
   metrics?: {
     rating?: number;
@@ -181,7 +240,7 @@ export interface Service extends BaseService {
     adoptionRate?: number;
     uptime?: string;
   };
-  
+
   // 关联信息
   relatedServices?: ServiceId[];
   recommendedServices?: ServiceId[];
@@ -245,7 +304,7 @@ export interface ServicePricing {
     monthly: number;
     yearly: number;
   };
-  
+
   // 分级定价
   tiers?: {
     tier: ServiceTier;
@@ -261,14 +320,14 @@ export interface ServicePricing {
       apiCalls?: number;
     };
   }[];
-  
+
   // 额外费用
   addOns?: {
     name: string;
     price: number;
     description?: string;
   }[];
-  
+
   // 折扣信息
   discounts?: {
     type: 'percentage' | 'fixed' | 'free-trial';
@@ -276,7 +335,7 @@ export interface ServicePricing {
     duration?: string;
     appliesTo?: ServiceTier[];
   }[];
-  
+
   // 计费信息
   billing?: {
     cycle: 'monthly' | 'yearly' | 'quarterly' | 'custom';
@@ -367,14 +426,14 @@ export interface ServiceListRequest {
   status?: ServiceStatus;
   tier?: ServiceTier;
   deployment?: DeploymentType;
-  
+
   // 搜索参数
   search?: string;
-  
+
   // 排序参数
   sortBy?: 'name' | 'price' | 'rating' | 'createdAt' | 'updatedAt';
   sortDirection?: 'asc' | 'desc';
-  
+
   // 分页参数
   page?: number;
   pageSize?: number;
@@ -603,7 +662,7 @@ export interface ServiceAnalytics {
     averageRating: number;
     totalInstances: number;
   };
-  
+
   // 使用趋势
   usageTrends: {
     period: 'day' | 'week' | 'month' | 'quarter' | 'year';
@@ -614,7 +673,7 @@ export interface ServiceAnalytics {
       revenue: number;
     }[];
   };
-  
+
   // 服务表现
   performance: {
     topRatedServices: {
@@ -636,7 +695,7 @@ export interface ServiceAnalytics {
       percentage: number;
     }[];
   };
-  
+
   // 服务健康
   health: {
     averageUptime: number;
@@ -648,7 +707,7 @@ export interface ServiceAnalytics {
       percentage: number;
     }[];
   };
-  
+
   // 客户分析
   customer: {
     totalCustomers: number;
@@ -675,10 +734,21 @@ export interface ServiceAnalyticsRequest {
 
 ```typescript
 // 集成状态类型
-export type IntegrationStatus = 'enabled' | 'disabled' | 'pending' | 'error' | 'syncing';
+export type IntegrationStatus =
+  | 'enabled'
+  | 'disabled'
+  | 'pending'
+  | 'error'
+  | 'syncing';
 
 // 集成认证类型
-export type IntegrationAuthType = 'api-key' | 'oauth' | 'basic-auth' | 'token' | 'certificate' | 'custom';
+export type IntegrationAuthType =
+  | 'api-key'
+  | 'oauth'
+  | 'basic-auth'
+  | 'token'
+  | 'certificate'
+  | 'custom';
 
 // 集成配置接口
 export interface IntegrationConfig {
@@ -699,7 +769,12 @@ export interface IntegrationConfig {
 }
 
 // 集成事件类型
-export type IntegrationEventType = 'webhook' | 'api-call' | 'data-sync' | 'error' | 'status-change';
+export type IntegrationEventType =
+  | 'webhook'
+  | 'api-call'
+  | 'data-sync'
+  | 'error'
+  | 'status-change';
 
 // 集成事件接口
 export interface IntegrationEvent {
@@ -752,7 +827,16 @@ export interface IntegrationEventResponse {
 
 ```typescript
 // 服务模板类型
-export type ServiceTemplateType = 'ai-assistant' | 'customer-support' | 'sales-assistant' | 'marketing-tool' | 'it-service' | 'hr-tool' | 'finance-tool' | 'legal-tool' | 'operations-tool';
+export type ServiceTemplateType =
+  | 'ai-assistant'
+  | 'customer-support'
+  | 'sales-assistant'
+  | 'marketing-tool'
+  | 'it-service'
+  | 'hr-tool'
+  | 'finance-tool'
+  | 'legal-tool'
+  | 'operations-tool';
 
 // 服务模板接口
 export interface ServiceTemplate {
@@ -802,7 +886,7 @@ export interface ServiceTemplateListResponse {
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

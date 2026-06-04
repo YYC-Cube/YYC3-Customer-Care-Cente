@@ -10,10 +10,10 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function ReportsLoading() {
   return (
@@ -72,7 +72,10 @@ export default function ReportsLoading() {
             </div>
             <div className="space-y-3">
               {Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div
+                  key={i}
+                  className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                >
                   <div className="flex items-center space-x-4">
                     <Skeleton className="w-12 h-12 rounded-lg" />
                     <div className="space-y-2">
@@ -101,5 +104,5 @@ export default function ReportsLoading() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

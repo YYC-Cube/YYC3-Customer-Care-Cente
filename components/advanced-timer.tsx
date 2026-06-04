@@ -10,60 +10,70 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Play, Pause, Square, Clock, Target, BarChart3, Calendar } from "lucide-react"
+import { useState, useEffect } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import {
+  Play,
+  Pause,
+  Square,
+  Clock,
+  Target,
+  BarChart3,
+  Calendar,
+} from 'lucide-react';
 
 interface TimeEntry {
-  id: string
-  taskId: string
-  taskTitle: string
-  startTime: string
-  endTime?: string
-  duration: number
-  description: string
-  date: string
+  id: string;
+  taskId: string;
+  taskTitle: string;
+  startTime: string;
+  endTime?: string;
+  duration: number;
+  description: string;
+  date: string;
 }
 
 interface TimerSession {
-  taskId: string
-  taskTitle: string
-  startTime: Date
-  elapsedTime: number
+  taskId: string;
+  taskTitle: string;
+  startTime: Date;
+  elapsedTime: number;
 }
 
 export function AdvancedTimer() {
-  const [currentSession, setCurrentSession] = useState<TimerSession | null>(null)
-  const [isRunning, setIsRunning] = useState(false)
+  const [currentSession, setCurrentSession] = useState<TimerSession | null>(
+    null
+  );
+  const [isRunning, setIsRunning] = useState(false);
   const [timeEntries] = useState<TimeEntry[]>([
     {
-      id: "1",
-      taskId: "task-1",
-      taskTitle: "产品原型设计",
-      startTime: "09:00",
-      endTime: "11:30",
+      id: '1',
+      taskId: 'task-1',
+      taskTitle: '产品原型设计',
+      startTime: '09:00',
+      endTime: '11:30',
       duration: 150, // 分钟
-      description: "完成用户界面原型设计",
-      date: "2025-06-19",
+      description: '完成用户界面原型设计',
+      date: '2025-06-19',
     },
     {
-      id: "2",
-      taskId: "task-1",
-      taskTitle: "产品原型设计",
-      startTime: "14:00",
-      endTime: "16:00",
+      id: '2',
+      taskId: 'task-1',
+      taskTitle: '产品原型设计',
+      startTime: '14:00',
+      endTime: '16:00',
       duration: 120,
-      description: "优化交互流程",
-      date: "2025-06-19",
+      description: '优化交互流程',
+      date: '2025-06-19',
     },
-  ])
+  ]);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout
+    let interval: NodeJS.Timeout;
     if (isRunning && currentSession) {
       interval = setInterval(() => {
         setCurrentSession((prev) =>
@@ -72,12 +82,12 @@ export function AdvancedTimer() {
                 ...prev,
                 elapsedTime: Date.now() - prev.startTime.getTime(),
               }
-            : null,
-        )
-      }, 1000)
+            : null
+        );
+      }, 1000);
     }
-    return () => clearInterval(interval)
-  }, [isRunning, currentSession])
+    return () => clearInterval(interval);
+  }, [isRunning, currentSession]);
 
   const startTimer = (taskId: string, taskTitle: string) => {
     setCurrentSession({
@@ -85,43 +95,45 @@ export function AdvancedTimer() {
       taskTitle,
       startTime: new Date(),
       elapsedTime: 0,
-    })
-    setIsRunning(true)
-  }
+    });
+    setIsRunning(true);
+  };
 
   const pauseTimer = () => {
-    setIsRunning(false)
-  }
+    setIsRunning(false);
+  };
 
   const stopTimer = () => {
-    setIsRunning(false)
-    setCurrentSession(null)
+    setIsRunning(false);
+    setCurrentSession(null);
     // 这里可以保存时间记录
-  }
+  };
 
   const formatTime = (milliseconds: number) => {
-    const totalSeconds = Math.floor(milliseconds / 1000)
-    const hours = Math.floor(totalSeconds / 3600)
-    const minutes = Math.floor((totalSeconds % 3600) / 60)
-    const seconds = totalSeconds % 60
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
 
     if (hours > 0) {
-      return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
+      return `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
-    return `${minutes}:${seconds.toString().padStart(2, "0")}`
-  }
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
 
   const getTotalTimeToday = () => {
-    const today = new Date().toISOString().split("T")[0]
-    return timeEntries.filter((entry) => entry.date === today).reduce((total, entry) => total + entry.duration, 0)
-  }
+    const today = new Date().toISOString().split('T')[0];
+    return timeEntries
+      .filter((entry) => entry.date === today)
+      .reduce((total, entry) => total + entry.duration, 0);
+  };
 
   const getTaskTimeToday = (taskId: string) => {
-    const today = new Date().toISOString().split("T")[0]
+    const today = new Date().toISOString().split('T')[0];
     return timeEntries
       .filter((entry) => entry.taskId === taskId && entry.date === today)
-      .reduce((total, entry) => total + entry.duration, 0)
-  }
+      .reduce((total, entry) => total + entry.duration, 0);
+  };
 
   return (
     <div className="space-y-6">
@@ -137,8 +149,12 @@ export function AdvancedTimer() {
           {currentSession ? (
             <div className="text-center space-y-4">
               <div>
-                <h3 className="font-medium text-lg">{currentSession.taskTitle}</h3>
-                <div className="text-3xl font-bold text-blue-600 mt-2">{formatTime(currentSession.elapsedTime)}</div>
+                <h3 className="font-medium text-lg">
+                  {currentSession.taskTitle}
+                </h3>
+                <div className="text-3xl font-bold text-blue-600 mt-2">
+                  {formatTime(currentSession.elapsedTime)}
+                </div>
               </div>
 
               <div className="flex justify-center space-x-2">
@@ -163,7 +179,7 @@ export function AdvancedTimer() {
             <div className="text-center py-8">
               <Clock className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
               <p className="text-muted-foreground mb-4">选择任务开始计时</p>
-              <Button onClick={() => startTimer("task-1", "产品原型设计")}>
+              <Button onClick={() => startTimer('task-1', '产品原型设计')}>
                 <Play className="w-4 h-4 mr-2" />
                 开始计时
               </Button>
@@ -181,10 +197,14 @@ export function AdvancedTimer() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {Math.floor(getTotalTimeToday() / 60)}h {getTotalTimeToday() % 60}m
+              {Math.floor(getTotalTimeToday() / 60)}h {getTotalTimeToday() % 60}
+              m
             </div>
             <p className="text-xs text-muted-foreground">目标: 8小时</p>
-            <Progress value={(getTotalTimeToday() / 480) * 100} className="mt-2" />
+            <Progress
+              value={(getTotalTimeToday() / 480) * 100}
+              className="mt-2"
+            />
           </CardContent>
         </Card>
 
@@ -222,10 +242,15 @@ export function AdvancedTimer() {
         <CardContent>
           <div className="space-y-3">
             {timeEntries.map((entry) => (
-              <div key={entry.id} className="flex items-center justify-between p-3 border rounded-lg">
+              <div
+                key={entry.id}
+                className="flex items-center justify-between p-3 border rounded-lg"
+              >
                 <div className="flex-1">
                   <h4 className="font-medium text-sm">{entry.taskTitle}</h4>
-                  <p className="text-xs text-muted-foreground">{entry.description}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {entry.description}
+                  </p>
                 </div>
                 <div className="text-right">
                   <div className="text-sm font-medium">
@@ -241,5 +266,5 @@ export function AdvancedTimer() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -10,17 +10,23 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Switch } from "@/components/ui/switch"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Switch } from '@/components/ui/switch';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   Dialog,
   DialogContent,
@@ -28,7 +34,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from '@/components/ui/dialog';
 import {
   Shield,
   Smartphone,
@@ -42,211 +48,221 @@ import {
   Download,
   Settings,
   Lock,
-} from "lucide-react"
+} from 'lucide-react';
 
 interface MFAMethod {
-  id: string
-  type: "totp" | "sms" | "email" | "backup"
-  name: string
-  description: string
-  isEnabled: boolean
-  isVerified: boolean
-  lastUsed?: Date
-  createdAt: Date
+  id: string;
+  type: 'totp' | 'sms' | 'email' | 'backup';
+  name: string;
+  description: string;
+  isEnabled: boolean;
+  isVerified: boolean;
+  lastUsed?: Date;
+  createdAt: Date;
 }
 
 interface SecurityEvent {
-  id: string
-  type: "login" | "mfa_setup" | "mfa_verify" | "device_trust" | "suspicious"
-  description: string
-  ip: string
-  device: string
-  location: string
-  timestamp: Date
-  status: "success" | "failed" | "blocked"
+  id: string;
+  type: 'login' | 'mfa_setup' | 'mfa_verify' | 'device_trust' | 'suspicious';
+  description: string;
+  ip: string;
+  device: string;
+  location: string;
+  timestamp: Date;
+  status: 'success' | 'failed' | 'blocked';
 }
 
 interface TrustedDevice {
-  id: string
-  name: string
-  type: "desktop" | "mobile" | "tablet"
-  browser: string
-  os: string
-  ip: string
-  lastAccess: Date
-  isTrusted: boolean
-  fingerprint: string
+  id: string;
+  name: string;
+  type: 'desktop' | 'mobile' | 'tablet';
+  browser: string;
+  os: string;
+  ip: string;
+  lastAccess: Date;
+  isTrusted: boolean;
+  fingerprint: string;
 }
 
 export function MultiFactorAuth() {
   const [mfaMethods, setMfaMethods] = useState<MFAMethod[]>([
     {
-      id: "1",
-      type: "totp",
-      name: "身份验证器应用",
-      description: "使用 Google Authenticator 或类似应用",
+      id: '1',
+      type: 'totp',
+      name: '身份验证器应用',
+      description: '使用 Google Authenticator 或类似应用',
       isEnabled: true,
       isVerified: true,
       lastUsed: new Date(Date.now() - 2 * 60 * 60 * 1000),
       createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
     },
     {
-      id: "2",
-      type: "sms",
-      name: "短信验证",
-      description: "发送验证码到手机 +86 138****8888",
+      id: '2',
+      type: 'sms',
+      name: '短信验证',
+      description: '发送验证码到手机 +86 138****8888',
       isEnabled: true,
       isVerified: true,
       lastUsed: new Date(Date.now() - 24 * 60 * 60 * 1000),
       createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
     },
     {
-      id: "3",
-      type: "email",
-      name: "邮箱验证",
-      description: "发送验证码到 user@example.com",
+      id: '3',
+      type: 'email',
+      name: '邮箱验证',
+      description: '发送验证码到 user@example.com',
       isEnabled: false,
       isVerified: false,
       createdAt: new Date(),
     },
     {
-      id: "4",
-      type: "backup",
-      name: "备用代码",
-      description: "一次性备用验证码",
+      id: '4',
+      type: 'backup',
+      name: '备用代码',
+      description: '一次性备用验证码',
       isEnabled: true,
       isVerified: true,
       createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
     },
-  ])
+  ]);
 
   const [securityEvents, setSecurityEvents] = useState<SecurityEvent[]>([
     {
-      id: "1",
-      type: "login",
-      description: "用户登录成功",
-      ip: "192.168.1.100",
-      device: "Chrome on Windows",
-      location: "北京, 中国",
+      id: '1',
+      type: 'login',
+      description: '用户登录成功',
+      ip: '192.168.1.100',
+      device: 'Chrome on Windows',
+      location: '北京, 中国',
       timestamp: new Date(Date.now() - 30 * 60 * 1000),
-      status: "success",
+      status: 'success',
     },
     {
-      id: "2",
-      type: "mfa_verify",
-      description: "多因子认证验证成功",
-      ip: "192.168.1.100",
-      device: "Chrome on Windows",
-      location: "北京, 中国",
+      id: '2',
+      type: 'mfa_verify',
+      description: '多因子认证验证成功',
+      ip: '192.168.1.100',
+      device: 'Chrome on Windows',
+      location: '北京, 中国',
       timestamp: new Date(Date.now() - 35 * 60 * 1000),
-      status: "success",
+      status: 'success',
     },
     {
-      id: "3",
-      type: "suspicious",
-      description: "检测到异常登录尝试",
-      ip: "203.0.113.1",
-      device: "Unknown",
-      location: "未知位置",
+      id: '3',
+      type: 'suspicious',
+      description: '检测到异常登录尝试',
+      ip: '203.0.113.1',
+      device: 'Unknown',
+      location: '未知位置',
       timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
-      status: "blocked",
+      status: 'blocked',
     },
-  ])
+  ]);
 
   const [trustedDevices, setTrustedDevices] = useState<TrustedDevice[]>([
     {
-      id: "1",
-      name: "我的工作电脑",
-      type: "desktop",
-      browser: "Chrome 120.0",
-      os: "Windows 11",
-      ip: "192.168.1.100",
+      id: '1',
+      name: '我的工作电脑',
+      type: 'desktop',
+      browser: 'Chrome 120.0',
+      os: 'Windows 11',
+      ip: '192.168.1.100',
       lastAccess: new Date(Date.now() - 30 * 60 * 1000),
       isTrusted: true,
-      fingerprint: "fp_abc123",
+      fingerprint: 'fp_abc123',
     },
     {
-      id: "2",
-      name: "iPhone 15",
-      type: "mobile",
-      browser: "Safari 17.0",
-      os: "iOS 17.2",
-      ip: "192.168.1.101",
+      id: '2',
+      name: 'iPhone 15',
+      type: 'mobile',
+      browser: 'Safari 17.0',
+      os: 'iOS 17.2',
+      ip: '192.168.1.101',
       lastAccess: new Date(Date.now() - 2 * 60 * 60 * 1000),
       isTrusted: true,
-      fingerprint: "fp_def456",
+      fingerprint: 'fp_def456',
     },
-  ])
+  ]);
 
-  const [qrCode, setQrCode] = useState("")
+  const [qrCode, setQrCode] = useState('');
   const [backupCodes, setBackupCodes] = useState([
-    "ABC123DEF",
-    "GHI456JKL",
-    "MNO789PQR",
-    "STU012VWX",
-    "YZ345ABC6",
-    "DEF789GHI",
-    "JKL012MNO",
-    "PQR345STU",
-    "VWX678YZ9",
-    "ABC901DEF",
-  ])
-  const [isSetupDialogOpen, setIsSetupDialogOpen] = useState(false)
-  const [setupStep, setSetupStep] = useState(1)
+    'ABC123DEF',
+    'GHI456JKL',
+    'MNO789PQR',
+    'STU012VWX',
+    'YZ345ABC6',
+    'DEF789GHI',
+    'JKL012MNO',
+    'PQR345STU',
+    'VWX678YZ9',
+    'ABC901DEF',
+  ]);
+  const [isSetupDialogOpen, setIsSetupDialogOpen] = useState(false);
+  const [setupStep, setSetupStep] = useState(1);
 
-  const getMethodIcon = (type: MFAMethod["type"]) => {
+  const getMethodIcon = (type: MFAMethod['type']) => {
     switch (type) {
-      case "totp":
-        return <Smartphone className="w-5 h-5" />
-      case "sms":
-        return <Smartphone className="w-5 h-5" />
-      case "email":
-        return <Mail className="w-5 h-5" />
-      case "backup":
-        return <Key className="w-5 h-5" />
+      case 'totp':
+        return <Smartphone className="w-5 h-5" />;
+      case 'sms':
+        return <Smartphone className="w-5 h-5" />;
+      case 'email':
+        return <Mail className="w-5 h-5" />;
+      case 'backup':
+        return <Key className="w-5 h-5" />;
     }
-  }
+  };
 
   const getStatusBadge = (method: MFAMethod) => {
     if (!method.isEnabled) {
-      return <Badge variant="secondary">未启用</Badge>
+      return <Badge variant="secondary">未启用</Badge>;
     }
     if (!method.isVerified) {
-      return <Badge variant="destructive">未验证</Badge>
+      return <Badge variant="destructive">未验证</Badge>;
     }
-    return <Badge className="bg-green-100 text-green-800">已启用</Badge>
-  }
+    return <Badge className="bg-green-100 text-green-800">已启用</Badge>;
+  };
 
-  const getEventStatusIcon = (status: SecurityEvent["status"]) => {
+  const getEventStatusIcon = (status: SecurityEvent['status']) => {
     switch (status) {
-      case "success":
-        return <CheckCircle className="w-4 h-4 text-green-600" />
-      case "failed":
-        return <XCircle className="w-4 h-4 text-red-600" />
-      case "blocked":
-        return <Shield className="w-4 h-4 text-orange-600" />
+      case 'success':
+        return <CheckCircle className="w-4 h-4 text-green-600" />;
+      case 'failed':
+        return <XCircle className="w-4 h-4 text-red-600" />;
+      case 'blocked':
+        return <Shield className="w-4 h-4 text-orange-600" />;
     }
-  }
+  };
 
   const generateQRCode = () => {
     // 模拟生成 QR 码
-    setQrCode("otpauth://totp/Enterprise%20System:user@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Enterprise%20System")
-  }
+    setQrCode(
+      'otpauth://totp/Enterprise%20System:user@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Enterprise%20System'
+    );
+  };
 
   const generateBackupCodes = () => {
-    const newCodes = Array.from({ length: 10 }, () => Math.random().toString(36).substring(2, 11).toUpperCase())
-    setBackupCodes(newCodes)
-  }
+    const newCodes = Array.from({ length: 10 }, () =>
+      Math.random().toString(36).substring(2, 11).toUpperCase()
+    );
+    setBackupCodes(newCodes);
+  };
 
   const toggleMethod = (methodId: string) => {
     setMfaMethods((prev) =>
-      prev.map((method) => (method.id === methodId ? { ...method, isEnabled: !method.isEnabled } : method)),
-    )
-  }
+      prev.map((method) =>
+        method.id === methodId
+          ? { ...method, isEnabled: !method.isEnabled }
+          : method
+      )
+    );
+  };
 
   const removeTrustedDevice = (deviceId: string) => {
-    setTrustedDevices((prev) => prev.filter((device) => device.id !== deviceId))
-  }
+    setTrustedDevices((prev) =>
+      prev.filter((device) => device.id !== deviceId)
+    );
+  };
 
   return (
     <div className="p-6 space-y-6">
@@ -270,7 +286,9 @@ export function MultiFactorAuth() {
             <DialogContent className="max-w-md">
               <DialogHeader>
                 <DialogTitle>设置多因子认证</DialogTitle>
-                <DialogDescription>选择认证方式以增强账户安全</DialogDescription>
+                <DialogDescription>
+                  选择认证方式以增强账户安全
+                </DialogDescription>
               </DialogHeader>
               <MFASetupDialog
                 step={setupStep}
@@ -291,7 +309,9 @@ export function MultiFactorAuth() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">已启用</div>
-            <p className="text-xs text-muted-foreground">{mfaMethods.filter((m) => m.isEnabled).length} 种方式已配置</p>
+            <p className="text-xs text-muted-foreground">
+              {mfaMethods.filter((m) => m.isEnabled).length} 种方式已配置
+            </p>
           </CardContent>
         </Card>
 
@@ -313,7 +333,7 @@ export function MultiFactorAuth() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-orange-600">
-              {securityEvents.filter((e) => e.status === "blocked").length}
+              {securityEvents.filter((e) => e.status === 'blocked').length}
             </div>
             <p className="text-xs text-muted-foreground">今日被阻止的尝试</p>
           </CardContent>
@@ -342,13 +362,18 @@ export function MultiFactorAuth() {
         <TabsContent value="methods" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {mfaMethods.map((method) => (
-              <Card key={method.id} className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm">
+              <Card
+                key={method.id}
+                className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm"
+              >
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       {getMethodIcon(method.type)}
                       <div>
-                        <CardTitle className="text-base">{method.name}</CardTitle>
+                        <CardTitle className="text-base">
+                          {method.name}
+                        </CardTitle>
                         <CardDescription>{method.description}</CardDescription>
                       </div>
                     </div>
@@ -359,18 +384,21 @@ export function MultiFactorAuth() {
                   <div className="space-y-4">
                     {method.lastUsed && (
                       <p className="text-sm text-muted-foreground">
-                        最后使用: {method.lastUsed.toLocaleString("zh-CN")}
+                        最后使用: {method.lastUsed.toLocaleString('zh-CN')}
                       </p>
                     )}
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        <Switch checked={method.isEnabled} onCheckedChange={() => toggleMethod(method.id)} />
+                        <Switch
+                          checked={method.isEnabled}
+                          onCheckedChange={() => toggleMethod(method.id)}
+                        />
                         <Label>启用此方式</Label>
                       </div>
 
                       <div className="flex space-x-2">
-                        {method.type === "backup" && method.isEnabled && (
+                        {method.type === 'backup' && method.isEnabled && (
                           <Button variant="outline" size="sm">
                             <Key className="w-4 h-4 mr-2" />
                             查看代码
@@ -383,12 +411,16 @@ export function MultiFactorAuth() {
                       </div>
                     </div>
 
-                    {method.type === "totp" && method.isEnabled && !method.isVerified && (
-                      <Alert>
-                        <AlertTriangle className="h-4 w-4" />
-                        <AlertDescription>请完成身份验证器应用的设置以启用此功能</AlertDescription>
-                      </Alert>
-                    )}
+                    {method.type === 'totp' &&
+                      method.isEnabled &&
+                      !method.isVerified && (
+                        <Alert>
+                          <AlertTriangle className="h-4 w-4" />
+                          <AlertDescription>
+                            请完成身份验证器应用的设置以启用此功能
+                          </AlertDescription>
+                        </Alert>
+                      )}
                   </div>
                 </CardContent>
               </Card>
@@ -405,10 +437,13 @@ export function MultiFactorAuth() {
             <CardContent>
               <div className="space-y-4">
                 {trustedDevices.map((device) => (
-                  <div key={device.id} className="flex items-center justify-between p-4 border rounded-lg">
+                  <div
+                    key={device.id}
+                    className="flex items-center justify-between p-4 border rounded-lg"
+                  >
                     <div className="flex items-center space-x-4">
                       <div className="p-2 bg-blue-100 rounded-lg">
-                        {device.type === "desktop" ? (
+                        {device.type === 'desktop' ? (
                           <Settings className="w-5 h-5 text-blue-600" />
                         ) : (
                           <Smartphone className="w-5 h-5 text-blue-600" />
@@ -420,15 +455,26 @@ export function MultiFactorAuth() {
                           {device.browser} • {device.os}
                         </p>
                         <p className="text-xs text-muted-foreground">
-                          最后访问: {device.lastAccess.toLocaleString("zh-CN")} • IP: {device.ip}
+                          最后访问: {device.lastAccess.toLocaleString('zh-CN')}{' '}
+                          • IP: {device.ip}
                         </p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Badge className={device.isTrusted ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}>
-                        {device.isTrusted ? "已信任" : "未信任"}
+                      <Badge
+                        className={
+                          device.isTrusted
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-gray-100 text-gray-800'
+                        }
+                      >
+                        {device.isTrusted ? '已信任' : '未信任'}
                       </Badge>
-                      <Button variant="outline" size="sm" onClick={() => removeTrustedDevice(device.id)}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => removeTrustedDevice(device.id)}
+                      >
                         移除
                       </Button>
                     </div>
@@ -448,7 +494,10 @@ export function MultiFactorAuth() {
             <CardContent>
               <div className="space-y-4">
                 {securityEvents.map((event) => (
-                  <div key={event.id} className="flex items-start space-x-4 p-4 border rounded-lg">
+                  <div
+                    key={event.id}
+                    className="flex items-start space-x-4 p-4 border rounded-lg"
+                  >
                     {getEventStatusIcon(event.status)}
                     <div className="flex-1">
                       <h4 className="font-medium">{event.description}</h4>
@@ -457,19 +506,23 @@ export function MultiFactorAuth() {
                         <p>
                           位置: {event.location} • IP: {event.ip}
                         </p>
-                        <p>时间: {event.timestamp.toLocaleString("zh-CN")}</p>
+                        <p>时间: {event.timestamp.toLocaleString('zh-CN')}</p>
                       </div>
                     </div>
                     <Badge
                       className={
-                        event.status === "success"
-                          ? "bg-green-100 text-green-800"
-                          : event.status === "failed"
-                            ? "bg-red-100 text-red-800"
-                            : "bg-orange-100 text-orange-800"
+                        event.status === 'success'
+                          ? 'bg-green-100 text-green-800'
+                          : event.status === 'failed'
+                            ? 'bg-red-100 text-red-800'
+                            : 'bg-orange-100 text-orange-800'
                       }
                     >
-                      {event.status === "success" ? "成功" : event.status === "failed" ? "失败" : "已阻止"}
+                      {event.status === 'success'
+                        ? '成功'
+                        : event.status === 'failed'
+                          ? '失败'
+                          : '已阻止'}
                     </Badge>
                   </div>
                 ))}
@@ -489,7 +542,9 @@ export function MultiFactorAuth() {
                 <div className="flex items-center justify-between">
                   <div>
                     <Label>强制MFA</Label>
-                    <p className="text-sm text-muted-foreground">要求所有用户启用多因子认证</p>
+                    <p className="text-sm text-muted-foreground">
+                      要求所有用户启用多因子认证
+                    </p>
                   </div>
                   <Switch defaultChecked />
                 </div>
@@ -497,7 +552,9 @@ export function MultiFactorAuth() {
                 <div className="flex items-center justify-between">
                   <div>
                     <Label>记住设备</Label>
-                    <p className="text-sm text-muted-foreground">在受信任设备上30天内免验证</p>
+                    <p className="text-sm text-muted-foreground">
+                      在受信任设备上30天内免验证
+                    </p>
                   </div>
                   <Switch defaultChecked />
                 </div>
@@ -505,7 +562,9 @@ export function MultiFactorAuth() {
                 <div className="flex items-center justify-between">
                   <div>
                     <Label>异常登录检测</Label>
-                    <p className="text-sm text-muted-foreground">检测并阻止可疑登录尝试</p>
+                    <p className="text-sm text-muted-foreground">
+                      检测并阻止可疑登录尝试
+                    </p>
                   </div>
                   <Switch defaultChecked />
                 </div>
@@ -513,7 +572,9 @@ export function MultiFactorAuth() {
                 <div className="flex items-center justify-between">
                   <div>
                     <Label>登录通知</Label>
-                    <p className="text-sm text-muted-foreground">新设备登录时发送邮件通知</p>
+                    <p className="text-sm text-muted-foreground">
+                      新设备登录时发送邮件通知
+                    </p>
                   </div>
                   <Switch defaultChecked />
                 </div>
@@ -557,7 +618,7 @@ export function MultiFactorAuth() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
 
 function MFASetupDialog({
@@ -565,12 +626,12 @@ function MFASetupDialog({
   onStepChange,
   onClose,
 }: {
-  step: number
-  onStepChange: (step: number) => void
-  onClose: () => void
+  step: number;
+  onStepChange: (step: number) => void;
+  onClose: () => void;
 }) {
-  const [verificationCode, setVerificationCode] = useState("")
-  const [phoneNumber, setPhoneNumber] = useState("")
+  const [verificationCode, setVerificationCode] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   return (
     <div className="space-y-4">
@@ -578,15 +639,27 @@ function MFASetupDialog({
         <div className="space-y-4">
           <h3 className="font-medium">选择认证方式</h3>
           <div className="space-y-3">
-            <Button variant="outline" className="w-full justify-start bg-transparent" onClick={() => onStepChange(2)}>
+            <Button
+              variant="outline"
+              className="w-full justify-start bg-transparent"
+              onClick={() => onStepChange(2)}
+            >
               <Smartphone className="w-4 h-4 mr-2" />
               身份验证器应用 (推荐)
             </Button>
-            <Button variant="outline" className="w-full justify-start bg-transparent" onClick={() => onStepChange(3)}>
+            <Button
+              variant="outline"
+              className="w-full justify-start bg-transparent"
+              onClick={() => onStepChange(3)}
+            >
               <Smartphone className="w-4 h-4 mr-2" />
               短信验证
             </Button>
-            <Button variant="outline" className="w-full justify-start bg-transparent" onClick={() => onStepChange(4)}>
+            <Button
+              variant="outline"
+              className="w-full justify-start bg-transparent"
+              onClick={() => onStepChange(4)}
+            >
               <Mail className="w-4 h-4 mr-2" />
               邮箱验证
             </Button>
@@ -601,7 +674,9 @@ function MFASetupDialog({
             <div className="w-48 h-48 bg-gray-100 rounded-lg mx-auto flex items-center justify-center">
               <QrCode className="w-24 h-24 text-gray-400" />
             </div>
-            <p className="text-sm text-muted-foreground">使用身份验证器应用扫描二维码</p>
+            <p className="text-sm text-muted-foreground">
+              使用身份验证器应用扫描二维码
+            </p>
             <div className="space-y-2">
               <Label>验证码</Label>
               <Input
@@ -627,7 +702,11 @@ function MFASetupDialog({
           <div className="space-y-4">
             <div className="space-y-2">
               <Label>手机号码</Label>
-              <Input placeholder="输入手机号码" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+              <Input
+                placeholder="输入手机号码"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
             </div>
             <Button className="w-full">发送验证码</Button>
             <div className="space-y-2">
@@ -655,7 +734,9 @@ function MFASetupDialog({
           <div className="space-y-4">
             <Alert>
               <Mail className="h-4 w-4" />
-              <AlertDescription>验证码已发送到您的邮箱 user@example.com</AlertDescription>
+              <AlertDescription>
+                验证码已发送到您的邮箱 user@example.com
+              </AlertDescription>
             </Alert>
             <div className="space-y-2">
               <Label>验证码</Label>
@@ -676,5 +757,5 @@ function MFASetupDialog({
         </div>
       )}
     </div>
-  )
+  );
 }

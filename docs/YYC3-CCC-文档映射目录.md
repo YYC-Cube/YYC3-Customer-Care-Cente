@@ -9,11 +9,11 @@
 @tags: [文档管理, 映射目录, 组织结构]
 ---
 
-> ***YanYuCloudCube***
+> **_YanYuCloudCube_**
 > 言启象限 | 语枢未来
-> ***Words Initiate Quadrants, Language Serves as Core for the Future***
+> **_Words Initiate Quadrants, Language Serves as Core for the Future_**
 > 万象归元于云枢 | 深栈智启新纪元
-> ***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***
+> **_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**
 
 ---
 
@@ -72,6 +72,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 3.1 根目录结构
 
 **文档根目录**
+
 - `/docs`：主文档目录
   - `/YYC3-CCC-需求规划`：需求规划文档
   - `/YYC3-CCC-项目规划`：项目规划文档
@@ -92,6 +93,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 3.2 分类说明
 
 **1. 需求规划**
+
 - 项目章程
 - 可行性分析报告
 - 项目需求说明书
@@ -99,6 +101,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 需求变更管理计划
 
 **2. 项目规划**
+
 - 项目管理计划
 - 项目进度计划
 - 资源分配计划
@@ -106,6 +109,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 沟通管理计划
 
 **3. 架构设计**
+
 - 系统架构设计文档
 - 数据架构设计文档
 - 技术选型报告
@@ -118,6 +122,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 多环境架构适配文档
 
 **4. 详细设计**
+
 - 模块详细设计文档
 - UI-UX设计规范
 - 交互流程图
@@ -138,6 +143,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 性能优化代码方案
 
 **5. API文档**
+
 - 通用规范-RESTful接口设计标准
 - 通用规范-接口错误码体系
 - 通用规范-接口签名鉴权手册
@@ -155,6 +161,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 测试用例-接口自动化测试脚本
 
 **6. 类型定义**
+
 - 数据库-全库表字段字典
 - 数据库-枚举值字典文档
 - 前端-TypeScript全局类型声明
@@ -171,6 +178,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 版本迭代-类型变更记录
 
 **7. 开发阶段**
+
 - 开发计划与进度表
 - 代码规范
 - 单元测试文档
@@ -186,6 +194,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 代码覆盖率报告
 
 **8. 测试验证**
+
 - 测试计划
 - 功能测试用例
 - 性能测试报告
@@ -201,6 +210,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 缺陷定级标准
 
 **9. 部署发布**
+
 - 部署计划
 - 发布说明
 - 环境配置文档
@@ -213,6 +223,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 发布审批流程
 
 **10. 运维阶段**
+
 - 运维手册
 - 监控与告警配置
 - 故障处理流程
@@ -228,6 +239,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 灾备应急预案
 
 **11. 产品文档**
+
 - 产品白皮书
 - 产品功能说明书
 - 产品路线图
@@ -236,6 +248,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 用户画像分析报告
 
 **12. 综合支撑**
+
 - 用户手册-普通用户
 - 用户手册-管理员
 - 培训文档-全角色培训课件
@@ -255,6 +268,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 4.1 代码与文档映射
 
 **前端代码映射**
+
 - `/app` → `YYC3-CCC-详细设计`
 - `/components` → `YYC3-CCC-详细设计`
 - `/hooks` → `YYC3-CCC-详细设计`
@@ -262,18 +276,21 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - `/types` → `YYC3-CCC-类型定义`
 
 **后端代码映射**
+
 - `/api` → `YYC3-CCC-API文档`
 - `/services` → `YYC3-CCC-详细设计`
 - `/models` → `YYC3-CCC-类型定义`
 - `/middleware` → `YYC3-CCC-架构设计`
 
 **配置文件映射**
+
 - `/config` → `YYC3-CCC-架构设计`
 - `.env.example` → `YYC3-CCC-部署发布`
 
 #### 4.2 功能与文档映射
 
 **核心功能映射**
+
 - **智能助手"小语"** → `YYC3-CCC-详细设计`、`YYC3-CCC-API文档`
 - **地图服务** → `YYC3-CCC-详细设计`、`YYC3-CCC-API文档`
 - **用户管理** → `YYC3-CCC-详细设计`、`YYC3-CCC-API文档`
@@ -281,6 +298,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - **城市之声** → `YYC3-CCC-详细设计`
 
 **管理功能映射**
+
 - **用户管理** → `YYC3-CCC-详细设计`、`YYC3-CCC-API文档`
 - **权限管理** → `YYC3-CCC-详细设计`、`YYC3-CCC-类型定义`
 - **系统配置** → `YYC3-CCC-架构设计`、`YYC3-CCC-部署发布`
@@ -288,6 +306,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 4.3 流程与文档映射
 
 **开发流程映射**
+
 - **需求分析** → `YYC3-CCC-需求规划`
 - **设计阶段** → `YYC3-CCC-架构设计`、`YYC3-CCC-详细设计`
 - **开发阶段** → `YYC3-CCC-开发阶段`
@@ -296,6 +315,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - **运维阶段** → `YYC3-CCC-运维阶段`
 
 **产品流程映射**
+
 - **产品规划** → `YYC3-CCC-产品文档`
 - **产品设计** → `YYC3-CCC-详细设计`
 - **产品发布** → `YYC3-CCC-部署发布`
@@ -306,6 +326,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 5.1 快速导航
 
 **按角色导航**
+
 - **开发人员** → `YYC3-CCC-开发阶段`、`YYC3-CCC-API文档`、`YYC3-CCC-详细设计`
 - **测试人员** → `YYC3-CCC-测试验证`、`YYC3-CCC-API文档`
 - **产品人员** → `YYC3-CCC-产品文档`、`YYC3-CCC-需求规划`
@@ -313,6 +334,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - **管理人员** → `YYC3-CCC-项目规划`、`YYC3-CCC-综合支撑`
 
 **按功能导航**
+
 - **API开发** → `YYC3-CCC-API文档`
 - **前端开发** → `YYC3-CCC-详细设计`
 - **后端开发** → `YYC3-CCC-详细设计`、`YYC3-CCC-架构设计`
@@ -322,16 +344,19 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 5.2 搜索指南
 
 **关键词搜索**
+
 - 使用文档标题中的关键词进行搜索
 - 使用文档标签进行搜索
 - 使用文档内容中的关键词进行搜索
 
 **分类搜索**
+
 - 按文档分类进行浏览
 - 按功能模块进行浏览
 - 按开发阶段进行浏览
 
 **版本搜索**
+
 - 按文档版本进行搜索
 - 按更新日期进行搜索
 - 按变更记录进行搜索
@@ -341,15 +366,18 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 6.1 文档版本控制
 
 **版本命名规则**
+
 - 主版本号.次版本号.修订号
 - 示例：v1.0.0
 
 **版本更新策略**
+
 - 重大变更：更新主版本号
 - 功能新增：更新次版本号
 - 错误修复：更新修订号
 
 **版本控制流程**
+
 1. 文档变更
 2. 版本号更新
 3. 变更记录更新
@@ -358,11 +386,13 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 6.2 文档同步机制
 
 **同步策略**
+
 - 代码变更触发文档更新
 - 定期文档审查和更新
 - 版本发布时同步更新文档
 
 **同步流程**
+
 1. 代码提交
 2. 自动检查文档同步需求
 3. 更新相关文档
@@ -374,6 +404,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 7.1 维护责任
 
 **文档维护责任人**
+
 - 架构设计文档：架构师
 - API文档：后端开发人员
 - 详细设计文档：开发团队
@@ -382,6 +413,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - 运维文档：运维团队
 
 **维护流程**
+
 1. 文档需求识别
 2. 文档内容编写/更新
 3. 文档审查
@@ -391,11 +423,13 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 7.2 更新频率
 
 **常规更新**
+
 - 每周进行一次文档审查
 - 代码变更时同步更新文档
 - 功能新增时更新相关文档
 
 **定期更新**
+
 - 每月进行一次全面文档更新
 - 版本发布前进行文档更新
 - 季度进行一次文档架构审查
@@ -405,6 +439,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 8.1 文档管理工具
 
 **推荐工具**
+
 - **Git**：文档版本控制
 - **GitHub/GitLab**：文档托管和协作
 - **Swagger**：API文档自动生成
@@ -412,6 +447,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 - **Docusaurus**：文档网站生成
 
 **集成方案**
+
 - 将文档管理工具集成到开发流程
 - 自动化文档生成和更新
 - 提供文档质量检查和反馈
@@ -419,11 +455,13 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 #### 8.2 自动化脚本
 
 **文档生成脚本**
+
 - API文档自动生成脚本
 - 代码注释提取脚本
 - 文档结构验证脚本
 
 **文档更新脚本**
+
 - 文档版本更新脚本
 - 文档变更检测脚本
 - 文档同步脚本
@@ -485,7 +523,7 @@ YYC3-CCC(Customer Care Center)项目是一个基于「五高五标五化」理�
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
-> 「***All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for the Future_**」
+> 「**_All things converge in the cloud pivot; Deep stacks ignite a new era of intelligence_**」

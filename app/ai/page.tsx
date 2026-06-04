@@ -10,76 +10,96 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { ResponsiveLayout } from "@/components/layout/responsive-layout"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Brain, Bot, TrendingUp, Zap, MessageSquare, BarChart3, Users, Target, Lightbulb, Search, Plus, Play, Settings } from 'lucide-react'
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import {
+  Brain,
+  Bot,
+  TrendingUp,
+  Zap,
+  MessageSquare,
+  BarChart3,
+  Users,
+  Target,
+  Lightbulb,
+  Search,
+  Plus,
+  Play,
+  Settings,
+} from 'lucide-react';
 
 export default function AIPage() {
   const aiFeatures = [
     {
-      id: "AI-001",
-      title: "智能数据分析",
-      description: "自动分析业务数据，发现潜在趋势和机会",
-      status: "active",
+      id: 'AI-001',
+      title: '智能数据分析',
+      description: '自动分析业务数据，发现潜在趋势和机会',
+      status: 'active',
       usage: 85,
       icon: BarChart3,
     },
     {
-      id: "AI-002",
-      title: "客户行为预测",
-      description: "基于历史数据预测客户行为和需求",
-      status: "active",
+      id: 'AI-002',
+      title: '客户行为预测',
+      description: '基于历史数据预测客户行为和需求',
+      status: 'active',
       usage: 72,
       icon: Users,
     },
     {
-      id: "AI-003",
-      title: "智能推荐系统",
-      description: "为客户提供个性化产品和服务推荐",
-      status: "training",
+      id: 'AI-003',
+      title: '智能推荐系统',
+      description: '为客户提供个性化产品和服务推荐',
+      status: 'training',
       usage: 45,
       icon: Target,
     },
     {
-      id: "AI-004",
-      title: "自动化流程优化",
-      description: "识别并优化业务流程中的效率瓶颈",
-      status: "pending",
+      id: 'AI-004',
+      title: '自动化流程优化',
+      description: '识别并优化业务流程中的效率瓶颈',
+      status: 'pending',
       usage: 0,
       icon: Zap,
     },
-  ]
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "active":
-        return "bg-green-100 text-green-800"
-      case "training":
-        return "bg-purple-100 text-purple-800"
-      case "pending":
-        return "bg-gray-100 text-gray-800"
+      case 'active':
+        return 'bg-green-100 text-green-800';
+      case 'training':
+        return 'bg-purple-100 text-purple-800';
+      case 'pending':
+        return 'bg-gray-100 text-gray-800';
       default:
-        return "bg-gray-100 text-gray-800"
+        return 'bg-gray-100 text-gray-800';
     }
-  }
+  };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "active":
-        return "运行中"
-      case "training":
-        return "训练中"
-      case "pending":
-        return "待启动"
+      case 'active':
+        return '运行中';
+      case 'training':
+        return '训练中';
+      case 'pending':
+        return '待启动';
       default:
-        return "未知"
+        return '未知';
     }
-  }
+  };
 
   return (
     <ResponsiveLayout showSidebar={true} showHeader={true}>
@@ -91,7 +111,9 @@ export default function AIPage() {
               <Brain className="w-8 h-8 mr-3 text-purple-600" />
               AI智能分析
             </h1>
-            <p className="text-gray-600 mt-2">人工智能驱动的企业数据分析和洞察</p>
+            <p className="text-gray-600 mt-2">
+              人工智能驱动的企业数据分析和洞察
+            </p>
           </div>
           <div className="flex space-x-3">
             <Button
@@ -116,7 +138,9 @@ export default function AIPage() {
               <Brain className="h-4 w-4 text-purple-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-purple-700">{aiFeatures.length}</div>
+              <div className="text-2xl font-bold text-purple-700">
+                {aiFeatures.length}
+              </div>
               <p className="text-xs text-gray-600">已部署模型</p>
             </CardContent>
           </Card>
@@ -128,7 +152,7 @@ export default function AIPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-700">
-                {aiFeatures.filter((f) => f.status === "active").length}
+                {aiFeatures.filter((f) => f.status === 'active').length}
               </div>
               <p className="text-xs text-gray-600">活跃AI服务</p>
             </CardContent>
@@ -141,7 +165,7 @@ export default function AIPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-purple-700">
-                {aiFeatures.filter((f) => f.status === "training").length}
+                {aiFeatures.filter((f) => f.status === 'training').length}
               </div>
               <p className="text-xs text-gray-600">模型训练</p>
             </CardContent>
@@ -200,21 +224,27 @@ export default function AIPage() {
                     size="sm"
                     className="border-l-4 border-l-purple-500 transition-all duration-300 hover:scale-105 group bg-transparent"
                   >
-                    <span className="group-hover:translate-x-1 transition-all duration-300">分析销售趋势</span>
+                    <span className="group-hover:translate-x-1 transition-all duration-300">
+                      分析销售趋势
+                    </span>
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
                     className="border-l-4 border-l-purple-500 transition-all duration-300 hover:scale-105 group bg-transparent"
                   >
-                    <span className="group-hover:translate-x-1 transition-all duration-300">预测客户需求</span>
+                    <span className="group-hover:translate-x-1 transition-all duration-300">
+                      预测客户需求
+                    </span>
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
                     className="border-l-4 border-l-purple-500 transition-all duration-300 hover:scale-105 group bg-transparent"
                   >
-                    <span className="group-hover:translate-x-1 transition-all duration-300">优化运营流程</span>
+                    <span className="group-hover:translate-x-1 transition-all duration-300">
+                      优化运营流程
+                    </span>
                   </Button>
                 </div>
               </div>
@@ -234,7 +264,7 @@ export default function AIPage() {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {aiFeatures.map((feature) => {
-                const IconComponent = feature.icon
+                const IconComponent = feature.icon;
                 return (
                   <div
                     key={feature.id}
@@ -246,10 +276,16 @@ export default function AIPage() {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center space-x-2 mb-2">
-                          <h3 className="font-bold text-gray-900">{feature.title}</h3>
-                          <Badge className={getStatusColor(feature.status)}>{getStatusText(feature.status)}</Badge>
+                          <h3 className="font-bold text-gray-900">
+                            {feature.title}
+                          </h3>
+                          <Badge className={getStatusColor(feature.status)}>
+                            {getStatusText(feature.status)}
+                          </Badge>
                         </div>
-                        <p className="text-sm text-gray-600">{feature.description}</p>
+                        <p className="text-sm text-gray-600">
+                          {feature.description}
+                        </p>
                       </div>
                     </div>
 
@@ -267,7 +303,7 @@ export default function AIPage() {
                     </div>
 
                     <div className="flex justify-end space-x-2">
-                      {feature.status === "pending" ? (
+                      {feature.status === 'pending' ? (
                         <Button
                           size="sm"
                           className="bg-gradient-to-r from-purple-500 to-violet-600 hover:from-purple-600 hover:to-violet-700 text-white transition-all duration-300 hover:scale-105 group"
@@ -287,7 +323,7 @@ export default function AIPage() {
                       )}
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
           </CardContent>
@@ -308,7 +344,9 @@ export default function AIPage() {
                 <div className="flex items-start space-x-3">
                   <Lightbulb className="w-5 h-5 text-purple-600 mt-0.5" />
                   <div>
-                    <h4 className="font-medium text-purple-800">销售机会识别</h4>
+                    <h4 className="font-medium text-purple-800">
+                      销售机会识别
+                    </h4>
                     <p className="text-sm text-purple-600 mt-1">
                       AI分析发现，客户群体A在周末的购买转化率比工作日高35%，建议增加周末营销活动
                     </p>
@@ -342,5 +380,5 @@ export default function AIPage() {
         </Card>
       </div>
     </ResponsiveLayout>
-  )
+  );
 }

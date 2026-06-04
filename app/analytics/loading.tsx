@@ -29,7 +29,10 @@ export default function AnalyticsLoading() {
       {/* 统计卡片骨架 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="bg-white/80 backdrop-blur-sm border-0 shadow-lg rounded-lg p-6">
+          <div
+            key={i}
+            className="bg-white/80 backdrop-blur-sm border-0 shadow-lg rounded-lg p-6"
+          >
             <div className="space-y-3">
               <div className="h-5 w-24 bg-gray-200 rounded animate-pulse"></div>
               <div className="h-8 w-16 bg-gray-200 rounded animate-pulse"></div>
@@ -79,5 +82,5 @@ export default function AnalyticsLoading() {
         </div>
       </div>
     </div>
-  )
+  );
 }

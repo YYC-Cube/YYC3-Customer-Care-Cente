@@ -10,8 +10,8 @@
  * @license MIT
  */
 
-import { DataStackDocumentation } from "@/docs/data-stack-documentation"
+import { DataStackDocumentation } from '@/docs/YYC3-CCC-架构设计/data-stack-documentation';
 
 export default function DataStackPage() {
-  return <DataStackDocumentation />
+  return <DataStackDocumentation />;
 }

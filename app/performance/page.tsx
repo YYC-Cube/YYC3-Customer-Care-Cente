@@ -10,10 +10,10 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { PerformanceOptimizationCenter } from "@/components/performance/performance-optimization-center"
+import { PerformanceOptimizationCenter } from '@/components/performance/performance-optimization-center';
 
 export default function PerformancePage() {
-  return <PerformanceOptimizationCenter />
+  return <PerformanceOptimizationCenter />;
 }

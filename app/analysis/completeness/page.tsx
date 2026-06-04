@@ -10,8 +10,8 @@
  * @license MIT
  */
 
-import { SystemCompletenessAnalysis } from "@/docs/system-completeness-analysis"
+import { SystemCompletenessAnalysis } from '@/docs/YYC3-CCC-测试文档/system-completeness-analysis';
 
 export default function CompletenessAnalysisPage() {
-  return <SystemCompletenessAnalysis />
+  return <SystemCompletenessAnalysis />;
 }

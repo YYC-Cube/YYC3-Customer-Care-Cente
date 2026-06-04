@@ -10,15 +10,15 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { ResponsiveLayout } from "@/components/layout/responsive-layout"
-import { CustomerManagement } from "@/components/customer-management"
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
+import { CustomerManagement } from '@/components/customer-management';
 
 export default function CustomersPage() {
   return (
     <ResponsiveLayout showSidebar={true} showHeader={true}>
       <CustomerManagement />
     </ResponsiveLayout>
-  )
+  );
 }

@@ -5,7 +5,19 @@
  * @version 1.0.0
  */
 
-import type { ID, DateTime, Status, Priority, Visibility, Pagination, Filter, Sort, Response, PaginatedResponse, ErrorInfo } from './global';
+import type {
+  ID,
+  DateTime,
+  Status,
+  Priority,
+  Visibility,
+  Pagination,
+  Filter,
+  Sort,
+  Response,
+  PaginatedResponse,
+  ErrorInfo,
+} from './global';
 
 // API基础类型
 export interface ApiRequest {
@@ -123,8 +135,7 @@ export interface LogoutResponse {
 }
 
 // 用户相关类型
-export interface GetUserRequest extends IdRequest {
-}
+export interface GetUserRequest extends IdRequest {}
 
 export interface GetUserResponse {
   id: ID;
@@ -196,16 +207,14 @@ export interface UpdateUserResponse {
   updatedAt: DateTime;
 }
 
-export interface DeleteUserRequest extends IdRequest {
-}
+export interface DeleteUserRequest extends IdRequest {}
 
 export interface DeleteUserResponse {
   success: boolean;
 }
 
 // 服务相关类型
-export interface GetServiceRequest extends IdRequest {
-}
+export interface GetServiceRequest extends IdRequest {}
 
 export interface GetServiceResponse {
   id: ID;
@@ -288,16 +297,14 @@ export interface UpdateServiceResponse {
   updatedAt: DateTime;
 }
 
-export interface DeleteServiceRequest extends IdRequest {
-}
+export interface DeleteServiceRequest extends IdRequest {}
 
 export interface DeleteServiceResponse {
   success: boolean;
 }
 
 // 定价相关类型
-export interface GetPricingRequest extends IdRequest {
-}
+export interface GetPricingRequest extends IdRequest {}
 
 export interface GetPricingResponse {
   id: ID;
@@ -386,16 +393,14 @@ export interface UpdatePricingResponse {
   updatedAt: DateTime;
 }
 
-export interface DeletePricingRequest extends IdRequest {
-}
+export interface DeletePricingRequest extends IdRequest {}
 
 export interface DeletePricingResponse {
   success: boolean;
 }
 
 // 任务相关类型
-export interface GetTaskRequest extends IdRequest {
-}
+export interface GetTaskRequest extends IdRequest {}
 
 export interface GetTaskResponse {
   id: ID;
@@ -486,16 +491,14 @@ export interface UpdateTaskResponse {
   updatedAt: DateTime;
 }
 
-export interface DeleteTaskRequest extends IdRequest {
-}
+export interface DeleteTaskRequest extends IdRequest {}
 
 export interface DeleteTaskResponse {
   success: boolean;
 }
 
 // 客户相关类型
-export interface GetCustomerRequest extends IdRequest {
-}
+export interface GetCustomerRequest extends IdRequest {}
 
 export interface GetCustomerResponse {
   id: ID;
@@ -572,16 +575,14 @@ export interface UpdateCustomerResponse {
   updatedAt: DateTime;
 }
 
-export interface DeleteCustomerRequest extends IdRequest {
-}
+export interface DeleteCustomerRequest extends IdRequest {}
 
 export interface DeleteCustomerResponse {
   success: boolean;
 }
 
 // 通知相关类型
-export interface GetNotificationRequest extends IdRequest {
-}
+export interface GetNotificationRequest extends IdRequest {}
 
 export interface GetNotificationResponse {
   id: ID;
@@ -652,8 +653,7 @@ export interface UpdateNotificationResponse {
   updatedAt: DateTime;
 }
 
-export interface DeleteNotificationRequest extends IdRequest {
-}
+export interface DeleteNotificationRequest extends IdRequest {}
 
 export interface DeleteNotificationResponse {
   success: boolean;
@@ -703,8 +703,7 @@ export interface GetStatisticsResponse extends ApiResponse {
 }
 
 // 健康检查相关类型
-export interface HealthCheckRequest {
-}
+export interface HealthCheckRequest {}
 
 export interface HealthCheckResponse extends ApiResponse {
   data?: {
@@ -765,8 +764,7 @@ export interface UploadFileResponse extends ApiResponse {
   };
 }
 
-export interface GetFileRequest extends IdRequest {
-}
+export interface GetFileRequest extends IdRequest {}
 
 export interface GetFileResponse extends ApiResponse {
   data?: {
@@ -781,8 +779,7 @@ export interface GetFileResponse extends ApiResponse {
   };
 }
 
-export interface DeleteFileRequest extends IdRequest {
-}
+export interface DeleteFileRequest extends IdRequest {}
 
 export interface DeleteFileResponse extends ApiResponse {
   data?: {
@@ -988,8 +985,7 @@ export interface CreateBackupResponse extends ApiResponse {
   };
 }
 
-export interface GetBackupRequest extends IdRequest {
-}
+export interface GetBackupRequest extends IdRequest {}
 
 export interface GetBackupResponse extends ApiResponse {
   data?: {
@@ -1026,8 +1022,7 @@ export interface GetBackupsResponse extends PaginatedResponse {
   };
 }
 
-export interface DeleteBackupRequest extends IdRequest {
-}
+export interface DeleteBackupRequest extends IdRequest {}
 
 export interface DeleteBackupResponse extends ApiResponse {
   data?: {
@@ -1035,8 +1030,7 @@ export interface DeleteBackupResponse extends ApiResponse {
   };
 }
 
-export interface RestoreBackupRequest extends IdRequest {
-}
+export interface RestoreBackupRequest extends IdRequest {}
 
 export interface RestoreBackupResponse extends ApiResponse {
   data?: {
@@ -1096,8 +1090,7 @@ export interface GetMetricsResponse extends ApiResponse {
 }
 
 // 告警相关类型
-export interface GetAlertRequest extends IdRequest {
-}
+export interface GetAlertRequest extends IdRequest {}
 
 export interface GetAlertResponse extends ApiResponse {
   data?: {
@@ -1152,8 +1145,7 @@ export interface UpdateAlertResponse extends ApiResponse {
   };
 }
 
-export interface DeleteAlertRequest extends IdRequest {
-}
+export interface DeleteAlertRequest extends IdRequest {}
 
 export interface DeleteAlertResponse extends ApiResponse {
   data?: {
@@ -1162,8 +1154,7 @@ export interface DeleteAlertResponse extends ApiResponse {
 }
 
 // 审计相关类型
-export interface GetAuditLogRequest extends IdRequest {
-}
+export interface GetAuditLogRequest extends IdRequest {}
 
 export interface GetAuditLogResponse extends ApiResponse {
   data?: {
@@ -1222,8 +1213,7 @@ export interface GetAuditLogsResponse extends PaginatedResponse {
 }
 
 // 权限相关类型
-export interface GetPermissionRequest extends IdRequest {
-}
+export interface GetPermissionRequest extends IdRequest {}
 
 export interface GetPermissionResponse extends ApiResponse {
   data?: {
@@ -1298,8 +1288,7 @@ export interface UpdatePermissionResponse extends ApiResponse {
   };
 }
 
-export interface DeletePermissionRequest extends IdRequest {
-}
+export interface DeletePermissionRequest extends IdRequest {}
 
 export interface DeletePermissionResponse extends ApiResponse {
   data?: {
@@ -1308,8 +1297,7 @@ export interface DeletePermissionResponse extends ApiResponse {
 }
 
 // 角色相关类型
-export interface GetRoleRequest extends IdRequest {
-}
+export interface GetRoleRequest extends IdRequest {}
 
 export interface GetRoleResponse extends ApiResponse {
   data?: {
@@ -1388,8 +1376,7 @@ export interface UpdateRoleResponse extends ApiResponse {
   };
 }
 
-export interface DeleteRoleRequest extends IdRequest {
-}
+export interface DeleteRoleRequest extends IdRequest {}
 
 export interface DeleteRoleResponse extends ApiResponse {
   data?: {

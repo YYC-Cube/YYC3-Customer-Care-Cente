@@ -10,13 +10,26 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Target, TrendingUp, Award, Calendar, Users, CheckCircle } from "lucide-react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Target,
+  TrendingUp,
+  Award,
+  Calendar,
+  Users,
+  CheckCircle,
+} from 'lucide-react';
 
 export function OKRModule() {
   return (
@@ -119,24 +132,48 @@ export function OKRModule() {
               <div className="space-y-4">
                 {[
                   {
-                    objective: "提升客户满意度",
+                    objective: '提升客户满意度',
                     keyResults: [
-                      { description: "客户满意度达到95%", progress: 92, target: 95 },
-                      { description: "客户投诉减少50%", progress: 45, target: 50 },
-                      { description: "客户续约率达到90%", progress: 87, target: 90 },
+                      {
+                        description: '客户满意度达到95%',
+                        progress: 92,
+                        target: 95,
+                      },
+                      {
+                        description: '客户投诉减少50%',
+                        progress: 45,
+                        target: 50,
+                      },
+                      {
+                        description: '客户续约率达到90%',
+                        progress: 87,
+                        target: 90,
+                      },
                     ],
-                    owner: "客户成功团队",
-                    quarter: "2024 Q1",
+                    owner: '客户成功团队',
+                    quarter: '2024 Q1',
                   },
                   {
-                    objective: "提高产品质量",
+                    objective: '提高产品质量',
                     keyResults: [
-                      { description: "Bug数量减少60%", progress: 55, target: 60 },
-                      { description: "代码覆盖率达到85%", progress: 78, target: 85 },
-                      { description: "发布周期缩短至2周", progress: 80, target: 100 },
+                      {
+                        description: 'Bug数量减少60%',
+                        progress: 55,
+                        target: 60,
+                      },
+                      {
+                        description: '代码覆盖率达到85%',
+                        progress: 78,
+                        target: 85,
+                      },
+                      {
+                        description: '发布周期缩短至2周',
+                        progress: 80,
+                        target: 100,
+                      },
                     ],
-                    owner: "技术团队",
-                    quarter: "2024 Q1",
+                    owner: '技术团队',
+                    quarter: '2024 Q1',
                   },
                 ].map((okr, index) => (
                   <Card
@@ -146,12 +183,17 @@ export function OKRModule() {
                     <CardHeader>
                       <div className="flex justify-between items-start">
                         <div>
-                          <CardTitle className="text-lg">{okr.objective}</CardTitle>
+                          <CardTitle className="text-lg">
+                            {okr.objective}
+                          </CardTitle>
                           <CardDescription>
                             {okr.owner} • {okr.quarter}
                           </CardDescription>
                         </div>
-                        <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                        <Badge
+                          variant="outline"
+                          className="bg-blue-50 text-blue-700 border-blue-200"
+                        >
                           进行中
                         </Badge>
                       </div>
@@ -161,7 +203,9 @@ export function OKRModule() {
                         {okr.keyResults.map((kr, krIndex) => (
                           <div key={krIndex} className="space-y-2">
                             <div className="flex justify-between items-center">
-                              <span className="text-sm font-medium">{kr.description}</span>
+                              <span className="text-sm font-medium">
+                                {kr.description}
+                              </span>
                               <span className="text-sm text-muted-foreground">
                                 {kr.progress}/{kr.target}
                               </span>
@@ -169,11 +213,14 @@ export function OKRModule() {
                             <div className="w-full h-3 bg-blue-100 rounded-full overflow-hidden">
                               <div
                                 className="h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all duration-500"
-                                style={{ width: `${(kr.progress / kr.target) * 100}%` }}
+                                style={{
+                                  width: `${(kr.progress / kr.target) * 100}%`,
+                                }}
                               ></div>
                             </div>
                             <div className="text-xs text-muted-foreground">
-                              完成度: {Math.round((kr.progress / kr.target) * 100)}%
+                              完成度:{' '}
+                              {Math.round((kr.progress / kr.target) * 100)}%
                             </div>
                           </div>
                         ))}
@@ -187,10 +234,30 @@ export function OKRModule() {
             <TabsContent value="team" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { team: "销售团队", objectives: 3, avgScore: 8.5, members: 8 },
-                  { team: "技术团队", objectives: 4, avgScore: 7.8, members: 12 },
-                  { team: "产品团队", objectives: 2, avgScore: 9.1, members: 6 },
-                  { team: "运营团队", objectives: 3, avgScore: 8.2, members: 10 },
+                  {
+                    team: '销售团队',
+                    objectives: 3,
+                    avgScore: 8.5,
+                    members: 8,
+                  },
+                  {
+                    team: '技术团队',
+                    objectives: 4,
+                    avgScore: 7.8,
+                    members: 12,
+                  },
+                  {
+                    team: '产品团队',
+                    objectives: 2,
+                    avgScore: 9.1,
+                    members: 6,
+                  },
+                  {
+                    team: '运营团队',
+                    objectives: 3,
+                    avgScore: 8.2,
+                    members: 10,
+                  },
                 ].map((team, index) => (
                   <Card
                     key={index}
@@ -204,13 +271,18 @@ export function OKRModule() {
                       <div className="space-y-3">
                         <div className="flex justify-between">
                           <span className="text-sm">目标数量</span>
-                          <Badge variant="secondary" className="bg-blue-50 text-blue-700">
+                          <Badge
+                            variant="secondary"
+                            className="bg-blue-50 text-blue-700"
+                          >
                             {team.objectives}
                           </Badge>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-sm">平均得分</span>
-                          <span className="font-medium text-green-600">{team.avgScore}/10</span>
+                          <span className="font-medium text-green-600">
+                            {team.avgScore}/10
+                          </span>
                         </div>
                         <div className="w-full h-3 bg-blue-100 rounded-full overflow-hidden">
                           <div
@@ -233,11 +305,15 @@ export function OKRModule() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-600 mb-2">75%</div>
+                      <div className="text-3xl font-bold text-blue-600 mb-2">
+                        75%
+                      </div>
                       <div className="w-full h-4 bg-blue-100 rounded-full overflow-hidden">
                         <div className="w-3/4 h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all duration-500"></div>
                       </div>
-                      <p className="text-sm text-muted-foreground mt-2">季度目标完成度</p>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        季度目标完成度
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
@@ -291,9 +367,24 @@ export function OKRModule() {
             <TabsContent value="review" className="space-y-4">
               <div className="space-y-4">
                 {[
-                  { period: "2023 Q4", score: 8.7, status: "已完成", highlights: "超额完成销售目标，客户满意度创新高" },
-                  { period: "2023 Q3", score: 7.9, status: "已完成", highlights: "产品功能迭代顺利，用户增长稳定" },
-                  { period: "2023 Q2", score: 8.2, status: "已完成", highlights: "团队协作效率提升，项目按时交付" },
+                  {
+                    period: '2023 Q4',
+                    score: 8.7,
+                    status: '已完成',
+                    highlights: '超额完成销售目标，客户满意度创新高',
+                  },
+                  {
+                    period: '2023 Q3',
+                    score: 7.9,
+                    status: '已完成',
+                    highlights: '产品功能迭代顺利，用户增长稳定',
+                  },
+                  {
+                    period: '2023 Q2',
+                    score: 8.2,
+                    status: '已完成',
+                    highlights: '团队协作效率提升，项目按时交付',
+                  },
                 ].map((review, index) => (
                   <Card
                     key={index}
@@ -304,12 +395,19 @@ export function OKRModule() {
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
                             <h3 className="font-medium">{review.period}</h3>
-                            <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                            <Badge
+                              variant="outline"
+                              className="bg-green-50 text-green-700 border-green-200"
+                            >
                               {review.status}
                             </Badge>
-                            <span className="text-lg font-bold text-green-600">{review.score}/10</span>
+                            <span className="text-lg font-bold text-green-600">
+                              {review.score}/10
+                            </span>
                           </div>
-                          <p className="text-sm text-muted-foreground">{review.highlights}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {review.highlights}
+                          </p>
                         </div>
                         <Button
                           variant="outline"
@@ -328,8 +426,8 @@ export function OKRModule() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
 
 // 确保正确导出
-export default OKRModule
+export default OKRModule;

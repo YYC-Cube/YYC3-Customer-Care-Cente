@@ -10,112 +10,120 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Code, Database, FileText, Settings, Info, Copy } from "lucide-react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Code, Database, FileText, Settings, Info, Copy } from 'lucide-react';
 
 export default function APIDocumentationPage() {
   const apiEndpoints = [
     {
-      method: "GET",
-      path: "/api/customers",
-      description: "获取客户列表",
-      category: "customers",
-      params: ["page", "limit", "search"],
-      response: "Customer[]",
+      method: 'GET',
+      path: '/api/customers',
+      description: '获取客户列表',
+      category: 'customers',
+      params: ['page', 'limit', 'search'],
+      response: 'Customer[]',
     },
     {
-      method: "POST",
-      path: "/api/customers",
-      description: "创建新客户",
-      category: "customers",
-      body: "CreateCustomerRequest",
-      response: "Customer",
+      method: 'POST',
+      path: '/api/customers',
+      description: '创建新客户',
+      category: 'customers',
+      body: 'CreateCustomerRequest',
+      response: 'Customer',
     },
     {
-      method: "GET",
-      path: "/api/tasks",
-      description: "获取任务列表",
-      category: "tasks",
-      params: ["status", "assignee", "project"],
-      response: "Task[]",
+      method: 'GET',
+      path: '/api/tasks',
+      description: '获取任务列表',
+      category: 'tasks',
+      params: ['status', 'assignee', 'project'],
+      response: 'Task[]',
     },
     {
-      method: "PUT",
-      path: "/api/tasks/:id",
-      description: "更新任务状态",
-      category: "tasks",
-      body: "UpdateTaskRequest",
-      response: "Task",
+      method: 'PUT',
+      path: '/api/tasks/:id',
+      description: '更新任务状态',
+      category: 'tasks',
+      body: 'UpdateTaskRequest',
+      response: 'Task',
     },
     {
-      method: "GET",
-      path: "/api/okrs",
-      description: "获取OKR列表",
-      category: "okrs",
-      params: ["quarter", "owner", "department"],
-      response: "OKR[]",
+      method: 'GET',
+      path: '/api/okrs',
+      description: '获取OKR列表',
+      category: 'okrs',
+      params: ['quarter', 'owner', 'department'],
+      response: 'OKR[]',
     },
     {
-      method: "POST",
-      path: "/api/notifications",
-      description: "发送通知",
-      category: "notifications",
-      body: "CreateNotificationRequest",
-      response: "Notification",
+      method: 'POST',
+      path: '/api/notifications',
+      description: '发送通知',
+      category: 'notifications',
+      body: 'CreateNotificationRequest',
+      response: 'Notification',
     },
-  ]
+  ];
 
   const dataModels = {
     Customer: {
-      id: "string",
-      name: "string",
-      company: "string",
-      email: "string",
-      phone: "string",
+      id: 'string',
+      name: 'string',
+      company: 'string',
+      email: 'string',
+      phone: 'string',
       status: "'active' | 'inactive' | 'potential'",
-      value: "number",
-      createdAt: "string",
-      updatedAt: "string",
+      value: 'number',
+      createdAt: 'string',
+      updatedAt: 'string',
     },
     Task: {
-      id: "string",
-      title: "string",
-      description: "string",
+      id: 'string',
+      title: 'string',
+      description: 'string',
       status: "'todo' | 'in-progress' | 'review' | 'completed'",
       priority: "'low' | 'medium' | 'high' | 'urgent'",
-      assignee: "string",
-      dueDate: "string",
-      progress: "number",
-      createdAt: "string",
+      assignee: 'string',
+      dueDate: 'string',
+      progress: 'number',
+      createdAt: 'string',
     },
     OKR: {
-      id: "string",
-      title: "string",
-      description: "string",
-      owner: "string",
-      quarter: "string",
-      progress: "number",
-      keyResults: "KeyResult[]",
+      id: 'string',
+      title: 'string',
+      description: 'string',
+      owner: 'string',
+      quarter: 'string',
+      progress: 'number',
+      keyResults: 'KeyResult[]',
       status: "'draft' | 'active' | 'completed'",
     },
-  }
+  };
 
   const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text)
-  }
+    navigator.clipboard.writeText(text);
+  };
 
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       {/* 页面标题 */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-2">API 文档</h1>
-        <p className="text-xl text-gray-600 mb-4">言语云企业管理系统 API 接口文档</p>
+        <p className="text-xl text-gray-600 mb-4">
+          言语云企业管理系统 API 接口文档
+        </p>
         <div className="flex items-center justify-center space-x-4">
           <Badge className="bg-green-100 text-green-800">REST API</Badge>
           <Badge className="bg-blue-100 text-blue-800">JSON</Badge>
@@ -144,34 +152,47 @@ export default function APIDocumentationPage() {
             <CardContent>
               <div className="space-y-4">
                 {apiEndpoints.map((endpoint, index) => (
-                  <div key={index} className="border rounded-lg p-4 hover:bg-gray-50">
+                  <div
+                    key={index}
+                    className="border rounded-lg p-4 hover:bg-gray-50"
+                  >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center space-x-3">
                         <Badge
                           className={
-                            endpoint.method === "GET"
-                              ? "bg-green-100 text-green-800"
-                              : endpoint.method === "POST"
-                                ? "bg-blue-100 text-blue-800"
-                                : endpoint.method === "PUT"
-                                  ? "bg-yellow-100 text-yellow-800"
-                                  : "bg-red-100 text-red-800"
+                            endpoint.method === 'GET'
+                              ? 'bg-green-100 text-green-800'
+                              : endpoint.method === 'POST'
+                                ? 'bg-blue-100 text-blue-800'
+                                : endpoint.method === 'PUT'
+                                  ? 'bg-yellow-100 text-yellow-800'
+                                  : 'bg-red-100 text-red-800'
                           }
                         >
                           {endpoint.method}
                         </Badge>
-                        <code className="text-sm font-mono bg-gray-100 px-2 py-1 rounded">{endpoint.path}</code>
+                        <code className="text-sm font-mono bg-gray-100 px-2 py-1 rounded">
+                          {endpoint.path}
+                        </code>
                       </div>
-                      <Button variant="ghost" size="sm" onClick={() => copyToClipboard(endpoint.path)}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard(endpoint.path)}
+                      >
                         <Copy className="w-4 h-4" />
                       </Button>
                     </div>
-                    <p className="text-sm text-gray-600 mb-2">{endpoint.description}</p>
+                    <p className="text-sm text-gray-600 mb-2">
+                      {endpoint.description}
+                    </p>
                     <div className="flex items-center space-x-4 text-xs">
                       {endpoint.params && (
                         <div>
                           <span className="text-gray-500">参数: </span>
-                          <span className="font-mono">{endpoint.params.join(", ")}</span>
+                          <span className="font-mono">
+                            {endpoint.params.join(', ')}
+                          </span>
                         </div>
                       )}
                       {endpoint.body && (
@@ -212,7 +233,7 @@ export default function APIDocumentationPage() {
                         <code>
                           {`interface ${modelName} {\n${Object.entries(fields)
                             .map(([key, type]) => `  ${key}: ${type}`)
-                            .join("\n")}\n}`}
+                            .join('\n')}\n}`}
                         </code>
                       </pre>
                     </div>
@@ -319,7 +340,8 @@ const updatedTask = await response.json()`}</code>
                 <Alert>
                   <Info className="h-4 w-4" />
                   <AlertDescription>
-                    本系统采用本地化存储，无需传统的 API 认证。所有数据操作都在客户端完成。
+                    本系统采用本地化存储，无需传统的 API
+                    认证。所有数据操作都在客户端完成。
                   </AlertDescription>
                 </Alert>
 
@@ -340,15 +362,21 @@ const updatedTask = await response.json()`}</code>
                   <div className="space-y-3">
                     <div className="bg-green-50 p-3 rounded">
                       <h5 className="font-medium text-green-800">数据验证</h5>
-                      <p className="text-sm text-green-700">所有输入数据都经过严格的类型检查和格式验证</p>
+                      <p className="text-sm text-green-700">
+                        所有输入数据都经过严格的类型检查和格式验证
+                      </p>
                     </div>
                     <div className="bg-yellow-50 p-3 rounded">
                       <h5 className="font-medium text-yellow-800">错误处理</h5>
-                      <p className="text-sm text-yellow-700">统一的错误响应格式，不暴露敏感信息</p>
+                      <p className="text-sm text-yellow-700">
+                        统一的错误响应格式，不暴露敏感信息
+                      </p>
                     </div>
                     <div className="bg-purple-50 p-3 rounded">
                       <h5 className="font-medium text-purple-800">日志记录</h5>
-                      <p className="text-sm text-purple-700">完整的操作日志，支持审计和问题追踪</p>
+                      <p className="text-sm text-purple-700">
+                        完整的操作日志，支持审计和问题追踪
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -358,5 +386,5 @@ const updatedTask = await response.json()`}</code>
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

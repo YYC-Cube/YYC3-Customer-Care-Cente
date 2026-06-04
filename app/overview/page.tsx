@@ -10,11 +10,17 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Home,
   Users,
@@ -32,164 +38,164 @@ import {
   Activity,
   Zap,
   Star,
-} from "lucide-react"
-import Link from "next/link"
+} from 'lucide-react';
+import Link from 'next/link';
 
 export default function OverviewPage() {
   const applicationModules = [
     {
-      title: "仪表板",
-      description: "企业数据总览和关键指标监控",
-      href: "/",
+      title: '仪表板',
+      description: '企业数据总览和关键指标监控',
+      href: '/',
       icon: Home,
-      color: "emerald",
-      features: ["实时数据", "可视化图表", "智能洞察"],
-      status: "active",
+      color: 'emerald',
+      features: ['实时数据', '可视化图表', '智能洞察'],
+      status: 'active',
       usage: 95,
     },
     {
-      title: "客户管理",
-      description: "全生命周期客户关系管理系统",
-      href: "/customers",
+      title: '客户管理',
+      description: '全生命周期客户关系管理系统',
+      href: '/customers',
       icon: Users,
-      color: "orange",
-      features: ["客户档案", "跟进记录", "价值分析"],
-      status: "active",
+      color: 'orange',
+      features: ['客户档案', '跟进记录', '价值分析'],
+      status: 'active',
       usage: 87,
     },
     {
-      title: "任务管理",
-      description: "智能任务分配和进度跟踪",
-      href: "/tasks",
+      title: '任务管理',
+      description: '智能任务分配和进度跟踪',
+      href: '/tasks',
       icon: CheckSquare,
-      color: "orange",
-      features: ["任务分配", "进度跟踪", "协作工具"],
-      status: "active",
+      color: 'orange',
+      features: ['任务分配', '进度跟踪', '协作工具'],
+      status: 'active',
       usage: 92,
     },
     {
-      title: "数据分析",
-      description: "高级BI分析和预测洞察",
-      href: "/analytics",
+      title: '数据分析',
+      description: '高级BI分析和预测洞察',
+      href: '/analytics',
       icon: BarChart3,
-      color: "purple",
-      features: ["多维分析", "预测模型", "智能报表"],
-      status: "active",
+      color: 'purple',
+      features: ['多维分析', '预测模型', '智能报表'],
+      status: 'active',
       usage: 78,
     },
     {
-      title: "沟通协作",
-      description: "团队协作和沟通平台",
-      href: "/communication",
+      title: '沟通协作',
+      description: '团队协作和沟通平台',
+      href: '/communication',
       icon: MessageSquare,
-      color: "blue",
-      features: ["即时通讯", "视频会议", "文档协作"],
-      status: "active",
+      color: 'blue',
+      features: ['即时通讯', '视频会议', '文档协作'],
+      status: 'active',
       usage: 84,
     },
     {
-      title: "财务管理",
-      description: "财务数据管理和报表分析",
-      href: "/finance",
+      title: '财务管理',
+      description: '财务数据管理和报表分析',
+      href: '/finance',
       icon: Building2,
-      color: "green",
-      features: ["财务报表", "成本分析", "预算管理"],
-      status: "active",
+      color: 'green',
+      features: ['财务报表', '成本分析', '预算管理'],
+      status: 'active',
       usage: 73,
     },
     {
-      title: "目标管理",
-      description: "OKR和KPI目标管理系统",
-      href: "/okr",
+      title: '目标管理',
+      description: 'OKR和KPI目标管理系统',
+      href: '/okr',
       icon: Target,
-      color: "green",
-      features: ["OKR管理", "KPI跟踪", "绩效评估"],
-      status: "active",
+      color: 'green',
+      features: ['OKR管理', 'KPI跟踪', '绩效评估'],
+      status: 'active',
       usage: 89,
     },
     {
-      title: "AI客户数据",
-      description: "智能客户洞察与预测分析",
-      href: "/ai/customer-data",
+      title: 'AI客户数据',
+      description: '智能客户洞察与预测分析',
+      href: '/ai/customer-data',
       icon: Brain,
-      color: "purple",
-      features: ["智能分析", "预测模型", "行为洞察"],
-      status: "new",
+      color: 'purple',
+      features: ['智能分析', '预测模型', '行为洞察'],
+      status: 'new',
       usage: 65,
     },
     {
-      title: "AI智能表单",
-      description: "智能表单设计与数据收集",
-      href: "/ai/smart-forms",
+      title: 'AI智能表单',
+      description: '智能表单设计与数据收集',
+      href: '/ai/smart-forms',
       icon: FormInput,
-      color: "purple",
-      features: ["智能填充", "语音输入", "自动验证"],
-      status: "new",
+      color: 'purple',
+      features: ['智能填充', '语音输入', '自动验证'],
+      status: 'new',
       usage: 58,
     },
     {
-      title: "移动端应用",
-      description: "移动端管理和NFC功能",
-      href: "/mobile/dashboard",
+      title: '移动端应用',
+      description: '移动端管理和NFC功能',
+      href: '/mobile/dashboard',
       icon: Smartphone,
-      color: "rose",
-      features: ["移动仪表板", "NFC签到", "离线支持"],
-      status: "active",
+      color: 'rose',
+      features: ['移动仪表板', 'NFC签到', '离线支持'],
+      status: 'active',
       usage: 71,
     },
     {
-      title: "系统设置",
-      description: "系统配置和管理工具",
-      href: "/settings/layout",
+      title: '系统设置',
+      description: '系统配置和管理工具',
+      href: '/settings/layout',
       icon: Settings,
-      color: "blue",
-      features: ["系统配置", "权限管理", "布局设置"],
-      status: "active",
+      color: 'blue',
+      features: ['系统配置', '权限管理', '布局设置'],
+      status: 'active',
       usage: 45,
     },
     {
-      title: "安全中心",
-      description: "系统安全和数据保护",
-      href: "/test",
+      title: '安全中心',
+      description: '系统安全和数据保护',
+      href: '/test',
       icon: Shield,
-      color: "orange",
-      features: ["安全监控", "数据保护", "访问控制"],
-      status: "active",
+      color: 'orange',
+      features: ['安全监控', '数据保护', '访问控制'],
+      status: 'active',
       usage: 67,
     },
-  ]
+  ];
 
   const getColorClasses = (color: string) => {
     const colors = {
-      emerald: "border-l-emerald-500 bg-emerald-50 hover:bg-emerald-100",
-      orange: "border-l-orange-500 bg-orange-50 hover:bg-orange-100",
-      blue: "border-l-blue-500 bg-blue-50 hover:bg-blue-100",
-      purple: "border-l-purple-500 bg-purple-50 hover:bg-purple-100",
-      rose: "border-l-rose-500 bg-rose-50 hover:bg-rose-100",
-      green: "border-l-green-500 bg-green-50 hover:bg-green-100",
-    }
-    return colors[color as keyof typeof colors] || colors.blue
-  }
+      emerald: 'border-l-emerald-500 bg-emerald-50 hover:bg-emerald-100',
+      orange: 'border-l-orange-500 bg-orange-50 hover:bg-orange-100',
+      blue: 'border-l-blue-500 bg-blue-50 hover:bg-blue-100',
+      purple: 'border-l-purple-500 bg-purple-50 hover:bg-purple-100',
+      rose: 'border-l-rose-500 bg-rose-50 hover:bg-rose-100',
+      green: 'border-l-green-500 bg-green-50 hover:bg-green-100',
+    };
+    return colors[color as keyof typeof colors] || colors.blue;
+  };
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case "new":
-        return <Badge className="bg-purple-100 text-purple-700">NEW</Badge>
-      case "active":
-        return <Badge className="bg-green-100 text-green-700">运行中</Badge>
-      case "beta":
-        return <Badge className="bg-blue-100 text-blue-700">测试版</Badge>
+      case 'new':
+        return <Badge className="bg-purple-100 text-purple-700">NEW</Badge>;
+      case 'active':
+        return <Badge className="bg-green-100 text-green-700">运行中</Badge>;
+      case 'beta':
+        return <Badge className="bg-blue-100 text-blue-700">测试版</Badge>;
       default:
-        return <Badge className="bg-gray-100 text-gray-700">未知</Badge>
+        return <Badge className="bg-gray-100 text-gray-700">未知</Badge>;
     }
-  }
+  };
 
   const getUsageColor = (usage: number) => {
-    if (usage >= 80) return "from-emerald-400 to-emerald-500"
-    if (usage >= 60) return "from-blue-400 to-blue-500"
-    if (usage >= 40) return "from-yellow-400 to-yellow-500"
-    return "from-red-400 to-red-500"
-  }
+    if (usage >= 80) return 'from-emerald-400 to-emerald-500';
+    if (usage >= 60) return 'from-blue-400 to-blue-500';
+    if (usage >= 40) return 'from-yellow-400 to-yellow-500';
+    return 'from-red-400 to-red-500';
+  };
 
   return (
     <div className="p-6 space-y-6 bg-gradient-to-br from-green-50 via-blue-50 to-indigo-50 min-h-screen">
@@ -205,11 +211,16 @@ export default function OverviewPage() {
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <div className="h-3 w-3 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium text-gray-700">系统运行正常</span>
+            <span className="text-sm font-medium text-gray-700">
+              系统运行正常
+            </span>
           </div>
           <Badge className="bg-green-100 text-green-700">
             <Activity className="w-3 h-3 mr-1" />
-            {applicationModules.filter((m) => m.status === "active").length} 个模块运行中
+            {
+              applicationModules.filter((m) => m.status === 'active').length
+            }{' '}
+            个模块运行中
           </Badge>
         </div>
       </div>
@@ -222,7 +233,9 @@ export default function OverviewPage() {
             <Home className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-700">{applicationModules.length}</div>
+            <div className="text-2xl font-bold text-green-700">
+              {applicationModules.length}
+            </div>
             <p className="text-xs text-gray-600">功能模块总数</p>
           </CardContent>
         </Card>
@@ -234,7 +247,7 @@ export default function OverviewPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-emerald-700">
-              {applicationModules.filter((m) => m.status === "active").length}
+              {applicationModules.filter((m) => m.status === 'active').length}
             </div>
             <p className="text-xs text-gray-600">正常运行模块</p>
           </CardContent>
@@ -247,7 +260,7 @@ export default function OverviewPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-purple-700">
-              {applicationModules.filter((m) => m.status === "new").length}
+              {applicationModules.filter((m) => m.status === 'new').length}
             </div>
             <p className="text-xs text-gray-600">新增功能模块</p>
           </CardContent>
@@ -260,7 +273,11 @@ export default function OverviewPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-blue-700">
-              {Math.round(applicationModules.reduce((acc, m) => acc + m.usage, 0) / applicationModules.length)}%
+              {Math.round(
+                applicationModules.reduce((acc, m) => acc + m.usage, 0) /
+                  applicationModules.length
+              )}
+              %
             </div>
             <p className="text-xs text-gray-600">系统整体使用率</p>
           </CardContent>
@@ -289,18 +306,28 @@ export default function OverviewPage() {
                         <module.icon className="w-6 h-6 text-gray-700" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-gray-900">{module.title}</h3>
-                        <p className="text-sm text-gray-600 mt-1">{module.description}</p>
+                        <h3 className="font-bold text-gray-900">
+                          {module.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 mt-1">
+                          {module.description}
+                        </p>
                       </div>
                     </div>
                     {getStatusBadge(module.status)}
                   </div>
 
                   <div className="mb-4">
-                    <div className="text-sm font-medium text-gray-700 mb-2">核心功能</div>
+                    <div className="text-sm font-medium text-gray-700 mb-2">
+                      核心功能
+                    </div>
                     <div className="flex flex-wrap gap-1">
                       {module.features.map((feature, featureIndex) => (
-                        <Badge key={featureIndex} variant="secondary" className="text-xs">
+                        <Badge
+                          key={featureIndex}
+                          variant="secondary"
+                          className="text-xs"
+                        >
                           {feature}
                         </Badge>
                       ))}
@@ -395,5 +422,5 @@ export default function OverviewPage() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

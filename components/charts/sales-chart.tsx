@@ -10,10 +10,20 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from '@/components/ui/chart';
 import {
   LineChart,
   Line,
@@ -26,33 +36,33 @@ import {
   PieChart,
   Pie,
   Cell,
-} from "recharts"
+} from 'recharts';
 
 // 销售趋势数据
 const salesTrendData = [
-  { month: "1月", sales: 65000, target: 70000, growth: 12.5 },
-  { month: "2月", sales: 72000, target: 75000, growth: 15.2 },
-  { month: "3月", sales: 68000, target: 70000, growth: 8.7 },
-  { month: "4月", sales: 85000, target: 80000, growth: 25.3 },
-  { month: "5月", sales: 92000, target: 90000, growth: 18.9 },
-  { month: "6月", sales: 88000, target: 85000, growth: 22.1 },
-]
+  { month: '1月', sales: 65000, target: 70000, growth: 12.5 },
+  { month: '2月', sales: 72000, target: 75000, growth: 15.2 },
+  { month: '3月', sales: 68000, target: 70000, growth: 8.7 },
+  { month: '4月', sales: 85000, target: 80000, growth: 25.3 },
+  { month: '5月', sales: 92000, target: 90000, growth: 18.9 },
+  { month: '6月', sales: 88000, target: 85000, growth: 22.1 },
+];
 
 // 产品销售分布
 const productSalesData = [
-  { product: "产品A", sales: 320000, percentage: 35 },
-  { product: "产品B", sales: 280000, percentage: 30 },
-  { product: "产品C", sales: 180000, percentage: 20 },
-  { product: "产品D", sales: 120000, percentage: 15 },
-]
+  { product: '产品A', sales: 320000, percentage: 35 },
+  { product: '产品B', sales: 280000, percentage: 30 },
+  { product: '产品C', sales: 180000, percentage: 20 },
+  { product: '产品D', sales: 120000, percentage: 15 },
+];
 
 // 区域销售数据
 const regionSalesData = [
-  { name: "华东", value: 35, color: "#3b82f6" },
-  { name: "华南", value: 28, color: "#10b981" },
-  { name: "华北", value: 22, color: "#f59e0b" },
-  { name: "西部", value: 15, color: "#ef4444" },
-]
+  { name: '华东', value: 35, color: '#3b82f6' },
+  { name: '华南', value: 28, color: '#10b981' },
+  { name: '华北', value: 22, color: '#f59e0b' },
+  { name: '西部', value: 15, color: '#ef4444' },
+];
 
 export function SalesChart() {
   return (
@@ -67,12 +77,12 @@ export function SalesChart() {
           <ChartContainer
             config={{
               sales: {
-                label: "实际销售",
-                color: "hsl(var(--chart-1))",
+                label: '实际销售',
+                color: 'hsl(var(--chart-1))',
               },
               target: {
-                label: "销售目标",
-                color: "hsl(var(--chart-2))",
+                label: '销售目标',
+                color: 'hsl(var(--chart-2))',
               },
             }}
             className="h-[300px]"
@@ -88,7 +98,7 @@ export function SalesChart() {
                   dataKey="sales"
                   stroke="var(--color-sales)"
                   strokeWidth={3}
-                  dot={{ fill: "var(--color-sales)", strokeWidth: 2, r: 4 }}
+                  dot={{ fill: 'var(--color-sales)', strokeWidth: 2, r: 4 }}
                 />
                 <Line
                   type="monotone"
@@ -96,7 +106,7 @@ export function SalesChart() {
                   stroke="var(--color-target)"
                   strokeWidth={2}
                   strokeDasharray="5 5"
-                  dot={{ fill: "var(--color-target)", strokeWidth: 2, r: 3 }}
+                  dot={{ fill: 'var(--color-target)', strokeWidth: 2, r: 3 }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -115,8 +125,8 @@ export function SalesChart() {
             <ChartContainer
               config={{
                 sales: {
-                  label: "销售额",
-                  color: "hsl(var(--chart-1))",
+                  label: '销售额',
+                  color: 'hsl(var(--chart-1))',
                 },
               }}
               className="h-[250px]"
@@ -127,7 +137,11 @@ export function SalesChart() {
                   <XAxis dataKey="product" stroke="#64748b" />
                   <YAxis stroke="#64748b" />
                   <ChartTooltip content={<ChartTooltipContent />} />
-                  <Bar dataKey="sales" fill="var(--color-sales)" radius={[4, 4, 0, 0]} />
+                  <Bar
+                    dataKey="sales"
+                    fill="var(--color-sales)"
+                    radius={[4, 4, 0, 0]}
+                  />
                 </BarChart>
               </ResponsiveContainer>
             </ChartContainer>
@@ -164,9 +178,14 @@ export function SalesChart() {
             <div className="grid grid-cols-2 gap-4 mt-4">
               {regionSalesData.map((item, index) => (
                 <div key={index} className="flex items-center space-x-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></div>
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: item.color }}
+                  ></div>
                   <span className="text-sm text-slate-600">{item.name}</span>
-                  <span className="text-sm font-semibold text-slate-800">{item.value}%</span>
+                  <span className="text-sm font-semibold text-slate-800">
+                    {item.value}%
+                  </span>
                 </div>
               ))}
             </div>
@@ -174,5 +193,5 @@ export function SalesChart() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

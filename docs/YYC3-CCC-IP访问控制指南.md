@@ -19,18 +19,21 @@ YYC³ Customer Care Center 实现了基于 CIDR (Classless Inter-Domain Routing)
 ## 🎯 功能特性
 
 ### CIDR 匹配
+
 - 支持 IPv4 CIDR 表示法
 - 精确的 IP 地址范围匹配
 - 网络地址和广播地址计算
 - 前缀长度验证
 
 ### 访问策略
+
 - 白名单模式（默认拒绝）
 - 黑名单模式（默认允许）
 - 多规则优先级处理
 - 规则描述和元数据
 
 ### 安全特性
+
 - 中间件级别的访问控制
 - 请求头 IP 提取
 - 代理服务器支持
@@ -128,9 +131,9 @@ const ipAccessConfig = createIPAccessControl(
 ```typescript
 export function middleware(request: NextRequest) {
   const clientIP = getClientIP(request.headers);
-  
+
   const isAllowed = checkIPAccess(clientIP, ipAccessConfig);
-  
+
   if (!isAllowed) {
     return NextResponse.json(
       {
@@ -141,7 +144,7 @@ export function middleware(request: NextRequest) {
       { status: 403 }
     );
   }
-  
+
   return NextResponse.next();
 }
 ```
@@ -210,16 +213,13 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { checkIPAccess, createIPAccessControl, getClientIP } from '@/lib/cidr';
 
-const ipAccessConfig = createIPAccessControl(
-  'deny',
-  [
-    {
-      cidr: '10.0.0.0/8',
-      action: 'allow',
-      description: 'Private network',
-    },
-  ]
-);
+const ipAccessConfig = createIPAccessControl('deny', [
+  {
+    cidr: '10.0.0.0/8',
+    action: 'allow',
+    description: 'Private network',
+  },
+]);
 
 export function middleware(request: NextRequest) {
   const clientIP = getClientIP(request.headers);
@@ -253,7 +253,7 @@ const allowedPaths = [
 ];
 
 const bypassIPCheck = (pathname: string): boolean => {
-  return allowedPaths.some(path => pathname.startsWith(path));
+  return allowedPaths.some((path) => pathname.startsWith(path));
 };
 
 export function middleware(request: NextRequest) {
@@ -327,7 +327,7 @@ function loadAccessRules(): IPAccessRule[] {
   const rulesEnv = process.env.IP_ACCESS_RULES;
   if (!rulesEnv) return [];
 
-  return rulesEnv.split(',').map(rule => {
+  return rulesEnv.split(',').map((rule) => {
     const [cidr, action] = rule.split(':');
     return {
       cidr: cidr.trim(),
@@ -341,7 +341,7 @@ async function loadAccessRulesFromDB(): Promise<IPAccessRule[]> {
   const rules = await db.ipAccessRules.findMany({
     where: { active: true },
   });
-  return rules.map(rule => ({
+  return rules.map((rule) => ({
     cidr: rule.cidr,
     action: rule.action,
     description: rule.description,
@@ -350,7 +350,7 @@ async function loadAccessRulesFromDB(): Promise<IPAccessRule[]> {
 
 // 创建动态配置
 const ipAccessConfig = createIPAccessControl(
-  process.env.IP_ACCESS_DEFAULT_ACTION as 'allow' | 'deny' || 'deny',
+  (process.env.IP_ACCESS_DEFAULT_ACTION as 'allow' | 'deny') || 'deny',
   loadAccessRules()
 );
 ```
@@ -410,7 +410,10 @@ export function middleware(request: NextRequest) {
   const windowMs = 60000; // 1 分钟
   const maxRequests = 100;
 
-  const record = rateLimiter.get(clientIP) || { count: 0, resetTime: now + windowMs };
+  const record = rateLimiter.get(clientIP) || {
+    count: 0,
+    resetTime: now + windowMs,
+  };
 
   if (now > record.resetTime) {
     record.count = 0;
@@ -558,15 +561,15 @@ const ipAccessConfig = createIPAccessControl('deny', [
 // 定期检查和更新规则
 async function reviewAccessRules() {
   const rules = await db.ipAccessRules.findMany();
-  
+
   // 检查过期的规则
-  const expiredRules = rules.filter(rule => 
-    rule.expiresAt && new Date(rule.expiresAt) < new Date()
+  const expiredRules = rules.filter(
+    (rule) => rule.expiresAt && new Date(rule.expiresAt) < new Date()
   );
-  
+
   // 禁用过期规则
   await db.ipAccessRules.updateMany({
-    where: { id: { in: expiredRules.map(r => r.id) } },
+    where: { id: { in: expiredRules.map((r) => r.id) } },
     data: { active: false },
   });
 }
@@ -635,6 +638,7 @@ function getClientIP(headers: Headers): string {
 **问题**：合法 IP 被拒绝访问
 
 **解决方案**：
+
 - 检查 CIDR 规则是否正确
 - 验证 IP 地址格式
 - 检查代理服务器配置
@@ -645,6 +649,7 @@ function getClientIP(headers: Headers): string {
 **问题**：代理服务器后面的客户端无法访问
 
 **解决方案**：
+
 - 配置正确的代理头
 - 使用 `x-forwarded-for` 头
 - 检查 CDN 配置
@@ -654,6 +659,7 @@ function getClientIP(headers: Headers): string {
 **问题**：中间件影响性能
 
 **解决方案**：
+
 - 优化 CIDR 匹配算法
 - 使用缓存
 - 减少规则数量
@@ -677,7 +683,7 @@ function getClientIP(headers: Headers): string {
 
 ---
 
-> 「***YanYuCloudCube***」
-> 「***<admin@0379.email>***」
-> 「***Words Initiate Quadrants, Language Serves as Core for Future***」
-> 「***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***」
+> 「**_YanYuCloudCube_**」
+> 「**_<admin@0379.email>_**」
+> 「**_Words Initiate Quadrants, Language Serves as Core for Future_**」
+> 「**_All things converge in cloud pivot; Deep stacks ignite a new era of intelligence_**」

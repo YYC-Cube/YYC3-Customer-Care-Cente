@@ -1,13 +1,13 @@
-"use client"
+'use client';
 
-import { useState, useEffect, useCallback } from "react"
-import { useMediaQuery } from "@/hooks/use-mobile"
+import { useState, useEffect, useCallback } from 'react';
+import { useMediaQuery } from '@/hooks/use-mobile';
 
 interface UseSidebarOptions {
-  defaultCollapsed?: boolean
-  autoCollapse?: boolean
-  autoCollapseDelay?: number
-  mobileBreakpoint?: number
+  defaultCollapsed?: boolean;
+  autoCollapse?: boolean;
+  autoCollapseDelay?: number;
+  mobileBreakpoint?: number;
 }
 
 export function useSidebar(options: UseSidebarOptions = {}) {
@@ -16,61 +16,68 @@ export function useSidebar(options: UseSidebarOptions = {}) {
     autoCollapse = true,
     autoCollapseDelay = 3000,
     mobileBreakpoint = 1024,
-  } = options
+  } = options;
 
-  const isMobile = useMediaQuery(`(max-width:${mobileBreakpoint}px)`)
+  const isMobile = useMediaQuery(`(max-width:${mobileBreakpoint}px)`);
 
-  const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed)
-  const [isHovered, setIsHovered] = useState(false)
-  const [isPinned, setIsPinned] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
 
   // 移动端首次加载时自动折叠
   useEffect(() => {
     if (isMobile) {
-      setIsCollapsed(true)
-      setIsPinned(false)
+      setIsCollapsed(true);
+      setIsPinned(false);
     }
-  }, [isMobile])
+  }, [isMobile]);
 
   // 自动收缩逻辑
   useEffect(() => {
     if (!autoCollapse || isPinned || isMobile || isHovered || isCollapsed) {
-      return
+      return;
     }
 
     const timer = setTimeout(() => {
-      setIsCollapsed(true)
-    }, autoCollapseDelay)
+      setIsCollapsed(true);
+    }, autoCollapseDelay);
 
-    return () => clearTimeout(timer)
-  }, [autoCollapse, isPinned, isMobile, isHovered, isCollapsed, autoCollapseDelay])
+    return () => clearTimeout(timer);
+  }, [
+    autoCollapse,
+    isPinned,
+    isMobile,
+    isHovered,
+    isCollapsed,
+    autoCollapseDelay,
+  ]);
 
   const toggleCollapsed = useCallback(() => {
-    setIsCollapsed((prev) => !prev)
-  }, [])
+    setIsCollapsed((prev) => !prev);
+  }, []);
 
   const togglePinned = useCallback(() => {
     setIsPinned((prev) => {
-      const newPinned = !prev
+      const newPinned = !prev;
       if (newPinned) {
-        setIsCollapsed(false)
+        setIsCollapsed(false);
       }
-      return newPinned
-    })
-  }, [])
+      return newPinned;
+    });
+  }, []);
 
   const handleMouseEnter = useCallback(() => {
     if (!isMobile) {
-      setIsHovered(true)
-      setIsCollapsed(false)
+      setIsHovered(true);
+      setIsCollapsed(false);
     }
-  }, [isMobile])
+  }, [isMobile]);
 
   const handleMouseLeave = useCallback(() => {
     if (!isMobile) {
-      setIsHovered(false)
+      setIsHovered(false);
     }
-  }, [isMobile])
+  }, [isMobile]);
 
   return {
     isCollapsed,
@@ -82,5 +89,5 @@ export function useSidebar(options: UseSidebarOptions = {}) {
     togglePinned,
     handleMouseEnter,
     handleMouseLeave,
-  }
+  };
 }

@@ -10,13 +10,32 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { ResponsiveLayout } from "@/components/layout/responsive-layout"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { DollarSign, TrendingUp, TrendingDown, CreditCard, Receipt, Banknote, Target, AlertTriangle, ArrowUpRight, ArrowDownRight, PieChart, BarChart3 } from 'lucide-react'
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import {
+  DollarSign,
+  TrendingUp,
+  TrendingDown,
+  CreditCard,
+  Receipt,
+  Banknote,
+  Target,
+  AlertTriangle,
+  ArrowUpRight,
+  ArrowDownRight,
+  PieChart,
+  BarChart3,
+} from 'lucide-react';
 
 export default function FinancePage() {
   return (
@@ -54,7 +73,9 @@ export default function FinancePage() {
               <TrendingUp className="h-4 w-4 text-emerald-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-emerald-700">¥2,847,392</div>
+              <div className="text-2xl font-bold text-emerald-700">
+                ¥2,847,392
+              </div>
               <div className="flex items-center text-xs text-emerald-600 mt-1">
                 <ArrowUpRight className="w-3 h-3 mr-1" />
                 <span>+12.5% 较上月</span>
@@ -82,7 +103,9 @@ export default function FinancePage() {
               <DollarSign className="h-4 w-4 text-emerald-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-emerald-700">¥1,612,825</div>
+              <div className="text-2xl font-bold text-emerald-700">
+                ¥1,612,825
+              </div>
               <div className="flex items-center text-xs text-emerald-600 mt-1">
                 <ArrowUpRight className="w-3 h-3 mr-1" />
                 <span>+15.2% 较上月</span>
@@ -96,7 +119,9 @@ export default function FinancePage() {
               <CreditCard className="h-4 w-4 text-emerald-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-emerald-700">¥856,432</div>
+              <div className="text-2xl font-bold text-emerald-700">
+                ¥856,432
+              </div>
               <div className="flex items-center text-xs text-emerald-600 mt-1">
                 <ArrowUpRight className="w-3 h-3 mr-1" />
                 <span>+6.8% 较上月</span>
@@ -124,14 +149,16 @@ export default function FinancePage() {
                 <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-500"
-                    style={{ width: "85%" }}
+                    style={{ width: '85%' }}
                   ></div>
                 </div>
                 <Button
                   variant="outline"
                   className="w-full border-l-4 border-l-emerald-500 transition-all duration-300 hover:scale-105 group bg-transparent"
                 >
-                  <span className="group-hover:translate-x-1 transition-all duration-300">查看详情</span>
+                  <span className="group-hover:translate-x-1 transition-all duration-300">
+                    查看详情
+                  </span>
                 </Button>
               </div>
             </CardContent>
@@ -161,7 +188,9 @@ export default function FinancePage() {
                   variant="outline"
                   className="w-full border-l-4 border-l-emerald-500 transition-all duration-300 hover:scale-105 group bg-transparent"
                 >
-                  <span className="group-hover:translate-x-1 transition-all duration-300">管理发票</span>
+                  <span className="group-hover:translate-x-1 transition-all duration-300">
+                    管理发票
+                  </span>
                 </Button>
               </div>
             </CardContent>
@@ -179,7 +208,9 @@ export default function FinancePage() {
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div>
-                    <div className="text-lg font-bold text-emerald-600">98.5%</div>
+                    <div className="text-lg font-bold text-emerald-600">
+                      98.5%
+                    </div>
                     <div className="text-xs text-gray-600">成功率</div>
                   </div>
                   <div>
@@ -191,7 +222,9 @@ export default function FinancePage() {
                   variant="outline"
                   className="w-full border-l-4 border-l-emerald-500 transition-all duration-300 hover:scale-105 group bg-transparent"
                 >
-                  <span className="group-hover:translate-x-1 transition-all duration-300">查看支付</span>
+                  <span className="group-hover:translate-x-1 transition-all duration-300">
+                    查看支付
+                  </span>
                 </Button>
               </div>
             </CardContent>
@@ -234,7 +267,7 @@ export default function FinancePage() {
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-500"
-                        style={{ width: "45%" }}
+                        style={{ width: '45%' }}
                       ></div>
                     </div>
                   </div>
@@ -246,7 +279,7 @@ export default function FinancePage() {
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-500"
-                        style={{ width: "30%" }}
+                        style={{ width: '30%' }}
                       ></div>
                     </div>
                   </div>
@@ -258,7 +291,7 @@ export default function FinancePage() {
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-500"
-                        style={{ width: "15%" }}
+                        style={{ width: '15%' }}
                       ></div>
                     </div>
                   </div>
@@ -270,7 +303,7 @@ export default function FinancePage() {
                     <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-500"
-                        style={{ width: "10%" }}
+                        style={{ width: '10%' }}
                       ></div>
                     </div>
                   </div>
@@ -296,7 +329,9 @@ export default function FinancePage() {
                   <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5" />
                   <div>
                     <h4 className="font-medium text-yellow-800">现金流预警</h4>
-                    <p className="text-sm text-yellow-600 mt-1">预计下月现金流可能出现紧张，建议提前准备资金</p>
+                    <p className="text-sm text-yellow-600 mt-1">
+                      预计下月现金流可能出现紧张，建议提前准备资金
+                    </p>
                   </div>
                 </div>
               </div>
@@ -305,7 +340,9 @@ export default function FinancePage() {
                   <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5" />
                   <div>
                     <h4 className="font-medium text-red-800">逾期应收款</h4>
-                    <p className="text-sm text-red-600 mt-1">有3笔应收款已逾期超过30天，总金额¥156,000</p>
+                    <p className="text-sm text-red-600 mt-1">
+                      有3笔应收款已逾期超过30天，总金额¥156,000
+                    </p>
                   </div>
                 </div>
               </div>
@@ -314,7 +351,9 @@ export default function FinancePage() {
                   <AlertTriangle className="w-5 h-5 text-blue-600 mt-0.5" />
                   <div>
                     <h4 className="font-medium text-blue-800">预算超支提醒</h4>
-                    <p className="text-sm text-blue-600 mt-1">营销费用本月已超出预算15%，建议控制支出</p>
+                    <p className="text-sm text-blue-600 mt-1">
+                      营销费用本月已超出预算15%，建议控制支出
+                    </p>
                   </div>
                 </div>
               </div>
@@ -323,5 +362,5 @@ export default function FinancePage() {
         </Card>
       </div>
     </ResponsiveLayout>
-  )
+  );
 }

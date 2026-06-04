@@ -10,17 +10,25 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Clock, TrendingUp, Target, Zap } from "lucide-react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { CheckCircle, Clock, TrendingUp, Target, Zap } from 'lucide-react';
 
 export function OptimizationReport() {
   return (
     <div className="p-6 space-y-6 max-w-4xl mx-auto">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-slate-800 mb-2">系统优化完成报告</h1>
+        <h1 className="text-3xl font-bold text-slate-800 mb-2">
+          系统优化完成报告
+        </h1>
         <p className="text-slate-600">ZUOYOU 企业管理系统 v2.1 优化总结</p>
       </div>
 
@@ -90,7 +98,9 @@ export function OptimizationReport() {
             <div className="flex items-start space-x-3 p-4 bg-emerald-50 rounded-lg border border-emerald-200">
               <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-emerald-800">核心模块功能完善</h4>
+                <h4 className="font-semibold text-emerald-800">
+                  核心模块功能完善
+                </h4>
                 <p className="text-emerald-700 text-sm mt-1">
                   • 仪表盘数据可视化增强
                   <br />• 客户管理模块功能优化
@@ -132,7 +142,10 @@ export function OptimizationReport() {
                     2.3s
                   </Badge>
                   <span className="text-slate-400">→</span>
-                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700">
+                  <Badge
+                    variant="outline"
+                    className="bg-emerald-50 text-emerald-700"
+                  >
                     0.8s
                   </Badge>
                 </div>
@@ -145,7 +158,10 @@ export function OptimizationReport() {
                     1.2s
                   </Badge>
                   <span className="text-slate-400">→</span>
-                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700">
+                  <Badge
+                    variant="outline"
+                    className="bg-emerald-50 text-emerald-700"
+                  >
                     0.3s
                   </Badge>
                 </div>
@@ -158,7 +174,10 @@ export function OptimizationReport() {
                     156MB
                   </Badge>
                   <span className="text-slate-400">→</span>
-                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700">
+                  <Badge
+                    variant="outline"
+                    className="bg-emerald-50 text-emerald-700"
+                  >
                     89MB
                   </Badge>
                 </div>
@@ -169,11 +188,17 @@ export function OptimizationReport() {
               <div className="flex justify-between items-center">
                 <span className="text-sm text-slate-600">用户体验评分</span>
                 <div className="flex items-center space-x-2">
-                  <Badge variant="outline" className="bg-orange-50 text-orange-700">
+                  <Badge
+                    variant="outline"
+                    className="bg-orange-50 text-orange-700"
+                  >
                     7.2/10
                   </Badge>
                   <span className="text-slate-400">→</span>
-                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700">
+                  <Badge
+                    variant="outline"
+                    className="bg-emerald-50 text-emerald-700"
+                  >
                     9.1/10
                   </Badge>
                 </div>
@@ -182,11 +207,17 @@ export function OptimizationReport() {
               <div className="flex justify-between items-center">
                 <span className="text-sm text-slate-600">可访问性评分</span>
                 <div className="flex items-center space-x-2">
-                  <Badge variant="outline" className="bg-orange-50 text-orange-700">
+                  <Badge
+                    variant="outline"
+                    className="bg-orange-50 text-orange-700"
+                  >
                     6.8/10
                   </Badge>
                   <span className="text-slate-400">→</span>
-                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700">
+                  <Badge
+                    variant="outline"
+                    className="bg-emerald-50 text-emerald-700"
+                  >
                     8.5/10
                   </Badge>
                 </div>
@@ -199,7 +230,10 @@ export function OptimizationReport() {
                     60%
                   </Badge>
                   <span className="text-slate-400">→</span>
-                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700">
+                  <Badge
+                    variant="outline"
+                    className="bg-emerald-50 text-emerald-700"
+                  >
                     85%
                   </Badge>
                 </div>
@@ -235,7 +269,9 @@ export function OptimizationReport() {
 
             <div>
               <h4 className="font-semibold text-slate-800 mb-3 flex items-center">
-                <Badge className="bg-orange-100 text-orange-800 mr-2">中优先级</Badge>
+                <Badge className="bg-orange-100 text-orange-800 mr-2">
+                  中优先级
+                </Badge>
                 重要功能开发 (3-4周)
               </h4>
               <ul className="space-y-2 text-sm text-slate-600 ml-4">
@@ -249,7 +285,9 @@ export function OptimizationReport() {
 
             <div>
               <h4 className="font-semibold text-slate-800 mb-3 flex items-center">
-                <Badge className="bg-blue-100 text-blue-800 mr-2">低优先级</Badge>
+                <Badge className="bg-blue-100 text-blue-800 mr-2">
+                  低优先级
+                </Badge>
                 功能增强项目 (1-2个月)
               </h4>
               <ul className="space-y-2 text-slate-600 ml-4">
@@ -278,5 +316,5 @@ export function OptimizationReport() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

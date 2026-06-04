@@ -5,7 +5,14 @@
  * @version 1.0.0
  */
 
-import type { ID, DateTime, Status, Priority, Visibility, Metadata } from './global';
+import type {
+  ID,
+  DateTime,
+  Status,
+  Priority,
+  Visibility,
+  Metadata,
+} from './global';
 
 // 用户基础类型
 export interface User {
@@ -60,10 +67,21 @@ export interface UserSettings {
 }
 
 // 用户状态类型
-export type UserStatus = 'active' | 'inactive' | 'suspended' | 'deleted' | 'pending';
+export type UserStatus =
+  | 'active'
+  | 'inactive'
+  | 'suspended'
+  | 'deleted'
+  | 'pending';
 
 // 用户角色类型
-export type Role = 'admin' | 'user' | 'guest' | 'manager' | 'support' | 'developer';
+export type Role =
+  | 'admin'
+  | 'user'
+  | 'guest'
+  | 'manager'
+  | 'support'
+  | 'developer';
 
 // 用户权限类型
 export interface Permission {
@@ -1727,7 +1745,12 @@ export interface UserAiFuture {
 export interface UserAiTransformation {
   id: ID;
   userId: ID;
-  stage: 'assessment' | 'planning' | 'implementation' | 'optimization' | 'scale';
+  stage:
+    | 'assessment'
+    | 'planning'
+    | 'implementation'
+    | 'optimization'
+    | 'scale';
   milestones: any;
   metrics: {
     progress: number;
@@ -1828,7 +1851,12 @@ export interface UserAiOpportunity {
   value: number;
   feasibility: number;
   impact: number;
-  status: 'identified' | 'evaluating' | 'pursuing' | 'implemented' | 'dismissed';
+  status:
+    | 'identified'
+    | 'evaluating'
+    | 'pursuing'
+    | 'implemented'
+    | 'dismissed';
   updatedAt: DateTime;
 }
 

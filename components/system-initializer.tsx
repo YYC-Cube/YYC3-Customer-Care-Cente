@@ -10,14 +10,20 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Badge } from "@/components/ui/badge"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { useState, useEffect } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import { Badge } from '@/components/ui/badge';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Database,
   Settings,
@@ -39,247 +45,285 @@ import {
   Cpu,
   MemoryStickIcon as Memory,
   Activity,
-} from "lucide-react"
+} from 'lucide-react';
 
 interface InitializationStep {
-  id: string
-  name: string
-  description: string
-  status: "pending" | "running" | "completed" | "failed" | "skipped"
-  progress: number
-  duration?: number
-  error?: string
-  dependencies?: string[]
+  id: string;
+  name: string;
+  description: string;
+  status: 'pending' | 'running' | 'completed' | 'failed' | 'skipped';
+  progress: number;
+  duration?: number;
+  error?: string;
+  dependencies?: string[];
 }
 
 interface SystemResource {
-  name: string
-  type: "cpu" | "memory" | "disk" | "network"
-  usage: number
-  total: number
-  status: "normal" | "warning" | "critical"
+  name: string;
+  type: 'cpu' | 'memory' | 'disk' | 'network';
+  usage: number;
+  total: number;
+  status: 'normal' | 'warning' | 'critical';
 }
 
 export function SystemInitializer() {
-  const [isInitializing, setIsInitializing] = useState(false)
-  const [currentStep, setCurrentStep] = useState<string | null>(null)
-  const [overallProgress, setOverallProgress] = useState(0)
-  const [logs, setLogs] = useState<string[]>([])
+  const [isInitializing, setIsInitializing] = useState(false);
+  const [currentStep, setCurrentStep] = useState<string | null>(null);
+  const [overallProgress, setOverallProgress] = useState(0);
+  const [logs, setLogs] = useState<string[]>([]);
   const [systemResources, setSystemResources] = useState<SystemResource[]>([
-    { name: "CPU", type: "cpu", usage: 45, total: 100, status: "normal" },
-    { name: "内存", type: "memory", usage: 2.8, total: 8, status: "normal" },
-    { name: "磁盘", type: "disk", usage: 156, total: 500, status: "normal" },
-    { name: "网络", type: "network", usage: 12.5, total: 100, status: "normal" },
-  ])
+    { name: 'CPU', type: 'cpu', usage: 45, total: 100, status: 'normal' },
+    { name: '内存', type: 'memory', usage: 2.8, total: 8, status: 'normal' },
+    { name: '磁盘', type: 'disk', usage: 156, total: 500, status: 'normal' },
+    {
+      name: '网络',
+      type: 'network',
+      usage: 12.5,
+      total: 100,
+      status: 'normal',
+    },
+  ]);
 
   const [initSteps, setInitSteps] = useState<InitializationStep[]>([
     {
-      id: "database",
-      name: "数据库初始化",
-      description: "创建数据库表结构和基础数据",
-      status: "pending",
+      id: 'database',
+      name: '数据库初始化',
+      description: '创建数据库表结构和基础数据',
+      status: 'pending',
       progress: 0,
       dependencies: [],
     },
     {
-      id: "cache",
-      name: "缓存系统",
-      description: "初始化Redis缓存和会话存储",
-      status: "pending",
+      id: 'cache',
+      name: '缓存系统',
+      description: '初始化Redis缓存和会话存储',
+      status: 'pending',
       progress: 0,
-      dependencies: ["database"],
+      dependencies: ['database'],
     },
     {
-      id: "auth",
-      name: "认证系统",
-      description: "配置用户认证和权限管理",
-      status: "pending",
+      id: 'auth',
+      name: '认证系统',
+      description: '配置用户认证和权限管理',
+      status: 'pending',
       progress: 0,
-      dependencies: ["database"],
+      dependencies: ['database'],
     },
     {
-      id: "services",
-      name: "核心服务",
-      description: "启动业务逻辑服务和API接口",
-      status: "pending",
+      id: 'services',
+      name: '核心服务',
+      description: '启动业务逻辑服务和API接口',
+      status: 'pending',
       progress: 0,
-      dependencies: ["database", "cache", "auth"],
+      dependencies: ['database', 'cache', 'auth'],
     },
     {
-      id: "workers",
-      name: "后台任务",
-      description: "启动队列处理和定时任务",
-      status: "pending",
+      id: 'workers',
+      name: '后台任务',
+      description: '启动队列处理和定时任务',
+      status: 'pending',
       progress: 0,
-      dependencies: ["services"],
+      dependencies: ['services'],
     },
     {
-      id: "monitoring",
-      name: "监控系统",
-      description: "配置系统监控和日志收集",
-      status: "pending",
+      id: 'monitoring',
+      name: '监控系统',
+      description: '配置系统监控和日志收集',
+      status: 'pending',
       progress: 0,
-      dependencies: ["services"],
+      dependencies: ['services'],
     },
     {
-      id: "optimization",
-      name: "性能优化",
-      description: "应用缓存策略和性能调优",
-      status: "pending",
+      id: 'optimization',
+      name: '性能优化',
+      description: '应用缓存策略和性能调优',
+      status: 'pending',
       progress: 0,
-      dependencies: ["services", "monitoring"],
+      dependencies: ['services', 'monitoring'],
     },
-  ])
+  ]);
 
-  const getStepIcon = (status: InitializationStep["status"]) => {
+  const getStepIcon = (status: InitializationStep['status']) => {
     switch (status) {
-      case "completed":
-        return <CheckCircle className="w-5 h-5 text-green-600" />
-      case "failed":
-        return <XCircle className="w-5 h-5 text-red-600" />
-      case "running":
-        return <Clock className="w-5 h-5 text-blue-600 animate-spin" />
-      case "skipped":
-        return <AlertTriangle className="w-5 h-5 text-yellow-600" />
+      case 'completed':
+        return <CheckCircle className="w-5 h-5 text-green-600" />;
+      case 'failed':
+        return <XCircle className="w-5 h-5 text-red-600" />;
+      case 'running':
+        return <Clock className="w-5 h-5 text-blue-600 animate-spin" />;
+      case 'skipped':
+        return <AlertTriangle className="w-5 h-5 text-yellow-600" />;
       default:
-        return <Clock className="w-5 h-5 text-gray-400" />
+        return <Clock className="w-5 h-5 text-gray-400" />;
     }
-  }
+  };
 
-  const getResourceIcon = (type: SystemResource["type"]) => {
+  const getResourceIcon = (type: SystemResource['type']) => {
     switch (type) {
-      case "cpu":
-        return <Cpu className="w-4 h-4" />
-      case "memory":
-        return <Memory className="w-4 h-4" />
-      case "disk":
-        return <HardDrive className="w-4 h-4" />
-      case "network":
-        return <Network className="w-4 h-4" />
+      case 'cpu':
+        return <Cpu className="w-4 h-4" />;
+      case 'memory':
+        return <Memory className="w-4 h-4" />;
+      case 'disk':
+        return <HardDrive className="w-4 h-4" />;
+      case 'network':
+        return <Network className="w-4 h-4" />;
       default:
-        return <Activity className="w-4 h-4" />
+        return <Activity className="w-4 h-4" />;
     }
-  }
+  };
 
-  const getResourceColor = (status: SystemResource["status"]) => {
+  const getResourceColor = (status: SystemResource['status']) => {
     switch (status) {
-      case "normal":
-        return "text-green-600"
-      case "warning":
-        return "text-yellow-600"
-      case "critical":
-        return "text-red-600"
+      case 'normal':
+        return 'text-green-600';
+      case 'warning':
+        return 'text-yellow-600';
+      case 'critical':
+        return 'text-red-600';
       default:
-        return "text-gray-600"
+        return 'text-gray-600';
     }
-  }
+  };
 
   const addLog = (message: string) => {
-    const timestamp = new Date().toLocaleTimeString("zh-CN")
-    setLogs((prev) => [...prev, `[${timestamp}] ${message}`])
-  }
+    const timestamp = new Date().toLocaleTimeString('zh-CN');
+    setLogs((prev) => [...prev, `[${timestamp}] ${message}`]);
+  };
 
   const simulateStep = async (step: InitializationStep) => {
-    setCurrentStep(step.id)
-    setInitSteps((prev) => prev.map((s) => (s.id === step.id ? { ...s, status: "running", progress: 0 } : s)))
+    setCurrentStep(step.id);
+    setInitSteps((prev) =>
+      prev.map((s) =>
+        s.id === step.id ? { ...s, status: 'running', progress: 0 } : s
+      )
+    );
 
-    addLog(`开始执行: ${step.name}`)
+    addLog(`开始执行: ${step.name}`);
 
     // 模拟进度更新
     for (let i = 0; i <= 100; i += 10) {
-      await new Promise((resolve) => setTimeout(resolve, 200))
-      setInitSteps((prev) => prev.map((s) => (s.id === step.id ? { ...s, progress: i } : s)))
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      setInitSteps((prev) =>
+        prev.map((s) => (s.id === step.id ? { ...s, progress: i } : s))
+      );
     }
 
     // 随机决定成功或失败（90%成功率）
-    const success = Math.random() > 0.1
+    const success = Math.random() > 0.1;
 
     if (success) {
       setInitSteps((prev) =>
         prev.map((s) =>
           s.id === step.id
-            ? { ...s, status: "completed", progress: 100, duration: Math.floor(Math.random() * 5000) + 1000 }
-            : s,
-        ),
-      )
-      addLog(`✅ ${step.name} 完成`)
+            ? {
+                ...s,
+                status: 'completed',
+                progress: 100,
+                duration: Math.floor(Math.random() * 5000) + 1000,
+              }
+            : s
+        )
+      );
+      addLog(`✅ ${step.name} 完成`);
     } else {
       setInitSteps((prev) =>
         prev.map((s) =>
           s.id === step.id
             ? {
                 ...s,
-                status: "failed",
+                status: 'failed',
                 progress: Math.floor(Math.random() * 80) + 10,
-                error: "连接超时或配置错误",
+                error: '连接超时或配置错误',
               }
-            : s,
-        ),
-      )
-      addLog(`❌ ${step.name} 失败: 连接超时或配置错误`)
+            : s
+        )
+      );
+      addLog(`❌ ${step.name} 失败: 连接超时或配置错误`);
     }
-  }
+  };
 
   const startInitialization = async () => {
-    setIsInitializing(true)
-    setOverallProgress(0)
-    addLog("🚀 开始系统初始化...")
+    setIsInitializing(true);
+    setOverallProgress(0);
+    addLog('🚀 开始系统初始化...');
 
     // 重置所有步骤状态
-    setInitSteps((prev) => prev.map((step) => ({ ...step, status: "pending", progress: 0, error: undefined })))
+    setInitSteps((prev) =>
+      prev.map((step) => ({
+        ...step,
+        status: 'pending',
+        progress: 0,
+        error: undefined,
+      }))
+    );
 
-    const totalSteps = initSteps.length
-    let completedSteps = 0
+    const totalSteps = initSteps.length;
+    let completedSteps = 0;
 
     for (const step of initSteps) {
       // 检查依赖项
       const dependenciesCompleted = step.dependencies?.every((depId) => {
-        const depStep = initSteps.find((s) => s.id === depId)
-        return depStep?.status === "completed"
-      })
+        const depStep = initSteps.find((s) => s.id === depId);
+        return depStep?.status === 'completed';
+      });
 
-      if (step.dependencies && step.dependencies.length > 0 && !dependenciesCompleted) {
-        setInitSteps((prev) => prev.map((s) => (s.id === step.id ? { ...s, status: "skipped" } : s)))
-        addLog(`⏭️ 跳过 ${step.name}: 依赖项未完成`)
-        continue
+      if (
+        step.dependencies &&
+        step.dependencies.length > 0 &&
+        !dependenciesCompleted
+      ) {
+        setInitSteps((prev) =>
+          prev.map((s) => (s.id === step.id ? { ...s, status: 'skipped' } : s))
+        );
+        addLog(`⏭️ 跳过 ${step.name}: 依赖项未完成`);
+        continue;
       }
 
-      await simulateStep(step)
-      completedSteps++
-      setOverallProgress((completedSteps / totalSteps) * 100)
+      await simulateStep(step);
+      completedSteps++;
+      setOverallProgress((completedSteps / totalSteps) * 100);
 
       // 如果步骤失败，询问是否继续
-      const currentStepState = initSteps.find((s) => s.id === step.id)
-      if (currentStepState?.status === "failed") {
-        const shouldContinue = confirm(`${step.name} 初始化失败，是否继续其他步骤？`)
+      const currentStepState = initSteps.find((s) => s.id === step.id);
+      if (currentStepState?.status === 'failed') {
+        const shouldContinue = confirm(
+          `${step.name} 初始化失败，是否继续其他步骤？`
+        );
         if (!shouldContinue) {
-          addLog("❌ 用户取消初始化")
-          break
+          addLog('❌ 用户取消初始化');
+          break;
         }
       }
     }
 
-    setCurrentStep(null)
-    setIsInitializing(false)
-    addLog("🎉 系统初始化完成")
-  }
+    setCurrentStep(null);
+    setIsInitializing(false);
+    addLog('🎉 系统初始化完成');
+  };
 
   const retryStep = async (stepId: string) => {
-    const step = initSteps.find((s) => s.id === stepId)
+    const step = initSteps.find((s) => s.id === stepId);
     if (step) {
-      await simulateStep(step)
+      await simulateStep(step);
     }
-  }
+  };
 
   const resetInitialization = () => {
     setInitSteps((prev) =>
-      prev.map((step) => ({ ...step, status: "pending", progress: 0, error: undefined, duration: undefined })),
-    )
-    setCurrentStep(null)
-    setOverallProgress(0)
-    setLogs([])
-    addLog("🔄 系统初始化已重置")
-  }
+      prev.map((step) => ({
+        ...step,
+        status: 'pending',
+        progress: 0,
+        error: undefined,
+        duration: undefined,
+      }))
+    );
+    setCurrentStep(null);
+    setOverallProgress(0);
+    setLogs([]);
+    addLog('🔄 系统初始化已重置');
+  };
 
   // 模拟系统资源更新
   useEffect(() => {
@@ -288,20 +332,37 @@ export function SystemInitializer() {
         prev.map((resource) => ({
           ...resource,
           usage:
-            resource.type === "cpu"
-              ? Math.max(10, Math.min(90, resource.usage + (Math.random() - 0.5) * 10))
-              : resource.type === "memory"
-                ? Math.max(1, Math.min(7, resource.usage + (Math.random() - 0.5) * 0.5))
-                : resource.type === "disk"
-                  ? Math.max(100, Math.min(400, resource.usage + (Math.random() - 0.5) * 5))
-                  : Math.max(5, Math.min(50, resource.usage + (Math.random() - 0.5) * 5)),
-          status: resource.usage > 80 ? "critical" : resource.usage > 60 ? "warning" : "normal",
-        })),
-      )
-    }, 2000)
+            resource.type === 'cpu'
+              ? Math.max(
+                  10,
+                  Math.min(90, resource.usage + (Math.random() - 0.5) * 10)
+                )
+              : resource.type === 'memory'
+                ? Math.max(
+                    1,
+                    Math.min(7, resource.usage + (Math.random() - 0.5) * 0.5)
+                  )
+                : resource.type === 'disk'
+                  ? Math.max(
+                      100,
+                      Math.min(400, resource.usage + (Math.random() - 0.5) * 5)
+                    )
+                  : Math.max(
+                      5,
+                      Math.min(50, resource.usage + (Math.random() - 0.5) * 5)
+                    ),
+          status:
+            resource.usage > 80
+              ? 'critical'
+              : resource.usage > 60
+                ? 'warning'
+                : 'normal',
+        }))
+      );
+    }, 2000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -322,10 +383,18 @@ export function SystemInitializer() {
                 disabled={isInitializing}
                 className="bg-gradient-to-r from-blue-500 to-indigo-600"
               >
-                {isInitializing ? <Pause className="w-4 h-4 mr-2" /> : <Play className="w-4 h-4 mr-2" />}
-                {isInitializing ? "初始化中..." : "开始初始化"}
+                {isInitializing ? (
+                  <Pause className="w-4 h-4 mr-2" />
+                ) : (
+                  <Play className="w-4 h-4 mr-2" />
+                )}
+                {isInitializing ? '初始化中...' : '开始初始化'}
               </Button>
-              <Button variant="outline" onClick={resetInitialization} disabled={isInitializing}>
+              <Button
+                variant="outline"
+                onClick={resetInitialization}
+                disabled={isInitializing}
+              >
                 <RotateCcw className="w-4 h-4 mr-2" />
                 重置
               </Button>
@@ -337,7 +406,9 @@ export function SystemInitializer() {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium">总体进度</span>
-                <span className="text-sm text-gray-600">{Math.round(overallProgress)}%</span>
+                <span className="text-sm text-gray-600">
+                  {Math.round(overallProgress)}%
+                </span>
               </div>
               <Progress value={overallProgress} className="h-2" />
             </div>
@@ -346,7 +417,8 @@ export function SystemInitializer() {
                 <div className="flex items-center space-x-2">
                   <Clock className="w-4 h-4 text-blue-600 animate-spin" />
                   <span className="text-sm font-medium text-blue-800">
-                    正在执行: {initSteps.find((s) => s.id === currentStep)?.name}
+                    正在执行:{' '}
+                    {initSteps.find((s) => s.id === currentStep)?.name}
                   </span>
                 </div>
               </div>
@@ -371,13 +443,13 @@ export function SystemInitializer() {
                 <div
                   key={step.id}
                   className={`p-4 rounded-lg border transition-all ${
-                    step.status === "running"
-                      ? "border-blue-200 bg-blue-50"
-                      : step.status === "completed"
-                        ? "border-green-200 bg-green-50"
-                        : step.status === "failed"
-                          ? "border-red-200 bg-red-50"
-                          : "border-gray-200"
+                    step.status === 'running'
+                      ? 'border-blue-200 bg-blue-50'
+                      : step.status === 'completed'
+                        ? 'border-green-200 bg-green-50'
+                        : step.status === 'failed'
+                          ? 'border-red-200 bg-red-50'
+                          : 'border-gray-200'
                   }`}
                 >
                   <div className="flex items-start justify-between">
@@ -391,53 +463,71 @@ export function SystemInitializer() {
                           {getStepIcon(step.status)}
                           <Badge
                             variant={
-                              step.status === "completed"
-                                ? "default"
-                                : step.status === "failed"
-                                  ? "destructive"
-                                  : step.status === "running"
-                                    ? "secondary"
-                                    : "outline"
+                              step.status === 'completed'
+                                ? 'default'
+                                : step.status === 'failed'
+                                  ? 'destructive'
+                                  : step.status === 'running'
+                                    ? 'secondary'
+                                    : 'outline'
                             }
                             className="text-xs"
                           >
-                            {step.status === "pending"
-                              ? "等待中"
-                              : step.status === "running"
-                                ? "执行中"
-                                : step.status === "completed"
-                                  ? "已完成"
-                                  : step.status === "failed"
-                                    ? "失败"
-                                    : "已跳过"}
+                            {step.status === 'pending'
+                              ? '等待中'
+                              : step.status === 'running'
+                                ? '执行中'
+                                : step.status === 'completed'
+                                  ? '已完成'
+                                  : step.status === 'failed'
+                                    ? '失败'
+                                    : '已跳过'}
                           </Badge>
                         </div>
-                        <p className="text-sm text-gray-600 mb-2">{step.description}</p>
+                        <p className="text-sm text-gray-600 mb-2">
+                          {step.description}
+                        </p>
 
                         {step.dependencies && step.dependencies.length > 0 && (
-                          <div className="text-xs text-gray-500 mb-2">依赖: {step.dependencies.join(", ")}</div>
+                          <div className="text-xs text-gray-500 mb-2">
+                            依赖: {step.dependencies.join(', ')}
+                          </div>
                         )}
 
-                        {step.status === "running" || step.progress > 0 ? (
+                        {step.status === 'running' || step.progress > 0 ? (
                           <div className="space-y-1">
                             <div className="flex items-center justify-between">
-                              <span className="text-xs text-gray-600">进度</span>
-                              <span className="text-xs text-gray-600">{step.progress}%</span>
+                              <span className="text-xs text-gray-600">
+                                进度
+                              </span>
+                              <span className="text-xs text-gray-600">
+                                {step.progress}%
+                              </span>
                             </div>
                             <Progress value={step.progress} className="h-1" />
                           </div>
                         ) : null}
 
                         {step.error && (
-                          <div className="mt-2 p-2 bg-red-100 rounded text-sm text-red-700">{step.error}</div>
+                          <div className="mt-2 p-2 bg-red-100 rounded text-sm text-red-700">
+                            {step.error}
+                          </div>
                         )}
 
-                        {step.duration && <div className="mt-2 text-xs text-gray-500">耗时: {step.duration}ms</div>}
+                        {step.duration && (
+                          <div className="mt-2 text-xs text-gray-500">
+                            耗时: {step.duration}ms
+                          </div>
+                        )}
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
-                      {step.status === "failed" && (
-                        <Button variant="outline" size="sm" onClick={() => retryStep(step.id)}>
+                      {step.status === 'failed' && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => retryStep(step.id)}
+                        >
                           <RotateCcw className="w-3 h-3 mr-1" />
                           重试
                         </Button>
@@ -467,20 +557,24 @@ export function SystemInitializer() {
                   <div key={resource.name} className="space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        <div className={getResourceColor(resource.status)}>{getResourceIcon(resource.type)}</div>
-                        <span className="text-sm font-medium">{resource.name}</span>
+                        <div className={getResourceColor(resource.status)}>
+                          {getResourceIcon(resource.type)}
+                        </div>
+                        <span className="text-sm font-medium">
+                          {resource.name}
+                        </span>
                       </div>
                       <span className="text-sm text-gray-600">
-                        {resource.type === "memory"
+                        {resource.type === 'memory'
                           ? `${resource.usage.toFixed(1)}GB / ${resource.total}GB`
-                          : resource.type === "disk"
+                          : resource.type === 'disk'
                             ? `${resource.usage}GB / ${resource.total}GB`
                             : `${Math.round(resource.usage)}%`}
                       </span>
                     </div>
                     <Progress
                       value={
-                        resource.type === "memory" || resource.type === "disk"
+                        resource.type === 'memory' || resource.type === 'disk'
                           ? (resource.usage / resource.total) * 100
                           : resource.usage
                       }
@@ -508,19 +602,23 @@ export function SystemInitializer() {
                     <div
                       key={index}
                       className={`p-2 rounded ${
-                        log.includes("❌")
-                          ? "bg-red-50 text-red-700"
-                          : log.includes("✅")
-                            ? "bg-green-50 text-green-700"
-                            : log.includes("⏭️")
-                              ? "bg-yellow-50 text-yellow-700"
-                              : "bg-gray-50 text-gray-700"
+                        log.includes('❌')
+                          ? 'bg-red-50 text-red-700'
+                          : log.includes('✅')
+                            ? 'bg-green-50 text-green-700'
+                            : log.includes('⏭️')
+                              ? 'bg-yellow-50 text-yellow-700'
+                              : 'bg-gray-50 text-gray-700'
                       }`}
                     >
                       {log}
                     </div>
                   ))}
-                  {logs.length === 0 && <div className="text-center text-gray-500 py-8">暂无日志信息</div>}
+                  {logs.length === 0 && (
+                    <div className="text-center text-gray-500 py-8">
+                      暂无日志信息
+                    </div>
+                  )}
                 </div>
               </ScrollArea>
             </CardContent>
@@ -568,5 +666,5 @@ export function SystemInitializer() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

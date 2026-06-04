@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
+const isGitHubPages = process.env.DEPLOY_TARGET === 'github-pages';
+
 const nextConfig = {
   reactStrictMode: true,
-  
+
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
@@ -49,9 +51,10 @@ const nextConfig = {
 
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
 
-  output: 'standalone',
-  
-  // Disable static page generation errors to allow build to complete with client-side pages
+  ...(isGitHubPages
+    ? { output: 'export', basePath: '', trailingSlash: true }
+    : { output: 'standalone' }),
+
   staticPageGenerationTimeout: 180,
 
   eslint: {
@@ -61,8 +64,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  
-  // Skip static optimization for pages with client-side dependencies
+
   onDemandEntries: {
     maxInactiveAge: 60 * 1000,
     pagesBufferLength: 5,

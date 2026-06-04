@@ -25,7 +25,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command';
 import {
   Keyboard,
   Search,
@@ -42,20 +49,23 @@ import {
 } from 'lucide-react';
 
 interface Shortcut {
-  id: string
-  key: string
-  description: string
-  action: () => void
-  category: string
-  icon: React.ReactNode
+  id: string;
+  key: string;
+  description: string;
+  action: () => void;
+  category: string;
+  icon: React.ReactNode;
 }
 
 interface GlobalShortcutsProps {
-  onNavigate?: (path: string) => void
-  onAction?: (actionId: string) => void
+  onNavigate?: (path: string) => void;
+  onAction?: (actionId: string) => void;
 }
 
-export function GlobalShortcuts({ onNavigate, onAction }: GlobalShortcutsProps) {
+export function GlobalShortcuts({
+  onNavigate,
+  onAction,
+}: GlobalShortcutsProps) {
   const [isCommandOpen, setIsCommandOpen] = useState(false);
   const [showShortcutsDialog, setShowShortcutsDialog] = useState(false);
 
@@ -197,7 +207,7 @@ export function GlobalShortcuts({ onNavigate, onAction }: GlobalShortcutsProps) 
         groups[category].push(shortcut);
         return groups;
       },
-      {} as Record<string, Shortcut[]>,
+      {} as Record<string, Shortcut[]>
     );
 
   return (
@@ -208,32 +218,37 @@ export function GlobalShortcuts({ onNavigate, onAction }: GlobalShortcutsProps) 
           <Command className="rounded-lg border-0 shadow-md">
             <div className="flex items-center border-b px-3">
               <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-              <CommandInput placeholder="搜索功能或快捷键..." className="border-0 focus:ring-0" />
+              <CommandInput
+                placeholder="搜索功能或快捷键..."
+                className="border-0 focus:ring-0"
+              />
             </div>
             <CommandList className="max-h-96">
               <CommandEmpty>未找到相关功能</CommandEmpty>
-              {Object.entries(groupedShortcuts()).map(([category, shortcuts]) => (
-                <CommandGroup key={category} heading={category}>
-                  {shortcuts.map((shortcut) => (
-                    <CommandItem
-                      key={shortcut.id}
-                      onSelect={() => {
-                        shortcut.action();
-                        setIsCommandOpen(false);
-                      }}
-                      className="flex items-center justify-between p-3"
-                    >
-                      <div className="flex items-center space-x-3">
-                        {shortcut.icon}
-                        <span>{shortcut.description}</span>
-                      </div>
-                      <Badge variant="outline" className="text-xs font-mono">
-                        {shortcut.key}
-                      </Badge>
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              ))}
+              {Object.entries(groupedShortcuts()).map(
+                ([category, shortcuts]) => (
+                  <CommandGroup key={category} heading={category}>
+                    {shortcuts.map((shortcut) => (
+                      <CommandItem
+                        key={shortcut.id}
+                        onSelect={() => {
+                          shortcut.action();
+                          setIsCommandOpen(false);
+                        }}
+                        className="flex items-center justify-between p-3"
+                      >
+                        <div className="flex items-center space-x-3">
+                          {shortcut.icon}
+                          <span>{shortcut.description}</span>
+                        </div>
+                        <Badge variant="outline" className="text-xs font-mono">
+                          {shortcut.key}
+                        </Badge>
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                )
+              )}
             </CommandList>
           </Command>
         </DialogContent>
@@ -247,7 +262,9 @@ export function GlobalShortcuts({ onNavigate, onAction }: GlobalShortcutsProps) 
               <Keyboard className="w-5 h-5" />
               <span>快捷键帮助</span>
             </DialogTitle>
-            <DialogDescription>使用快捷键提高工作效率，快速访问常用功能</DialogDescription>
+            <DialogDescription>
+              使用快捷键提高工作效率，快速访问常用功能
+            </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-6">
@@ -267,7 +284,9 @@ export function GlobalShortcuts({ onNavigate, onAction }: GlobalShortcutsProps) 
                     >
                       <div className="flex items-center space-x-3">
                         {shortcut.icon}
-                        <span className="text-sm text-slate-700">{shortcut.description}</span>
+                        <span className="text-sm text-slate-700">
+                          {shortcut.description}
+                        </span>
                       </div>
                       <Badge variant="outline" className="font-mono text-xs">
                         {shortcut.key}

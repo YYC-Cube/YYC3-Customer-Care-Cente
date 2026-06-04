@@ -10,10 +10,10 @@
  * @license MIT
  */
 
-"use client"
+'use client';
 
-import { FileTransferSystem } from "@/components/communication/file-transfer-system"
+import { FileTransferSystem } from '@/components/communication/file-transfer-system';
 
 export default function FilesPage() {
-  return <FileTransferSystem />
+  return <FileTransferSystem />;
 }
