@@ -24,16 +24,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -60,16 +69,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -82,25 +100,24 @@ jobs:
 
       - name: Verify build output
         run: |
-          echo "📊 Build output verification"
-          echo "============================"
+          echo "Build output verification"
+          echo "========================="
           echo "Output directory size: $(du -sh out/ | cut -f1)"
           echo "Total files: $(find out/ -type f | wc -l)"
           echo "HTML pages: $(find out/ -name '*.html' | wc -l)"
           echo "JS bundles: $(find out/ -name '*.js' | wc -l)"
           echo "CSS files: $(find out/ -name '*.css' | wc -l)"
-          echo ""
           echo "CNAME file: $(cat out/CNAME 2>/dev/null || echo 'NOT FOUND')"
           echo ""
           if [ ! -d "out" ]; then
-            echo "❌ Build output directory 'out/' not found!"
+            echo "Build output directory 'out/' not found!"
             exit 1
           fi
           if [ ! -f "out/index.html" ]; then
-            echo "❌ index.html not found in output!"
+            echo "index.html not found in output!"
             exit 1
           fi
-          echo "✅ Build verification passed"
+          echo "Build verification passed"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -116,8 +133,8 @@ jobs:
 
       - name: Deployment summary
         run: |
-          echo "🚀 Deployment Summary"
-          echo "====================="
+          echo "Deployment Summary"
+          echo "=================="
           echo "Site URL: ${{ steps.deployment.outputs.page_url }}"
           echo "Custom Domain: ccc.yyc3.top"
           echo "Commit: ${{ github.sha }}"
