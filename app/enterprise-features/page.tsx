@@ -79,7 +79,7 @@ export default function EnterpriseFeaturesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-[calc(100vh_-_4rem)] bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         {/* 页面标题 */}
         <div className="mb-8">

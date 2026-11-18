@@ -92,6 +92,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Strip server-only routes for static export
+        run: |
+          # Next.js 静态导出（output: export）不支持 Route Handlers 与 Proxy：
+          # 服务端专属路由必须在静态构建前剔除，否则整个部署构建失败。
+          rm -rf app/api
+          rm -f proxy.ts
+          echo "Removed app/api and proxy.ts for static export"
+
       - name: Build static export
         run: pnpm run build
         env:

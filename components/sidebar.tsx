@@ -376,29 +376,11 @@ export function Sidebar({
     }
   };
 
-  const handleMouseEnter = () => {
-    if (!isPinned) {
-      setIsHovered(true);
-      setSidebarCollapsed(false);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!isPinned) {
-      setIsHovered(false);
-      setTimeout(() => {
-        if (!isPinned) {
-          setSidebarCollapsed(true);
-        }
-      }, 300);
-    }
-  };
-
-  // 宽度统一由布局令牌驱动，消除 w-14(56)/w-56(224) 与令牌 64/256 的偏差
-  const currentWidth =
-    sidebarCollapsed && !isHovered
-      ? layoutConfig.sidebar.width.collapsed
-      : layoutConfig.sidebar.width.expanded;
+  // 占位宽度只由折叠状态决定（令牌驱动 64/256）。
+  // 已移除 hover 自动展开/收起：该逻辑会在鼠标划过侧栏时反复改变主区宽度，导致内容重排漂移。
+  const currentWidth = sidebarCollapsed
+    ? layoutConfig.sidebar.width.collapsed
+    : layoutConfig.sidebar.width.expanded;
 
   const getColorClasses = (color: string) => {
     const colorMap = {
@@ -470,14 +452,16 @@ export function Sidebar({
     <TooltipProvider>
       <aside
         className={cn(
-          'bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 h-screen transition-all duration-300 ease-in-out flex flex-col shadow-lg fixed top-0 left-0 z-50',
-          '-translate-x-full lg:translate-x-0',
-          sidebarOpen && 'translate-x-0',
+          'z-50 flex h-screen shrink-0 flex-col border-r border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900',
+          'transition-[width,transform] duration-300 ease-in-out',
+          // 桌面端：sticky 参与 flex 布局并占位，主区 flex-1 自动填充剩余宽度
+          'lg:sticky lg:top-0 lg:translate-x-0',
+          // 移动端：fixed 抽屉，默认移出视口，sidebarOpen 时滑入
+          'max-lg:fixed max-lg:left-0 max-lg:top-0 max-lg:-translate-x-full',
+          sidebarOpen && 'max-lg:translate-x-0',
           className
         )}
         style={{ width: `${currentWidth}px` }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         {/* 顶部控制区域 */}
         <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">

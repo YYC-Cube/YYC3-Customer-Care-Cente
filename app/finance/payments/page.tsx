@@ -109,7 +109,7 @@ export default function PaymentsPage() {
 
   return (
     <ResponsiveLayout showSidebar={true} showHeader={true}>
-      <div className="space-y-6 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 min-h-screen p-6">
+      <div className="space-y-6 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 min-h-[calc(100vh_-_4rem)] p-6">
         {/* 页面标题 */}
         <div className="flex items-center justify-between">
           <div>

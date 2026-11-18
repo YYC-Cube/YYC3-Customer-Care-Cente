@@ -12,7 +12,10 @@
 
 import type React from 'react';
 import type { Metadata, Viewport } from 'next';
-import { ResponsiveLayoutProvider } from '@/components/layout/responsive-layout';
+import {
+  AppShell,
+  ResponsiveLayoutProvider,
+} from '@/components/layout/responsive-layout';
 import { GlobalInitializer } from '@/components/global-initializer';
 import './globals.css';
 
@@ -91,7 +94,9 @@ export default function RootLayout({
     <html lang="zh-CN">
       <body className="antialiased" suppressHydrationWarning>
         <GlobalInitializer />
-        <ResponsiveLayoutProvider>{children}</ResponsiveLayoutProvider>
+        <ResponsiveLayoutProvider>
+          <AppShell>{children}</AppShell>
+        </ResponsiveLayoutProvider>
       </body>
     </html>
   );

@@ -177,7 +177,7 @@ export default function ApprovalPage() {
 
   return (
     <ResponsiveLayout showSidebar={true} showHeader={true}>
-      <div className="px-6 pb-6 space-y-6 bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 min-h-screen">
+      <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50 min-h-[calc(100vh_-_4rem)]">
         {/* 页面头部 */}
         <div className="flex justify-between items-center pt-6">
           <div>

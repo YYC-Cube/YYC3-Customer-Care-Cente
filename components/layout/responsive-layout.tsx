@@ -83,7 +83,9 @@ export function ResponsiveLayoutProvider({
   );
 }
 
-// 主布局组件
+// 页面内容容器（兼容层）
+// 导航壳已上移至根布局 AppShell 统一承载，此处仅负责页面内容的容器语义，
+// 保留原 props 签名以兼容存量页面的 <ResponsiveLayout showSidebar showHeader> 写法。
 interface ResponsiveLayoutProps {
   children: React.ReactNode;
   showSidebar?: boolean;
@@ -93,57 +95,48 @@ interface ResponsiveLayoutProps {
 
 export function ResponsiveLayout({
   children,
-  showSidebar = true,
-  showHeader = true,
   className,
 }: ResponsiveLayoutProps) {
-  const { sidebarCollapsed, sidebarOpen, setSidebarOpen, layoutConfig } =
-    useLayoutContext();
-  // 使用 Provider 中的同一份配置，避免配置源分裂
-  const { isMobile, getContentStyles } = useResponsiveLayout(layoutConfig);
+  return <div className={cn('min-h-full w-full', className)}>{children}</div>;
+}
 
-  // 计算主内容区域的边距
-  const getMainContentMargin = () => {
-    if (!showSidebar) return '0';
-    if (isMobile) return '0';
-
-    return sidebarCollapsed
-      ? `${layoutConfig.sidebar.width.collapsed}px`
-      : `${layoutConfig.sidebar.width.expanded}px`;
-  };
+/**
+ * 全局导航壳：Sidebar + Header + main
+ *
+ * 自适应算法（零 JS 宽度计算，杜绝漂移）：
+ * - 桌面端（lg+）：Sidebar 以 sticky 参与 flex 布局并占位，主区 flex-1 自动填充剩余宽度；
+ * - 移动端（<lg）：Sidebar 为 fixed 抽屉，主区占满视口宽度；
+ * - 内容内边距完全由 CSS 断点驱动（16/24/32px），不依赖 JS 测量，无水合跳变。
+ */
+export function AppShell({ children }: { children: React.ReactNode }) {
+  const { sidebarOpen, setSidebarOpen, layoutConfig } = useLayoutContext();
 
   return (
-    <div className={cn('min-h-screen overflow-x-hidden bg-gray-50', className)}>
-      {/* 侧边栏 */}
-      {showSidebar && <Sidebar />}
+    <div className="flex min-h-screen w-full overflow-x-hidden bg-gray-50">
+      <Sidebar />
 
-      {/* 移动端遮罩：抽屉展开时显示，层级位于 Sidebar(z-50) 之下、Header(z-40) 之下 */}
-      {showSidebar && sidebarOpen && (
+      {/* 移动端抽屉遮罩 */}
+      {sidebarOpen && (
         <div
           className="fixed inset-0 z-30 bg-black/50 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
-      {/* 主内容区域：块级元素自适应剩余宽度，去除 width:100% 避免与 marginLeft 叠加溢出 */}
-      <div
-        className="min-h-screen transition-[margin] duration-300 ease-in-out"
-        style={{ marginLeft: getMainContentMargin() }}
-      >
-        {/* 头部 */}
-        {showHeader && (
-          <Header
-            height={layoutConfig.header.height}
-            sticky={layoutConfig.header.sticky}
-            showOnMobile={layoutConfig.header.showOnMobile}
-            onMenuClick={() => setSidebarOpen(true)}
-          />
-        )}
+      {/* 主区域：flex-1 自适应，min-w-0 防止内容撑破 */}
+      <div className="flex min-h-screen min-w-0 flex-1 flex-col">
+        <Header
+          height={layoutConfig.header.height}
+          sticky={layoutConfig.header.sticky}
+          showOnMobile={layoutConfig.header.showOnMobile}
+          onMenuClick={() => setSidebarOpen(true)}
+        />
 
-        {/* 页面内容 */}
-        <main className="min-h-screen w-full" style={getContentStyles()}>
-          {children}
-        </main>
+        {/*
+          主区不再附加内边距：由页面根容器自持 padding（与 Header 的 px-6 同基线），
+          避免「Header px-6 + main px-8 + 页面 px-6」三层缩进叠加造成的视觉漂移与渐变灰边。
+        */}
+        <main className="min-w-0 flex-1">{children}</main>
       </div>
     </div>
   );

@@ -198,7 +198,7 @@ export default function OverviewPage() {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-green-50 via-blue-50 to-indigo-50 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-green-50 via-blue-50 to-indigo-50 min-h-[calc(100vh_-_4rem)]">
       {/* 页面头部 */}
       <div className="flex justify-between items-center">
         <div>

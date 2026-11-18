@@ -238,7 +238,7 @@ export default function SystemInitializationPage() {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-slate-50 to-blue-50 min-h-[calc(100vh_-_4rem)]">
       {/* 页面标题 */}
       <div className="flex items-center justify-between">
         <div>
