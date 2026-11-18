@@ -12,16 +12,13 @@
 
 'use client';
 
-import { Sidebar } from '@/components/sidebar';
+import { ResponsiveLayout } from '@/components/layout/responsive-layout';
 import { CommunicationModule } from '@/components/communication-module';
 
 export default function CommunicationPage() {
   return (
-    <div className="flex h-screen bg-gray-50">
-      <Sidebar />
-      <main className="flex-1 overflow-auto">
-        <CommunicationModule />
-      </main>
-    </div>
+    <ResponsiveLayout showSidebar={true} showHeader={true}>
+      <CommunicationModule />
+    </ResponsiveLayout>
   );
 }

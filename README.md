@@ -9,9 +9,9 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/YYC-Cube/YYC3-Customer-Care-Cente/ci.yml?branch=main&style=flat-square&label=CI&logo=githubactions&logoColor=white)](https://github.com/YYC-Cube/YYC3-Customer-Care-Cente/actions/workflows/ci.yml)
 [![CD](https://img.shields.io/github/actions/workflow/status/YYC-Cube/YYC3-Customer-Care-Cente/cd.yml?branch=main&style=flat-square&label=CD&logo=githubactions&logoColor=white)](https://github.com/YYC-Cube/YYC3-Customer-Care-Cente/actions/workflows/cd.yml)
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.3.6-000?style=flat-square&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.1.0-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.4.6-000?style=flat-square&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.2.9-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.17-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-New%20York-000?style=flat-square&logo=shadcnui&logoColor=white)](https://ui.shadcn.com/)
 [![Radix UI](https://img.shields.io/badge/Radix_UI-Primitives-7B61FF?style=flat-square)](https://www.radix-ui.com/)
@@ -43,11 +43,11 @@
 
 **中文**
 
-YYC³ Customer Care Center（YYC3-CCC）是基于「五高五标五化」理念构建的现代化 AI 代理服务客户关怀中心。采用 Next.js 15 App Router 构建，集成国际化系统、动画效果和响应式设计，为企业提供智能、高效、安全的客户服务解决方案。
+YYC³ Customer Care Center（YYC3-CCC）是基于「五高五标五化」理念构建的现代化 AI 代理服务客户关怀中心。采用 Next.js 16 App Router + Turbopack 构建，集成国际化系统、动画效果和响应式设计，为企业提供智能、高效、安全的客户服务解决方案。
 
 **English**
 
-YYC³ Customer Care Center (YYC3-CCC) is a modern AI-powered customer care center built on the "Five High, Five Standard, Five Transformation" philosophy. Powered by Next.js 15 App Router with internationalization, animations, and responsive design, it delivers intelligent, efficient, and secure customer service solutions for enterprises.
+YYC³ Customer Care Center (YYC3-CCC) is a modern AI-powered customer care center built on the "Five High, Five Standard, Five Transformation" philosophy. Powered by Next.js 16 App Router with Turbopack, internationalization, animations, and responsive design, it delivers intelligent, efficient, and secure customer service solutions for enterprises.
 
 ## 🚀 核心特性 | Key Features
 

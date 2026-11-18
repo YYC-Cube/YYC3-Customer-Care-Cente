@@ -8,13 +8,13 @@ import {
 } from '@/lib/cidr';
 
 /**
- * @file middleware.ts
- * @description Next.js middleware for IP access control using CIDR matching
- * @module middleware
+ * @file proxy.ts
+ * @description Next.js 16 proxy（原 middleware）— 基于 CIDR 的 IP 访问控制与 CORS
+ * @module proxy
  * @author YYC³ Team
- * @version 1.0.0
+ * @version 2.0.0
  * @created 2026-01-23
- * @updated 2026-01-23
+ * @updated 2026-11-18
  * @copyright Copyright (c) 2026 YYC³
  * @license MIT
  */
@@ -60,11 +60,29 @@ const bypassIPCheck = (pathname: string): boolean => {
   return allowedPaths.some((path) => pathname.startsWith(path));
 };
 
-export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
+// 标准 CORS：所有自有 API 端点使用同一套响应头，支持 OPTIONS 预检
+const corsHeaders: Record<string, string> = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+};
 
-  if (bypassIPCheck(pathname)) {
-    return NextResponse.next();
+export function proxy(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const isApi = pathname.startsWith('/api/');
+
+  // API 预检请求直接放行，且不纳入 IP 白名单（前端同源/跨域均可调用）
+  if (isApi && request.method === 'OPTIONS') {
+    return new NextResponse(null, { status: 204, headers: corsHeaders });
+  }
+  if (isApi || bypassIPCheck(pathname)) {
+    const response = NextResponse.next();
+    if (isApi) {
+      Object.entries(corsHeaders).forEach(([key, value]) =>
+        response.headers.set(key, value)
+      );
+    }
+    return response;
   }
 
   const headersRecord: Record<string, string | string[] | undefined> = {};
@@ -98,7 +116,6 @@ export function middleware(request: NextRequest) {
   const response = NextResponse.next();
 
   response.headers.set('X-Client-IP', clientIP);
-  response.headers.set('X-Access-Control-Allow-Origin', '*');
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'DENY');
   response.headers.set('X-XSS-Protection', '1; mode=block');

@@ -14,7 +14,7 @@
 
 import type React from 'react';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -47,6 +47,7 @@ import {
   Maximize,
   Minimize,
   RefreshCw,
+  Menu,
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -55,6 +56,7 @@ interface HeaderProps {
   height?: number;
   sticky?: boolean;
   showOnMobile?: boolean;
+  onMenuClick?: () => void;
 }
 
 export function Header({
@@ -63,6 +65,7 @@ export function Header({
   height = 64,
   sticky = true,
   showOnMobile = true,
+  onMenuClick,
 }: HeaderProps) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
@@ -94,6 +97,13 @@ export function Header({
   ]);
 
   const unreadCount = notifications.filter((n) => n.unread).length;
+
+  // 同步系统全屏状态（含 Esc 退出），避免图标与实际状态不一致
+  useEffect(() => {
+    const sync = () => setIsFullscreen(Boolean(document.fullscreenElement));
+    document.addEventListener('fullscreenchange', sync);
+    return () => document.removeEventListener('fullscreenchange', sync);
+  }, []);
 
   const getModuleTitle = (module: string) => {
     const moduleMap: Record<string, string> = {
@@ -134,9 +144,9 @@ export function Header({
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      console.log('搜索:', searchQuery);
-      // 这里可以实现搜索功能
+    const query = searchQuery.trim();
+    if (query) {
+      window.dispatchEvent(new CustomEvent('globalSearch', { detail: query }));
     }
   };
 
@@ -151,11 +161,11 @@ export function Header({
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-      setIsFullscreen(true);
+      document.documentElement.requestFullscreen().catch(() => {
+        setIsFullscreen(false);
+      });
     } else {
-      document.exitFullscreen();
-      setIsFullscreen(false);
+      document.exitFullscreen().catch(() => undefined);
     }
   };
 
@@ -164,50 +174,63 @@ export function Header({
   };
 
   const openCustomerService = () => {
-    // 打开客服对话框或跳转到客服页面
-    console.log('打开客服');
+    router.push('/communication/chat');
   };
 
   const changeLanguage = () => {
-    // 切换语言
-    console.log('切换语言');
+    window.dispatchEvent(new CustomEvent('openLanguageSettings'));
   };
 
   const openSettings = () => {
-    router.push('/system/settings');
+    router.push('/settings/layout');
   };
 
   const openProfile = () => {
-    console.log('打开个人资料');
+    window.dispatchEvent(new CustomEvent('openProfile'));
   };
 
   const openSecurityCenter = () => {
-    router.push('/security');
+    router.push('/security/mfa');
   };
 
   const openHelp = () => {
-    console.log('打开帮助');
+    router.push('/docs/api');
   };
 
   const logout = () => {
-    console.log('退出登录');
-    // 这里可以实现退出登录逻辑
+    if (window.confirm('确定要退出登录吗？')) {
+      localStorage.clear();
+      router.push('/');
+    }
   };
 
   return (
     <header
       className={cn(
         'bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 flex items-center justify-between shadow-sm',
-        sticky ? 'fixed top-0 left-0 right-0 z-40' : 'relative',
+        sticky ? 'sticky top-0 z-40' : 'relative',
         !showOnMobile && 'hidden lg:flex',
         className
       )}
       style={{ height: `${height}px` }}
     >
-      {/* 左侧：日期显示 */}
+      {/* 左侧：移动端菜单入口 + 日期显示 */}
       <div className="flex items-center space-x-4">
+        {onMenuClick && (
+          <button
+            type="button"
+            aria-label="打开导航菜单"
+            onClick={onMenuClick}
+            className="rounded-md p-2 text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 lg:hidden"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+        )}
         <div>
-          <p className="text-lg font-medium text-gray-900 dark:text-white">
+          <p
+            className="text-lg font-medium text-gray-900 dark:text-white"
+            suppressHydrationWarning
+          >
             {new Date().toLocaleDateString('zh-CN', {
               year: 'numeric',
               month: 'long',

@@ -25,9 +25,11 @@
 
 ### 开发环境
 
-- **Node.js**: 18.0 或更高版本
-- **npm**: 8.0 或更高版本（或 yarn 1.22+）
+- **Node.js**: 20.9 或更高版本（**推荐 22 LTS**，Next.js 16 最低要求）
+- **pnpm**: 10.12.1（项目 `packageManager` 锁定版本；npm/yarn 不保证锁文件兼容）
 - **Git**: 2.0 或更高版本
+
+> 技术栈基线（2026-11-18 升级）：Next.js 16.4.6 / React 19.2.9 / TypeScript 5.9.3 / ESLint 9（flat config）。构建默认使用 Turbopack。
 
 ### 浏览器要求
 

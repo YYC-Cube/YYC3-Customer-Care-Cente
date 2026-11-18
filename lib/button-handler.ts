@@ -288,7 +288,7 @@ export const initializeDefaultHandlers = () => {
     'user-logout': () => {
       if (confirm('确定要退出登录吗？')) {
         localStorage.clear();
-        window.location.href = '/login';
+        window.location.href = '/';
       }
     },
   });

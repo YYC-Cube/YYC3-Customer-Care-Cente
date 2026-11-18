@@ -69,6 +69,30 @@ const config: Config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      fontFamily: {
+        sans: ['var(--font-sans)'],
+        mono: ['var(--font-mono)'],
+      },
+      transitionDuration: {
+        fast: 'var(--motion-duration-fast)',
+        base: 'var(--motion-duration-base)',
+        slow: 'var(--motion-duration-slow)',
+      },
+      animation: {
+        'accordion-down':
+          'accordion-down var(--motion-duration-fast) ease-out',
+        'accordion-up': 'accordion-up var(--motion-duration-fast) ease-out',
+        'fade-in': 'fade-in var(--motion-duration-base) ease-out',
+        'fade-out': 'fade-out var(--motion-duration-base) ease-out',
+        'slide-in-from-top':
+          'slide-in-from-top var(--motion-duration-base) ease-out',
+        'slide-in-from-bottom':
+          'slide-in-from-bottom var(--motion-duration-base) ease-out',
+        'slide-in-from-left':
+          'slide-in-from-left var(--motion-duration-base) ease-out',
+        'slide-in-from-right':
+          'slide-in-from-right var(--motion-duration-base) ease-out',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
@@ -102,16 +126,6 @@ const config: Config = {
           from: { transform: 'translateX(100%)' },
           to: { transform: 'translateX(0)' },
         },
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-in': 'fade-in 0.3s ease-out',
-        'fade-out': 'fade-out 0.3s ease-out',
-        'slide-in-from-top': 'slide-in-from-top 0.3s ease-out',
-        'slide-in-from-bottom': 'slide-in-from-bottom 0.3s ease-out',
-        'slide-in-from-left': 'slide-in-from-left 0.3s ease-out',
-        'slide-in-from-right': 'slide-in-from-right 0.3s ease-out',
       },
     },
   },

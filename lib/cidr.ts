@@ -248,16 +248,21 @@ export function getClientIP(
   const forwarded = headers['x-forwarded-for'];
   const realIP = headers['x-real-ip'];
 
+  let ip = '0.0.0.0';
   if (forwarded) {
     const ips = Array.isArray(forwarded) ? forwarded[0] : forwarded;
-    return ips.split(',')[0].trim();
+    ip = ips.split(',')[0].trim();
+  } else if (realIP) {
+    ip = Array.isArray(realIP) ? realIP[0] : realIP;
   }
 
-  if (realIP) {
-    return Array.isArray(realIP) ? realIP[0] : realIP;
+  // 规范化 IPv4-mapped IPv6（如 ::ffff:127.0.0.1 -> 127.0.0.1），
+  // 使本地回环与代理环境均可通过 isValidIPv4 校验与 CIDR 白名单匹配
+  const mapped = ip.match(/^::ffff:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})$/i);
+  if (mapped) {
+    return mapped[1];
   }
-
-  return '0.0.0.0';
+  return ip;
 }
 
 /**

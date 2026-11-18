@@ -13,6 +13,7 @@
 import type React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { ResponsiveLayoutProvider } from '@/components/layout/responsive-layout';
+import { GlobalInitializer } from '@/components/global-initializer';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -89,6 +90,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className="antialiased" suppressHydrationWarning>
+        <GlobalInitializer />
         <ResponsiveLayoutProvider>{children}</ResponsiveLayoutProvider>
       </body>
     </html>

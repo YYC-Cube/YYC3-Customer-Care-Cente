@@ -70,7 +70,13 @@ export function Sidebar({
   const pathname = usePathname();
   const [isHovered, setIsHovered] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
-  const { sidebarCollapsed, setSidebarCollapsed } = useLayoutContext();
+  const {
+    sidebarCollapsed,
+    setSidebarCollapsed,
+    sidebarOpen,
+    setSidebarOpen,
+    layoutConfig,
+  } = useLayoutContext();
 
   // 根据路径设置活跃模块
   useEffect(() => {
@@ -92,15 +98,15 @@ export function Sidebar({
       '/communication/documents': 'documents',
       '/communication/notifications': 'notifications',
       '/ai': 'ai-analysis',
-      '/ai/prediction': 'ai-prediction',
-      '/ai/automation': 'ai-automation',
+      '/ai/customer-data': 'ai-prediction',
+      '/ai/smart-forms': 'ai-automation',
       '/security/permissions': 'permissions',
       '/security/audit': 'audit',
-      '/security/mfa': 'mfa',
-      '/system/settings': 'settings',
+      '/security/mfa': 'security-center',
+      '/settings/layout': 'settings',
       '/system/database': 'database',
-      '/system/integrations': 'integrations',
-      '/system/backup': 'backup',
+      '/enterprise-features': 'integrations',
+      '/offline': 'mobile',
     };
 
     const currentModule = pathToModule[pathname] || 'dashboard';
@@ -154,13 +160,13 @@ export function Sidebar({
           id: 'ai-prediction',
           label: '客户数据',
           icon: TrendingUp,
-          path: '/ai/prediction',
+          path: '/ai/customer-data',
         },
         {
           id: 'ai-automation',
           label: '智能表单',
           icon: Bot,
-          path: '/ai/automation',
+          path: '/ai/smart-forms',
         },
       ],
     },
@@ -172,28 +178,28 @@ export function Sidebar({
           id: 'multi-tenant',
           label: '门店管理',
           icon: Users,
-          path: '/multi-tenant',
+          path: '/enterprise-features',
           color: 'green',
         },
         {
           id: 'bi-analysis',
           label: '商业智能',
           icon: BarChart3,
-          path: '/bi-analysis',
+          path: '/analytics',
           color: 'purple',
         },
         {
           id: 'mobile-app',
           label: '移动应用',
           icon: Smartphone,
-          path: '/mobile-app',
+          path: '/offline',
           color: 'red',
         },
         {
           id: 'security-center',
           label: '安全中心',
           icon: Shield,
-          path: '/security',
+          path: '/security/mfa',
           color: 'orange',
         },
       ],
@@ -241,7 +247,7 @@ export function Sidebar({
           id: 'project-management',
           label: '项目管理',
           icon: Target,
-          path: '/projects',
+          path: '/tasks',
           color: 'purple',
         },
       ],
@@ -320,7 +326,7 @@ export function Sidebar({
           id: 'settings',
           label: '基础设置',
           icon: Settings,
-          path: '/system/settings',
+          path: '/settings/layout',
         },
         {
           id: 'database',
@@ -332,13 +338,13 @@ export function Sidebar({
           id: 'integrations',
           label: '集成管理',
           icon: Puzzle,
-          path: '/system/integrations',
+          path: '/enterprise-features',
         },
         {
           id: 'backup',
           label: '备份恢复',
           icon: HardDrive,
-          path: '/system/backup',
+          path: '/system/database',
         },
       ],
     },
@@ -347,11 +353,13 @@ export function Sidebar({
   const handleNavigation = (path: string, moduleId: string) => {
     router.push(path);
     setActiveModule?.(moduleId);
+    setSidebarOpen(false);
   };
 
   const handleLogoClick = () => {
     router.push('/');
     setActiveModule?.('dashboard');
+    setSidebarOpen(false);
   };
 
   const toggleCollapse = () => {
@@ -386,7 +394,11 @@ export function Sidebar({
     }
   };
 
-  const sidebarWidth = sidebarCollapsed && !isHovered ? 'w-14' : 'w-56';
+  // 宽度统一由布局令牌驱动，消除 w-14(56)/w-56(224) 与令牌 64/256 的偏差
+  const currentWidth =
+    sidebarCollapsed && !isHovered
+      ? layoutConfig.sidebar.width.collapsed
+      : layoutConfig.sidebar.width.expanded;
 
   const getColorClasses = (color: string) => {
     const colorMap = {
@@ -459,9 +471,11 @@ export function Sidebar({
       <aside
         className={cn(
           'bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 h-screen transition-all duration-300 ease-in-out flex flex-col shadow-lg fixed top-0 left-0 z-50',
-          sidebarWidth,
+          '-translate-x-full lg:translate-x-0',
+          sidebarOpen && 'translate-x-0',
           className
         )}
+        style={{ width: `${currentWidth}px` }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

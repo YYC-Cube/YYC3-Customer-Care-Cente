@@ -21,15 +21,7 @@ const nextConfig = {
     unoptimized: true,
   },
 
-  experimental: {
-    optimizePackageImports: [
-      'lucide-react',
-      'recharts',
-      '@radix-ui/react-dialog',
-      '@radix-ui/react-dropdown-menu',
-    ],
-  },
-
+  // Next.js 16 已内置依赖导入优化，无需手动声明 optimizePackageImports
   poweredByHeader: false,
   compress: true,
 
@@ -37,18 +29,8 @@ const nextConfig = {
     BUILD_TIME: new Date().toISOString(),
   },
 
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false,
-      };
-    }
-    return config;
-  },
-
+  // Next.js 16 默认 Turbopack，移除了旧的 webpack fs/net/tls fallback；
+  // images.unoptimized=true 已规避对 node polyfill 的依赖。
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
 
   ...(isGitHubPages
@@ -57,17 +39,8 @@ const nextConfig = {
 
   staticPageGenerationTimeout: 180,
 
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
-
   typescript: {
     ignoreBuildErrors: false,
-  },
-
-  onDemandEntries: {
-    maxInactiveAge: 60 * 1000,
-    pagesBufferLength: 5,
   },
 };
 

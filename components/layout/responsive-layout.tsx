@@ -99,7 +99,8 @@ export function ResponsiveLayout({
 }: ResponsiveLayoutProps) {
   const { sidebarCollapsed, sidebarOpen, setSidebarOpen, layoutConfig } =
     useLayoutContext();
-  const { isMobile, isTablet, getContentStyles } = useResponsiveLayout();
+  // 使用 Provider 中的同一份配置，避免配置源分裂
+  const { isMobile, getContentStyles } = useResponsiveLayout(layoutConfig);
 
   // 计算主内容区域的边距
   const getMainContentMargin = () => {
@@ -112,29 +113,22 @@ export function ResponsiveLayout({
   };
 
   return (
-    <div className={cn('min-h-screen bg-gray-50', className)}>
+    <div className={cn('min-h-screen overflow-x-hidden bg-gray-50', className)}>
       {/* 侧边栏 */}
-      {showSidebar && (
-        <>
-          <Sidebar />
+      {showSidebar && <Sidebar />}
 
-          {/* 移动端遮罩 */}
-          {isMobile && sidebarOpen && (
-            <div
-              className="fixed inset-0 bg-black/50 z-30 lg:hidden"
-              onClick={() => setSidebarOpen(false)}
-            />
-          )}
-        </>
+      {/* 移动端遮罩：抽屉展开时显示，层级位于 Sidebar(z-50) 之下、Header(z-40) 之下 */}
+      {showSidebar && sidebarOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-black/50 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
       )}
 
-      {/* 主内容区域 */}
+      {/* 主内容区域：块级元素自适应剩余宽度，去除 width:100% 避免与 marginLeft 叠加溢出 */}
       <div
-        className="transition-all duration-300 ease-in-out min-h-screen w-full"
-        style={{
-          marginLeft: getMainContentMargin(),
-          width: '100%',
-        }}
+        className="min-h-screen transition-[margin] duration-300 ease-in-out"
+        style={{ marginLeft: getMainContentMargin() }}
       >
         {/* 头部 */}
         {showHeader && (
@@ -142,21 +136,12 @@ export function ResponsiveLayout({
             height={layoutConfig.header.height}
             sticky={layoutConfig.header.sticky}
             showOnMobile={layoutConfig.header.showOnMobile}
+            onMenuClick={() => setSidebarOpen(true)}
           />
         )}
 
         {/* 页面内容 */}
-        <main
-          className="min-h-screen w-full"
-          style={{
-            width: '100%',
-            ...getContentStyles(),
-            marginTop:
-              showHeader && layoutConfig.header.sticky
-                ? `${layoutConfig.header.height}px`
-                : '0',
-          }}
-        >
+        <main className="min-h-screen w-full" style={getContentStyles()}>
           {children}
         </main>
       </div>
